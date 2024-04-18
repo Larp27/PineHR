@@ -346,12 +346,27 @@
     </div>
   </div>
 
-  <!-- Button trigger for saving modal -->
   <div class="m-4 text-end">
-    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" id="addEmployee" name="buttonSAVE" style = "background-color: #2468a0;"><i class="fa-solid fa-check" style="color: #ffffff;">&nbsp;</i> Save 
-    </button>
+    <button type="button" class="btn btn-success" name="btnUpdateEmployee" id="btnUpdateEmployee">UPDATE</button>
     <a href="em_list.php" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter" id="btnClose" name="btnClose"><i class="fa-solid fa-delete-left" style="color: #000000"></i> Cancel</a>
   </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Recorded Successfully!</h5>
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;New Employee Added!. Thank you.
+      </div>
+      <div class="modal-footer">
+        <a href = "em_list.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+      </div>
+      </div>
+    </div>
+  </div>  
+
 </form>
 
 <script src="Employee/updateEM.js"></script>

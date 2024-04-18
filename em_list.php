@@ -5,6 +5,7 @@
   ?>
 
   <form>
+    <input type="hidden" name="em_id" value="<?php echo $_GET['em_id']; ?>">
     <div class="col-md-12 m-2">
       <div class="panel panel-default">
         <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
