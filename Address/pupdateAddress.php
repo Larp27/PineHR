@@ -5,11 +5,11 @@
   function updateAddress() {
     global $conn;
 
-    $a_id = $_POST['a_id'];
-    $a_name = $_POST['a_name'];
+    $address_id = $_POST['address_id'];
+    $barangay = $_POST['barangay'];
+    $city = $_POST['city'];
 
-
-    $query = "UPDATE `address` SET a_name='$a_name' WHERE a_id = $a_id";
+    $query = "UPDATE `address` SET barangay='$barangay', city='$city' WHERE address_id = $address_id";
 
     $result = mysqli_query($conn, $query);
 

@@ -1,7 +1,7 @@
 <!--Declaration of user session -logout- -->
 <?php
     $title = 'Address';
-    $page = 'address_add';
+    $page = 'Address';
     include_once('./main.php');
       ?>
 <!--cont logout session-->
@@ -11,7 +11,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;" >
         <strong>
-        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-location-dot fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Address</span></strong>
+        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Address</span></strong>
        </strong>
       </div><br>
 
@@ -25,10 +25,12 @@
           <form method="post" action="Address.php">
             <p id = "message" class = text-danger> </p>
 
-            &nbsp;<strong><span>Complete Address (Barangay, City)</span></strong><br>
-            <br><input type="text" class="form-control" placeholder="ex. (Barangay Ipil, Ormoc City)" id="a_name" name="a_name" aria-describedby="addon-wrapping">
-            <br>
-        
+            &nbsp;<strong><span>Barangay</span></strong><br>
+            <br><input type="text" class="form-control" placeholder="ex. Barangay Ipil" id = "barangay"
+            aria-describedby="addon-wrapping"><br>
+            &nbsp;<strong><span>City</span></strong><br>
+            <br><input type="text" class="form-control" placeholder="ex. Ormoc City" id = "city"
+            aria-describedby="addon-wrapping"><br>
             
     
             <!-- Button trigger for saving modal -->
