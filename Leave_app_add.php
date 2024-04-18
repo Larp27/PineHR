@@ -149,9 +149,6 @@ if (isset($_SESSION['s_em_email'])) {
               } elseif ($all_credits_zero) {
                 $tooltip_message = "All your leave types have zero available credits.";
               }
-
-              // Output the dropdown items with tooltip
-              echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item ' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
               ?>
               <!-- end Declaration of user session -logout- -->
 
