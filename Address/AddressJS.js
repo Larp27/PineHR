@@ -5,18 +5,18 @@ $(document).ready(function() {
 function insert_record(){
     $(document).on('click', '#buttonSAVE', function(){
 
-        var address_name = $('#a_name').val();
+        var barangay = $('#barangay').val();
+        var city = $('#city').val();
 
-
-    if(address_name == ""){
+    if(barangay == "" | city == ""){
         $('#message').html('Please fill in the required fields'); 
     }else{
         $.ajax({
             url:'Address/insertAddress.php',
             method:'POST',
             data: {
-                address_name: address_name
-
+                barangay : barangay,
+                city : city,
             },
             success:function(data){
                 $('#message').html(data);
