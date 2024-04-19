@@ -11,6 +11,19 @@
           &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee</strong></span>
         </div><br>
 
+                        <a href="Employee/deleteEM.php?em_id=<?php echo $row['em_id']; ?>" class="btn btn-danger btn-sm" 
+                          onclick="return confirm('Are you sure you want to remove this Employee?')">
+                          <i class="fas fa-trash"></i> Remove
+                        </a>
+                      </div>
+                    </td>           
+                  </tr>
+                <?php
+                  }
+                ?>
+                </tbody>
+              </table>
+
         <div class="col-md-7" style="width: 100%">
           <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0;">
             <div class="panel-heading">
