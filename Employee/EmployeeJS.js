@@ -22,13 +22,12 @@ $(document).ready(function() {
     formData.append('em_password', $('#em_password').val());
     formData.append('em_profile_pic', $('#em_profile_pic')[0].files[0]);
 
-    // Loop through each checkbox to gather selected leave types and their credits
     $('input[name="leave_type_ids[]"]:checked').each(function() {
       var leaveTypeId = $(this).val();
       var creditInputId = 'credits_' + leaveTypeId;
       var leaveCredit = $('#' + creditInputId).val();
-      formData.append('leave_type_ids[]', leaveTypeId); // Append leave type ID
-      formData.append('leave_credits[]', leaveCredit); // Append leave credit
+      formData.append('leave_type_ids[]', leaveTypeId);
+      formData.append('leave_credits[]', leaveCredit);
     });
 
     if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "") {
@@ -39,8 +38,8 @@ $(document).ready(function() {
         url: 'Employee/insertEmployee.php',
         method: 'POST',
         data: formData,
-        processData: false, // Prevent jQuery from processing the data
-        contentType: false, // Prevent jQuery from setting content type
+        processData: false,
+        contentType: false,
         success: function(data) {
           if (data.toLowerCase().includes('success')) {
             $('#exampleModalCenter').modal('show');
