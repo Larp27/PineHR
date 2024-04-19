@@ -90,10 +90,7 @@
               <label for="em_phone" class="fw-bold text-uppercase">Contact Number</label>
               <input type="text" name="em_phone" id="em_phone" class="form-control" aria-describedby="addon-wrapping" required>
             </div>
-            <div class="form-group mb-3">
-              <label for="em_email" class="fw-bold text-uppercase">Email</label>
-              <input type="text" class="form-control" placeholder="" id = "em_email" aria-describedby="addon-wrapping">
-            </div>
+
             <div class="form-group mb-3">
               <label for="address_id" class="fw-bold text-uppercase mb-1 text-uppercase">Address</label>
               <select class="form-select" id="address_id" name="address_id" required>
@@ -107,8 +104,6 @@
                 <?php endwhile; ?>
               </select>
             </div>
-          </div>
-          <div class="col-6">
             <div class="form-group mb-3">
               <label for="edu_id" class="fw-bold  text-uppercase">Educational Attainment</label>
               <select class="form-select" id="edu_id" name="edu_id" required>
@@ -121,6 +116,8 @@
                 <?php endwhile; ?>
               </select>
             </div>
+          </div>
+          <div class="col-6">
             <div class="form-group mb-3">
               <label for="dep_id" class="fw-bold  text-uppercase">Department</label>
               <select class="form-select" id="dep_id" name="dep_id" required>
@@ -176,6 +173,10 @@
             <div class="form-group mb-3">
               <label for="em_contract_end" class="fw-bold  text-uppercase">Date of Leaving</label>
               <input type="date" class="form-control" placeholder="" id="em_contract_end" aria-describedby="addon-wrapping">
+            </div>
+            <div class="form-group mb-3">
+              <label for="em_email" class="fw-bold text-uppercase">Email</label>
+              <input type="text" class="form-control" placeholder="" id = "em_email" aria-describedby="addon-wrapping">
             </div>
             <div class="form-group mb-3">
               <label for="em_password" class="fw-bold  text-uppercase">Password</label>
