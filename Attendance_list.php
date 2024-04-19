@@ -30,45 +30,68 @@ include_once('./main.php');
 
           <body>
 
-            &nbsp; &nbsp; &nbsp; &nbsp;<?php {
-                                          echo '<button type="button" class="btn btn-success" style = "margin-left: 1200px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Upload CSV File</button>';
-                                        }
-                                        ?>
+            
+            <?php {
+              echo '<a href="attendance_add.php"><i><button type="button" class="btn btn-success" style = "margin-left: 1155px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Attendance +</button> </a>';
+            }
+            ?>
+            <?php {
+              echo '<button type="button" class="btn btn-success" style = "margin-left: 1350px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Upload CSV File</button>';
+            }
+
+            ?>
+
             <hr>
+
             <table class="table" id="example">
               <colgroup>
-                <col width="5%">
-                <col width="20%">
                 <col width="10%">
-                <col width="15%">
-                <col width="15%">
+                <col width="20%">
+                <col width="20%">
                 <col width="15%">
               </colgroup>
               <thead class="" style="background-color: rgb(255, 206, 46)">
                 <tr>
-                  <th>#</th>
-                  <th>Employee Name</th>
-                  <th>Attendance Date</th>
-                  <th>Sign In</th>
-                  <th>Sign Out</th>
-                  <th>Working Hour</th>
+                  <th class="text-center p-2">#</th>
+                  <th class="text-center p-2">Employee Name</th>
+                  <th class="text-center p-2">Attendance Date</th>
+                  <th class="text-center p-2">Sign In</th>
+                  <th class="text-center p-2">Sign Out</th>
+                  <th class="text-center p-2">Total Working Hours</th>
+
                 </tr>
               </thead>
               <?php
               $i = 1;
-              $rows = mysqli_query($conn, "SELECT * FROM attendance");
-              foreach ($rows as $row) :
+              $query = "SELECT * FROM `attendance` a INNER JOIN `employee` e ON e.em_id = a.em_id";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_assoc($result)) {
+                $r_first_name = $row['first_name'];
+                $r_last_name = $row['last_name'];
+                $r_att_date = $row['att_date'];
+                $r_att_s_in = date("h:i A", strtotime($row['att_s_in'])); // Convert to 12-hour format
+                $r_att_s_out = date("h:i A", strtotime($row['att_s_out'])); // Convert to 12-hour format
+                $total_hours = floor($row['total_hr']); // Get the whole hours
+            
+                echo "<tr> 
+                        <td class='text-center p-3'>" . $i++ . "</td>
+                        <td class='text-center p-3'>$r_last_name, $r_first_name </td>
+                        <td class='text-center p-3'> $r_att_date </td>
+                        <td class='text-center p-3'> $r_att_s_in </td>
+                        <td class='text-center p-3'> $r_att_s_out </td>
+                        <td class='text-center p-3'> $total_hours hours </td>
+                      </tr>";    
+                  
+                ?>
+              <?php
+              }
               ?>
-                <tr>
-                  <td> <?php echo $i++; ?> </td>
-                  <td> <?php echo $row["em_name"]; ?> </td>
-                  <td> <?php echo $row["att_date"]; ?> </td>
-                  <td> <?php echo $row["att_s_in"]; ?> </td>
-                  <td> <?php echo $row["att_s_out"]; ?> </td>
-                  <td> <?php echo $row["att_total_hr"]; ?> </td>
-                </tr>
-              <?php endforeach; ?>
             </table>
+
+
+
+
+
             <?php
             if (isset($_POST["import"])) {
               $fileName = $_FILES["excel"]["name"];
@@ -91,8 +114,8 @@ include_once('./main.php');
                 $att_date = explode('/', $row[1])[2] . '-' . explode('/', $row[1])[1] . '-' . explode('/', $row[1])[0];
                 $att_s_in = $row[2];
                 $att_s_out = $row[3];
-                $att_total_hr = $row[4];
-                mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_name', '$att_date', '$att_s_in', '$att_s_out', '$att_total_hr')");
+                $total_hr = $row[4];
+                mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_name', '$att_date', '$att_s_in', '$att_s_out', '$total_hr')");
               }
 
               echo
