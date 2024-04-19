@@ -9,7 +9,7 @@ include_once('./main.php');
   <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
-        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee</span></strong>
+        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Emplssssosssyee</span></strong>
       </div><br>
 
       <div class="col-md-7" style="width: 100%">
