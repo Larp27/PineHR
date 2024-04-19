@@ -64,15 +64,6 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 }
 ?>
 
-
-
-
-
-<!-- Rest of your dashboard content goes here -->
-
-<!-- Include necessary scripts and stylesheets -->
-
-
 <!--calendar links-->
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 <link rel="stylesheet" href="./css/bootstrap.min.css">

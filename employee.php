@@ -41,18 +41,46 @@ if (isset($_SESSION['s_em_email'])) {
     <!--calendar links-->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
+    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./fullcalendar/lib/main.min.js"></script>
-    <!--calendar links-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="./js/script.js"></script>
+    <style>
+      :root {
+        --bs-success-rgb: 71, 222, 152 !important;
+      }
 
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        font-family: Apple Chancery, cursive;
+      }
 
+      .btn-info.text-light:hover,
+      .btn-info.text-light:focus {
+        background: #000;
+      }
+
+      table,
+      tbody,
+      td,
+      tfoot,
+      th,
+      thead,
+      tr {
+        border-color: #ededed !important;
+        border-style: solid;
+        border-width: 1px !important;
+      }
+    </style>
   </head>
-
   <body>
-
-    <!--LOGOUT -- getting user role to display specific features and function -->
     <?php
     if ($_SESSION['s_user_id'] == 1) {
       $query = "select * from user_type";
@@ -60,33 +88,19 @@ if (isset($_SESSION['s_em_email'])) {
       $result = mysqli_query($conn, $query);
     }
     ?>
-    <!-- cont LOGOUT Session  -- -->
-
     <div id="dashmaincontainer">
-
       <div class="dash_sidebar_menus">
-        <br>
-
-        <br>
-
         <?php if ($_SESSION['s_user_id'] == 2) : ?>
-
         <?php endif; ?>
       </div>
-
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
           <a href="Dashboard.php">
             <img src="bgimages/pine.png" alt="logo" style="width: 100px;height: 60px;margin-top: -15px; margin-left: -8px">
           </a>
-
-          <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
           <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
-
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
-
-        <!--Modal for logout-->
         <div>
           <div id="exampleModal" class="modal fade">
             <div class="modal-dialog modal-dialog-centered">
@@ -96,7 +110,6 @@ if (isset($_SESSION['s_em_email'])) {
                     <h4 class="modal-title">Are you sure you want to logout?</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-
                   <div class="modal-footer">
                     <a href="Dashboard.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
                     <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
@@ -106,31 +119,6 @@ if (isset($_SESSION['s_em_email'])) {
             </div>
           </div>
         </div>
-        <!--End of modal logout-->
-
-
-
-        <script>
-          var sideBarIsOpen = true;
-
-          togglebtn.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            if (sideBarIsOpen) {
-              dash_sidebar.style.width = '0%';
-              dash_sidebar.style.transition = '0.3s all';
-              dash_content_container.style.width = '100%';
-              sideBarIsOpen = false;
-            } else {
-
-              dash_sidebar.style.width = '20%';
-              dash_sidebar.style.height = 'auto';
-              dash_content_container.style.width = '100%';
-              sideBarIsOpen = true;
-            }
-          });
-        </script>
-
         <div class="col-md-12">
           <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -161,8 +149,6 @@ if (isset($_SESSION['s_em_email'])) {
                     $all_credits_zero = true;
                   }
                 }
-
-                // Disable the "Application" dropdown item if necessary
                 $application_disabled = ($leave_credit_count == 0 || $all_credits_zero) ? 'disabled' : '';
 
                 // Determine the tooltip message
@@ -180,68 +166,102 @@ if (isset($_SESSION['s_em_email'])) {
               </ul>
             </li>
           </ul>
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="panel panel-default">
+                <div class="panel-heading d-flex p-0 pt-3 ps-3" style="box-shadow: 0 4px 5px -1px #2468a0;">
+                  <i class="fa-solid fa-house fa-xl mt-3 me-2" style="color: #2468a0;"></i>
+                  <p class="fs-4">Dashboard</p>
+                </div>
+              </div>
+              <div class="row mx-auto">
+                <div class="col-md-12 mt-3 mb-3">
+                  <div class="row gap-5">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                      <div class="p-2 bg-warning" style="box-shadow: black 2px 6px 12px;">
+                        <h1>
+                          <?php
+                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
+                          $dec_query_run = mysqli_query($conn, $dec_query);
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <strong>
-                &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Dashboard</span></strong>
-              </strong>
-            </div>
-
-            <div class="dash_content">
-              <div class="dash_content_main">
-
-
-                <style>
-                  :root {
-                    --bs-success-rgb: 71, 222, 152 !important;
-                  }
-
-                  html,
-                  body {
-                    height: 100%;
-                    width: 100%;
-                    font-family: Apple Chancery, cursive;
-                  }
-
-                  .btn-info.text-light:hover,
-                  .btn-info.text-light:focus {
-                    background: #000;
-                  }
-
-                  table,
-                  tbody,
-                  td,
-                  tfoot,
-                  th,
-                  thead,
-                  tr {
-                    border-color: #ededed !important;
-                    border-style: solid;
-                    border-width: 1px !important;
-                  }
-                </style>
-
-
-                <form>
-                  <br>
-                  <div class="">
-                    <div class="panel panel-default">
-                      <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
-                        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Schedule of events</span></strong>
+                          if ($dec_query_run) {
+                            $row = mysqli_fetch_assoc($dec_query_run);
+                            $dec_total = $row['ls_status'];
+                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
+                          } else {
+                            echo '<h1 class="text-end">0</h1>';
+                          }
+                          ?>
+                        </h1>
+                        <div class="d-flex mt-3">
+                          <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
+                          <h5 class="fs-5 fw-bold mt-1">Pending Leave Application </h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-                <div class="container py-12" id="page-container">
-                  <div class="row">
-                    <div class="col-md-9">
-                      <div id="calendar"></div>
-                    </div>
+                    <div class="col-md-3">
+                      <div class="p-2 bg-success" style="box-shadow: black 2px 6px 12px;">
+                        <h1>
+                          <?php
+                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
+                          $dec_query_run = mysqli_query($conn, $dec_query);
 
+                          if ($dec_query_run) {
+                            $row = mysqli_fetch_assoc($dec_query_run);
+                            $dec_total = $row['ls_status'];
+                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
+                          } else {
+                            echo '<h1 class="text-end">0</h1>';
+                          }
+                          ?>
+                        </h1>
+                        <div class="d-flex mt-3">
+                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
+                          <h5 class="fs-5 fw-bold mt-1">Approved Leave Application </h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="p-2 bg-danger" style="box-shadow: black 2px 6px 12px;">
+                        <h1>
+                          <?php
+                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
+                          $dec_query_run = mysqli_query($conn, $dec_query);
+
+                          if ($dec_query_run) {
+                            $row = mysqli_fetch_assoc($dec_query_run);
+                            $dec_total = $row['ls_status'];
+                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
+                          } else {
+                            echo '<h1 class="text-end">0</h1>';
+                          }
+                          ?>
+                        </h1>
+                        <div class="d-flex mt-3">
+                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
+                          <h5 class="fs-5 fw-bold mt-1">Declined Leave Application </h5>
+                        </div>
+                      </div>
+                      <div class="col-md-2"></div>
+                    </div>
                   </div>
                 </div>
-                <!-- Event Details Modal -->
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="panel panel-default">
+                <div class="panel-heading d-flex p-0 pt-3 ps-4" style="box-shadow: 0 4px 5px -1px #2468a0;">
+                  <i class="fa-solid fa-calendar-days fa-2xl mt-3 me-2" style="color: #2468a0;"></i>
+                  <p class="fs-4">Schedule of Events</p>
+                </div>
+                <div class="container py-12" id="page-container">
+                  <div class="row">
+                    <div class="col-md-9 mt-5 calendar-container">
+                      <div id="calendar"></div>
+                    </div>
+                  </div>
+                </div>
                 <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
                   <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content rounded-0">
@@ -265,15 +285,12 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                       <div class="modal-footer rounded-0">
                         <div class="text-end">
-
                           <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- Event Details Modal -->
-
                 <?php
                 // Query to fetch upcoming schedules
                 $currentDateTime = date('Y-m-d H:i:s');
@@ -281,7 +298,6 @@ if (isset($_SESSION['s_em_email'])) {
                 $schedules = $conn->query($query);
                 $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
                 ?>
-
                 <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
                   <!-- Modal for Welcome Message -->
                   <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -310,66 +326,74 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                     </div>
                   </div>
-                  <!-- End of Modal for Welcome Message -->
                 <?php endif; ?>
+              </div>
+            </div>
+          </div>  
+        </div>        
+      </div>
+    </div>
 
+      <?php
+        // Opening PHP tag
+        $schedules = $conn->query("SELECT * FROM `schedule_list`");
+        $sched_res = [];
+        foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
+          $row['sdate'] = date("F d, Y h:i A", strtotime($row['start_datetime']));
+          $row['edate'] = date("F d, Y h:i A", strtotime($row['end_datetime']));
+          $sched_res[$row['id']] = $row;
+        }
+            if (isset($conn)) $conn->close();
+            ?>
+          <?php
+        } else {
+          header("location: login.php");
+          exit();
+        }
+      ?>
+      <script>
+        var scheds = <?= json_encode($sched_res) ?>;
+        
+        var sideBarIsOpen = true;
+        togglebtn.addEventListener('click', (event) => {
+          event.preventDefault();
 
+          if (sideBarIsOpen) {
+            dash_sidebar.style.width = '0%';
+            dash_sidebar.style.transition = '0.3s all';
+            dash_content_container.style.width = '100%';
+            sideBarIsOpen = false;
+          } else {
 
-                <?php
-                // Opening PHP tag
-                $schedules = $conn->query("SELECT * FROM `schedule_list`");
-                $sched_res = [];
-                foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
-                  $row['sdate'] = date("F d, Y h:i A", strtotime($row['start_datetime']));
-                  $row['edate'] = date("F d, Y h:i A", strtotime($row['end_datetime']));
-                  $sched_res[$row['id']] = $row;
-                }
-                if (isset($conn)) $conn->close();
-                ?>
-                <!-- Move script tags here -->
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script>
-                  var scheds = <?= json_encode($sched_res) ?>;
-                </script>
-                <script src="./js/script.js"></script>
+            dash_sidebar.style.width = '20%';
+            dash_sidebar.style.height = 'auto';
+            dash_content_container.style.width = '100%';
+            sideBarIsOpen = true;
+          }
+        });
+        
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+      </script>
 
+      <script>
+        $(document).ready(function() {
+          // Show the welcome modal when the page loads
+          $('#welcomeModal').modal('show');
 
-                <!--cont LOGOUT Session -- -->
-              <?php
+          // Check the state of the checkbox and set the session variable accordingly
+          $('#showWelcomeModalCheckbox').change(function() {
+            if ($(this).is(":checked")) {
+              // Checkbox is checked, set session variable to true
+              <?php $_SESSION['show_welcome_modal'] = true; ?>
             } else {
-              header("location: login.php");
-              exit();
+              // Checkbox is unchecked, set session variable to false
+              <?php $_SESSION['show_welcome_modal'] = false; ?>
             }
-              ?>
-              <!-- end of LOGOUT Session -->
-              <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-              <script>
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                  return new bootstrap.Tooltip(tooltipTriggerEl)
-                })
-              </script>
-
-              <script>
-                $(document).ready(function() {
-                  // Show the welcome modal when the page loads
-                  $('#welcomeModal').modal('show');
-
-                  // Check the state of the checkbox and set the session variable accordingly
-                  $('#showWelcomeModalCheckbox').change(function() {
-                    if ($(this).is(":checked")) {
-                      // Checkbox is checked, set session variable to true
-                      <?php $_SESSION['show_welcome_modal'] = true; ?>
-                    } else {
-                      // Checkbox is unchecked, set session variable to false
-                      <?php $_SESSION['show_welcome_modal'] = false; ?>
-                    }
-                  });
-                });
-              </script>
-
+          });
+        });
+      </script>
   </body>
-
-  </html>
-  <!--cont logout session-->
+</html>
