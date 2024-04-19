@@ -12,7 +12,7 @@ function insertRecord(){
   $r_id = $_POST['r_id'];
   $bt_id = $_POST['bt_id'];
   $em_birthday = $_POST['em_birthday'];
-  $em_phone = '+63' . $_POST['em_phone']; // Prepend +63 to the phone number
+  $em_phone = $_POST['em_phone'];
   $em_email = $_POST['em_email'];
   $address_id = $_POST['address_id'];
   $edu_id = $_POST['edu_id'];
@@ -32,9 +32,8 @@ function insertRecord(){
   if(isset($_FILES['em_profile_pic'])){
     $fileName = $_FILES['em_profile_pic']['name'];
     $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
-    $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
-    $uniqueID = uniqid();
-    $newFileName = $fileNameWithoutExt . '_' . $uniqueID . '.' . $fileExt;
+    $uniqueID = uniqid(); // Generate unique ID
+    $newFileName = $fileName . '_' . $uniqueID . '.' . $fileExt; // Append unique ID to original file name
     $targetFilePath = $targetDirectory . $newFileName;
 
     $allowedTypes = array('jpg', 'png', 'jpeg', 'gif');
