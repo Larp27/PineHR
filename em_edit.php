@@ -71,7 +71,7 @@
 </style>
 
 <form method="post" action="" enctype="multipart/form-data">
-  <input type="hidden" name="em_id" value="<?php echo $_GET['em_id']; ?>">
+  <input type="hidden" id="em_id" name="em_id" value="<?php echo $_GET['em_id']; ?>">
   <div class="panel panel-default">
     <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;" >
       <strong>
@@ -289,6 +289,7 @@
       </div>
     </div>
   </div>
+  
   <div>
     <div class="card card-outline card-primary m-3">
       <div class="card-header">
@@ -300,50 +301,49 @@
       </div>
 
       <div class="card-body">
-  <div class="container-fluid">
-    <p id="message" class="text-danger"></p>
-    <div class="row">
-      <div class="col-12">
-        <div class="form-group mb-3">
+        <div class="container-fluid">
+          <p id="message" class="text-danger"></p>
           <div class="row">
-            <?php
-              $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE lt.lt_status = 1");
-              $total_leave_types = $leave_types_query->num_rows;
-              $leave_types_per_column = ceil($total_leave_types / 2); 
+            <div class="col-12">
+              <div class="form-group mb-3">
+                <div class="row">
+                  <?php
+                    $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE lt.lt_status = 1");
+                    $total_leave_types = $leave_types_query->num_rows;
+                    $leave_types_per_column = ceil($total_leave_types / 2); 
 
-              $counter = 0;
-              while ($leave_type = $leave_types_query->fetch_assoc()) {
-                if ($counter % $leave_types_per_column == 0) {
-                  echo '<div class="col-md-6">';
-                }
-                echo '<div class="row">';
-                echo '<div class="col-5">';
-                echo '<div class="form-check my-1">';
+                    $counter = 0;
+                    while ($leave_type = $leave_types_query->fetch_assoc()) {
+                      if ($counter % $leave_types_per_column == 0) {
+                        echo '<div class="col-md-6">';
+                      }
+                      echo '<div class="row">';
+                      echo '<div class="col-5">';
+                      echo '<div class="form-check my-1">';
 
-                echo '<input type="checkbox" id="leave_type_' . $leave_type['lt_id'] . '" name="leave_type_ids[]" value="' . $leave_type['lt_id'] . '" class="form-check-input leave-type-checkbox">';
-                echo '<label for="leave_type_' . $leave_type['lt_id'] . '" class="form-check-label">' . $leave_type['lt_name'] . '</label>';
-                echo '</div>';
-                echo '</div>';
+                      echo '<input type="checkbox" id="leave_type_' . $leave_type['lt_id'] . '" name="leave_type_ids[]" value="' . $leave_type['lt_id'] . '" class="form-check-input leave-type-checkbox">';
+                      echo '<label for="leave_type_' . $leave_type['lt_id'] . '" class="form-check-label">' . $leave_type['lt_name'] . '</label>';
+                      echo '</div>';
+                      echo '</div>';
 
-                echo '<div class="col-4 my-1">';
-                echo '<input type="number" id="credits_' . $leave_type['lt_id'] . '" name="leave_type_credits[]" class="form-control d-none leave-type-credit" value="' . $leave_type['lt_credit'] . '">';
-                echo '</div>';
+                      echo '<div class="col-4 my-1">';
+                      echo '<input type="number" id="credits_' . $leave_type['lt_id'] . '" name="leave_type_credits[]" class="form-control d-none leave-type-credit" value="' . $leave_type['lt_credit'] . '">';
+                      echo '</div>';
 
-                echo '</div>';
-                $counter++;
+                      echo '</div>';
+                      $counter++;
 
-                if ($counter % $leave_types_per_column == 0 || $counter == $total_leave_types) {
-                  echo '</div>';
-                }
-              }
-            ?>
+                      if ($counter % $leave_types_per_column == 0 || $counter == $total_leave_types) {
+                        echo '</div>';
+                      }
+                    }
+                  ?>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
     </div>
   </div>
 
@@ -367,10 +367,8 @@
       </div>
     </div>
   </div>  
-
 </form>
 
-<script src="Employee/updateEM.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const checkboxes = document.querySelectorAll('.leave-type-checkbox');
@@ -445,4 +443,12 @@
       input.click();
     });
   });
+
+  // INITIALIZA DATATABLE
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="Employee/updateEM.js"></script>
