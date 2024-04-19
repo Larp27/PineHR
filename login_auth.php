@@ -8,10 +8,10 @@ $em_password = $_POST['em_password'];
 
 
 if (empty($em_email)) {
-    header("location: login.php?error=Email is required.");
+    header("location: login.php?error=<span style='color:red;'>Fill in Necessary Fields.</span>");
     exit();
 } else if (empty($em_password)) {
-    header("location: login.php?error=Password is required.");
+    header("location: login.php?error<span style='color:red;'>=Password is required.</span>");
     exit();
 }
 
@@ -35,7 +35,7 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: Dashboard.php");
     exit();
 } else {
-    header("location: login.php?error=Invalid username/password.");
+    header("location: login.php?error=<span style='color:red;'>Invalid username/password.</span>");
     exit();
 }
 ?>
