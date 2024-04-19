@@ -32,20 +32,22 @@ if (isset($_SESSION['s_em_email'])) {
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- Modal Jquery for logging in -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--Navbar CSS-->
     <link rel="stylesheet" href="css/navbar2.css">
 
     <!--calendar links-->
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<link rel="stylesheet" href="./css/bootstrap.min.css">
-<link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
-<script src="./js/jquery-3.6.0.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
-<script src="./fullcalendar/lib/main.min.js"></script>
-<!--calendar links-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
+    <script src="./js/jquery-3.6.0.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./fullcalendar/lib/main.min.js"></script>
+    <!--calendar links-->
 
-
+dxstgsetgyg
   </head>
 
   <body>
@@ -105,7 +107,6 @@ if (isset($_SESSION['s_em_email'])) {
           </div>
         </div>
         <!--End of modal logout-->
-
 
 
 
@@ -183,7 +184,7 @@ if (isset($_SESSION['s_em_email'])) {
           <div class="panel panel-default">
             <div class="panel-heading">
               <strong>
-                &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Dashboard</span></strong>
+                &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Dashboard</span></strong>
               </strong>
             </div>
 
@@ -237,7 +238,7 @@ if (isset($_SESSION['s_em_email'])) {
                     <div class="col-md-9">
                       <div id="calendar"></div>
                     </div>
-                    
+
                   </div>
                 </div>
                 <!-- Event Details Modal -->
@@ -264,7 +265,7 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                       <div class="modal-footer rounded-0">
                         <div class="text-end">
-                        
+
                           <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>
@@ -272,6 +273,47 @@ if (isset($_SESSION['s_em_email'])) {
                   </div>
                 </div>
                 <!-- Event Details Modal -->
+
+                <?php
+                // Query to fetch upcoming schedules
+                $currentDateTime = date('Y-m-d H:i:s');
+                $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
+                $schedules = $conn->query($query);
+                $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
+                ?>
+
+                <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
+                  <!-- Modal for Welcome Message -->
+                  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <!-- Add your welcome message or any other content here -->
+                          <p>Announcement Upcoming Event!</p>
+                          <p>Schedule Details</p>
+                          <ul>
+                            <!-- Output schedule details here -->
+                            <?php
+                            while ($row = $schedules->fetch_assoc()) {
+                              $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
+                              $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
+                              echo "<li>Event Title: " . $row['title'] . "</li>";
+                              echo "Start Date: " . $start_date . "<br>End Date: " . $end_date;
+                            }
+                            ?>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- End of Modal for Welcome Message -->
+                <?php endif; ?>
+
+
 
                 <?php
                 // Opening PHP tag
@@ -304,11 +346,30 @@ if (isset($_SESSION['s_em_email'])) {
 
               <script>
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
                   return new bootstrap.Tooltip(tooltipTriggerEl)
                 })
+              </script>
+
+              <script>
+                $(document).ready(function() {
+                  // Show the welcome modal when the page loads
+                  $('#welcomeModal').modal('show');
+
+                  // Check the state of the checkbox and set the session variable accordingly
+                  $('#showWelcomeModalCheckbox').change(function() {
+                    if ($(this).is(":checked")) {
+                      // Checkbox is checked, set session variable to true
+                      <?php $_SESSION['show_welcome_modal'] = true; ?>
+                    } else {
+                      // Checkbox is unchecked, set session variable to false
+                      <?php $_SESSION['show_welcome_modal'] = false; ?>
+                    }
+                  });
+                });
               </script>
 
   </body>
 
   </html>
+  <!--cont logout session-->
