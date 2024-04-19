@@ -94,8 +94,6 @@ include_once('./main.php');
                           <i class="fas fa-edit"></i> Edit
                         </a>
 
-
-
                         <a href="Employee/deleteEM.php?em_id=<?php echo $row['em_id']; ?>" class="btn btn-danger btn-sm" 
                           onclick="return confirm('Are you sure you want to remove this Employee?')">
                           <i class="fas fa-trash"></i> Remove
