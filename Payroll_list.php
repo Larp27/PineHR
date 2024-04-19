@@ -28,10 +28,15 @@ include_once('./main.php');
 
           <body>
 
-            &nbsp; &nbsp; &nbsp; &nbsp;<?php {
-                                          echo '<button type="button" class="btn btn-success" style = "margin-left: 1200px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>';
-                                        }
-                                        ?>
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <?php {
+              echo '<a href="payroll_add.php"><i><button type="button" class="btn btn-success" style = "margin-left: 1155px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Payroll +</button> </a>';
+            }
+            ?>
+            <?php {
+              echo '<button type="button" class="btn btn-success" style = "margin-left: 1200px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>';
+            }
+            ?>
             <hr>
             <table class="table" id="example">
               <colgroup>
@@ -46,7 +51,8 @@ include_once('./main.php');
                 <tr>
                   <th>#</th>
                   <th>Employee Name</th>
-                  <th>Date</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
                   <th>Daily Income</th>
                   <th>Deduction</th>
                   <th>Total Working Days</th>
@@ -55,20 +61,21 @@ include_once('./main.php');
               </thead>
               <?php
               $i = 1;
-              $rows = mysqli_query($conn, "SELECT * FROM payroll");
+              $rows = mysqli_query($conn, "SELECT p.*, e.first_name, e.last_name FROM payroll p INNER JOIN employee e ON p.em_name = e.em_id");
               foreach ($rows as $row) :
               ?>
                 <tr>
                   <td> <?php echo $i++; ?> </td>
-                  <td> <?php echo $row["em_name"]; ?> </td>
-                  <td> <?php echo $row["payroll_date"]; ?> </td>
+                  <td> <?php echo $row["last_name"] . ", " . $row["first_name"]; ?> </td>
+                  <td> <?php echo $row["payroll_start_date"]; ?> </td>
+                  <td> <?php echo $row["payroll_end_date"]; ?> </td>
                   <td> <?php echo $row["payroll_income"]; ?> </td>
                   <td> <?php echo $row["payroll_deduction"]; ?> </td>
                   <td> <?php echo $row["payroll_twd"]; ?> </td>
-                  <td> <?php echo $row["payroll"]; ?> </td>
-
+                  <td> <?php echo $row["payroll_total"]; ?> </td>
                 </tr>
               <?php endforeach; ?>
+
             </table>
             <?php
             if (isset($_POST["import"])) {
@@ -93,8 +100,8 @@ include_once('./main.php');
                 $payroll_income = $row[2];
                 $payroll_deduction = $row[3];
                 $payroll_twd = $row[4];
-                $payroll = $row[5];
-                mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_name', '$payroll_date', '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll')");
+                $payroll_total = $row[5];
+                mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_name', '$payroll_start_date', '$payroll_end_date' , '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total')");
               }
 
               echo
