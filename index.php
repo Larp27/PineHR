@@ -147,7 +147,7 @@ session_start();
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="bgimages/pine.png" alt="logo" style="width: 495px; height: 485px; display: block; margin-left: auto; margin-right: auto"></a>
+          <img src="bgimages/pine.png" alt="logo" style="width: 195px; height: 185px; display: block; margin-left: auto; margin-right: auto"></a>
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ function insertRecord(){
   $r_id = $_POST['r_id'];
   $bt_id = $_POST['bt_id'];
   $em_birthday = $_POST['em_birthday'];
-  $em_phone = '+63' . $_POST['em_phone']; // Prepend +63 to the phone number
+  $em_phone = $_POST['em_phone'];
   $em_email = $_POST['em_email'];
   $address_id = $_POST['address_id'];
   $edu_id = $_POST['edu_id'];
