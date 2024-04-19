@@ -32,6 +32,8 @@ if (isset($_SESSION['s_em_email'])) {
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <!-- Modal Jquery for logging in -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!--Navbar CSS-->
     <link rel="stylesheet" href="css/navbar2.css">
