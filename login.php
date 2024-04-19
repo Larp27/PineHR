@@ -1,13 +1,3 @@
-<?php
-session_start();
-
-// Check if the user is already logged in
-if (isset($_SESSION['s_em_email'])) {
-    // Redirect to another page, such as the dashboard
-    header("Location: Dashboard.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,76 +143,62 @@ if (isset($_SESSION['s_em_email'])) {
 <body>
 </body>
 
-<form action="login_auth.php" method="post" onsubmit="return validateForm()">
+<form action="login_auth.php" method="post">
     <div class="container"><br><br><br><br><br><br>
         <a href="index.php"><img src="bgimages/pine.png" alt="logo" style="width: 195px;height: 185px;margin-left: 110px"></a>
         <a>
+
             <h1 style="font-family: 'Glacial Indifference'; font-size:18px">HUMAN RESOURCE <br>MONITORING AND PROFILING<br>MANAGEMENT SYSTEM </h1>
         </a>
 
         <?php if (isset($_GET['error'])) { ?>
+
             <p class="error"><?php echo $_GET['error']; ?></p>
         <?php } ?>
         <?php if (isset($_GET['error2'])) { ?>
+
             <p class="error2"><?php echo $_GET['error2']; ?></p>
         <?php } ?><br>
 
-        <input type="text" name="em_email" id="em_email" placeholder="Email" required>
-        <input type="password" name="em_password" id="em_password" placeholder="Password" required><br>
+        <input type="text" name="em_email" placeholder="Email">
+        <input type="password" name="em_password" placeholder="Password"><br>
         <button type="submit" class="login">Login</button>
-    </div>
-</form>
 
+        <!--
+        </form>
+        <img src="bgimages/ormoc_seal.png" alt="logo" style="width: 550px;height:550px; margin-left:900px; margin-top: -500px">
+        </div>
+        -->
 
-<video autoplay loop muted plays-inline id="bgvideo" class="back-video">
-    <source src="bgimages/Ormoc_Seal.mp4" type="video/mp4">
-</video>
+        <video autoplay loop muted plays-inline id="bgvideo" class="back-video">
+            <source src="bgimages/Ormoc_Seal.mp4" type="video/mp4">
+        </video>
 
-<style>
-    .back-video {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
+        <style>
+            .back-video {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
 
-    }
+            }
 
-    @media(min-aspect-ratio: 16/9) {
-        .back-video {
-            width: 100%;
-            height: auto;
-        }
-    }
+            @media(min-aspect-ratio: 16/9) {
+                .back-video {
+                    width: 100%;
+                    height: auto;
+                }
+            }
 
-    @media(max-aspect-ratio: 16/9) {
-        .back-video {
-            width: auto;
-            height: 100%;
-        }
-    }
-</style>
-<script>
-    function validateForm() {
-        var email = document.getElementById('em_email').value;
-        var password = document.getElementById('em_password').value;
-
-        if (email.trim() === '' && password.trim() === '') {
-            alert('Email and password are required!');
-            return false;
-        } else if (email.trim() === '') {
-            alert('Email is required!');
-            return false;
-        } else if (password.trim() === '') {
-            alert('Password is required!');
-            return false;
-        }
-
-        return true;
-    }
-</script>
-
-</body>
-
+            @media(max-aspect-ratio: 16/9) {
+                .back-video {
+                    width: auto;
+                    height: 100%;
+                }
+            }
+        </style>
+        </body>
+        
 </html>
 
 
