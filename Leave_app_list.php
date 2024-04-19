@@ -45,8 +45,6 @@ if (isset($_SESSION['s_em_email'])) {
     <link rel="stylesheet" href="css/navbar2.css">
 
     <script src="./script.js"></script>
-
-
   </head>
 
   <body>
