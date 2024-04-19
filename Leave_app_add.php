@@ -83,6 +83,19 @@ if (isset($_SESSION['s_em_email'])) {
                 </ul>
               </li>
               <li>
+                  <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                    <span class="fas fa-caret-down sixth"></span>
+                  </a>
+                  <ul class="pro-show">
+                    <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
+                    <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
+                    <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
+                    <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
+                    <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
+                    <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
+                  </ul>
+                </li>
+              <li>
                 <a href="#" class="emp-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
                 </a>
@@ -205,8 +218,8 @@ if (isset($_SESSION['s_em_email'])) {
                           // Query to select leave types based on employee's leave credits
                           $em_id = $_SESSION['s_em_id'];
                           $query = "SELECT lt.lt_id, lt.lt_name, ec.available_credits FROM leave_type lt
-                  INNER JOIN employee_leave_credits ec ON lt.lt_id = ec.lt_id
-                  WHERE ec.em_id = $em_id";
+                          INNER JOIN employee_leave_credits ec ON lt.lt_id = ec.lt_id
+                          WHERE ec.em_id = $em_id";
                           $result = mysqli_query($conn, $query);
 
                           // Loop through the result and populate dropdown options
@@ -309,57 +322,62 @@ if (isset($_SESSION['s_em_email'])) {
                     $('nav ul .fifth').toggleClass("rotate");
                   });
 
+                  $('.pro-btn').click(function() {
+                    $('nav ul .pro-show').toggleClass("show6");
+                    $('nav ul .sixth').toggleClass("rotate");
+                  });
+
                   $('nav ul li').click(function() {
                     $(this).addClass("active").siblings().removeClass("active");
                   });
                 </script>
-               <script>
-  $(document).ready(function() {
-    $('#leaveForm').submit(function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize();
+                <script>
+                  $(document).ready(function() {
+                    $('#leaveForm').submit(function(e) {
+                      e.preventDefault();
+                      var formData = $(this).serialize();
 
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === "success") {
-            // Show modal
-            $('#successModal').modal('show');
-          } else {
-            alert('An error occurred while submitting the leave application. Please try again.');
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-          alert('An error occurred while submitting the leave application. Please try again.');
-        }
-      });
-    });
-  });
-</script>
+                      $.ajax({
+                        type: 'POST',
+                        url: $(this).attr('action'),
+                        data: formData,
+                        dataType: 'json',
+                        success: function(response) {
+                          if (response.status === "success") {
+                            // Show modal
+                            $('#successModal').modal('show');
+                          } else {
+                            alert('An error occurred while submitting the leave application. Please try again.');
+                          }
+                        },
+                        error: function(xhr, status, error) {
+                          console.error(xhr.responseText);
+                          alert('An error occurred while submitting the leave application. Please try again.');
+                        }
+                      });
+                    });
+                  });
+                </script>
 
-<!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Leave Application Submitted Successfully</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Your leave application has been submitted successfully.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- Redirect button -->
-        <a href="Leave_app_list.php" class="btn btn-primary">Go to Leave Application List</a>
-      </div>
-    </div>
-  </div>
-</div>
+                <!-- Success Modal -->
+                <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Leave Application Submitted Successfully</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Your leave application has been submitted successfully.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <!-- Redirect button -->
+                        <a href="Leave_app_list.php" class="btn btn-primary">Go to Leave Application List</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
   </body>
 
