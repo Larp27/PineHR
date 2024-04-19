@@ -4,6 +4,7 @@ session_start();
 include "DBConnection.php";
 if (isset($_SESSION['s_em_email'])) {
 ?>
+
   <!--cont logout session-->
 
   <!DOCTYPE html>
@@ -81,7 +82,7 @@ if (isset($_SESSION['s_em_email'])) {
           </a>
 
           <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
-          <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
+          <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>! (EMPLOYEE)</h10>
 
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
@@ -282,7 +283,15 @@ if (isset($_SESSION['s_em_email'])) {
                 $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
                 ?>
 
-                <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
+                <?php
+                // Check if the welcome modal has been shown
+                $welcomeModalShown = isset($_SESSION['welcome_modal_shown']) && $_SESSION['welcome_modal_shown'];
+
+                // Check if the user is logged in and there are upcoming schedules
+                if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules && !$welcomeModalShown) {
+                  // Set the flag to indicate that the welcome modal has been shown
+                  $_SESSION['welcome_modal_shown'] = true;
+                ?>
                   <!-- Modal for Welcome Message -->
                   <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -298,6 +307,8 @@ if (isset($_SESSION['s_em_email'])) {
                           <ul>
                             <!-- Output schedule details here -->
                             <?php
+                            // Reset the internal pointer of $schedules to the beginning
+                            $schedules->data_seek(0);
                             while ($row = $schedules->fetch_assoc()) {
                               $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
                               $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
@@ -311,7 +322,9 @@ if (isset($_SESSION['s_em_email'])) {
                     </div>
                   </div>
                   <!-- End of Modal for Welcome Message -->
-                <?php endif; ?>
+                <?php } ?>
+
+
 
 
 
