@@ -67,7 +67,6 @@ function updateEmployee(){
   $query .= " WHERE em_id = '$em_id'";
 
   if(mysqli_query($conn, $query)){
-    // Loop through leave type IDs and corresponding credits
     foreach($leave_type_ids as $index => $leave_type_id) {
       $lt_id = $leave_type_id;
       $credits = $leave_credits[$index];

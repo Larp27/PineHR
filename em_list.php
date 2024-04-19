@@ -2,17 +2,20 @@
   $title = 'Employee';
   $page = 'employee_list';
   include_once('./main.php');
-  ?>
+?>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
 <form>
-  <div class="col-md-12 m-2">
+  <div class="col-md-12">
     <div class="panel panel-default">
       <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
         &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee</strong></span>
       </div><br>
 
-      <div class="col-md-7" style="width: 100%">
-        <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0;">
+      <div class="col-md-7" style="width: 99%">
+        <div class="panel panel-default" style="margin-left: 20px; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0;">
           <div class="panel-heading">
             &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-lg" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee List</strong></span>
             <?php if ($_SESSION['s_user_id'] == 1) {
@@ -93,8 +96,6 @@
   </div>
 </form>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script>
   $(document).ready(function() {
     $('#example').DataTable();

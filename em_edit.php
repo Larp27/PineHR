@@ -280,7 +280,6 @@
                 <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" style="width: 250px;" alt="Profile Photo" class="profile-photo">
               </div>
               <div class="mb-3 mx-4">
-                <input type="hidden" id="em_profile_pic" name="em_profile_pic">
                 <button type="button" class="btn select-photo-btn">Select a new photo</button>          
               </div>
             </div>
@@ -423,28 +422,33 @@
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new bootstrap.Tooltip(tooltipTriggerEl);
     });
-
-    document.querySelector('.select-photo-btn').addEventListener('click', function() {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.accept = 'image/*';
-      input.onchange = function(e) {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            const img = document.querySelector('.profile-photo');
-            img.src = e.target.result;
-            document.querySelector('#em_profile_pic').value = e.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      };
-      input.click();
-    });
   });
 
-  // INITIALIZA DATATABLE
+  document.querySelector('.select-photo-btn').addEventListener('click', function() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.id = 'em_profile_pic';
+    input.name = 'em_profile_pic';
+    input.onchange = function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.querySelector('.profile-photo');
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+    input.click();
+
+    const form = document.querySelector('form');
+    form.appendChild(input);
+  });
+
+
+  // INITIALIZE DATATABLE
   $(document).ready(function() {
     $('#example').DataTable();
   });

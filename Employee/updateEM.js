@@ -29,11 +29,13 @@ $(document).ready(function () {
     
     // Check if employee profile picture field exists and is not empty
     var profilePicInput = $('#em_profile_pic')[0];
-    if (profilePicInput && profilePicInput.files && profilePicInput.files.length > 0) {
+    if (profilePicInput && profilePicInput.files && profilePicInput.files[0]) {
       formData.append('em_profile_pic', profilePicInput.files[0]);
     } else {
-      formData.append('em_profile_pic', '');
+      formData.append('em_profile_pic', ''); // Or you can append null if needed
     }
+
+    
 
     // Loop through each checkbox to gather selected leave types and their credits
     $('input[name="leave_type_ids[]"]:checked').each(function() {
@@ -47,8 +49,7 @@ $(document).ready(function () {
     if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "") {
       $('#message').html('Please fill in all required fields');
       console.log(formData);
-      console.log($('#em_id').val());
-      console.log("Employee Profile Picture:", profilePicInput.files[0]);
+      console.log("Employee Profile Picture:", formData.get('em_profile_pic'));
     } else {
       $.ajax({
         url: "Employee/updateEM.php",
