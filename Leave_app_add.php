@@ -187,40 +187,26 @@ if (isset($_SESSION['s_em_email'])) {
                       <div class="mb-3">
                         <label for="imId" class="form-label fw-bold">Employee ID & Name</label>
                         <select class="form-select" id="imId" name="imId" required>
-                          <option value="">Select Employee Here</option>
-                          <?php
-                          $query = "SELECT em_id, first_name, last_name FROM employee";
-                          $result = mysqli_query($conn, $query);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            echo '<option value="' . $row["em_id"] . '">' . $row["em_id"] . ' - ' . $row["first_name"] . ' ' . $row["last_name"] . '</option>';
-                          }
-                          ?>
+                            <option value="">Select Employee Here</option>
+                            <?php
+                            $query = "SELECT em_id, first_name, last_name FROM employee";
+                            $result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<option value="' . $row["em_id"] . '">' . $row["em_id"] . ' - ' . $row["first_name"] . ' ' . $row["last_name"] . '</option>';
+                            }
+                            ?>
                         </select>
                       </div>
                       <div class="mb-3">
                         <label for="leave" class="form-label fw-bold">Type of Leave</label>
-                        <select name="leave" class="form-select" aria-label="Default select example" required>
+                        <select name="leave" id="leave" class="form-select" aria-label="Default select example" required disabled data-bs-toggle="tooltip" title="Please select an employee before choosing the type of leave.">
                           <option class="fw-bold" selected disabled>Select a Leave</option>
                           <?php
-                          // Query to select leave types based on employee's leave credits
-                          $em_id = $_SESSION['s_em_id'];
-                          $query = "SELECT lt.lt_id, lt.lt_name, ec.available_credits FROM leave_type lt
-                  INNER JOIN employee_leave_credits ec ON lt.lt_id = ec.lt_id
-                  WHERE ec.em_id = $em_id";
-                          $result = mysqli_query($conn, $query);
-
-                          // Loop through the result and populate dropdown options
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            // Determine if the option should be disabled
-                            $disabled = ($row['available_credits'] == 0) ? 'disabled' : '';
-
-                            // Output option with disabled attributes
-                            echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . '</option>';
-                          }
+                          // Placeholder options, since the actual options will be loaded dynamically based on employee selection
+                          echo '<option value="" disabled style="display:none;"></option>';
                           ?>
                         </select>
                       </div>
-
                       <div class="mb-3">
                         <label for="leave_reason" class="form-label fw-bold">Leave Reason</label>
                         <textarea name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
@@ -267,80 +253,6 @@ if (isset($_SESSION['s_em_email'])) {
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-
-                <!--Javascript Dashboard-->
-
-                <script>
-                  $('.sidebar-btn').click(function() {
-                    $(this).toggleClass("click");
-                    $('.sidebar').toggleClass("show");
-                    if ($('.sidebar').hasClass("show")) {
-                      $('.sidebar').removeClass("hide");
-                      $(this).removeClass("click");
-                    } else {
-                      $('.sidebar').addClass("hide");
-                      $(this).addClass("click");
-                    }
-                  });
-
-
-                  $('.org-btn').click(function() {
-                    $('nav ul .org-show').toggleClass("show1");
-                    $('nav ul .first').toggleClass("rotate");
-                  });
-
-                  $('.rep-btn').click(function() {
-                    $('nav ul .rep-show').toggleClass("show2");
-                    $('nav ul .second').toggleClass("rotate");
-                  });
-
-                  $('.emp-btn').click(function() {
-                    $('nav ul .emp-show').toggleClass("show3");
-                    $('nav ul .third').toggleClass("rotate");
-                  });
-
-                  $('.lev-btn').click(function() {
-                    $('nav ul .lev-show').toggleClass("show4");
-                    $('nav ul .fourth').toggleClass("rotate");
-                  });
-
-                  $('.not-btn').click(function() {
-                    $('nav ul .not-show').toggleClass("show5");
-                    $('nav ul .fifth').toggleClass("rotate");
-                  });
-
-                  $('nav ul li').click(function() {
-                    $(this).addClass("active").siblings().removeClass("active");
-                  });
-                </script>
-               <script>
-  $(document).ready(function() {
-    $('#leaveForm').submit(function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize();
-
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === "success") {
-            // Show modal
-            $('#successModal').modal('show');
-          } else {
-            alert('An error occurred while submitting the leave application. Please try again.');
-          }
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-          alert('An error occurred while submitting the leave application. Please try again.');
-        }
-      });
-    });
-  });
-</script>
-
 <!-- Success Modal -->
 <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -364,3 +276,108 @@ if (isset($_SESSION['s_em_email'])) {
   </body>
 
   </html>
+<script>
+  document.getElementById('imId').addEventListener('change', function() {
+    var employeeId = this.value;
+    var leaveSelect = document.getElementById('leave');
+    
+    // If employeeId is not empty, enable the leave select and fetch leave options
+    if (employeeId !== '') {
+      fetch('fetch_leave_options.php?employeeId=' + employeeId)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+          data.forEach(option => {
+            leaveSelect.innerHTML += '<option value="' + option.lt_id + '">' + option.lt_name + '</option>';
+          });
+          leaveSelect.disabled = false;
+          leaveSelect.removeAttribute('data-bs-original-title');
+        } else {
+          // If no leave types available, disable the leave select and show a tooltip
+          leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>No Leave Types Available</option>';
+          leaveSelect.disabled = true;
+          leaveSelect.setAttribute('data-bs-original-title', 'No leave types available for this employee.');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    } else {
+      // If no employee is selected, disable the leave select and show a tooltip
+      leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+      leaveSelect.disabled = true;
+      leaveSelect.selectedIndex = 0;
+    }
+  });
+
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+
+  $(document).ready(function() {
+    $('#leaveForm').submit(function(e) {
+      e.preventDefault();
+      var formData = $(this).serialize();
+
+      $.ajax({
+        type: 'POST',
+        url: $(this).attr('action'),
+        data: formData,
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === "success") {
+            $('#successModal').modal('show');
+          } else {
+            alert('An error occurred while submitting the leave application. Please try again.');
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error(xhr.responseText);
+          alert('An error occurred while submitting the leave application. Please try again.');
+        }
+      });
+    });
+  });
+
+  // DASHBOARD
+  $('.sidebar-btn').click(function() {
+    $(this).toggleClass("click");
+    $('.sidebar').toggleClass("show");
+    if ($('.sidebar').hasClass("show")) {
+      $('.sidebar').removeClass("hide");
+      $(this).removeClass("click");
+    } else {
+      $('.sidebar').addClass("hide");
+      $(this).addClass("click");
+    }
+  });
+
+  $('.org-btn').click(function() {
+    $('nav ul .org-show').toggleClass("show1");
+    $('nav ul .first').toggleClass("rotate");
+  });
+
+  $('.rep-btn').click(function() {
+    $('nav ul .rep-show').toggleClass("show2");
+    $('nav ul .second').toggleClass("rotate");
+  });
+
+  $('.emp-btn').click(function() {
+    $('nav ul .emp-show').toggleClass("show3");
+    $('nav ul .third').toggleClass("rotate");
+  });
+
+  $('.lev-btn').click(function() {
+    $('nav ul .lev-show').toggleClass("show4");
+    $('nav ul .fourth').toggleClass("rotate");
+  });
+
+  $('.not-btn').click(function() {
+    $('nav ul .not-show').toggleClass("show5");
+    $('nav ul .fifth').toggleClass("rotate");
+  });
+
+  $('nav ul li').click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+  });
+</script>
