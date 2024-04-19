@@ -74,11 +74,14 @@
                       echo "<td class='text-left p-3'><strong>Department</strong>: " . $row['dep_name'] . "<br><strong>Designation</strong>: " . $row['des_name'] . "</td>";
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
+                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1'>
+                                  <i class='fas fa-eye'> </i> View
+                                </a>
                                 <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1'>
-                                  <i class='fas fa-edit'></i> Edit
+                                  <i class='fas fa-edit'> </i> Edit
                                 </a>
                                 <a href='Employee/deleteEM.php?em_id=" . $row['em_id'] . "' class='btn btn-danger btn-sm m-2 p-1' onclick='return confirm(\"Are you sure you want to remove this Employee?\")'>
-                                  <i class='fas fa-trash'></i> Remove
+                                  <i class='fas fa-trash'> </i> Remove
                                 </a>
                               </div>
                             </td>";
@@ -95,9 +98,3 @@
     </div>
   </div>
 </form>
-
-<script>
-  $(document).ready(function() {
-    $('#example').DataTable();
-  });
-</script>
