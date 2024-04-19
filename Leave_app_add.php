@@ -83,6 +83,19 @@ if (isset($_SESSION['s_em_email'])) {
                 </ul>
               </li>
               <li>
+                  <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                    <span class="fas fa-caret-down sixth"></span>
+                  </a>
+                  <ul class="pro-show">
+                    <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
+                    <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
+                    <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
+                    <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
+                    <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
+                    <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
+                  </ul>
+                </li>
+              <li>
                 <a href="#" class="emp-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
                 </a>
@@ -307,6 +320,11 @@ if (isset($_SESSION['s_em_email'])) {
                   $('.not-btn').click(function() {
                     $('nav ul .not-show').toggleClass("show5");
                     $('nav ul .fifth').toggleClass("rotate");
+                  });
+
+                  $('.pro-btn').click(function() {
+                    $('nav ul .pro-show').toggleClass("show6");
+                    $('nav ul .sixth').toggleClass("rotate");
                   });
 
                   $('nav ul li').click(function() {
