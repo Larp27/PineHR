@@ -47,7 +47,7 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="./fullcalendar/lib/main.min.js"></script>
     <!--calendar links-->
 
-
+dxstgsetgyg
   </head>
 
   <body>
