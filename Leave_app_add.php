@@ -165,6 +165,29 @@ if (isset($_SESSION['s_em_email'])) {
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
 
+                <!--Modal for logout-->
+                <div>
+          <div id="exampleModal" class="modal fade">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <form id="addProductForm" action="">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Are you sure you want to logout?</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-footer">
+                    <a href="Dashboard.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
+                    <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--End of modal logout-->
+
+
         <div class="col-md-12">
           <div class="panel panel-default">
             <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
