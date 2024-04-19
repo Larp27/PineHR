@@ -87,12 +87,12 @@ if (isset($_SESSION['s_em_email'])) {
                     <span class="fas fa-caret-down sixth"></span>
                   </a>
                   <ul class="pro-show">
-                    <li><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></li>
-                    <li><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></li>
-                    <li><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></li>
-                    <li><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></li>
-                    <li><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></li>
-                    <li><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></li>
+                    <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
+                    <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
+                    <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
+                    <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
+                    <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
+                    <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
                   </ul>
                 </li>
             <li>
