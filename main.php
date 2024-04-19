@@ -38,6 +38,29 @@ if (isset($_SESSION['s_em_email'])) {
     <!--Navbar CSS-->
     <link rel="stylesheet" href="css/navbar2.css">
   </head>
+  <style>
+    .pagination-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.dataTables_paginate .paginate_button {
+  margin: 0;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: 1px solid;
+  border-radius: 30px;
+  font-size: 1rem !important; /* Set the font size */
+}
+
+.dataTables_info {
+  margin-bottom: 0;
+}
+
+  </style>
   <body>
 
     <!--LOGOUT -- getting user role to display specific features and function -->
