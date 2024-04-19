@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $('#btnUpdateEmployee').on('click', function() {
     var formData = new FormData(); // Create FormData object
-
+    formData.append('em_id', $('#em_id').val());
     formData.append('first_name', $('#first_name').val());
     formData.append('last_name', $('#last_name').val());
     formData.append('em_gender', $('#em_gender').val());
@@ -27,8 +27,8 @@ $(document).ready(function () {
       var leaveTypeId = $(this).val();
       var creditInputId = 'credits_' + leaveTypeId;
       var leaveCredit = $('#' + creditInputId).val();
-      formData.append('leave_type_ids[]', leaveTypeId); // Append leave type ID
-      formData.append('leave_credits[]', leaveCredit); // Append leave credit
+      formData.append('leave_type_ids[]', leaveTypeId);
+      formData.append('leave_credits[]', leaveCredit);
     });
 
     if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "") {
@@ -39,6 +39,8 @@ $(document).ready(function () {
         url: "Employee/updateEM.php",
         method: 'POST',
         data: formData,
+        processData: false,  // Ensure FormData is not processed
+        contentType: false,  // Ensure FormData content type is not set
         success: function (data) {
           if (data.toLowerCase().includes('success')) {
             $('#exampleModalCenter').modal('show');

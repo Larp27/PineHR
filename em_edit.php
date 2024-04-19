@@ -71,6 +71,7 @@
 </style>
 
 <form method="post" action="" enctype="multipart/form-data">
+  <input type="hidden" name="em_id" value="<?php echo $_GET['em_id']; ?>">
   <div class="panel panel-default">
     <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;" >
       <strong>
@@ -176,10 +177,6 @@
                 <input type="text" name="em_phone" id="em_phone" class="form-control" aria-describedby="addon-wrapping" required value="<?php echo isset($em_phone) ? $em_phone : ''; ?>">
               </div>
               <div class="form-group mb-3">
-                <label for="em_email" class="fw-bold text-uppercase">Email</label>
-                <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>">
-              </div>
-              <div class="form-group mb-3">
                 <label for="address_id" class="fw-bold text-uppercase mb-1 text-uppercase">Address</label>
                 <select class="form-select" id="address_id" name="address_id" required>
                   <option disabled>Please Select Here</option>
@@ -194,8 +191,6 @@
                   <?php endwhile; ?>
                 </select>
               </div>
-            </div>
-            <div class="col-6">
               <div class="form-group mb-3">
                 <label for="edu_id" class="fw-bold text-uppercase">Educational Attainment</label>
                 <select class="form-select" id="edu_id" name="edu_id" required>
@@ -222,6 +217,8 @@
                   <?php endwhile; ?>
                 </select>
               </div>
+            </div>
+            <div class="col-6">
               <div class="form-group mb-3">
                 <label for="des_id" class="fw-bold text-uppercase">Designation</label>
                 <select class="form-select" id="des_id" name="des_id" required>
@@ -270,16 +267,20 @@
                 <input type="date" class="form-control" placeholder="" id="em_contract_end" name="em_contract_end" aria-describedby="addon-wrapping" value="<?php echo isset($em_contract_end) ? $em_contract_end : ''; ?>">
               </div>
               <div class="form-group mb-3">
+                <label for="em_email" class="fw-bold text-uppercase">Email</label>
+                <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>">
+              </div>
+              <div class="form-group mb-3">
                 <label for="em_password" class="fw-bold text-uppercase">Password</label>
                 <input type="text" class="form-control" placeholder="" id="em_password" name="em_password" aria-describedby="addon-wrapping" value="">
               </div>
               <div class="form-group mb-3">
                 <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
               <div class="mb-2">
-                <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" alt="Profile Photo" class="profile-photo">
+                <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" style="width: 250px;" alt="Profile Photo" class="profile-photo">
               </div>
               <div class="mb-3 mx-4">
-                <input type="hidden" id="selected-profile-photo" name="selected-profile-photo">
+                <input type="hidden" id="em_profile_pic" name="em_profile_pic">
                 <button type="button" class="btn select-photo-btn">Select a new photo</button>          
               </div>
             </div>
@@ -436,7 +437,7 @@
           reader.onload = function(e) {
             const img = document.querySelector('.profile-photo');
             img.src = e.target.result;
-            document.querySelector('#selected-profile-photo').value = e.target.result;
+            document.querySelector('#em_profile_pic').value = e.target.result;
           };
           reader.readAsDataURL(file);
         }

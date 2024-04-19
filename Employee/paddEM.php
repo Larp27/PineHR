@@ -32,8 +32,9 @@ function insertRecord(){
   if(isset($_FILES['em_profile_pic'])){
     $fileName = $_FILES['em_profile_pic']['name'];
     $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
-    $uniqueID = uniqid(); // Generate unique ID
-    $newFileName = $fileName . '_' . $uniqueID . '.' . $fileExt; // Append unique ID to original file name
+    $fileNameWithoutExt = pathinfo($fileName, PATHINFO_FILENAME);
+    $uniqueID = uniqid();
+    $newFileName = $fileNameWithoutExt . '_' . $uniqueID . '.' . $fileExt;
     $targetFilePath = $targetDirectory . $newFileName;
 
     $allowedTypes = array('jpg', 'png', 'jpeg', 'gif');
