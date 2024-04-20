@@ -44,6 +44,6 @@ include_once('./main.php');
               </div>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Generate Payroll Report</button>
-            <br><br><br><br>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
         </form>
