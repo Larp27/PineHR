@@ -196,7 +196,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     <div>
                       <h1>
                         <?php
-                        $app_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 1";
+                        $app_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted'";
                         $app_query_run = mysqli_query($conn, $app_query);
 
                         if ($app_query_run) {
@@ -224,7 +224,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     <div>
                       <h1>
                         <?php
-                        $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
+                        $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending'";
                         $dec_query_run = mysqli_query($conn, $dec_query);
 
                         if ($dec_query_run) {
@@ -251,8 +251,17 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                   <div class="card-box">
                     <div>
                       <h1>
-                        <?php
-                        // Your PHP code here
+                      <?php
+                        $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined'";
+                        $dec_query_run = mysqli_query($conn, $dec_query);
+
+                        if ($dec_query_run) {
+                          $row = mysqli_fetch_assoc($dec_query_run);
+                          $dec_total = $row['ls_status'];
+                          echo '<h1 class="card-number">' . $dec_total . '</h1>';
+                        } else {
+                          echo '<h1 class="card-number">0</h1>';
+                        }
                         ?>
                       </h1><br>
                       <div class="icon-label">

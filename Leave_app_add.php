@@ -165,8 +165,8 @@ if (isset($_SESSION['s_em_email'])) {
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
 
-                <!--Modal for logout-->
-                <div>
+        <!--Modal for logout-->
+        <div>
           <div id="exampleModal" class="modal fade">
             <div class="modal-dialog modal-dialog-centered">
               <div class="modal-content">
@@ -210,14 +210,14 @@ if (isset($_SESSION['s_em_email'])) {
                       <div class="mb-3">
                         <label for="imId" class="form-label fw-bold">Employee ID & Name</label>
                         <select class="form-select" id="imId" name="imId" required>
-                            <option value="">Select Employee Here</option>
-                            <?php
-                            $query = "SELECT em_id, first_name, last_name FROM employee";
-                            $result = mysqli_query($conn, $query);
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<option value="' . $row["em_id"] . '">' . $row["em_id"] . ' - ' . $row["first_name"] . ' ' . $row["last_name"] . '</option>';
-                            }
-                            ?>
+                          <option value="">Select Employee Here</option>
+                          <?php
+                          $query = "SELECT em_id, first_name, last_name FROM employee";
+                          $result = mysqli_query($conn, $query);
+                          while ($row = mysqli_fetch_assoc($result)) {
+                            echo '<option value="' . $row["em_id"] . '">' . $row["em_id"] . ' - ' . $row["first_name"] . ' ' . $row["last_name"] . '</option>';
+                          }
+                          ?>
                         </select>
                       </div>
                       <div class="mb-3">
@@ -230,10 +230,12 @@ if (isset($_SESSION['s_em_email'])) {
                           ?>
                         </select>
                       </div>
+          
                       <div class="mb-3">
                         <label for="leave_reason" class="form-label fw-bold">Leave Reason</label>
                         <textarea name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
                       </div>
+
                       <div class="mb-3">
                         <label for="st_day" class="form-label fw-bold">Starting Day</label>
                         <input type="date" class="form-control" name="st_day" required>
@@ -276,131 +278,131 @@ if (isset($_SESSION['s_em_email'])) {
 
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-<!-- Success Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="successModalLabel">Leave Application Submitted Successfully</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Your leave application has been submitted successfully.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <!-- Redirect button -->
-        <a href="Leave_app_list.php" class="btn btn-primary">Go to Leave Application List</a>
-      </div>
-    </div>
-  </div>
-</div>
+                <!-- Success Modal -->
+                <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="successModalLabel">Leave Application Submitted Successfully</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        Your leave application has been submitted successfully.
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <!-- Redirect button -->
+                        <a href="Leave_app_list.php" class="btn btn-primary">Go to Leave Application List</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
   </body>
 
   </html>
-<script>
-  document.getElementById('imId').addEventListener('change', function() {
-    var employeeId = this.value;
-    var leaveSelect = document.getElementById('leave');
-    
-    // If employeeId is not empty, enable the leave select and fetch leave options
-    if (employeeId !== '') {
-      fetch('fetch_leave_options.php?employeeId=' + employeeId)
-      .then(response => response.json())
-      .then(data => {
-        if (data.length > 0) {
-          leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
-          data.forEach(option => {
-            leaveSelect.innerHTML += '<option value="' + option.lt_id + '">' + option.lt_name + '</option>';
-          });
-          leaveSelect.disabled = false;
-          leaveSelect.removeAttribute('data-bs-original-title');
-        } else {
-          // If no leave types available, disable the leave select and show a tooltip
-          leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>No Leave Types Available</option>';
-          leaveSelect.disabled = true;
-          leaveSelect.setAttribute('data-bs-original-title', 'No leave types available for this employee.');
-        }
-      })
-      .catch(error => console.error('Error:', error));
-    } else {
-      // If no employee is selected, disable the leave select and show a tooltip
-      leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
-      leaveSelect.disabled = true;
-      leaveSelect.selectedIndex = 0;
-    }
-  });
+  <script>
+    document.getElementById('imId').addEventListener('change', function() {
+      var employeeId = this.value;
+      var leaveSelect = document.getElementById('leave');
 
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+      // If employeeId is not empty, enable the leave select and fetch leave options
+      if (employeeId !== '') {
+        fetch('fetch_leave_options.php?employeeId=' + employeeId)
+          .then(response => response.json())
+          .then(data => {
+            if (data.length > 0) {
+              leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+              data.forEach(option => {
+                leaveSelect.innerHTML += '<option value="' + option.lt_id + '">' + option.lt_name + '</option>';
+              });
+              leaveSelect.disabled = false;
+              leaveSelect.removeAttribute('data-bs-original-title');
+            } else {
+              // If no leave types available, disable the leave select and show a tooltip
+              leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>No Leave Types Available</option>';
+              leaveSelect.disabled = true;
+              leaveSelect.setAttribute('data-bs-original-title', 'No leave types available for this employee.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        // If no employee is selected, disable the leave select and show a tooltip
+        leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+        leaveSelect.disabled = true;
+        leaveSelect.selectedIndex = 0;
+      }
+    });
 
-  $(document).ready(function() {
-    $('#leaveForm').submit(function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize();
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === "success") {
-            $('#successModal').modal('show');
-          } else {
+    $(document).ready(function() {
+      $('#leaveForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+          type: 'POST',
+          url: $(this).attr('action'),
+          data: formData,
+          dataType: 'json',
+          success: function(response) {
+            if (response.status === "success") {
+              $('#successModal').modal('show');
+            } else {
+              alert('An error occurred while submitting the leave application. Please try again.');
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
             alert('An error occurred while submitting the leave application. Please try again.');
           }
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-          alert('An error occurred while submitting the leave application. Please try again.');
-        }
+        });
       });
     });
-  });
 
-  // DASHBOARD
-  $('.sidebar-btn').click(function() {
-    $(this).toggleClass("click");
-    $('.sidebar').toggleClass("show");
-    if ($('.sidebar').hasClass("show")) {
-      $('.sidebar').removeClass("hide");
-      $(this).removeClass("click");
-    } else {
-      $('.sidebar').addClass("hide");
-      $(this).addClass("click");
-    }
-  });
+    // DASHBOARD
+    $('.sidebar-btn').click(function() {
+      $(this).toggleClass("click");
+      $('.sidebar').toggleClass("show");
+      if ($('.sidebar').hasClass("show")) {
+        $('.sidebar').removeClass("hide");
+        $(this).removeClass("click");
+      } else {
+        $('.sidebar').addClass("hide");
+        $(this).addClass("click");
+      }
+    });
 
-  $('.org-btn').click(function() {
-    $('nav ul .org-show').toggleClass("show1");
-    $('nav ul .first').toggleClass("rotate");
-  });
+    $('.org-btn').click(function() {
+      $('nav ul .org-show').toggleClass("show1");
+      $('nav ul .first').toggleClass("rotate");
+    });
 
-  $('.rep-btn').click(function() {
-    $('nav ul .rep-show').toggleClass("show2");
-    $('nav ul .second').toggleClass("rotate");
-  });
+    $('.rep-btn').click(function() {
+      $('nav ul .rep-show').toggleClass("show2");
+      $('nav ul .second').toggleClass("rotate");
+    });
 
-  $('.emp-btn').click(function() {
-    $('nav ul .emp-show').toggleClass("show3");
-    $('nav ul .third').toggleClass("rotate");
-  });
+    $('.emp-btn').click(function() {
+      $('nav ul .emp-show').toggleClass("show3");
+      $('nav ul .third').toggleClass("rotate");
+    });
 
-  $('.lev-btn').click(function() {
-    $('nav ul .lev-show').toggleClass("show4");
-    $('nav ul .fourth').toggleClass("rotate");
-  });
+    $('.lev-btn').click(function() {
+      $('nav ul .lev-show').toggleClass("show4");
+      $('nav ul .fourth').toggleClass("rotate");
+    });
 
-  $('.not-btn').click(function() {
-    $('nav ul .not-show').toggleClass("show5");
-    $('nav ul .fifth').toggleClass("rotate");
-  });
+    $('.not-btn').click(function() {
+      $('nav ul .not-show').toggleClass("show5");
+      $('nav ul .fifth').toggleClass("rotate");
+    });
 
-  $('nav ul li').click(function() {
-    $(this).addClass("active").siblings().removeClass("active");
-  });
-</script>
+    $('nav ul li').click(function() {
+      $(this).addClass("active").siblings().removeClass("active");
+    });
+  </script>

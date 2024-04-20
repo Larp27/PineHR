@@ -30,16 +30,13 @@ include_once('./main.php');
 
           <body>
 
-            
-            <?php {
-              echo '<a href="attendance_add.php"><i><button type="button" class="btn btn-success" style = "margin-left: 1155px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Attendance +</button> </a>';
-            }
+            <?php
+            echo '<a href="attendance_add.php"><i><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Attendance +</button> </a>';
             ?>
-            <?php {
-              echo '<button type="button" class="btn btn-success" style = "margin-left: 1350px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Upload CSV File</button>';
-            }
+            <?php
+            echo '<button type="button" class="btn btn-success" style="margin-right: 10px; float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal1">Upload CSV File</button>';
+            ?>
 
-            ?>
 
             <hr>
 
@@ -72,7 +69,7 @@ include_once('./main.php');
                 $r_att_s_in = date("h:i A", strtotime($row['att_s_in'])); // Convert to 12-hour format
                 $r_att_s_out = date("h:i A", strtotime($row['att_s_out'])); // Convert to 12-hour format
                 $total_hours = floor($row['total_hr']); // Get the whole hours
-            
+
                 echo "<tr> 
                         <td class='text-center p-3'>" . $i++ . "</td>
                         <td class='text-center p-3'>$r_last_name, $r_first_name </td>
@@ -80,9 +77,9 @@ include_once('./main.php');
                         <td class='text-center p-3'> $r_att_s_in </td>
                         <td class='text-center p-3'> $r_att_s_out </td>
                         <td class='text-center p-3'> $total_hours hours </td>
-                      </tr>";    
-                  
-                ?>
+                      </tr>";
+
+              ?>
               <?php
               }
               ?>

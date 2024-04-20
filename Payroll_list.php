@@ -28,15 +28,14 @@ include_once('./main.php');
 
           <body>
 
-            &nbsp; &nbsp; &nbsp; &nbsp;
-            <?php {
-              echo '<a href="payroll_add.php"><i><button type="button" class="btn btn-success" style = "margin-left: 1155px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Payroll +</button> </a>';
-            }
+
+            <?php
+            echo '<a href="payroll_add.php"><i><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Payroll +</button> </a>';
             ?>
-            <?php {
-              echo '<button type="button" class="btn btn-success" style = "margin-left: 1200px; background-color: #2468a0" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>';
-            }
+            <?php
+            echo '<button type="button" class="btn btn-success" style="margin-right: 10px; float: right;" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>';
             ?>
+
             <hr>
             <table class="table" id="example">
               <colgroup>

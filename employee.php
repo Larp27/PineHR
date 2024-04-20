@@ -180,6 +180,7 @@ if (isset($_SESSION['s_em_email'])) {
                   <div class="row gap-5">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-warning" style="box-shadow: black 2px 6px 12px;">
                         <h1>
                           <?php
@@ -210,10 +211,9 @@ if (isset($_SESSION['s_em_email'])) {
                             }
                           }
                           ?>
-
-
-
                         </h1>
+                        </a>
+
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Pending Leave Application </h5>
@@ -221,6 +221,7 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                     </div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-success" style="box-shadow: black 2px 6px 12px;">
                         <h1>
 
@@ -252,9 +253,9 @@ if (isset($_SESSION['s_em_email'])) {
                             }
                           }
                           ?>
-
-
                         </h1>
+                        </a>
+
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Approved Leave Application </h5>
@@ -262,6 +263,7 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                     </div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-danger" style="box-shadow: black 2px 6px 12px;">
                         <h1>
                         <?php
@@ -293,6 +295,9 @@ if (isset($_SESSION['s_em_email'])) {
                           }
                           ?>
                         </h1>
+                        </a>
+
+                        
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Declined Leave Application </h5>

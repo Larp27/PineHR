@@ -3,6 +3,21 @@
 session_start();
 include "DBConnection.php";
 if (isset($_SESSION['s_em_email'])) {
+  // Fetch the profile picture path from the database based on the logged-in user's ID
+  $query = "SELECT em_profile_pic FROM employee WHERE em_id = ?";
+  $stmt = mysqli_prepare($conn, $query);
+  mysqli_stmt_bind_param($stmt, 'i', $_SESSION['s_em_id']);
+  mysqli_stmt_execute($stmt);
+  mysqli_stmt_bind_result($stmt, $em_profile_pic);
+
+  // Fetch the result
+  mysqli_stmt_fetch($stmt);
+
+  // Assign the profile picture path to the session variable
+  $_SESSION['em_profile_pic'] = $em_profile_pic;
+
+  // Close the statement
+  mysqli_stmt_close($stmt);
 ?>
   <!--cont logout session-->
 
@@ -175,6 +190,14 @@ if (isset($_SESSION['s_em_email'])) {
       </div>
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
+        <?php
+          if (isset($_SESSION['em_profile_pic'])) {
+            echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='max-width:60px; max-height:50px; border-radius: 50%; ' alt='Profile Picture'>";
+          } else {
+            // If em_profile_pic is not set, you can display a default profile picture or handle it accordingly
+            echo "<img src='..//uploads/default_profile_pic.png' style='max-width:50px; max-height:50px; border-radius: 50%; ' alt='default profile pic'>";
+          }
+          ?>
           <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
           <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
 

@@ -19,7 +19,8 @@
           <div class="panel-heading">
             &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-lg" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee List</strong></span>
             <?php if ($_SESSION['s_user_id'] == 1) {
-              echo '<a href="em_add.php"><button type="button" class="btn btn-success" style="margin-left: 1155px; background-color: #2468a0;">Add New Employee +</button></a>';
+              echo '<a href="em_add.php"><button type="button" class="btn btn-primary" style="float: right; background-color: #2468a0;">Add New Employee +</button></a>';
+
             } ?>
           </div>
 
@@ -44,15 +45,6 @@
                 </thead>
                 <tbody>
                   <?php
-                  // $query = "SELECT DISTINCT e.em_id, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
-                  //           FROM `employee` e 
-                  //           INNER JOIN `department` d ON e.dep_id = d.dep_id 
-                  //           INNER JOIN `designation` de ON de.des_id = e.des_id 
-                  //           INNER JOIN `blood_group` bg ON bg.bt_id = e.bt_id 
-                  //           INNER JOIN `user_type` ut ON ut.user_id = e.user_id 
-                  //           INNER JOIN `employment_status` es ON es.es_id = e.es_id";
-
-                  // SHOW ALL DATA EXCEPT OF THE CURRENT USER THAT IS SIGN IN
                   $query = "SELECT DISTINCT e.em_id, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
                             FROM `employee` e 
                             INNER JOIN `department` d ON e.dep_id = d.dep_id 
@@ -74,7 +66,7 @@
                       echo "<td class='text-left p-3'><strong>Department</strong>: " . $row['dep_name'] . "<br><strong>Designation</strong>: " . $row['des_name'] . "</td>";
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
-                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1'>
+                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1'>
                                   <i class='fas fa-eye'> </i> View
                                 </a>
                                 <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1'>

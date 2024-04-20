@@ -42,7 +42,7 @@ if (isset($_SESSION['s_em_email'])) {
     <?php
     $em_id = $_SESSION['s_em_id'];
     if ($_SESSION['s_user_id'] == 2) {
-        $query = "Select * from employee where em_id = $em_id";
+      $query = "Select * from employee where em_id = $em_id";
 
       $result = mysqli_query($conn, $query);
     }
@@ -118,62 +118,72 @@ if (isset($_SESSION['s_em_email'])) {
 
         <form>
           <div class="col-md-12">
-          <ul class="nav nav-tabs">
-                <li class="nav-item">
-                  <a class="nav-link" href="employee.php">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="employee_profile.php">Profile</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle active" aria-current="page" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="employee_application.php">Application</a></li>
-                    <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
-                  </ul>
-                </li>
-              </ul>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link" href="employee.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="employee_profile.php">Profile</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" aria-current="page" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="employee_application.php">Application</a></li>
+                  <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
+                </ul>
+              </li>
+            </ul>
             <div class="panel panel-default">
               <div class="panel-heading">
                 <strong>
                   &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Applications</span></strong>
                 </strong>
               </div>
-      <div class="col-md-12">
-            <div class="panel panel-default">
-              
+              <div class="col-md-12">
+                <div class="panel panel-default">
 
 
-              <div class="col-md-7" style="width: 100%">
-                <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
-                  <div class="panel-heading">
-                    <strong>
-                      &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application List</span></strong>
-                    </strong>
 
-                    <?php if ($_SESSION['s_user_id'] == 1) {
-                      $query = "select * from user_type";
+                  <div class="col-md-7" style="width: 100%">
+                    <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
+                      <div class="panel-heading">
+                        <strong>
+                          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application List</span></strong>
+                        </strong>
 
+                        <?php
+                        // Check the user's role and set up the appropriate query
+                        $em_id = $_SESSION['s_em_id'];
+                        if ($_SESSION['s_user_id'] == 2) {
+                          $query = "SELECT * FROM employee WHERE em_id = $em_id";
+                          $result = mysqli_query($conn, $query);
+                          // Fetch the employee's first name and last name
+                          $employee = mysqli_fetch_assoc($result);
+                          $first_name = $employee['first_name'];
+                          $last_name = $employee['last_name'];
+                        ?>
+                        <?php } ?>
+                      </div>
+
+                      <?php
+                      // Modify the query to fetch leave applications for the logged-in employee only
+                      $query = "SELECT la.*, lt.*, e.first_name, e.last_name
+                      FROM `leave_application` la 
+                      INNER JOIN `leave_type` lt ON la.lt_id = lt.lt_id 
+                      INNER JOIN `employee` e ON la.em_id = e.em_id
+                      WHERE la.em_id = $em_id";
+            
+
+                      // Execute the modified query
                       $result = mysqli_query($conn, $query);
-                    } {
-                      echo '<a href="./employee_application.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1130px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
-                    }
-                    ?>
-                  </div>
 
-                  <form>
-
-                    <div class="dash_content">
-                      <div class="dash_content_main">
+                      // Check if there are any rows returned
+                      if (mysqli_num_rows($result) > 0) {
+                      ?>
+                        <!-- Table header -->
                         <table class="table" id="example">
                           <colgroup>
-                            <col width="25%">
-                            <col width="25%">
-                            <col width="20%">
-                            <col width="10%">
-                            <col width="25%">
-
-
+                            <!-- Define column widths if needed -->
                           </colgroup>
                           <thead class="" style="background-color: rgb(255, 206, 46)">
                             <tr>
@@ -181,152 +191,121 @@ if (isset($_SESSION['s_em_email'])) {
                               <th class="text-center p-1">Leave Type</th>
                               <th class="text-center p-1">Date</th>
                               <th class="text-center p-1">Status</th>
-                              <th class="text-center p-1">Action</th>
-                            </tr>
-                          </thead>       
-                  </div>
-
-                  <form>
-
-                    <div class="dash_content">
-                      <div class="dash_content_main">
-                        <table class="table" id="example">
-                          <colgroup>
-                            <col width="25%">
-                            <col width="25%">
-                            <col width="20%">
-                            <col width="10%">
-                            <col width="25%">
-
-
-                          </colgroup>
-                          <thead class="" style="background-color: rgb(255, 206, 46)">
-                            <tr>
-                              <th class="text-center p-1">Employee</th>
-                              <th class="text-center p-1">Leave Type</th>
-                              <th class="text-center p-1">Date</th>
-                              <th class="text-center p-1">Status</th>
-                              <th class="text-center p-1">Action</th>
+                              <!-- Add any additional columns as needed -->
                             </tr>
                           </thead>
+                          <tbody>
+                            <?php
+                            // Fetch and display the leave applications
+                            while ($row = mysqli_fetch_assoc($result)) {
+                              // Process each row of data and display it in the table
+                              // You can customize this part based on your database structure
+                              $r_first_name = $row['first_name'];
+                              $r_last_name = $row['last_name'];
+                              $r_lt_code = $row['lt_code'];
+                              $r_lt_name = $row['lt_name'];
+                              $r_la_date_start = date("F j, Y", strtotime($row['la_date_start']));
+                              $r_la_date_end = date("F j, Y", strtotime($row['la_date_end']));
+                              $r_lt_status = $row['la_status'];
 
-                          <?php
-                          $query = "SELECT * from `leave_application` la INNER JOIN `employee` e ON la.em_id= e.em_id INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
+                              // Check if start and end dates are in the same month and year
+                              if (date("F Y", strtotime($r_la_date_start)) == date("F Y", strtotime($r_la_date_end))) {
+                                $date_display = "$r_la_date_start";
+                              } else {
+                                $date_display = "$r_la_date_start - $r_la_date_end";
+                              }
 
-                          $result = mysqli_query($conn, $query);
-                          while ($row = mysqli_fetch_assoc($result)) {
-                            $r_first_name = $row['first_name'];
-                            $r_last_name = $row['last_name'];
-                            $r_lt_code = $row['lt_code'];
-                            $r_lt_name = $row['lt_name'];
-                            $emp_id = $row['la_id'];
-                            $r_la_date_start = date("F j, Y", strtotime($row['la_date_start']));
-                            $r_la_date_end = date("F j, Y", strtotime($row['la_date_end']));
-                            $r_lt_status = $row['la_status'];
-
-                            // Check if start and end dates are in the same month and year
-                            if (date("F Y", strtotime($r_la_date_start)) == date("F Y", strtotime($r_la_date_end))) {
-                              $date_display = "$r_la_date_start";
-                            } else {
-                              $date_display = "$r_la_date_start - $r_la_date_end";
+                              // Set status badge color based on the status value
+                              $status_color = '';
+                              switch ($r_lt_status) {
+                                case 'Accepted':
+                                  $status_color = 'bg-primary';
+                                  break;
+                                case 'Declined':
+                                case 'Cancelled':
+                                  $status_color = 'bg-danger';
+                                  break;
+                                case 'Pending':
+                                default:
+                                  $status_color = 'bg-secondary';
+                                  break;
+                              }
+                            ?>
+                              <!-- Table row -->
+                              <tr>
+                                <td class='text-center p-3'><?php echo "$r_last_name, $r_first_name"; ?></td>
+                                <td class='text-center p-3'>[<?php echo $r_lt_code; ?>] - <?php echo $r_lt_name; ?></td>
+                                <td class='text-center p-3'><?php echo $date_display; ?></td>
+                                <td class='text-center'><span class='badge <?php echo $status_color; ?>'><?php echo $r_lt_status; ?></span></td>
+                                <!-- Add any additional columns as needed -->
+                              </tr>
+                              
+                            <?php
                             }
-
-                            // Set status badge color based on the status value
-                            $status_color = '';
-                            switch ($r_lt_status) {
-                              case 'Accepted':
-                                $status_color = 'bg-primary';
-                                break;
-                              case 'Declined':
-                              case 'Cancelled':
-                                $status_color = 'bg-danger';
-                                break;
-                              case 'Pending':
-                              default:
-                                $status_color = 'bg-secondary';
-                                break;
-                            }
-
-                            $final = "<tr> 
-                                        <td class='text-center p-3'> $r_last_name, $r_first_name </td>
-                                        <td class='text-center p-3'> [$r_lt_code] -&nbsp;$r_lt_name</td>
-                                        <td class='text-center p-3'>$date_display</td>
-                                        <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
-                            echo $final;
-                          ?>
-                            <!-- EDIT AND DELETE -->
-                            <td class='text-center p-3'>
-                              <div class="col-auto d-flex justify-content-center m-2">
-                                <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" onclick="document.getElementById('uid1').value = <?php echo $emp_id ?>" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-dep-id="<?php echo $row['lt_id']; ?>" data-department-name="<?php echo $row['lt_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                                <a href="Leave_type/deleteLT.php?lt_id=<?php echo $row['lt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Leave Type?')"><i class="fas fa-trash"></i> Delete </a>
-                              </div>
-                            </td>
+                            ?>
+                            <?php }else{
+                                echo "<p><strong>No Application yet</strong></p>";
+                            } ?>
 
 
 
-                            </tr>
+                            <!--cont LOGOUT Session -- -->
                           <?php
-                          }
-                          ?>
-
-
-
-                      <!--cont LOGOUT Session -- -->
-                    <?php
-                  } else {
-                    header("location: login.php");
-                    exit();
-                  }
-                    ?>
-                    <!-- end of LOGOUT Session -->
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-
-                    <!--Javascript Dashboard-->
-
-                    <script>
-                      $('.sidebar-btn').click(function() {
-                        $(this).toggleClass("click");
-                        $('.sidebar').toggleClass("show");
-                        if ($('.sidebar').hasClass("show")) {
-                          $('.sidebar').removeClass("hide");
-                          $(this).removeClass("click");
                         } else {
-                          $('.sidebar').addClass("hide");
-                          $(this).addClass("click");
+                          header("location: login.php");
+                          exit();
                         }
-                      });
+                          ?>
+                          
+                          <!-- end of LOGOUT Session -->
+                          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
 
-                      $('.org-btn').click(function() {
-                        $('nav ul .org-show').toggleClass("show1");
-                        $('nav ul .first').toggleClass("rotate");
-                      });
+                          <!--Javascript Dashboard-->
 
-                      $('.rep-btn').click(function() {
-                        $('nav ul .rep-show').toggleClass("show2");
-                        $('nav ul .second').toggleClass("rotate");
-                      });
+                          <script>
+                            $('.sidebar-btn').click(function() {
+                              $(this).toggleClass("click");
+                              $('.sidebar').toggleClass("show");
+                              if ($('.sidebar').hasClass("show")) {
+                                $('.sidebar').removeClass("hide");
+                                $(this).removeClass("click");
+                              } else {
+                                $('.sidebar').addClass("hide");
+                                $(this).addClass("click");
+                              }
+                            });
 
-                      $('.emp-btn').click(function() {
-                        $('nav ul .emp-show').toggleClass("show3");
-                        $('nav ul .third').toggleClass("rotate");
-                      });
 
-                      $('.lev-btn').click(function() {
-                        $('nav ul .lev-show').toggleClass("show4");
-                        $('nav ul .fourth').toggleClass("rotate");
-                      });
+                            $('.org-btn').click(function() {
+                              $('nav ul .org-show').toggleClass("show1");
+                              $('nav ul .first').toggleClass("rotate");
+                            });
 
-                      $('.not-btn').click(function() {
-                        $('nav ul .not-show').toggleClass("show5");
-                        $('nav ul .fifth').toggleClass("rotate");
-                      });
+                            $('.rep-btn').click(function() {
+                              $('nav ul .rep-show').toggleClass("show2");
+                              $('nav ul .second').toggleClass("rotate");
+                            });
 
-                      $('nav ul li').click(function() {
-                        $(this).addClass("active").siblings().removeClass("active");
-                      });
-                    </script>
+                            $('.emp-btn').click(function() {
+                              $('nav ul .emp-show').toggleClass("show3");
+                              $('nav ul .third').toggleClass("rotate");
+                            });
+
+                            $('.lev-btn').click(function() {
+                              $('nav ul .lev-show').toggleClass("show4");
+                              $('nav ul .fourth').toggleClass("rotate");
+                            });
+
+                            $('.not-btn').click(function() {
+                              $('nav ul .not-show').toggleClass("show5");
+                              $('nav ul .fifth').toggleClass("rotate");
+                            });
+
+                            $('nav ul li').click(function() {
+                              $(this).addClass("active").siblings().removeClass("active");
+                            });
+                          </script>
   </body>
 
   </html>
