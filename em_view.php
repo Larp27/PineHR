@@ -266,9 +266,10 @@
               <label for="em_email" class="fw-bold text-uppercase">Email</label>
               <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>" readonly>
             </div>
-            <div class="form-group mb-3">
+
+            <div class="form-group mb-3"><br>
               <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
-            <div class="mb-2">
+            <div class="mb-2"><br>
               <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" style="width: 250px;" alt="Profile Photo" class="profile-photo">
             </div>
           </div>

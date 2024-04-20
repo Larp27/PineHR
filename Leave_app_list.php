@@ -205,7 +205,7 @@ if (isset($_SESSION['s_em_email'])) {
 
                       $result = mysqli_query($conn, $query);
                     } {
-                      echo '<a href="Leave_app_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1130px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
+                      echo '<a href="Leave_app_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
                     }
                     ?>
                   </div>
@@ -285,20 +285,23 @@ if (isset($_SESSION['s_em_email'])) {
                                             <input type='hidden' name='la_id' value='$emp_id'>
                                             <input type='hidden' name='s_em_id' value='$em_id'>
                                             <input type='hidden' name='lt_id' value='$lt_id'>
-                        
+                                            <input type='hidden' name='lt_status' value='Declined'> <!-- Set the value to 'Declined' for Decline button -->
+                                            
                                             <button type='submit' name='accept' class='py-1 px-2 me-1 btn btn-success btn-sm update-user-btn'><i class='fas fa-edit'></i> Accept</button>
-                                            <button type='button' class='py-1 px-2 me-1 btn btn-success btn-sm update-user-btn' onclick='document.getElementById(\"uid1\").value = $emp_id' data-bs-toggle='modal' data-bs-target='#updateUserModal' data-dep-id='$lt_id' data-department-name='$r_lt_name'><i class='fas fa-edit'></i> Decline</button>
+                                            <button type='submit' name='decline' class='py-1 px-2 me-1 btn btn-danger btn-sm update-user-btn'><i class='fas fa-edit'></i> Decline</button> <!-- Change button color and text for Decline -->
                                             <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete </a>
                                           </form>
                                         </div>
                                       </td>";
-                              } else {
+                            } else {
                                 echo "<td class='text-center'>
-                                <div class='col-auto d-flex justify-content-center m-2'>
-                                  <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete </a>
-                                </div>
-                              </td>";
-                              }
+                                        <div class='col-auto d-flex justify-content-center m-2'>
+                                          <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete </a>
+                                        </div>
+                                      </td>";
+                            }
+                            
+                            
                             }
                           ?>
                           

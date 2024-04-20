@@ -26,7 +26,7 @@ include_once('./main.php');
 
               $result = mysqli_query($conn, $query);
             } {
-              echo '<a href="Religion_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1120px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Religion Information +</button> </a>';
+              echo '<a href="Religion_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Religion Information +</button> </a>';
             }
             ?>
 

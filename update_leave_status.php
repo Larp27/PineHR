@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "UPDATE leave_application SET la_status = 'Accepted', la_approved_by = '$approved_by' WHERE la_id = '$la_id'";
 
     if (mysqli_query($conn, $query)) {
-      // Deduct leave credits
+      // Deduct leave credits only when the leave application is accepted
       $deduct_query = "UPDATE employee_leave_credits SET available_credits = available_credits - 1 WHERE em_id = '$approved_by' AND lt_id = '$lt_id'";
       if (mysqli_query($conn, $deduct_query)) {
         echo "Leave application accepted successfully.";
@@ -34,13 +34,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       echo "Error updating leave application status: " . mysqli_error($conn);
     }
-  } elseif (isset($_POST['reject'])) {
-    $la_id = $_POST['reject'];
+  } elseif (isset($_POST['decline'])) { // Change to handle 'decline' action
+    $la_id = $_POST['la_id'];
 
-    $query = "UPDATE leave_application SET la_status = 0 WHERE la_id = $la_id";
+    // Update leave application status to Declined
+    $query = "UPDATE leave_application SET la_status = 'Declined' WHERE la_id = '$la_id'";
 
-    if (mysqli_query($conn, $query)){
-      echo "Leave application rejected successfully.";
+    if (mysqli_query($conn, $query)) {
+      echo "Leave application declined successfully.";
+      header("Location: Leave_app_list.php");
     } else {
       echo "Error updating leave application status: " . mysqli_error($conn);
     }

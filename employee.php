@@ -80,6 +80,7 @@ if (isset($_SESSION['s_em_email'])) {
       }
     </style>
   </head>
+
   <body>
     <?php
     if ($_SESSION['s_user_id'] == 1) {
@@ -179,21 +180,40 @@ if (isset($_SESSION['s_em_email'])) {
                   <div class="row gap-5">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-warning" style="box-shadow: black 2px 6px 12px;">
                         <h1>
                           <?php
-                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
-                          $dec_query_run = mysqli_query($conn, $dec_query);
+                          // Assuming $conn is your database connection
 
-                          if ($dec_query_run) {
-                            $row = mysqli_fetch_assoc($dec_query_run);
-                            $dec_total = $row['ls_status'];
-                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
-                          } else {
-                            echo '<h1 class="text-end">0</h1>';
+                          // Check if the user is logged in and the employee ID is available in session
+                          if (isset($_SESSION['s_em_id'])) {
+                            // Fetch the employee ID from session
+                            $em_id = $_SESSION['s_em_id'];
+
+                            // Query to count the number of rows where the employee ID matches the logged-in employee's ID
+                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending' AND em_id = $em_id";
+
+                            // Execute the query
+                            $count_query_run = mysqli_query($conn, $count_query);
+
+                            // Check if the query was successful
+                            if ($count_query_run) {
+                              // Fetch the result
+                              $row = mysqli_fetch_assoc($count_query_run);
+                              $count_total = $row['ls_status'];
+
+                              // Output the count
+                              echo '<h1 class="text-end">' . $count_total . '</h1>';
+                            } else {
+                              // Output 0 if the query failed
+                              echo '<h1 class="text-end">0</h1>';
+                            }
                           }
                           ?>
                         </h1>
+                        </a>
+
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Pending Leave Application </h5>
@@ -201,21 +221,41 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                     </div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-success" style="box-shadow: black 2px 6px 12px;">
                         <h1>
-                          <?php
-                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
-                          $dec_query_run = mysqli_query($conn, $dec_query);
 
-                          if ($dec_query_run) {
-                            $row = mysqli_fetch_assoc($dec_query_run);
-                            $dec_total = $row['ls_status'];
-                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
-                          } else {
-                            echo '<h1 class="text-end">0</h1>';
+                          <?php
+                          // Assuming $conn is your database connection
+
+                          // Check if the user is logged in and the employee ID is available in session
+                          if (isset($_SESSION['s_em_id'])) {
+                            // Fetch the employee ID from session
+                            $em_id = $_SESSION['s_em_id'];
+
+                            // Query to count the number of leave applications where the employee ID matches the logged-in employee's ID
+                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted' AND em_id = $em_id";
+
+                            // Execute the query
+                            $count_query_run = mysqli_query($conn, $count_query);
+
+                            // Check if the query was successful
+                            if ($count_query_run) {
+                              // Fetch the result
+                              $row = mysqli_fetch_assoc($count_query_run);
+                              $count_total = $row['ls_status'];
+
+                              // Output the count
+                              echo '<h1 class="text-end">' . $count_total . '</h1>';
+                            } else {
+                              // Output 0 if the query failed
+                              echo '<h1 class="text-end">0</h1>';
+                            }
                           }
                           ?>
                         </h1>
+                        </a>
+
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Approved Leave Application </h5>
@@ -223,21 +263,41 @@ if (isset($_SESSION['s_em_email'])) {
                       </div>
                     </div>
                     <div class="col-md-3">
+                    <a href="employee_app_list.php">
                       <div class="p-2 bg-danger" style="box-shadow: black 2px 6px 12px;">
                         <h1>
-                          <?php
-                          $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status != 1";
-                          $dec_query_run = mysqli_query($conn, $dec_query);
+                        <?php
+                          // Assuming $conn is your database connection
 
-                          if ($dec_query_run) {
-                            $row = mysqli_fetch_assoc($dec_query_run);
-                            $dec_total = $row['ls_status'];
-                            echo '<h1 class="text-end">' . $dec_total . '</h1>';
-                          } else {
-                            echo '<h1 class="text-end">0</h1>';
+                          // Check if the user is logged in and the employee ID is available in session
+                          if (isset($_SESSION['s_em_id'])) {
+                            // Fetch the employee ID from session
+                            $em_id = $_SESSION['s_em_id'];
+
+                            // Query to count the number of leave applications where the employee ID matches the logged-in employee's ID
+                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined' AND em_id = $em_id";
+
+                            // Execute the query
+                            $count_query_run = mysqli_query($conn, $count_query);
+
+                            // Check if the query was successful
+                            if ($count_query_run) {
+                              // Fetch the result
+                              $row = mysqli_fetch_assoc($count_query_run);
+                              $count_total = $row['ls_status'];
+
+                              // Output the count
+                              echo '<h1 class="text-end">' . $count_total . '</h1>';
+                            } else {
+                              // Output 0 if the query failed
+                              echo '<h1 class="text-end">0</h1>';
+                            }
                           }
                           ?>
                         </h1>
+                        </a>
+
+                        
                         <div class="d-flex mt-3">
                           <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1">Declined Leave Application </h5>
@@ -329,71 +389,72 @@ if (isset($_SESSION['s_em_email'])) {
                 <?php endif; ?>
               </div>
             </div>
-          </div>  
-        </div>        
+          </div>
+        </div>
       </div>
     </div>
 
-      <?php
-        // Opening PHP tag
-        $schedules = $conn->query("SELECT * FROM `schedule_list`");
-        $sched_res = [];
-        foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
-          $row['sdate'] = date("F d, Y h:i A", strtotime($row['start_datetime']));
-          $row['edate'] = date("F d, Y h:i A", strtotime($row['end_datetime']));
-          $sched_res[$row['id']] = $row;
-        }
-            if (isset($conn)) $conn->close();
-            ?>
-          <?php
+    <?php
+    // Opening PHP tag
+    $schedules = $conn->query("SELECT * FROM `schedule_list`");
+    $sched_res = [];
+    foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
+      $row['sdate'] = date("F d, Y h:i A", strtotime($row['start_datetime']));
+      $row['edate'] = date("F d, Y h:i A", strtotime($row['end_datetime']));
+      $sched_res[$row['id']] = $row;
+    }
+    if (isset($conn)) $conn->close();
+    ?>
+  <?php
+} else {
+  header("location: login.php");
+  exit();
+}
+  ?>
+  <script>
+    var scheds = <?= json_encode($sched_res) ?>;
+
+    var sideBarIsOpen = true;
+    togglebtn.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      if (sideBarIsOpen) {
+        dash_sidebar.style.width = '0%';
+        dash_sidebar.style.transition = '0.3s all';
+        dash_content_container.style.width = '100%';
+        sideBarIsOpen = false;
+      } else {
+
+        dash_sidebar.style.width = '20%';
+        dash_sidebar.style.height = 'auto';
+        dash_content_container.style.width = '100%';
+        sideBarIsOpen = true;
+      }
+    });
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      // Show the welcome modal when the page loads
+      $('#welcomeModal').modal('show');
+
+      // Check the state of the checkbox and set the session variable accordingly
+      $('#showWelcomeModalCheckbox').change(function() {
+        if ($(this).is(":checked")) {
+          // Checkbox is checked, set session variable to true
+          <?php $_SESSION['show_welcome_modal'] = true; ?>
         } else {
-          header("location: login.php");
-          exit();
+          // Checkbox is unchecked, set session variable to false
+          <?php $_SESSION['show_welcome_modal'] = false; ?>
         }
-      ?>
-      <script>
-        var scheds = <?= json_encode($sched_res) ?>;
-        
-        var sideBarIsOpen = true;
-        togglebtn.addEventListener('click', (event) => {
-          event.preventDefault();
-
-          if (sideBarIsOpen) {
-            dash_sidebar.style.width = '0%';
-            dash_sidebar.style.transition = '0.3s all';
-            dash_content_container.style.width = '100%';
-            sideBarIsOpen = false;
-          } else {
-
-            dash_sidebar.style.width = '20%';
-            dash_sidebar.style.height = 'auto';
-            dash_content_container.style.width = '100%';
-            sideBarIsOpen = true;
-          }
-        });
-        
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-          return new bootstrap.Tooltip(tooltipTriggerEl)
-        });
-      </script>
-
-      <script>
-        $(document).ready(function() {
-          // Show the welcome modal when the page loads
-          $('#welcomeModal').modal('show');
-
-          // Check the state of the checkbox and set the session variable accordingly
-          $('#showWelcomeModalCheckbox').change(function() {
-            if ($(this).is(":checked")) {
-              // Checkbox is checked, set session variable to true
-              <?php $_SESSION['show_welcome_modal'] = true; ?>
-            } else {
-              // Checkbox is unchecked, set session variable to false
-              <?php $_SESSION['show_welcome_modal'] = false; ?>
-            }
-          });
-        });
-      </script>
+      });
+    });
+  </script>
   </body>
-</html>
+
+  </html>
