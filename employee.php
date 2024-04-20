@@ -240,7 +240,7 @@ if (isset($_SESSION['s_em_email'])) {
                           </h1>
                         </a>
                         <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-2"></i>
+                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Approved Leave Application </h5> <!-- Adjusted text alignment -->
                         </div>
                       </div>
@@ -266,7 +266,7 @@ if (isset($_SESSION['s_em_email'])) {
                           </h1>
                         </a>
                         <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-2"></i>
+                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
                           <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Declined Leave Application </h5> <!-- Adjusted text alignment -->
                         </div>
                       </div>

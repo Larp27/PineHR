@@ -366,3 +366,16 @@ nav ul li a span.rotate {
 .ds {
   background: #00213b;
 }
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: auto;
+  display: inline-block;
+  border-radius: 15px;
+  padding-top: .30rem;
+  padding-bottom: .30rem;
+  padding-left: .5rem;
+  padding-right: 2.5rem;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
