@@ -1,0 +1,148 @@
+/* -- DATATABLE'S CSS -- */
+div.dataTables_wrapper div.dataTables_paginate {
+  margin: 0;
+  white-space: nowrap;
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-padding-y: 0.375rem;
+  --bs-pagination-font-size: 1rem;
+  --bs-pagination-color: var(--bs-link-color);
+  --bs-pagination-bg: var(--bs-body-bg);
+  --bs-pagination-hover-color: var(--bs-link-hover-color);
+  --bs-pagination-hover-bg: var(--bs-tertiary-bg);
+  --bs-pagination-hover-border-color: var(--bs-border-color);
+  --bs-pagination-focus-color: var(--bs-link-hover-color);
+  --bs-pagination-focus-bg: var(--bs-secondary-bg);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  --bs-pagination-active-color: #fff;
+  --bs-pagination-active-bg: #ff4200;
+  --bs-pagination-active-border-color: #ff4200;
+  --bs-pagination-disabled-color: var(--bs-secondary-color);
+  --bs-pagination-disabled-bg: var(--bs-secondary-bg);
+  --bs-pagination-disabled-border-color: var(--bs-border-color);
+  padding-left: 0;
+  list-style: none;
+  padding: 10px;
+  margin: 4px 0;
+  white-space: nowrap;
+  justify-content: flex-end;
+}
+
+div.dataTables_wrapper div.dataTables_length label,
+div.dataTables_wrapper div.dataTables_info {
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 15px !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+  z-index: 3;
+  color: #0d6efd !important;  
+  padding: 10px;
+  text-decoration: none;
+  background-color: white !important;
+  border: 1px solid #dee2e6 !important;
+  margin: 0;
+  font-size: 1rem !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate a#example_previous.paginate_button.disabled,
+div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled {
+  background-color: #8080792b !important;
+  border-color: #dee2e6 !important;
+  color: rgba(33, 37, 41, 0.75) !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate a#example_previous.paginate_button.disabled,
+div.dataTables_wrapper div.dataTables_paginate a#example_previous.paginate_button {
+  border-top-left-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
+div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled,
+div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button {
+  border-top-right-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+}
+
+div.dataTables_wrapper div.dataTables_paginate span .paginate_button {
+  z-index: 3;
+  color: white !important;
+  background-color: #EBB803 !important;
+  border-color: #EBB803 !important;
+  text-decoration: none;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: auto;
+  display: inline-block;
+  border-radius: 15px;
+  padding-top: .30rem;
+  padding-bottom: .30rem;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+
+table {
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-collapse: collapse;
+  font-size: 12px;
+  border: 1px #dee2e6 solid !important;
+  box-shadow: 4px 2px 14px rgb(192, 192, 192);
+}
+
+table.dataTable thead>tr>th {
+  background-color: #EBB803 !important;
+}
+
+table > :not(caption) > * > * {
+  padding: 0.5rem;
+  background-color: var(--bs-table-bg);
+  border-bottom-width: 1px;
+  box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+  border-bottom-style: solid;
+}
+
+table > :not(caption) > * > * > :first-child {
+  margin-top: 0;
+}
+
+table > :not(caption) > * > * > :last-child {
+  margin-bottom: 0;
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: 0.25rem;
+}
+
+.table-borderless > :not(caption) > * > * {
+  border-bottom-width: 0;
+  box-shadow: none;
+}
+
+.table-striped > :not(caption) > * > *:nth-of-type(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-active > :not(caption) > * > * {
+  color: var(--bs-table-active-color);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
