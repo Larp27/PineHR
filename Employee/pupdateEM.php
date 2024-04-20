@@ -54,24 +54,27 @@ function updateEmployee(){
 
   $query = "UPDATE employee SET first_name = '$first_name', last_name = '$last_name', em_gender = '$em_gender', ms_id = '$ms_id', r_id = '$r_id', bt_id = '$bt_id', em_birthday = '$em_birthday', em_phone = '$em_phone', em_email = '$em_email', address_id = '$address_id', edu_id = '$edu_id', dep_id = '$dep_id', des_id = '$des_id', es_id = '$es_id', user_id = '$user_id', em_joining_date = '$em_joining_date', em_contract_end = '$em_contract_end'";
 
-  // Conditionally include em_profile_pic column if a profile picture is uploaded
   if (!empty($em_profile_pic)) {
     $query .= ", em_profile_pic = '$em_profile_pic'";
   }
 
-  // Include em_password column if not empty
   if (!empty($em_password)) {
     $query .= ", em_password = '$em_password'";
   }
 
   $query .= " WHERE em_id = '$em_id'";
 
+  // Delete the employee leave credits when the lt_id is not in the submitted leave credits
+  $query_delete = "DELETE FROM employee_leave_credits WHERE em_id = '$em_id' AND lt_id NOT IN (" . implode(",", array_map('intval', $leave_type_ids)) . ")";
+  if (!mysqli_query($conn, $query_delete)) {
+    echo "Failed to delete unchecked leave types: " . mysqli_error($conn);
+  }
+
   if(mysqli_query($conn, $query)){
     foreach($leave_type_ids as $index => $leave_type_id) {
       $lt_id = $leave_type_id;
       $credits = $leave_credits[$index];
 
-      // Check if the record already exists for the employee and leave type
       $checkQuery = "SELECT * FROM employee_leave_credits WHERE em_id = '$em_id' AND lt_id = '$lt_id'";
       $checkResult = mysqli_query($conn, $checkQuery);
       if(mysqli_num_rows($checkResult) > 0) {
@@ -87,7 +90,6 @@ function updateEmployee(){
 
     echo "success";
   } else {
-    // Provide a more informative error message
     echo "Failed to update employee details: " . mysqli_error($conn);
   }
 }
