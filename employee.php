@@ -308,7 +308,7 @@ if (isset($_SESSION['s_em_email'])) {
               <div class="panel panel-default">
                 <div class="panel-heading d-flex p-0 pt-3 ps-4" style="box-shadow: 0 4px 5px -1px #2468a0;">
                   <i class="fa-solid fa-calendar-days fa-2xl mt-3 me-2" style="color: #2468a0;"></i>
-                  <p class="fs-4">Schedule of Eventsssssssssssssssssssssssssssssss</p>
+                  <p class="fs-4">Schedule of Events</p>
                 </div>
                 <div class="container py-12" id="page-container">
                   <div class="row">
