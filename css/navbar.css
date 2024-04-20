@@ -1,6 +1,7 @@
 #dashmaincontainer{
   display: flex;
   flex-direction: row;
+  min-height: 100vh;
  
 }
 
@@ -335,4 +336,3 @@ nav ul li a span {
 nav ul li a span.rotate {
   transform: translateY(-50%) rotate(-180deg);
 }
-
