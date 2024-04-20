@@ -60,7 +60,7 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo "<tr>";
                       echo "<td class='text-center p-3'>" . $row['em_id'] . "</td>";
-                      echo "<td class='text-center p-3'><img src='../PINEHR/" . substr($row['em_profile_pic'], 3) . "' style='width:100%; height: 80px'></td>";
+                    
                       echo "<td class='text-left p-3'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
                       echo "<td class='text-left p-3' style='font-size: 15px;'>
                               <strong>Department</strong>:" . $row['dep_name'] . " <br>

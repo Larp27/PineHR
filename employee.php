@@ -74,14 +74,14 @@ if (isset($_SESSION['s_em_email'])) {
       }
 
     #calendar {
-      background-color: #e3ffd8ad !important;
+      background-color: rgb(255, 251, 196) !important;
       height: 600px;
       border: 2px solid #2468a0;
       border-radius: 5px;
     }
 
     th {
-      background-color: #71c075;
+      background-color:  rgb(235, 220, 10);
     }
     
     .dashboard-card {

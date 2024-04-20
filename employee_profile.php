@@ -177,8 +177,8 @@ if (isset($_SESSION['s_em_email'])) {
                 ?>
                 <div class="col-md-12">
                   <div class="">
-                    <div class="panel panel-default mt-4 mx-auto" style="width: 95%; box-shadow: -3px 5px 8px #2468a0; ">
-                      <div class="panel-heading d-flex p-1">
+                    <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
+                      <div class="panel-heading border-0 d-flex p-0">
                         <div class="me-3 ms-3 mt-3">
                             <i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>
                         </div>

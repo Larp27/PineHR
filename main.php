@@ -75,7 +75,6 @@ if (isset($_SESSION['s_em_email'])) {
           <a href="Dashboard.php">
             <img src="bgimages/pine.png" alt="logo" style="width: 150px;height: 135px;margin-top: -15px; margin-left: -8px">
           </a>
-
         </div>
 
         <?php if ($_SESSION['s_user_id'] == 1) : ?>
@@ -172,17 +171,13 @@ if (isset($_SESSION['s_em_email'])) {
         if (isset($_SESSION['em_profile_pic'])) {
           echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='max-width:60px; max-height:50px; border-radius: 50%; ' alt='Profile Picture'>";
         } else {
-          // If em_profile_pic is not set, you can display a default profile picture or handle it accordingly
           echo "<img src='..//uploads/default_profile_pic.png' style='max-width:50px; max-height:50px; border-radius: 50%; ' alt='default profile pic'>";
         }
         ?>
-        <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
         <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
 
         <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white; text-decoration:none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
       </div>
-
-      <!--Modal for logout-->
       <div>
         <div id="exampleModal" class="modal fade">
           <div class="modal-dialog modal-dialog-centered">
