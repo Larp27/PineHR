@@ -139,62 +139,6 @@ if (isset($_SESSION['s_em_email'])) {
                   &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Applications</span></strong>
                 </strong>
               </div>
-              
-
-              
-
-
-                      <!--
-  <div class="col-md-5" style="width: 48%; height: 50%">
-    <div class="panel panel-default">
-    <div class="panel-heading">
-       
-      &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-list fa-xl" style="color: #2468a0; "></i>&nbsp;&nbsp;Attendance Per Department</span></strong>
-     
-    <div class ="dash_content">
-    <div class ="dash_content_main">
- 
-      <table id="example" class="table">
-<colgroup>
-    <col width="15%">
-    <col width="15%">
-    <col width="15%">
-
-  </colgroup>
-  <thead class="" style ="background-color: rgb(255, 206, 46)">
-    <tr>
-      <th class="text-center p-0">Department</th>
-      <th class="text-center p-0">Attendance File</th>
-      <th class="text-center p-0">Date Added</th>
-    </tr>
-    </thead>
- 
-        <php
-        $query = "SELECT * FROM `attendance` a INNER JOIN `department` d ON a.dep_id = d.dep_id";
-
-       $result = mysqli_query($conn, $query);
-       while($row = mysqli_fetch_assoc($result)){
-
-            $r_at_id = $row['at_id'];
-            $r_dep_name = $row['dep_name'];
-            $r_at_media = $row['at_media'];
-            $r_date_added = $row['date_added'];
-
-            echo "<tr> 
-                    <td class='text-center p-3'> $r_dep_name </td>
-                    <td class='text-center p-3'> $r_at_media </td>
-                    <td class='text-center p-3'> $r_date_added </td>";
-                    ?>
-   <php
-       }
-        ?>
-
-
-</form>
-      -->
-
-
-
       <div class="col-md-12">
             <div class="panel panel-default">
               
@@ -215,6 +159,31 @@ if (isset($_SESSION['s_em_email'])) {
                       echo '<a href="./employee_application.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1130px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
                     }
                     ?>
+                  </div>
+
+                  <form>
+
+                    <div class="dash_content">
+                      <div class="dash_content_main">
+                        <table class="table" id="example">
+                          <colgroup>
+                            <col width="25%">
+                            <col width="25%">
+                            <col width="20%">
+                            <col width="10%">
+                            <col width="25%">
+
+
+                          </colgroup>
+                          <thead class="" style="background-color: rgb(255, 206, 46)">
+                            <tr>
+                              <th class="text-center p-1">Employee</th>
+                              <th class="text-center p-1">Leave Type</th>
+                              <th class="text-center p-1">Date</th>
+                              <th class="text-center p-1">Status</th>
+                              <th class="text-center p-1">Action</th>
+                            </tr>
+                          </thead>       
                   </div>
 
                   <form>
