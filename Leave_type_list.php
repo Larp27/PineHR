@@ -34,7 +34,7 @@ include_once('./main.php');
 
               $result = mysqli_query($conn, $query);
             } {
-              echo '<a href="Leave_type_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1130px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Leave Type +</button> </a>';
+              echo '<a href="Leave_type_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Leave Type +</button> </a>';
             }
             ?>
           </div>

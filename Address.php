@@ -26,7 +26,7 @@
      
      $result = mysqli_query($conn, $query);
     }
-      { echo '<a href="Address_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1120px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Address +</button> </a>';}
+      { echo '<a href="Address_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Address +</button> </a>';}
     ?>
 
 

@@ -26,7 +26,8 @@ include_once('./main.php');
 
               $result = mysqli_query($conn, $query);
             } {
-              echo '<a href="Department_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1120px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Department +</button> </a>';
+               
+              echo '<a href="Department_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Department +</button> </a>';
             }
             ?>
 
@@ -97,13 +98,14 @@ include_once('./main.php');
                               <input type="text" class="form-control" id="update_dep_name" name="dep_name">
                             </div>
                             <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateDepartment">Update</button>
+                            
                           </form>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
+              </div>
 
 
                 <script>

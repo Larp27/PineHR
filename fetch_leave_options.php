@@ -5,7 +5,7 @@ include "DBConnection.php";
 if(isset($_GET['employeeId'])) {
   $employeeId = mysqli_real_escape_string($conn, $_GET['employeeId']);
 
-  $query = "SELECT lt.lt_id, lt.lt_name
+  $query = "SELECT lt.lt_id, lt.lt_name, ec.available_credits
             FROM leave_type lt
             INNER JOIN employee_leave_credits ec ON lt.lt_id = ec.lt_id
             WHERE ec.em_id = '$employeeId'";

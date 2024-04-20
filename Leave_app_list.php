@@ -205,7 +205,7 @@ if (isset($_SESSION['s_em_email'])) {
 
                       $result = mysqli_query($conn, $query);
                     } {
-                      echo '<a href="Leave_app_add.php"><i ><button type="button" class="btn btn-success" style = "margin-left: 1130px; background-color: #2468a0"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
+                      echo '<a href="Leave_app_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Leave Application +</button> </a>';
                     }
                     ?>
                   </div>
