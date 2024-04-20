@@ -15,6 +15,7 @@ if (isset($_SESSION['s_em_email'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/employee.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -43,34 +44,6 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="DataTables/js/jquery-3.7.0.js"></script>
     <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
     <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
-    <style>
-
-      div.dataTables_wrapper div.dataTables_length select{
-        width: auto;
-        display: inline-block;
-        border-radius: 5px;
-        padding-top: .30rem;
-        padding-bottom: .30rem;
-        padding-left: .5rem;
-        padding-right: 2.5rem;
-        font-size: .875rem;
-        font-weight: 400;
-        line-height: 1.5;
-      }
-
-      div.dataTables_wrapper div.dataTables_length select {
-        width: auto;
-        display: inline-block;
-        border-radius: 15px;
-        padding-top: .30rem;
-        padding-bottom: .30rem;
-        padding-left: .5rem;
-        padding-right: 2.5rem;
-        font-size: .875rem;
-        font-weight: 400;
-        line-height: 1.5;
-      }
-    </style>
   </head>
   <body>
 
