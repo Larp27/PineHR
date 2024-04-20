@@ -203,7 +203,7 @@ if (isset($_SESSION['s_em_email'])) {
                         $disabled = ($row['available_credits'] == 0) ? 'disabled' : '';
 
                         // Output option with disabled attributes
-                        echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . ' (' . $row['available_credits'] . ' remaining credits)' .'</option>';
+                        echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . '</option>';
                       }
                     ?>
                   </select>
