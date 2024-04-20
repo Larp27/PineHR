@@ -50,21 +50,15 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
+    
     <style>
-      :root {
-        --bs-success-rgb: 71, 222, 152 !important;
+      .nav-tabs.nav-sm > li.nav-item > a.nav-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
       }
 
-      html,
-      body {
-        height: 100%;
-        width: 100%;
-        font-family: Apple Chancery, cursive;
-      }
-
-      .btn-info.text-light:hover,
-      .btn-info.text-light:focus {
-        background: #000;
+      .nav-tabs.nav-sm > li.nav-item {
+        margin-bottom: 0;
       }
 
       table,
@@ -74,10 +68,32 @@ if (isset($_SESSION['s_em_email'])) {
       th,
       thead,
       tr {
-        border-color: #ededed !important;
+        border-color: #2468a0 !important;
         border-style: solid;
         border-width: 1px !important;
       }
+
+    #calendar {
+      background-color: #e3ffd8ad !important;
+      height: 600px;
+      border: 2px solid #2468a0;
+      border-radius: 5px;
+    }
+
+    th {
+      background-color: #71c075;
+    }
+    
+    .dashboard-card {
+      height: 130px;
+    }
+
+    @media (min-width: 768px) and (max-width: 1198px) {
+      .dashboard-card h5 {
+        text-align: center;
+        font-size: 16px !important;
+      }
+    }
     </style>
   </head>
 
@@ -99,8 +115,8 @@ if (isset($_SESSION['s_em_email'])) {
           <a href="Dashboard.php">
             <img src="bgimages/pine.png" alt="logo" style="width: 100px;height: 60px;margin-top: -15px; margin-left: -8px">
           </a>
-          <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
-          <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+          <h10 style="font-family: 'Glacial Indifference';"><?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?></h10>
+          <a href="logout.php" id="lougoutbtn" class="text-decoration-none" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
         <div>
           <div id="exampleModal" class="modal fade">
@@ -121,7 +137,7 @@ if (isset($_SESSION['s_em_email'])) {
           </div>
         </div>
         <div class="col-md-12">
-          <ul class="nav nav-tabs">
+          <ul class="nav nav-tabs nav-sm">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="employee.php">Home</a>
             </li>
@@ -159,8 +175,6 @@ if (isset($_SESSION['s_em_email'])) {
                 } elseif ($all_credits_zero) {
                   $tooltip_message = "All your leave types have zero available credits.";
                 }
-
-                // Output the dropdown items with tooltip
                 echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item ' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
                 ?>
                 <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
@@ -168,232 +182,153 @@ if (isset($_SESSION['s_em_email'])) {
             </li>
           </ul>
           <div class="row">
-            <div class="col-md-12 mb-4">
-              <div class="panel panel-default">
-                <div class="panel-heading d-flex p-0 pt-3 ps-3" style="box-shadow: 0 4px 5px -1px #2468a0;">
-                  <i class="fa-solid fa-house fa-xl mt-3 me-2" style="color: #2468a0;"></i>
-                  <p class="fs-4">Dashboard</p>
+            <div class="col-md-12">
+              <div class="border border-light border-top-1 p-0 bg-white">
+                <div class="d-flex" style="box-shadow: 0 2px 6px -1px #00213b; height: 50px;">
+                  <i class="fa-solid fa-house fa-lg mt-4 me-2 ps-2" style="color: #2468a0;"></i>
+                  <p class="fs-6 fw-bold mt-3 text-uppercase">Dashboard</p>
                 </div>
               </div>
               <div class="row mx-auto">
-                <div class="col-md-12 mt-3 mb-3">
+                <div class="col-md-12 mt-4">
                   <div class="row gap-5">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
-                    <a href="employee_app_list.php">
-                      <div class="p-2 bg-warning" style="box-shadow: black 2px 6px 12px;">
-                        <h1>
-                          <?php
-                          // Assuming $conn is your database connection
-
-                          // Check if the user is logged in and the employee ID is available in session
-                          if (isset($_SESSION['s_em_id'])) {
-                            // Fetch the employee ID from session
-                            $em_id = $_SESSION['s_em_id'];
-
-                            // Query to count the number of rows where the employee ID matches the logged-in employee's ID
-                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending' AND em_id = $em_id";
-
-                            // Execute the query
-                            $count_query_run = mysqli_query($conn, $count_query);
-
-                            // Check if the query was successful
-                            if ($count_query_run) {
-                              // Fetch the result
-                              $row = mysqli_fetch_assoc($count_query_run);
-                              $count_total = $row['ls_status'];
-
-                              // Output the count
-                              echo '<h1 class="text-end">' . $count_total . '</h1>';
-                            } else {
-                              // Output 0 if the query failed
-                              echo '<h1 class="text-end">0</h1>';
-                            }
-                          }
-                          ?>
-                        </h1>
-                        </a>
-
-                        <div class="d-flex mt-3">
-                          <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1">Pending Leave Application </h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                    <a href="employee_app_list.php">
-                      <div class="p-2 bg-success" style="box-shadow: black 2px 6px 12px;">
-                        <h1>
-
-                          <?php
-                          // Assuming $conn is your database connection
-
-                          // Check if the user is logged in and the employee ID is available in session
-                          if (isset($_SESSION['s_em_id'])) {
-                            // Fetch the employee ID from session
-                            $em_id = $_SESSION['s_em_id'];
-
-                            // Query to count the number of leave applications where the employee ID matches the logged-in employee's ID
-                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted' AND em_id = $em_id";
-
-                            // Execute the query
-                            $count_query_run = mysqli_query($conn, $count_query);
-
-                            // Check if the query was successful
-                            if ($count_query_run) {
-                              // Fetch the result
-                              $row = mysqli_fetch_assoc($count_query_run);
-                              $count_total = $row['ls_status'];
-
-                              // Output the count
-                              echo '<h1 class="text-end">' . $count_total . '</h1>';
-                            } else {
-                              // Output 0 if the query failed
-                              echo '<h1 class="text-end">0</h1>';
-                            }
-                          }
-                          ?>
-                        </h1>
-                        </a>
-
-                        <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1">Approved Leave Application </h5>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                    <a href="employee_app_list.php">
-                      <div class="p-2 bg-danger" style="box-shadow: black 2px 6px 12px;">
-                        <h1>
-                        <?php
-                          // Assuming $conn is your database connection
-
-                          // Check if the user is logged in and the employee ID is available in session
-                          if (isset($_SESSION['s_em_id'])) {
-                            // Fetch the employee ID from session
-                            $em_id = $_SESSION['s_em_id'];
-
-                            // Query to count the number of leave applications where the employee ID matches the logged-in employee's ID
-                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined' AND em_id = $em_id";
-
-                            // Execute the query
-                            $count_query_run = mysqli_query($conn, $count_query);
-
-                            // Check if the query was successful
-                            if ($count_query_run) {
-                              // Fetch the result
-                              $row = mysqli_fetch_assoc($count_query_run);
-                              $count_total = $row['ls_status'];
-
-                              // Output the count
-                              echo '<h1 class="text-end">' . $count_total . '</h1>';
-                            } else {
-                              // Output 0 if the query failed
-                              echo '<h1 class="text-end">0</h1>';
-                            }
-                          }
-                          ?>
-                        </h1>
-                        </a>
-
-                        
-                        <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1">Declined Leave Application </h5>
-                        </div>
-                      </div>
-                      <div class="col-md-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="panel panel-default">
-                <div class="panel-heading d-flex p-0 pt-3 ps-4" style="box-shadow: 0 4px 5px -1px #2468a0;">
-                  <i class="fa-solid fa-calendar-days fa-2xl mt-3 me-2" style="color: #2468a0;"></i>
-                  <p class="fs-4">Schedule of Events</p>
-                </div>
-                <div class="container py-12" id="page-container">
-                  <div class="row">
-                    <div class="col-md-9 mt-5 calendar-container">
-                      <div id="calendar"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
-                  <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content rounded-0">
-                      <div class="modal-header rounded-0">
-                        <h5 class="modal-title">Schedule Details</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body rounded-0">
-                        <div class="container-fluid">
-                          <dl>
-                            <dt class="text-muted">Title</dt>
-                            <dd id="title" class="fw-bold fs-4"></dd>
-                            <dt class="text-muted">Description</dt>
-                            <dd id="description" class=""></dd>
-                            <dt class="text-muted">Start</dt>
-                            <dd id="start" class=""></dd>
-                            <dt class="text-muted">End</dt>
-                            <dd id="end" class=""></dd>
-                          </dl>
-                        </div>
-                      </div>
-                      <div class="modal-footer rounded-0">
-                        <div class="text-end">
-                          <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <?php
-                // Query to fetch upcoming schedules
-                $currentDateTime = date('Y-m-d H:i:s');
-                $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
-                $schedules = $conn->query($query);
-                $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
-                ?>
-                <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
-                  <!-- Modal for Welcome Message -->
-                  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          <!-- Add your welcome message or any other content here -->
-                          <p>Announcement Upcoming Event!</p>
-                          <p>Schedule Details</p>
-                          <ul>
-                            <!-- Output schedule details here -->
+                      <a href="employee_app_list.php" class="text-decoration-none">
+                        <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
+                          <h1>
                             <?php
-                            while ($row = $schedules->fetch_assoc()) {
-                              $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
-                              $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
-                              echo "<li>Event Title: " . $row['title'] . "</li>";
-                              echo "Start Date: " . $start_date . "<br>End Date: " . $end_date;
+                            if (isset($_SESSION['s_em_id'])) {
+                              $em_id = $_SESSION['s_em_id'];
+                              $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending' AND em_id = $em_id";
+                              $count_query_run = mysqli_query($conn, $count_query);
+                              if ($count_query_run) {
+                                $row = mysqli_fetch_assoc($count_query_run);
+                                $count_total = $row['ls_status'];
+                                echo '<h1 class="text-end">' . $count_total . '</h1>';
+                              } else {
+                                echo '<h1 class="text-end">0</h1>';
+                              }
                             }
                             ?>
-                          </ul>
+                          </h1>
+                        </a>
+                        <div class="d-flex mt-2">
+                          <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
+                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Pending Leave Application </h5> <!-- Adjusted text alignment -->
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-3">
+                      <a href="employee_app_list.php" class="text-decoration-none">
+                        <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
+                          <h1>
+                            <?php
+                            if (isset($_SESSION['s_em_id'])) {
+                              $em_id = $_SESSION['s_em_id'];
+                              $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted' AND em_id = $em_id";
+                              $count_query_run = mysqli_query($conn, $count_query);
+                              if ($count_query_run) {
+                                $row = mysqli_fetch_assoc($count_query_run);
+                                $count_total = $row['ls_status'];
+                                echo '<h1 class="text-end">' . $count_total . '</h1>';
+                              } else {
+                                echo '<h1 class="text-end">0</h1>';
+                              }
+                            }
+                            ?>
+                          </h1>
+                        </a>
+                        <div class="d-flex mt-3">
+                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-2"></i>
+                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Approved Leave Application </h5> <!-- Adjusted text alignment -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="employee_app_list.php" class="text-decoration-none">
+                        <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
+                          <h1>
+                            <?php
+                            if (isset($_SESSION['s_em_id'])) {
+                              $em_id = $_SESSION['s_em_id'];
+                              $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined' AND em_id = $em_id";
+                              $count_query_run = mysqli_query($conn, $count_query);
+                              if ($count_query_run) {
+                                $row = mysqli_fetch_assoc($count_query_run);
+                                $count_total = $row['ls_status'];
+                                echo '<h1 class="text-end">' . $count_total . '</h1>';
+                              } else {
+                                echo '<h1 class="text-end">0</h1>';
+                              }
+                            }
+                            ?>
+                          </h1>
+                        </a>
+                        <div class="d-flex mt-3">
+                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-2"></i>
+                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Declined Leave Application </h5> <!-- Adjusted text alignment -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-2"></div>
                   </div>
-                <?php endif; ?>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="border border-light border-top-1 p-0 bg-white">
+                <div class="d-flex" style="box-shadow: 0 2px 6px -1px #00213b; height: 50px;">
+                  <i class="fa-solid fa-calendar-days fa-lg mt-4 me-2 ps-2" style="color: #2468a0;"></i>
+                  <p class="fs-6 fw-bold mt-3 text-uppercase">Schedule of Events</p>
+                </div>
+              </div>
+              <div class="container py-12" id="page-container">
+                <div class="row">
+                  <div class="col-md-12 mt-4">
+                    <div class="calendar-container" style="height: 70vh;">
+                      <div id="calendar"  style="background-color: aquawhite;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content rounded-0">
+                    <div class="modal-header rounded-0">
+                      <h5 class="modal-title">Schedule Details</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body rounded-0">
+                      <div class="container-fluid">
+                        <dl>
+                          <dt class="text-muted">Title</dt>
+                          <dd id="title" class="fw-bold fs-4"></dd>
+                          <dt class="text-muted">Description</dt>
+                          <dd id="description" class=""></dd>
+                          <dt class="text-muted">Start</dt>
+                          <dd id="start" class=""></dd>
+                          <dt class="text-muted">End</dt>
+                          <dd id="end" class=""></dd>
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="modal-footer rounded-0">
+                      <div class="text-end">
+                        <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
     </div>
-
     <?php
     // Opening PHP tag
     $schedules = $conn->query("SELECT * FROM `schedule_list`");

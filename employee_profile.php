@@ -36,6 +36,17 @@ if (isset($_SESSION['s_em_email'])) {
 
     <!--Navbar CSS-->
     <link rel="stylesheet" href="css/navbar.css">
+
+    <style>
+      .nav-tabs.nav-sm > li.nav-item > a.nav-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-tabs.nav-sm > li.nav-item {
+        margin-bottom: 0;
+      }
+    </style>
   </head>
   <body>
 
@@ -62,7 +73,7 @@ if (isset($_SESSION['s_em_email'])) {
             <img src="bgimages/pine.png" alt="logo" style="width: 100px;height: 60px;margin-top: -15px; margin-left: -8px">
           </a>
           <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
-          <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
+          <h10 style="font-family: 'Glacial Indifference';"><?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?></h10>
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
 
@@ -86,18 +97,17 @@ if (isset($_SESSION['s_em_email'])) {
             </div>
           </div>
         </div>
-        <form>
         <div class="col-md-12">
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <a class="nav-link" href="employee.php">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="employee_profile.php">Profile</a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
-            <ul class="dropdown-menu">
+          <ul class="nav nav-tabs nav-sm">
+            <li class="nav-item">
+                <a class="nav-link" href="employee.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="employee_profile.php">Profile</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
+                <ul class="dropdown-menu">
                 <?php
                 // Check if the user has any employee leave credits
                 $em_id = $_SESSION['s_em_id'];
@@ -117,28 +127,21 @@ if (isset($_SESSION['s_em_email'])) {
                         $all_credits_zero = true;
                     }
                 }
-
-                // Disable the "Application" dropdown item if necessary
                 $application_disabled = ($leave_credit_count == 0 || $all_credits_zero) ? 'disabled' : '';
-
-                // Determine the tooltip message
                 $tooltip_message = "";
                 if ($leave_credit_count == 0) {
                     $tooltip_message = "You have no employee leave credits.";
                 } elseif ($all_credits_zero) {
                     $tooltip_message = "All your leave types have zero available credits.";
                 }
-
-                // Output the dropdown items with tooltip
                 echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item ' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
                 ?>
                 <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
             </ul>
-        </li>
-    </ul>
-    <div>
-      <form>
-        <div class="row">
+          </li>
+        </ul>
+        <div>
+          <div class="row">
           <?php
             if (isset($_SESSION['s_em_email'])) {
             // Fetch the logged-in employee's data from the database
@@ -157,10 +160,8 @@ if (isset($_SESSION['s_em_email'])) {
 
             $result = mysqli_query($conn, $query);
 
-            // Check if the query was successful and data was retrieved
             if ($result && mysqli_num_rows($result) > 0) {
                 $employee_data = mysqli_fetch_assoc($result);
-                // Extract employee details
                 $first_name = $employee_data['first_name'];
                 $last_name = $employee_data['last_name'];
                 $em_phone = $employee_data['em_phone'];
@@ -176,7 +177,7 @@ if (isset($_SESSION['s_em_email'])) {
                 ?>
                 <div class="col-md-12">
                   <div class="">
-                    <div class="panel panel-default mt-4 mx-auto" style="width: 95%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
+                    <div class="panel panel-default mt-4 mx-auto" style="width: 95%; box-shadow: -3px 5px 8px #2468a0; ">
                       <div class="panel-heading d-flex p-1">
                         <div class="me-3 ms-3 mt-3">
                             <i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>
@@ -189,59 +190,53 @@ if (isset($_SESSION['s_em_email'])) {
                               <td class='text-center p-3'><img src="../PINEHR/<?php echo substr($employee_data['em_profile_pic'], 3); ?>" style="max-width:300px;max-height:300px;"></td>
                           </div>
                           <div class="col-md-4 mt-3">
-                              <label style="font-weight: bold; margin-bottom: 5px;">First Name:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $first_name; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Last Name:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $last_name; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Phone:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $em_phone; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Birthday:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $em_birthday; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Address:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $barangay . ', ' . $city; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">First Name:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $first_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Last Name:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $last_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Phone:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $em_phone; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Birthday:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $em_birthday; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Address:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $barangay . ', ' . $city; ?></p>
                           </div>
                           <div class="col-md-5 mt-3">
-                              <label style="font-weight: bold; margin-bottom: 5px;">Department:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $dep_name; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Designation:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $des_name; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Educational Attainment:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $education; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Marital Status:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $ms_name ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Religion:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $r_name; ?></p>
-                              <label style="font-weight: bold; margin-bottom: 5px;">Blood Type:</label>
-                              <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $bt_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Department:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $dep_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Designation:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $des_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Educational Attainment:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $education; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Marital Status:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $ms_name ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Religion:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $r_name; ?></p>
+                            <label style="font-weight: bold; margin-bottom: 5px;">Blood Type:</label>
+                            <p class="ms-2 text-uppercase fw-bold" style="color: #b4b4b4;"><?php echo $bt_name; ?></p>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-            <?php
-              } else {
-                  // No data found for the logged-in employee
+              <?php
+                } else {
                   echo "No data found for the logged-in employee.";
-              }
-              }
-            ?>
+                }
+                }
+              ?>`
+            </div>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-
-        </form>
       </div>
     </div>
-
     <?php
       } else {
         header("location: login.php");
         exit();
       }
     ?>
-
       <script>
         var sideBarIsOpen = true;
         togglebtn.addEventListener('click', (event) => {
