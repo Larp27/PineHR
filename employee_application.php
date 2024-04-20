@@ -144,6 +144,8 @@ if (isset($_SESSION['s_em_email'])) {
                       $result = mysqli_query($conn, $query);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $disabled = ($row['available_credits'] == 0) ? 'disabled' : '';
+
+                        // Output option with disabled attributes
                         echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . '</option>';
                       }
                     ?>
