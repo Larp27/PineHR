@@ -19,20 +19,19 @@
           <div class="panel-heading">
             &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-lg" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee List</strong></span>
             <?php if ($_SESSION['s_user_id'] == 1) {
-              echo '<a href="em_add.php"><button type="button" class="btn btn-primary" style="float: right; background-color: #2468a0;">Add New Employee +</button></a>';
-
+              echo '<a href="em_add.php"><button type="button" class="btn btn-primary" style="float: right; background-color: #2468a0; border-color:#2468a0;"><i class="fa fa-plus" style="padding-right: 5px;" aria-hidden="true"></i> Add New Employee</button></a>';
             } ?>
           </div>
 
           <div class="dash_content m-3">
-            <div class="dash_content_main">
+            <div class="dash_content_main m-4 pt-2">
               <table id="example" class="table">
                 <colgroup>
                   <col width="10%">
                   <col width="10%">
+                  <col width="15%">
+                  <col width="40%">
                   <col width="25%">
-                  <col width="25%">
-                  <col width="20%">
                 </colgroup>
                 <thead class="" style="background-color: rgb(255, 206, 46)">
                   <tr>
@@ -43,7 +42,7 @@
                     <th class="text-center p-2">Actions</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody style='font-size: 15px;'>
                   <?php
                   $query = "SELECT DISTINCT e.em_id, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
                             FROM `employee` e 
@@ -52,7 +51,7 @@
                             INNER JOIN `blood_group` bg ON bg.bt_id = e.bt_id 
                             INNER JOIN `user_type` ut ON ut.user_id = e.user_id 
                             INNER JOIN `employment_status` es ON es.es_id = e.es_id
-                            WHERE e.em_id != " . $_SESSION['s_user_id'];
+                            WHERE e.em_id != " . $_SESSION['s_em_id'];
 
                   $result = mysqli_query($conn, $query);
                   if (!$result) {
@@ -61,19 +60,22 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                       echo "<tr>";
                       echo "<td class='text-center p-3'>" . $row['em_id'] . "</td>";
-                      echo "<td class='text-center p-3'><img src='../PINEHR/" . substr($row['em_profile_pic'], 3) . "' style='max-width:100px;max-height:100px;'></td>";
+                      echo "<td class='text-center p-3'><img src='../PINEHR/" . substr($row['em_profile_pic'], 3) . "' style='width:100%; height: 80px'></td>";
                       echo "<td class='text-left p-3'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
-                      echo "<td class='text-left p-3'><strong>Department</strong>: " . $row['dep_name'] . "<br><strong>Designation</strong>: " . $row['des_name'] . "</td>";
+                      echo "<td class='text-left p-3' style='font-size: 15px;'>
+                              <strong>Department</strong>:" . $row['dep_name'] . " <br>
+                              <strong>Designation</strong>:" . $row['des_name'] . "
+                            </td>";
+          
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
-
-                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1'>
+                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
                                   <i class='fas fa-eye'> </i> View
                                 </a>
-                                <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1'>
+                                <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
                                   <i class='fas fa-edit'> </i> Edit
                                 </a>
-                                <a href='Employee/deleteEM.php?em_id=" . $row['em_id'] . "' class='btn btn-danger btn-sm m-2 p-1' onclick='return confirm(\"Are you sure you want to remove this Employee?\")'>
+                                <a href='Employee/deleteEM.php?em_id=" . $row['em_id'] . "' class='btn btn-danger btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;' onclick='return confirm(\"Are you sure you want to remove this Employee?\")'>
                                   <i class='fas fa-trash'> </i> Remove
                                 </a>
                               </div>
