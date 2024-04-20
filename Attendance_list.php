@@ -124,7 +124,7 @@ include_once('./main.php');
 			";
             }
 
-            ?>
+            ?><br><br><br><br><br><br><br>
             <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -132,7 +132,7 @@ include_once('./main.php');
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Add Attendance</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-
+                  
                   <div class="modal-body">
                     <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Attendance (CSV File)&nbsp;&nbsp;&nbsp;<img src="bgimages/CSV.png" style="width: 45px; height: 55px"></span><br><br>
 
@@ -150,3 +150,4 @@ include_once('./main.php');
                   </div>
                 </div>
               </div>
+              

@@ -304,18 +304,22 @@ if (isset($_SESSION['s_em_email'])) {
                             
                             }
                           ?>
-                          
+                        </table>
                         <!--cont LOGOUT Session -- -->
                         <?php
                         if (isset($_GET['uid1'])) {
                           $uid1  = $_GET['uid1'];
                           mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
                         }
-                      } else {
+                      
+                        } else {
                         header("location: login.php");
                         exit();
                       }
                         ?>
+                        </div>
+                        </div>
+                </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                         <!-- end of LOGOUT Session -->
 
                         <script>
