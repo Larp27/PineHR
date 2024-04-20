@@ -15,6 +15,8 @@ if (isset($_SESSION['s_em_email'])) {
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="css/employee.css">
+    <link rel="stylesheet" href="css/main.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -43,6 +45,14 @@ if (isset($_SESSION['s_em_email'])) {
 
     <!--Navbar CSS-->
     <link rel="stylesheet" href="css/navbar2.css">
+
+
+    <!-- DATATABLES OFFLINE -->
+    <link rel="stylesheet" href="DataTables/css/bootstrap.min.css">
+    <link rel="stylesheet" href="DataTables/css/bootstrap5.min.css">
+    <script src="DataTables/js/jquery-3.7.0.js"></script>
+    <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
+    <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
 
     <script src="./script.js"></script>
   </head>
