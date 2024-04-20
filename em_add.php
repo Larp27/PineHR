@@ -245,7 +245,7 @@ include_once('./main.php');
             </div>
             <div class="form-group mb-3">
               <label for="em_email" class="fw-bold text-uppercase">Email</label>
-              <input type="text" class="form-control" placeholder="" id="em_email" aria-describedby="addon-wrapping">
+              <input type="email" class="form-control" placeholder="" id="em_email" aria-describedby="addon-wrapping">
             </div>
             <div class="form-group mb-3">
               <label for="em_password" class="fw-bold  text-uppercase">Password</label>

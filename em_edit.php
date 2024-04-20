@@ -268,7 +268,7 @@
               </div>
               <div class="form-group mb-3">
                 <label for="em_email" class="fw-bold text-uppercase">Email</label>
-                <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>">
+                <input type="email" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>">
               </div>
               <div class="form-group mb-3">
                 <label for="em_password" class="fw-bold text-uppercase">Password</label>

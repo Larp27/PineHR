@@ -35,6 +35,22 @@ div.dataTables_wrapper div.dataTables_info {
   font-size: 15px !important;
 }
 
+div.dataTables_wrapper  table.dataTable {
+  clear: both;
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+  max-width: none !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: .5em;
+  display: inline-block;
+  width: auto;
+  border-radius: 7px !important;
+}
+
 div.dataTables_wrapper div.dataTables_paginate .paginate_button {
   z-index: 3;
   color: #0d6efd !important;  

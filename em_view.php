@@ -108,65 +108,43 @@
             </div>
             <div class="form-group mb-3">
               <label for="ms_id" class="fw-bold text-uppercase">Marital Status</label>
-              <select class="form-select" id="ms_id" name="ms_id" required readonly disabled>
-                <option disabled>Please Select Here</option>
-                <?php
-                $ms_qry = $conn->query("SELECT * FROM marital_status ORDER BY ms_name ASC");
+              <?php
+                $ms_qry = $conn->query("SELECT * FROM marital_status WHERE ms_id = '$ms_id'");
                 if ($ms_qry) {
-                  while ($ms_row = $ms_qry->fetch_assoc()) {
-                    $selected = ($ms_id == $ms_row['ms_id']) ? 'selected' : '';
-                    ?>
-                    <option value="<?php echo $ms_row['ms_id'] ?>" <?php echo $selected ?>><?php echo $ms_row['ms_name'] ?></option>
-                    <?php
+                  if ($ms_row = $ms_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $ms_row['ms_name'] . "' readonly>";
                   }
-                  $ms_qry->close(); // Close the query result
-                } else {
-                  echo "Error fetching marital status: " . $conn->error;
-                }
-                ?>
-              </select>
+                  $ms_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="r_id" class="fw-bold text-uppercase">Religion</label>
-              <select class="form-select" id="r_id" name="r_id" required readonly disabled>
-                <option disabled>Please Select Here</option>
-                <?php
-                $r_qry = $conn->query("SELECT * FROM religion ORDER BY r_name ASC");
+              <?php
+                $r_qry = $conn->query("SELECT * FROM religion WHERE r_id = '$r_id'");
                 if ($r_qry) {
-                  while ($religion_row = $r_qry->fetch_assoc()) {
-                    $selected = ($r_id == $religion_row['r_id']) ? 'selected' : '';
-                    ?>
-                    <option value="<?php echo $religion_row['r_id'] ?>" <?php echo $selected ?>><?php echo $religion_row['r_name'] ?></option>
-                    <?php
+                  if ($r_row = $r_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $r_row['r_name'] . "' readonly>";
                   }
-                  $r_qry->close(); // Close the query result
-                } else {
-                  echo "Error fetching religions: " . $conn->error;
-                }
-                ?>
-              </select>
+                  $r_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="bt_id" class="fw-bold text-uppercase">Bloodtype</label>
-              <select class="form-select" id="bt_id" name="bt_id" required readonly disabled>
-                <option disabled>Please Select Here</option>
-                <?php
-                $employee_bt_id = isset($bt_id) ? $bt_id : '';
-
-                $bt_qry = $conn->query("SELECT * FROM blood_group ORDER BY bt_name ASC");
-
-                // Loop through blood types
-                while ($bt_row = $bt_qry->fetch_assoc()):
-                  // Check if the current blood type ID matches the employee's blood type ID
-                  $selected = ($employee_bt_id == $bt_row['bt_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $bt_row['bt_id']; ?>" <?php echo $selected; ?>><?php echo $bt_row['bt_name']; ?></option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $bt_qry = $conn->query("SELECT * FROM blood_group WHERE bt_id = '$bt_id'");
+                if ($bt_qry) {
+                  if ($bt_row = $bt_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $bt_row['bt_name'] . "' readonly>";
+                  }
+                  $bt_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="em_birthday" class="fw-bold text-uppercase">Date of Birth</label>
-              <input type="date" name="em_birthday" id="em_birthday" class="form-control" aria-describedby="addon-wrapping" required value="<?php echo isset($em_birthday) ? $em_birthday : ''; ?>" readonly>
+              <input type="text" name="em_birthday" id="em_birthday" class="form-control" aria-describedby="addon-wrapping" required value="<?php echo isset($em_birthday) ? $em_birthday : ''; ?>" readonly>
             </div>
             <div class="form-group mb-3">
               <label for="em_phone" class="fw-bold text-uppercase">Contact Number</label>
@@ -174,103 +152,96 @@
             </div>
             <div class="form-group mb-3">
               <label for="address_id" class="fw-bold text-uppercase mb-1 text-uppercase">Address</label>
-              <select class="form-select" id="address_id" name="address_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $address_qry = $conn->query("SELECT * FROM `address` ORDER BY barangay ASC");
-                while ($address_row = $address_qry->fetch_assoc()):
-                  $selected = ($address_id == $address_row['address_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $address_row['address_id'] ?>" <?php echo $selected ?>>
-                  <?php echo $address_row['barangay'] . ', ' . $address_row['city'] ?>
-                </option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $address_qry = $conn->query("SELECT * FROM address WHERE address_id = '$address_id'");
+                if ($address_qry) {
+                  if ($address_row = $address_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $address_row['barangay'] . ', ' . $address_row['city'] . "' readonly>";
+                  }
+                  $address_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="edu_id" class="fw-bold text-uppercase">Educational Attainment</label>
-              <select class="form-select" id="edu_id" name="edu_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $edu_qry = $conn->query("SELECT * FROM education ORDER BY education ASC");
-                while ($edu_row = $edu_qry->fetch_assoc()):
-                  $selected = ($edu_id == $edu_row['edu_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $edu_row['edu_id']; ?>" <?php echo $selected; ?>><?php echo $edu_row['education']; ?></option>
-                <?php endwhile; ?>
-              </select>
-            </div>
-            <div class="form-group mb-3">
-              <label for="dep_id" class="fw-bold text-uppercase">Department</label>
-              <select class="form-select" id="dep_id" name="dep_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $dep_qry = $conn->query("SELECT * FROM department ORDER BY dep_name ASC");
-                while ($dep_row = $dep_qry->fetch_assoc()):
-                  $selected = ($dep_id == $dep_row['dep_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $dep_row['dep_id']; ?>" <?php echo $selected; ?>><?php echo $dep_row['dep_name']; ?></option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $edu_qry = $conn->query("SELECT * FROM education WHERE edu_id = '$edu_id'");
+                if ($edu_qry) {
+                  if ($edu_row = $edu_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $edu_row['education'] . "' readonly>";
+                  }
+                  $edu_qry->close();
+                } 
+              ?>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group mb-3">
+              <label for="dep_id" class="fw-bold text-uppercase">Department</label>
+              <?php
+                $dep_qry = $conn->query("SELECT * FROM department WHERE dep_id = '$dep_id'");
+                if ($dep_qry) {
+                  if ($dep_row = $dep_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $dep_row['dep_name'] . "' readonly>";
+                  }
+                  $dep_qry->close();
+                } 
+              ?>
+            </div>
+            <div class="form-group mb-3">
               <label for="des_id" class="fw-bold text-uppercase">Designation</label>
-              <select class="form-select" id="des_id" name="des_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $des_qry = $conn->query("SELECT * FROM designation ORDER BY des_name ASC");
-                while ($des_row = $des_qry->fetch_assoc()):
-                  $selected = ($des_id == $des_row['des_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $des_row['des_id']; ?>" <?php echo $selected; ?>><?php echo $des_row['des_name']; ?></option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $des_qry = $conn->query("SELECT * FROM designation WHERE des_id = '$des_id'");
+                if ($des_qry) {
+                  if ($des_row = $des_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $des_row['des_name'] . "' readonly>";
+                  }
+                  $des_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="es_id" class="fw-bold text-uppercase">Employment Status</label>
-              <select class="form-select" id="es_id" name="es_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $es_qry = $conn->query("SELECT * FROM employment_status ORDER BY es_name ASC");
-                while ($es_row = $es_qry->fetch_assoc()):
-                  $selected = ($es_id == $es_row['es_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $es_row['es_id']; ?>" <?php echo $selected; ?>><?php echo $es_row['es_name']; ?></option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $es_qry = $conn->query("SELECT * FROM employment_status WHERE es_id = '$es_id'");
+                if ($es_qry) {
+                  if ($es_row = $es_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $es_row['es_name'] . "' readonly>";
+                  }
+                  $es_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="user_id" class="fw-bold text-uppercase">User Role</label>
-              <select class="form-select" id="user_id" name="user_id" required disabled readonly>
-                <option disabled>Please Select Here</option>
-                <?php
-                $user_qry = $conn->query("SELECT * FROM user_type ORDER BY user_role ASC");
-                while ($user_row = $user_qry->fetch_assoc()):
-                  $selected = ($user_id == $user_row['user_id']) ? 'selected' : '';
-                ?>
-                <option value="<?php echo $user_row['user_id']; ?>" <?php echo $selected; ?>><?php echo $user_row['user_role']; ?></option>
-                <?php endwhile; ?>
-              </select>
+              <?php
+                $user_qry = $conn->query("SELECT * FROM user_type WHERE user_id = '$user_id'");
+                if ($user_qry) {
+                  if ($user_row = $user_qry->fetch_assoc()) {
+                    echo "<input type='text' class='form-control' value='" . $user_row['user_role'] . "' readonly>";
+                  }
+                  $user_qry->close();
+                } 
+              ?>
             </div>
             <div class="form-group mb-3">
               <label for="em_joining_date" class="fw-bold text-uppercase">Date of Joining</label>
-              <input type="date" class="form-control" placeholder="" id="em_joining_date" name="em_joining_date" aria-describedby="addon-wrapping" required value="<?php echo isset($em_joining_date) ? $em_joining_date : ''; ?>" readonly>
+              <input type="text" class="form-control" placeholder="" id="em_joining_date" name="em_joining_date" aria-describedby="addon-wrapping" required value="<?php echo isset($em_joining_date) ? $em_joining_date : ''; ?>" readonly>
             </div>
             <div class="form-group mb-3">
               <label for="em_contract_end" class="fw-bold text-uppercase">Date of Leaving</label>
-              <input type="date" class="form-control" placeholder="" id="em_contract_end" name="em_contract_end" aria-describedby="addon-wrapping" value="<?php echo isset($em_contract_end) ? $em_contract_end : ''; ?>" readonly>
+              <input type="text" class="form-control" placeholder="" id="em_contract_end" name="em_contract_end" aria-describedby="addon-wrapping" value="<?php echo isset($em_contract_end) ? $em_contract_end : ''; ?>" readonly>
             </div>
-            <div class="form-group mb-3">
+            <div class="form-group">
               <label for="em_email" class="fw-bold text-uppercase">Email</label>
               <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>" readonly>
             </div>
 
             <div class="form-group mb-3"><br>
               <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
-            <div class="mb-2"><br>
-              <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" style="width: 250px;" alt="Profile Photo" class="profile-photo">
+              <div class="mt-2">
+                <img src="../PINEHR/<?php echo substr($em_profile_pic, 3); ?>" style="width: 200px;" alt="Profile Photo" class="profile-photo">
+              </div>
             </div>
           </div>
         </div>
@@ -297,27 +268,25 @@
             <div class="form-group mb-3">
               <div class="row">
                 <?php
-                  $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE lt.lt_status = 1");
+                  $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE elc.em_id = $em_id");
                   $total_leave_types = $leave_types_query->num_rows;
                   $leave_types_per_column = ceil($total_leave_types / 2); 
 
                   $counter = 0;
                   while ($leave_type = $leave_types_query->fetch_assoc()) {
                     if ($counter % $leave_types_per_column == 0) {
-                      echo '<div class="col-md-6">';
+                        echo '<div class="col-md-6">';
                     }
                     echo '<div class="row">';
-                    echo '<div class="col-5">';
+                    echo '<div class="col-6">';
                     echo '<div class="form-check my-1">';
 
-                    echo '<input type="checkbox" id="leave_type_' . $leave_type['lt_id'] . '" name="leave_type_ids[]" value="' . $leave_type['lt_id'] . '" class="form-check-input leave-type-checkbox">';
-                    echo '<label for="leave_type_' . $leave_type['lt_id'] . '" class="form-check-label">' . $leave_type['lt_name'] . '</label>';
+                    echo '<li type="text" id="leave_type_' . $leave_type['lt_id'] . '" name="leave_type_ids[]" value="' . $leave_type['lt_id'] . '" class="leave-type-checkbox text-capitalize" read-only>' . $leave_type['lt_name'] . ' <span class="text-lowercase">(' . $leave_type['lt_credit'] . ' Remaining Credits)</span></li>';
+
                     echo '</div>';
                     echo '</div>';
 
-                    echo '<div class="col-4 my-1">';
-                    echo '<input type="number" id="credits_' . $leave_type['lt_id'] . '" name="leave_type_credits[]" class="form-control d-none leave-type-credit" value="' . $leave_type['lt_credit'] . '">';
-                    echo '</div>';
+
 
                     echo '</div>';
                     $counter++;
