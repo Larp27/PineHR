@@ -106,8 +106,8 @@ if (isset($_SESSION['s_em_email'])) {
                 <a class="nav-link active" aria-current="page" href="employee_profile.php">Profile</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
-                <ul class="dropdown-menu">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
+              <ul class="dropdown-menu">
                 <?php
                 // Check if the user has any employee leave credits
                 $em_id = $_SESSION['s_em_id'];
@@ -137,9 +137,9 @@ if (isset($_SESSION['s_em_email'])) {
                 echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item ' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
                 ?>
                 <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
-            </ul>
-          </li>
-        </ul>
+              </ul>
+            </li>
+          </ul>
         <div>
           <div class="row">
           <?php
