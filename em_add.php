@@ -88,8 +88,19 @@
             </div>
             <div class="form-group mb-3">
               <label for="em_phone" class="fw-bold text-uppercase">Contact Number</label>
-              <input type="text" name="em_phone" id="em_phone" class="form-control" aria-describedby="addon-wrapping" required>
+              <div class="input-group">
+                <span class="input-group-text">+63</span>
+                <input type="text" name="em_phone" id="em_phone" class="form-control" aria-describedby="addon-wrapping" minlength="10" maxlength="10" oninput="limitInputLength(this, 10);" required>
+              </div>
             </div>
+
+            <script>
+              function limitInputLength(element, maxLength) {
+                if (element.value.length > maxLength) {
+                  element.value = element.value.slice(0, maxLength);
+                }
+              }
+            </script>
 
             <div class="form-group mb-3">
               <label for="address_id" class="fw-bold text-uppercase mb-1 text-uppercase">Address</label>
