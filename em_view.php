@@ -275,19 +275,15 @@
                   $counter = 0;
                   while ($leave_type = $leave_types_query->fetch_assoc()) {
                     if ($counter % $leave_types_per_column == 0) {
-                        echo '<div class="col-md-6">';
+                      echo '<div class="col-md-6">';
                     }
                     echo '<div class="row">';
                     echo '<div class="col-6">';
                     echo '<div class="form-check my-1">';
 
                     echo '<li type="text" id="leave_type_' . $leave_type['lt_id'] . '" name="leave_type_ids[]" value="' . $leave_type['lt_id'] . '" class="leave-type-checkbox text-capitalize" read-only>' . $leave_type['lt_name'] . ' <span class="text-lowercase">(' . $leave_type['lt_credit'] . ' Remaining Credits)</span></li>';
-
                     echo '</div>';
                     echo '</div>';
-
-
-
                     echo '</div>';
                     $counter++;
 

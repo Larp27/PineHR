@@ -85,7 +85,7 @@
       <div class="card-header">
         <div class="panel-heading" style="padding: 2px !important;">
           <strong>
-            &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Employee</span></strong>
+            &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Edit Employee</span></strong>
           </strong>
         </div>
       </div>
@@ -347,8 +347,8 @@
   </div>
 
   <div class="m-4 text-end">
-    <button type="button" class="btn btn-success" name="btnUpdateEmployee" id="btnUpdateEmployee">UPDATE</button>
-    <a href="em_list.php" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter" id="btnClose" name="btnClose"><i class="fa-solid fa-delete-left" style="color: #000000"></i> Cancel</a>
+    <button type="button" class="btn btn-success text-bold" name="btnUpdateEmployee" id="btnUpdateEmployee">UPDATE</button>
+    <a href="em_list.php" class="btn btn-warning text-uppercase text-bold" data-toggle="modal" data-target="#exampleModalCenter" id="btnClose" name="btnClose">Cancel</a>
   </div>
 
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -32,10 +32,8 @@ $(document).ready(function () {
     if (profilePicInput && profilePicInput.files && profilePicInput.files[0]) {
       formData.append('em_profile_pic', profilePicInput.files[0]);
     } else {
-      formData.append('em_profile_pic', ''); // Or you can append null if needed
+      formData.append('em_profile_pic', ''); 
     }
-
-    
 
     // Loop through each checkbox to gather selected leave types and their credits
     $('input[name="leave_type_ids[]"]:checked').each(function() {
