@@ -5,8 +5,8 @@ include_once('./main.php');
 ?>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 p-5" style="height: 100vh;">
-      <div class="shadow-lg p-3">
+    <div class="col-md-12 p-5 shadow-lg ">
+      <div style="height:100vh;">
         <div class="d-flex justify-content-between align-items-center">
           <p class="fw-bold fw-5 text-uppercase">Educational Attainment</p>
           <?php if ($_SESSION['s_user_id'] == 1) {
