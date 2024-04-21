@@ -24,7 +24,7 @@
     echo "Error updating employee status to On Leave: " . mysqli_error($conn) . "<br>";
   }
 
-  // Check if employees on leave should return to Active status
+  // Update the status if employees status "On Leave" should return to "Active" status
   $update_active_query = "UPDATE employee 
                           INNER JOIN leave_application ON employee.em_id = leave_application.em_id
                           SET employee.employee_status = 'Active'
