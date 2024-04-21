@@ -46,6 +46,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
       echo "Error updating leave application status: " . mysqli_error($conn);
     }
+  } elseif (isset($_POST['cancel'])) { // New section to handle 'cancel' action
+    $la_id = $_POST['la_id'];
+
+    // Update leave application status to Cancelled
+    $query = "UPDATE leave_application SET la_status = 'Cancelled' WHERE la_id = '$la_id'";
+
+    if (mysqli_query($conn, $query)) {
+      echo "Leave application cancelled successfully.";
+      header("Location: Leave_app_list.php");
+    } else {
+      echo "Error updating leave application status: " . mysqli_error($conn);
+    }
   }
 }
-?>

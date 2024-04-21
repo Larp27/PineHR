@@ -4,56 +4,58 @@ include "DBConnection.php";
 if (isset($_SESSION['s_em_email'])) {
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Leave Type List| PINE HR</title>
+  <!DOCTYPE html>
+  <html lang="en">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <head>
+    <meta charset="UTF-8">
+    <title>Leave Type List| PINE HR</title>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
-  <script src="script.js"></script>
-  <script src="imoJS.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="dashboard2.css" />
-  <link rel="stylesheet" text="text/css" href="" />
+    <script src="script.js"></script>
+    <script src="imoJS.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-
-  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
-
-  <!--Department Process Add and Update JS-->
-  <script src="Department/DepartmentJS.js"></script>
-  <script src="Department/updateDEPT.js"></script>
-
-  <!--offline bootstrap-->
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
-  <script src="js/all.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-
-  <!--Navbar CSS-->
-  <link rel="stylesheet" href="css/navbar.css">
-
-  <script src="./script.js"></script>
+    <link rel="stylesheet" href="dashboard2.css" />
+    <link rel="stylesheet" text="text/css" href="" />
 
 
-</head>
-<body>
-  <!--LOGOUT -- getting user role to display specific features and function -->
-  <?php
+    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+
+    <!--Department Process Add and Update JS-->
+    <script src="Department/DepartmentJS.js"></script>
+    <script src="Department/updateDEPT.js"></script>
+
+    <!--offline bootstrap-->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <script src="js/all.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!--Navbar CSS-->
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <script src="./script.js"></script>
+
+
+  </head>
+
+  <body>
+    <!--LOGOUT -- getting user role to display specific features and function -->
+    <?php
     if ($_SESSION['s_user_id'] == 1) {
       $query = "select * from user_type";
       $result = mysqli_query($conn, $query);
     }
-  ?>
-  <!-- cont LOGOUT Session  -- -->
+    ?>
+    <!-- cont LOGOUT Session  -- -->
 
     <div id="dashmaincontainer">
       <div class="dash_sidebar" id="dash_sidebar">
@@ -77,18 +79,18 @@ if (isset($_SESSION['s_em_email'])) {
                 </ul>
               </li>
               <li>
-                  <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
-                    <span class="fas fa-caret-down sixth"></span>
-                  </a>
-                  <ul class="pro-show">
-                    <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
-                    <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
-                    <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
-                    <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
-                    <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
-                    <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
-                  </ul>
-                </li>
+                <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                  <span class="fas fa-caret-down sixth"></span>
+                </a>
+                <ul class="pro-show">
+                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
+                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
+                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
+                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
+                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
+                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
+                </ul>
+              </li>
               <li>
                 <a href="#" class="emp-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
@@ -213,7 +215,7 @@ if (isset($_SESSION['s_em_email'])) {
                           ?>
                         </select>
                       </div>
-          
+
                       <div class="mb-3">
                         <label for="leave_reason" class="form-label fw-bold">Leave Reason</label>
                         <textarea name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
@@ -227,6 +229,9 @@ if (isset($_SESSION['s_em_email'])) {
                         <label for="end_day" class="form-label fw-bold">Ending Day</label>
                         <input type="date" class="form-control" name="end_day" required>
                       </div>
+                     
+
+
                       <div class="mb-3 text-end">
                         <a href="Leave_app_list.php"> <button type="submit" id="submitLeave" class="btn btn-primary">ADD</button> </a>
                       </div>
@@ -238,6 +243,8 @@ if (isset($_SESSION['s_em_email'])) {
           </div>
         </div>
       </div>
+
+
 
       <!--Modal for logout-->
       <div>
@@ -283,137 +290,138 @@ if (isset($_SESSION['s_em_email'])) {
     </div>
 
   <?php
-    } else {
-      header("location: login.php");
-      exit();
-    }
+} else {
+  header("location: login.php");
+  exit();
+}
   ?>
   <!-- end of LOGOUT Session -->
-</body>
-</html>
-<script>
-  document.getElementById('imId').addEventListener('change', function() {
-    var employeeId = this.value;
-    var leaveSelect = document.getElementById('leave');
+  </body>
 
-    // If employeeId is not empty, enable the leave select and fetch leave options
-    if (employeeId !== '') {
-      fetch('fetch_leave_options.php?employeeId=' + employeeId)
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
-            data.forEach(option => {
-              leaveSelect.innerHTML += '<option value="' + option.lt_id + '">' + option.lt_name + ' (' + option.available_credits + ' remaining credits)' +'</option>';
-            });
+  </html>
+  <script>
+    document.getElementById('imId').addEventListener('change', function() {
+      var employeeId = this.value;
+      var leaveSelect = document.getElementById('leave');
 
-            leaveSelect.disabled = false;
-            leaveSelect.removeAttribute('data-bs-original-title');
-          } else {
-            // If no leave types available, disable the leave select and show a tooltip
-            leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>No Leave Types Available</option>';
-            leaveSelect.disabled = true;
-            leaveSelect.setAttribute('data-bs-original-title', 'No leave types available for this employee.');
-          }
-        })
-        .catch(error => console.error('Error:', error));
-    } else {
-      // If no employee is selected, disable the leave select and show a tooltip
-      leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
-      leaveSelect.disabled = true;
-      leaveSelect.selectedIndex = 0;
-    }
-  });
+      // If employeeId is not empty, enable the leave select and fetch leave options
+      if (employeeId !== '') {
+        fetch('fetch_leave_options.php?employeeId=' + employeeId)
+          .then(response => response.json())
+          .then(data => {
+            if (data.length > 0) {
+              leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+              data.forEach(option => {
+                leaveSelect.innerHTML += '<option value="' + option.lt_id + '">' + option.lt_name + ' (' + option.available_credits + ' remaining credits)' + '</option>';
+              });
 
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+              leaveSelect.disabled = false;
+              leaveSelect.removeAttribute('data-bs-original-title');
+            } else {
+              // If no leave types available, disable the leave select and show a tooltip
+              leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>No Leave Types Available</option>';
+              leaveSelect.disabled = true;
+              leaveSelect.setAttribute('data-bs-original-title', 'No leave types available for this employee.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        // If no employee is selected, disable the leave select and show a tooltip
+        leaveSelect.innerHTML = '<option class="fw-bold" selected disabled>Select a Leave</option>';
+        leaveSelect.disabled = true;
+        leaveSelect.selectedIndex = 0;
+      }
+    });
 
-  $(document).ready(function() {
-    $('#leaveForm').submit(function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize();
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 
-      $.ajax({
-        type: 'POST',
-        url: $(this).attr('action'),
-        data: formData,
-        dataType: 'json',
-        success: function(response) {
-          if (response.status === "success") {
-            $('#successModal').modal('show');
-          } else {
+    $(document).ready(function() {
+      $('#leaveForm').submit(function(e) {
+        e.preventDefault();
+        var formData = $(this).serialize();
+
+        $.ajax({
+          type: 'POST',
+          url: $(this).attr('action'),
+          data: formData,
+          dataType: 'json',
+          success: function(response) {
+            if (response.status === "success") {
+              $('#successModal').modal('show');
+            } else {
+              alert('An error occurred while submitting the leave application. Please try again.');
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
             alert('An error occurred while submitting the leave application. Please try again.');
           }
-        },
-        error: function(xhr, status, error) {
-          console.error(xhr.responseText);
-          alert('An error occurred while submitting the leave application. Please try again.');
-        }
+        });
       });
     });
-  });
 
-  // DASHBOARD
-  $('.sidebar-btn').click(function() {
-    $(this).toggleClass("click");
-    $('.sidebar').toggleClass("show");
-    if ($('.sidebar').hasClass("show")) {
-      $('.sidebar').removeClass("hide");
-      $(this).removeClass("click");
-    } else {
-      $('.sidebar').addClass("hide");
-      $(this).addClass("click");
-    }
-  });
+    // DASHBOARD
+    $('.sidebar-btn').click(function() {
+      $(this).toggleClass("click");
+      $('.sidebar').toggleClass("show");
+      if ($('.sidebar').hasClass("show")) {
+        $('.sidebar').removeClass("hide");
+        $(this).removeClass("click");
+      } else {
+        $('.sidebar').addClass("hide");
+        $(this).addClass("click");
+      }
+    });
 
-  $('.org-btn').click(function() {
-    $('nav ul .org-show').toggleClass("show1");
-    $('nav ul .first').toggleClass("rotate");
-  });
+    $('.org-btn').click(function() {
+      $('nav ul .org-show').toggleClass("show1");
+      $('nav ul .first').toggleClass("rotate");
+    });
 
-  $('.rep-btn').click(function() {
-    $('nav ul .rep-show').toggleClass("show2");
-    $('nav ul .second').toggleClass("rotate");
-  });
+    $('.rep-btn').click(function() {
+      $('nav ul .rep-show').toggleClass("show2");
+      $('nav ul .second').toggleClass("rotate");
+    });
 
-  $('.emp-btn').click(function() {
-    $('nav ul .emp-show').toggleClass("show3");
-    $('nav ul .third').toggleClass("rotate");
-  });
+    $('.emp-btn').click(function() {
+      $('nav ul .emp-show').toggleClass("show3");
+      $('nav ul .third').toggleClass("rotate");
+    });
 
-  $('.lev-btn').click(function() {
-    $('nav ul .lev-show').toggleClass("show4");
-    $('nav ul .fourth').toggleClass("rotate");
-  });
+    $('.lev-btn').click(function() {
+      $('nav ul .lev-show').toggleClass("show4");
+      $('nav ul .fourth').toggleClass("rotate");
+    });
 
-  $('.not-btn').click(function() {
-    $('nav ul .not-show').toggleClass("show5");
-    $('nav ul .fifth').toggleClass("rotate");
-  });
+    $('.not-btn').click(function() {
+      $('nav ul .not-show').toggleClass("show5");
+      $('nav ul .fifth').toggleClass("rotate");
+    });
 
-  $('.pro-btn').click(function() {
-        $('nav ul .pro-show').toggleClass("show6");
-        $('nav ul .sixth').toggleClass("rotate");
-      });
+    $('.pro-btn').click(function() {
+      $('nav ul .pro-show').toggleClass("show6");
+      $('nav ul .sixth').toggleClass("rotate");
+    });
 
-  $('nav ul li').click(function() {
-    $(this).addClass("active").siblings().removeClass("active");
-  });
-</script>
+    $('nav ul li').click(function() {
+      $(this).addClass("active").siblings().removeClass("active");
+    });
+  </script>
 
-<script>
-  var updateUserModal = document.getElementById('updateUserModal');
-  updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
-    var dep_name = button.getAttribute('data-dep-name'); // Extract info from data-* attributes
+  <script>
+    var updateUserModal = document.getElementById('updateUserModal');
+    updateUserModal.addEventListener('show.bs.modal', function(event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
+      var dep_name = button.getAttribute('data-dep-name'); // Extract info from data-* attributes
 
-    var modalBody = updateUserModal.querySelector('.modal-body');
-    modalBody.querySelector('#dep_id').value = dep_id;
-    modalBody.querySelector('#dep_name').value = dep_name;
+      var modalBody = updateUserModal.querySelector('.modal-body');
+      modalBody.querySelector('#dep_id').value = dep_id;
+      modalBody.querySelector('#dep_name').value = dep_name;
 
-  })
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
