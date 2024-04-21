@@ -167,8 +167,6 @@ if (isset($_SESSION['s_em_email'])) {
                   }
                 }
                 $application_disabled = ($leave_credit_count == 0 || $all_credits_zero) ? 'disabled' : '';
-
-                // Determine the tooltip message
                 $tooltip_message = "";
                 if ($leave_credit_count == 0) {
                   $tooltip_message = "You have no employee leave credits.";
@@ -324,14 +322,12 @@ if (isset($_SESSION['s_em_email'])) {
           </div>
         </div>
         <?php
-        // Query to fetch upcoming schedules
         $currentDateTime = date('Y-m-d H:i:s');
         $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
         $schedules = $conn->query($query);
         $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
         ?>
         <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
-          <!-- Modal for Welcome Message -->
           <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">

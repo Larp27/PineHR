@@ -295,10 +295,9 @@ nav ul li a span.rotate {
 
 .dash_content_main .cards .card-box {
   position: relative;
-  width: 280px;
-  height: 150px; /* Adjust the height as needed */
+  width: 300px;
+  height: 120px; /* Adjust the height as needed */
   background: #fff3c4;
-  border-radius: 30px;
   border: 2px solid rgb(193, 193, 193);
   margin: 20px 10px;
   display: flex;

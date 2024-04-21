@@ -984,15 +984,11 @@ A VERTICAL event
   }
 
 .fc-v-event.fc-event-selected:before {
-    /* expand hit area */
     left: -10px;
     right: -10px;
   }
 
 .fc-v-event {
-
-  /* resizer (mouse AND touch) */
-
 }
 
 .fc-v-event .fc-event-resizer-start {
@@ -1004,8 +1000,6 @@ A VERTICAL event
   }
 
 .fc-v-event {
-
-  /* resizer for MOUSE */
 
 }
 
@@ -1027,9 +1021,6 @@ A VERTICAL event
     }
 
 .fc-v-event {
-
-  /* resizer for TOUCH (when event is "selected") */
-
 }
 
 .fc-v-event.fc-event-selected .fc-event-resizer {
@@ -1464,3 +1455,7 @@ A VERTICAL event
     text-decoration: none;
   }
 
+  .sdfesf {
+    background-color: rgb(219, 245, 255) !important;
+    border-color: #affaff !important;
+  }

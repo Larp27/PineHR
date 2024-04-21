@@ -15,7 +15,7 @@
           <p class="fw-bold fs-5 text-uppercase">Employment List</p>
           <?php 
             if ($_SESSION['s_user_id'] == 1) {
-              echo '<a href="em_add.php"><button type="button" class="btn btn-primary" style="float: right; background-color: #2468a0; border-color:#2468a0;"><i class="fa fa-plus" style="padding-right: 5px;" aria-hidden="true"></i> Add New Employee</button></a>';
+              echo '<a href="em_add.php"><button type="button" class="btn btn-success style="float: right; background-color: #2468a0; border-color:#2468a0;"><i class="fa fa-plus" style="padding-right: 5px;" aria-hidden="true"></i> Add New Employee</button></a>';
             } ?>
           </div>
           <div class="dash_content mt-3">
