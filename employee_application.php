@@ -118,8 +118,8 @@ if (isset($_SESSION['s_em_email'])) {
           <div class="panel panel-default m-4">
             <div class="panel-heading">
               <strong>
-                <span><strong style="font-family: 'Glacial Indiffernce'" class="text-uppercase"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application</span></strong>
-              </strong>
+                <span><strong style="font-family: 'Glacial Indiffernce'" class="text-uppercase"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>
+                <p class="fs-5 fw-bold text-uppercase">Leave Application</p>
             </div>
             <div>
               <form id="leaveForm" class="form m-3" action="save_leave_application2.php" method="post">
@@ -146,7 +146,7 @@ if (isset($_SESSION['s_em_email'])) {
                         $disabled = ($row['available_credits'] == 0) ? 'disabled' : '';
 
                         // Output option with disabled attributes
-                        echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . ' (' . $row['available_credits'] . ' remaining credits)' .'</option>';
+                        echo '<option class="m-3" value="' . $row["lt_id"] . '" ' . $disabled . ' >' . $row["lt_name"] . '</option>';
                       }
                     ?>
                   </select>
@@ -163,10 +163,6 @@ if (isset($_SESSION['s_em_email'])) {
                   <label for="end_day" class="form-label fw-bold">Ending Day</label>
                   <input type="date" class="form-control" name="end_day" required>
                 </div>
-                <div class="mb-3 text-end">
-                  <button type="submit" id="submitLeave" class="btn btn-primary">ADD</button>
-                </div>
-              </form>
             </div>
           </div>
         </div>
