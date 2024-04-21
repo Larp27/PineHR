@@ -24,6 +24,7 @@ function updateEmployee(){
   $em_joining_date = $_POST['em_joining_date'];
   $em_contract_end = $_POST['em_contract_end'];
   $em_password = $_POST['em_password'];
+  $employee_status = $_POST['employee_status'];
   $leave_type_ids = $_POST['leave_type_ids'];
   $leave_credits = $_POST['leave_credits'];
 
@@ -52,7 +53,7 @@ function updateEmployee(){
     }
   }
 
-  $query = "UPDATE employee SET first_name = '$first_name', last_name = '$last_name', em_gender = '$em_gender', ms_id = '$ms_id', r_id = '$r_id', bt_id = '$bt_id', em_birthday = '$em_birthday', em_phone = '$em_phone', em_email = '$em_email', address_id = '$address_id', edu_id = '$edu_id', dep_id = '$dep_id', des_id = '$des_id', es_id = '$es_id', user_id = '$user_id', em_joining_date = '$em_joining_date', em_contract_end = '$em_contract_end'";
+  $query = "UPDATE employee SET first_name = '$first_name', last_name = '$last_name', em_gender = '$em_gender', ms_id = '$ms_id', r_id = '$r_id', bt_id = '$bt_id', em_birthday = '$em_birthday', em_phone = '$em_phone', em_email = '$em_email', address_id = '$address_id', edu_id = '$edu_id', dep_id = '$dep_id', des_id = '$des_id', es_id = '$es_id', user_id = '$user_id', em_joining_date = '$em_joining_date', em_contract_end = '$em_contract_end',  employee_status = '$employee_status'";
 
   if (!empty($em_profile_pic)) {
     $query .= ", em_profile_pic = '$em_profile_pic'";

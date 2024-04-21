@@ -33,6 +33,7 @@
       $em_joining_date = $row['em_joining_date'];
       $em_contract_end = $row['em_contract_end'];
       $em_profile_pic = $row['em_profile_pic'];
+      $employee_status = $row['employee_status'];
     } else {
       echo "Employee not found";
     }
@@ -273,6 +274,15 @@
               <div class="form-group mb-3">
                 <label for="em_password" class="fw-bold text-uppercase">Password</label>
                 <input type="text" class="form-control" placeholder="" id="em_password" name="em_password" aria-describedby="addon-wrapping" value="">
+              </div>
+              <div class="form-group mb-3">
+                <label for="employee_status" class="fw-bold text-uppercase">Employee Status</label>
+                <select class="form-select" id="employee_status" name="employee_status" required>
+                  <option value="" disabled>Please Select Here</option>
+                  <option value="Active" <?php echo ($employee_status === 'Active') ? 'selected' : ''; ?>>Active</option>
+                  <option value="Inactive" <?php echo ($employee_status === 'Inactive') ? 'selected' : ''; ?>>Inactive</option>
+                  <option value="On Leave" <?php echo ($employee_status === 'On Leave') ? 'selected' : ''; ?>>On Leave</option>
+                </select>
               </div>
               <div class="form-group mb-3">
                 <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
