@@ -59,8 +59,8 @@
                     
                       echo "<td class='text-left p-3'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
                       echo "<td class='text-left p-3' style='font-size: 15px;'>
-                              <strong>Department</strong>:" . $row['dep_name'] . " <br>
-                              <strong>Designation</strong>:" . $row['des_name'] . "
+                              <strong>Department</strong>: " . $row['dep_name'] . " <br>
+                              <strong>Designation</strong>: " . $row['des_name'] . "
                             </td>";
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
