@@ -1,7 +1,7 @@
 <?php
-$title = 'Religion';
-$page = 'religion';
-include_once('./main.php');
+  $title = 'Religion';
+  $page = 'religion';
+  include_once('./main.php');
 ?>
 <!--cont logout session-->
 <style>
