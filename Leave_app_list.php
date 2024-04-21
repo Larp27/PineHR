@@ -45,6 +45,12 @@ if (isset($_SESSION['s_em_email'])) {
   <script src="./script.js"></script>
 </head>
 <style>
+
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+
   div.dataTables_wrapper div.dataTables_length select{
     width: auto;
     display: inline-block;
@@ -168,76 +174,37 @@ if (isset($_SESSION['s_em_email'])) {
               </li>
             </ul>
           </nav>
-
         </div>
       </div>
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
           <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
-          <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
-
+          <h10 style="font-family: 'Glacial Indifference';"><?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?></h10>
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
         </div>
+        <div id="exampleModal" class="modal fade">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <form id="addProductForm" action="">
+                <div class="modal-header">
+                  <h4 class="modal-title">Are you sure you want to logout?</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-        <!--Modal for logout-->
-        <div>
-          <div id="exampleModal" class="modal fade">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <form id="addProductForm" action="">
-                  <div class="modal-header">
-                    <h4 class="modal-title">Are you sure you want to logout?</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-
-                  <div class="modal-footer">
-                    <a href="Leave_app_list.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
-                    <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
-                  </div>
-                </form>
-              </div>
+                <div class="modal-footer">
+                  <a href="Leave_app_list.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
+                  <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <!--End of modal logout-->
-
-
-        <script>
-          var sideBarIsOpen = true;
-
-          togglebtn.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            if (sideBarIsOpen) {
-              dash_sidebar.style.width = '0%';
-              dash_sidebar.style.transition = '0.3s all';
-              dash_content_container.style.width = '100%';
-              sideBarIsOpen = false;
-            } else {
-
-              dash_sidebar.style.width = '15%';
-              dash_sidebar.style.height = 'auto';
-              dash_content_container.style.width = '100%';
-              sideBarIsOpen = true;
-            }
-          });
-        </script>
-        <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
-              <strong>
-                &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Type of Leave</span></strong>
-              </strong>
-            </div><br>
-
-
-            <div class="col-md-7" style="width: 100%">
-              <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
-                <div class="panel-heading">
-                  <strong>
-                    &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application List</span></strong>
-                  </strong>
-
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12 p-5 shadow-lg">
+              <div style="height:100vh;">
+                <div class="d-flex justify-content-between align-items-center">
+                  <p class="fw-bold fs-5 text-uppercase">Leave Application List</p>
                   <?php if ($_SESSION['s_user_id'] == 1) {
                     $query = "select * from user_type";
 
@@ -247,10 +214,9 @@ if (isset($_SESSION['s_em_email'])) {
                   }
                   ?>
                 </div>
-
-                <div class="dash_content">
+                <div class="dash_content mt-3">
                   <div class="dash_content_main">
-                    <table class="table" id="example">
+                    <table class="table border shadow-lg" id="example">
                       <colgroup>
                         <col width="25%">
                         <col width="25%">
@@ -268,7 +234,6 @@ if (isset($_SESSION['s_em_email'])) {
 
                         </tr>
                       </thead>
-
                       <?php
                       $query = "SELECT la.*, e.first_name, e.last_name, lt.lt_code, lt.lt_name, la.la_reason
                       FROM `leave_application` la 
@@ -285,268 +250,267 @@ if (isset($_SESSION['s_em_email'])) {
                         $r_la_date_start = date("F j, Y", strtotime($row['la_date_start']));
                         $r_la_date_end = date("F j, Y", strtotime($row['la_date_end']));
                         $r_lt_status = $row['la_status'];
-                        $r_la_reason = $row['la_reason']; // Define $r_la_reason here
+                        $r_la_reason = $row['la_reason'];
 
-
-                        // Check if start and end dates are in the same month and year
                         if (date("F Y", strtotime($r_la_date_start)) == date("F Y", strtotime($r_la_date_end))) {
                           $date_display = "$r_la_date_start";
                         } else {
                           $date_display = "$r_la_date_start - $r_la_date_end";
                         }
-
-                        // Set status badge color based on the status value
                         $status_color = '';
                         switch ($r_lt_status) {
                           case 'Accepted':
-                            $status_color = 'bg-success'; // Green
+                            $status_color = 'bg-success'; 
                             break;
                           case 'Declined':
-                            $status_color = 'bg-danger'; // Red
+                            $status_color = 'bg-danger'; 
                             break;
                           case 'Cancelled':
-                            $status_color = 'bg-warning'; // Yellow
+                            $status_color = 'bg-warning'; 
                             break;
                           case 'Pending':
                           default:
-                            $status_color = 'bg-secondary'; // Default gray
+                            $status_color = 'bg-secondary'; 
                             break;
                         }
 
                         $final = "<tr> 
-                    <td class='text-center'>$r_last_name, $r_first_name</td>
-                    <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
-                    <td class='text-center'>$date_display</td>
-                    <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
-                        echo $final;
+                          <td class='text-center'>$r_last_name, $r_first_name</td>
+                          <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
+                          <td class='text-center'>$date_display</td>
+                          <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
+                              echo $final;
 
-                        // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
-                        if ($r_lt_status == 'Pending') {
-                          $em_id = $_SESSION['s_em_id'];
-                          echo "<td class='text-center'>
-                <div class='col-auto d-flex justify-content-center m-2'>
-                  <div class='dropdown'>
-                    <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
-                      Actions
-                    </button>
-                    <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                      <li><form action='update_leave_status.php' method='POST'>
-                            <input type='hidden' name='la_id' value='$emp_id'>
-                            <input type='hidden' name='s_em_id' value='$em_id'>
-                            <input type='hidden' name='lt_id' value='$lt_id'>
-                            <input type='hidden' name='lt_status' value='Accepted'>
-                            <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
-                          </form></li>
-                      <li><form action='update_leave_status.php' method='POST'>
-                            <input type='hidden' name='la_id' value='$emp_id'>
-                            <input type='hidden' name='s_em_id' value='$em_id'>
-                            <input type='hidden' name='lt_id' value='$lt_id'>
-                            <input type='hidden' name='lt_status' value='Declined'>
-                            <button type='submit' name='decline' class='dropdown-item btn btn-danger btn-sm'><i class='fas fa-times'></i> Decline</button>
-                          </form></li>
-                      <li><form action='update_leave_status.php' method='POST'>
-                            <input type='hidden' name='la_id' value='$emp_id'>
-                            <input type='hidden' name='s_em_id' value='$em_id'>
-                            <input type='hidden' name='lt_id' value='$lt_id'>
-                            <input type='hidden' name='lt_status' value='Cancelled'>
-                            <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
-                          </form></li>
-                      <li><a class='dropdown-item btn btn-primary btn-sm' href='#' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</a></li>
-                    </ul>
+                              // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
+                              if ($r_lt_status == 'Pending') {
+                                $em_id = $_SESSION['s_em_id'];
+                                echo "<td class='text-center'>
+                              <div class='col-auto d-flex justify-content-center m-2'>
+                                <div class='dropdown'>
+                                  <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    Actions
+                                  </button>
+                                  <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                    <li><form action='update_leave_status.php' method='POST'>
+                                          <input type='hidden' name='la_id' value='$emp_id'>
+                                          <input type='hidden' name='s_em_id' value='$em_id'>
+                                          <input type='hidden' name='lt_id' value='$lt_id'>
+                                          <input type='hidden' name='lt_status' value='Accepted'>
+                                          <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
+                                        </form></li>
+                                    <li><form action='update_leave_status.php' method='POST'>
+                                          <input type='hidden' name='la_id' value='$emp_id'>
+                                          <input type='hidden' name='s_em_id' value='$em_id'>
+                                          <input type='hidden' name='lt_id' value='$lt_id'>
+                                          <input type='hidden' name='lt_status' value='Declined'>
+                                          <button type='submit' name='decline' class='dropdown-item btn btn-danger btn-sm'><i class='fas fa-times'></i> Decline</button>
+                                        </form></li>
+                                    <li><form action='update_leave_status.php' method='POST'>
+                                          <input type='hidden' name='la_id' value='$emp_id'>
+                                          <input type='hidden' name='s_em_id' value='$em_id'>
+                                          <input type='hidden' name='lt_id' value='$lt_id'>
+                                          <input type='hidden' name='lt_status' value='Cancelled'>
+                                          <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
+                                        </form></li>
+                                    <li><a class='dropdown-item btn btn-primary btn-sm' href='#' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </td>";
+                          } else {
+                            echo "<td class='text-center'>
+                            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                                <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>";
+
+                            if ($r_lt_status != 'Pending') {
+                              echo "
+                                  <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
+                            } else {
+                              echo "";
+                            }
+
+                            echo "</div>
+                              </td>";
+                          }
+                        }
+                        ?>
+                    </table>
                   </div>
                 </div>
-              </td>";
-                        } else {
-                          echo "<td class='text-center'>
-                          <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
-                              <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>";
+              </div>
+            </div>
+          </div>
+        </div>      
 
-                          if ($r_lt_status != 'Pending') {
-                            echo "
-                                <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
-                          } else {
-                            echo "";
-                          }
+        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel"><i class="fas fa-edit"></i>&nbsp;Edit Leave Application</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="update_leave_application.php" method="POST">
+                  <input type="hidden" name="la_id" value="<?php echo $emp_id ?>">
+                  <!-- Add fields for editing the leave application details -->
+                  <div class="mb-3">
+                    <label for="edit_lt_code" class="form-label">Leave Type:</label>
+                    <input type="text" class="form-control" id="edit_lt_code" name="edit_lt_code" value="<?php echo $r_lt_code ?>" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit_date_display" class="form-label">Date:</label>
+                    <input type="text" class="form-control" id="edit_date_display" name="edit_date_display" value="<?php echo $date_display ?>" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label for="edit_la_reason" class="form-label">Reason:</label>
+                    <textarea class="form-control" id="edit_la_reason" name="edit_la_reason" rows="3"><?php echo $r_la_reason ?></textarea>
+                  </div>
+                  <!-- Add additional fields for editing if needed -->
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="viewModalLabel"><i class="fas fa-eye"></i>&nbsp;Leave Application Details</h5>
 
-                          echo "</div>
-                            </td>";
-                        }
-                      }
-                      ?>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p><strong>Employee Name:</strong> <?php echo $r_last_name ?>, <?php echo $r_first_name ?></p>
+                <p><strong>Leave Type:</strong> [<?php echo $r_lt_code ?>] - <?php echo $r_lt_name ?></p>
+                <p><strong>Date:</strong> <?php echo $date_display ?></p>
+                <p><strong>Reason:</strong> <?php echo $r_la_reason ?></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php
+        if (isset($_GET['uid1'])) {
+          $uid1  = $_GET['uid1'];
+          mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
+        }
+        } else {
+          header("location: login.php");
+          exit();
+        }
+          ?>
+      </div>
+    </div>
 
+    <script>
+      var updateUserModal = document.getElementById('updateUserModal');
+      updateUserModal.addEventListener('show.bs.modal', function(event) {
+        var button = event.relatedTarget; // Button that triggered the modal
+        var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
+        var dep_name = button.getAttribute('data-dep-name'); // Extract info from data-* attributes
 
-                      <!-- Bootstrap modal structure EDIT -->
-                      <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="editModalLabel"><i class="fas fa-edit"></i>&nbsp;Edit Leave Application</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form action="update_leave_application.php" method="POST">
-                                <input type="hidden" name="la_id" value="<?php echo $emp_id ?>">
-                                <!-- Add fields for editing the leave application details -->
-                                <div class="mb-3">
-                                  <label for="edit_lt_code" class="form-label">Leave Type:</label>
-                                  <input type="text" class="form-control" id="edit_lt_code" name="edit_lt_code" value="<?php echo $r_lt_code ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="edit_date_display" class="form-label">Date:</label>
-                                  <input type="text" class="form-control" id="edit_date_display" name="edit_date_display" value="<?php echo $date_display ?>" readonly>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="edit_la_reason" class="form-label">Reason:</label>
-                                  <textarea class="form-control" id="edit_la_reason" name="edit_la_reason" rows="3"><?php echo $r_la_reason ?></textarea>
-                                </div>
-                                <!-- Add additional fields for editing if needed -->
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+        var modalBody = updateUserModal.querySelector('.modal-body');
+        modalBody.querySelector('#dep_id').value = dep_id;
+        modalBody.querySelector('#dep_name').value = dep_name;
 
+      });
 
+      var sideBarIsOpen = true;
+        togglebtn.addEventListener('click', (event) => {
+          event.preventDefault();
 
+          if (sideBarIsOpen) {
+            dash_sidebar.style.width = '0%';
+            dash_sidebar.style.transition = '0.3s all';
+            dash_content_container.style.width = '100%';
+            sideBarIsOpen = false;
+          } else {
 
-                      <!-- Bootstrap modal structure VIEW -->
-                      <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="viewModalLabel"><i class="fas fa-eye"></i>&nbsp;Leave Application Details</h5>
-
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <p><strong>Employee Name:</strong> <?php echo $r_last_name ?>, <?php echo $r_first_name ?></p>
-                              <p><strong>Leave Type:</strong> [<?php echo $r_lt_code ?>] - <?php echo $r_lt_name ?></p>
-                              <p><strong>Date:</strong> <?php echo $date_display ?></p>
-                              <p><strong>Reason:</strong> <?php echo $r_la_reason ?></p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-                      <!-- JavaScript to handle modal population -->
-                      <script>
-                        // Function to populate the view modal with leave application data
-                        function populateViewModal(employeeName, leaveType, leaveDate, leaveStatus) {
-                          document.getElementById("view_employee_name").innerText = employeeName;
-                          document.getElementById("view_leave_type").innerText = leaveType;
-                          document.getElementById("view_leave_date").innerText = leaveDate;
-                          document.getElementById("view_leave_reason").innerText = leaveReason;
-                        }
-
-                        // Event listener for view button click
-                        document.querySelectorAll('.view-button').forEach(item => {
-                          item.addEventListener('click', event => {
-                            // Extract leave application data from the row
-                            const row = event.target.closest('tr');
-                            const employeeName = row.cells[0].innerText;
-                            const leaveType = row.cells[1].innerText;
-                            const leaveDate = row.cells[2].innerText;
-                            const leaveReason = row.cells[3].innerText;
-
-                            // Populate the view modal with the extracted data
-                            populateViewModal(employeeName, leaveType, leaveDate, leaveReasons);
-
-                            // Show the view modal
-                            const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
-                            viewModal.show();
-                          });
-                        });
-                      </script>
-
-                      <!--cont LOGOUT Session -- -->
-                    <?php
-                    if (isset($_GET['uid1'])) {
-                      $uid1  = $_GET['uid1'];
-                      mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
-                    }
-                  } else {
-                    header("location: login.php");
-                    exit();
-                  }
-                    ?>
-                    <!-- end of LOGOUT Session -->
-
-                    <script>
-                      var updateUserModal = document.getElementById('updateUserModal');
-                      updateUserModal.addEventListener('show.bs.modal', function(event) {
-                        var button = event.relatedTarget; // Button that triggered the modal
-                        var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
-                        var dep_name = button.getAttribute('data-dep-name'); // Extract info from data-* attributes
-
-                        var modalBody = updateUserModal.querySelector('.modal-body');
-                        modalBody.querySelector('#dep_id').value = dep_id;
-                        modalBody.querySelector('#dep_name').value = dep_name;
-
-                      })
-                    </script>
-
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+            dash_sidebar.style.width = '15%';
+            dash_sidebar.style.height = 'auto';
+            dash_content_container.style.width = '100%';
+            sideBarIsOpen = true;
+          }
+        });
+        
+      $('.sidebar-btn').click(function() {
+        $(this).toggleClass("click");
+        $('.sidebar').toggleClass("show");
+        if ($('.sidebar').hasClass("show")) {
+          $('.sidebar').removeClass("hide");
+          $(this).removeClass("click");
+        } else {
+          $('.sidebar').addClass("hide");
+          $(this).addClass("click");
+        }
+      });
 
 
-                    <!--Javascript Dashboard-->
+      $('.org-btn').click(function() {
+        $('nav ul .org-show').toggleClass("show1");
+        $('nav ul .first').toggleClass("rotate");
+      });
 
-                    <script>
-                      $('.sidebar-btn').click(function() {
-                        $(this).toggleClass("click");
-                        $('.sidebar').toggleClass("show");
-                        if ($('.sidebar').hasClass("show")) {
-                          $('.sidebar').removeClass("hide");
-                          $(this).removeClass("click");
-                        } else {
-                          $('.sidebar').addClass("hide");
-                          $(this).addClass("click");
-                        }
-                      });
+      $('.rep-btn').click(function() {
+        $('nav ul .rep-show').toggleClass("show2");
+        $('nav ul .second').toggleClass("rotate");
+      });
 
+      $('.emp-btn').click(function() {
+        $('nav ul .emp-show').toggleClass("show3");
+        $('nav ul .third').toggleClass("rotate");
+      });
 
-                      $('.org-btn').click(function() {
-                        $('nav ul .org-show').toggleClass("show1");
-                        $('nav ul .first').toggleClass("rotate");
-                      });
+      $('.lev-btn').click(function() {
+        $('nav ul .lev-show').toggleClass("show4");
+        $('nav ul .fourth').toggleClass("rotate");
+      });
 
-                      $('.rep-btn').click(function() {
-                        $('nav ul .rep-show').toggleClass("show2");
-                        $('nav ul .second').toggleClass("rotate");
-                      });
+      $('.not-btn').click(function() {
+        $('nav ul .not-show').toggleClass("show5");
+        $('nav ul .fifth').toggleClass("rotate");
+      });
 
-                      $('.emp-btn').click(function() {
-                        $('nav ul .emp-show').toggleClass("show3");
-                        $('nav ul .third').toggleClass("rotate");
-                      });
+      $('.pro-btn').click(function() {
+        $('nav ul .pro-show').toggleClass("show6");
+        $('nav ul .sixth').toggleClass("rotate");
+      });
 
-                      $('.lev-btn').click(function() {
-                        $('nav ul .lev-show').toggleClass("show4");
-                        $('nav ul .fourth').toggleClass("rotate");
-                      });
+      $('nav ul li').click(function() {
+        $(this).addClass("active").siblings().removeClass("active");
+      });
 
-                      $('.not-btn').click(function() {
-                        $('nav ul .not-show').toggleClass("show5");
-                        $('nav ul .fifth').toggleClass("rotate");
-                      });
+      function populateViewModal(employeeName, leaveType, leaveDate, leaveStatus) {
+        document.getElementById("view_employee_name").innerText = employeeName;
+        document.getElementById("view_leave_type").innerText = leaveType;
+        document.getElementById("view_leave_date").innerText = leaveDate;
+        document.getElementById("view_leave_reason").innerText = leaveReason;
+      }
 
-                      $('.pro-btn').click(function() {
-                        $('nav ul .pro-show').toggleClass("show6");
-                        $('nav ul .sixth').toggleClass("rotate");
-                      });
+      // Event listener for view button click
+      document.querySelectorAll('.view-button').forEach(item => {
+        item.addEventListener('click', event => {
+          // Extract leave application data from the row
+          const row = event.target.closest('tr');
+          const employeeName = row.cells[0].innerText;
+          const leaveType = row.cells[1].innerText;
+          const leaveDate = row.cells[2].innerText;
+          const leaveReason = row.cells[3].innerText;
 
-                      $('nav ul li').click(function() {
-                        $(this).addClass("active").siblings().removeClass("active");
-                      });
-                    </script>
+          // Populate the view modal with the extracted data
+          populateViewModal(employeeName, leaveType, leaveDate, leaveReasons);
+
+          // Show the view modal
+          const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
+          viewModal.show();
+        });
+      });
+    </script>
   </body>
-
-  </html>
+</html>
