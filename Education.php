@@ -13,7 +13,7 @@ include_once('./main.php');
             $query = "select * from user_type";
             $result = mysqli_query($conn, $query);
           } {
-            echo '<a href="Education_add.php" class="text-decoration-none"><button type="button" class="btn btn-success">Add New Educational Attainment +</button></a>';
+            echo '<a href="Education_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>Add New Educational Attainment +</button> </a>';
           }
           ?>
         </div>

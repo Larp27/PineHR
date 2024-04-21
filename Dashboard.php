@@ -3,25 +3,18 @@ $title = 'Dashboard';
 $page = 'dashboard';
 include_once('./main.php');
 
-// Check if the welcome modal has been shown before
 if (!isset($_SESSION['show_welcome_modal'])) {
-  // Set the session variable to true to indicate that the modal has not been shown
   $_SESSION['show_welcome_modal'] = true;
 }
 ?>
-<!--cont logout session-->
 <?php
+
 if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
-    // Query to fetch upcoming schedules
     $currentDateTime = date('Y-m-d H:i:s');
     $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
     $schedules = $conn->query($query);
-
-    // Check if there are any upcoming schedules
     if ($schedules && $schedules->num_rows > 0) {
-        // Display the welcome modal only if there are upcoming schedules
 ?>
-        <!-- Modal for Welcome Message -->
         <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -35,7 +28,6 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                         <p>Schedule Details</p>
                         <ul>
                             <?php
-                            // Display the schedule details
                             while ($row = $schedules->fetch_assoc()) {
                                 $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
                                 $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
@@ -47,9 +39,6 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- End of Modal for Welcome Message -->
-
         <script>
             $(document).ready(function() {
                 $('#welcomeModal').modal('show');
@@ -75,287 +64,271 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
 <form>
   <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong>
-          <span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>Dashboard</span></strong>
-        </strong>
-      </div>
-      <div class="dash_content_main">
-        <?php if ($_SESSION['s_user_id'] == 1) : ?>
-          <!--1st Card-->
-          <div class="cards">
-            <div class="row ms-5">
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_type_list.php">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $lt_query = "SELECT * from leave_type";
-                        $lt_query_run = mysqli_query($conn, $lt_query);
-
-                        if ($lt_total = mysqli_num_rows($lt_query_run)) {
-                          echo '<h1 class="card-number">' . $lt_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fas fa-pen-square"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Leave Type</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--2nd Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_app_list.php">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $dep_query = "SELECT * from leave_application";
-                        $dep_query_run = mysqli_query($conn, $dep_query);
-
-                        if ($dep_total = mysqli_num_rows($dep_query_run)) {
-                          echo '<h1 class="card-number">' . $dep_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-clipboard-list"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Leave Application</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--3rd Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Department_list.php" class="card-link">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $dep_query = "SELECT * from department";
-                        $dep_query_run = mysqli_query($conn, $dep_query);
-
-                        if ($dep_total = mysqli_num_rows($dep_query_run)) {
-                          echo '<h1 class="card-number">' . $dep_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-user-tie"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Department</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--4th Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Designation_list.php">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $des_query = "SELECT * from designation";
-                        $des_query_run = mysqli_query($conn, $des_query);
-
-                        if ($des_total = mysqli_num_rows($des_query_run)) {
-                          echo '<h1 class="card-number">' . $des_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-clipboard-list"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Designation</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--5th Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_app_list.php" class="card-link align-horizontal">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $app_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted'";
-                        $app_query_run = mysqli_query($conn, $app_query);
-
-                        if ($app_query_run) {
-                          $row = mysqli_fetch_assoc($app_query_run);
-                          $app_total = $row['ls_status'];
-                          echo '<h1 class="card-number">' . $app_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Approved Leave Application</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--6th Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_app_list.php" class="card-link align-horizontal">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending'";
-                        $dec_query_run = mysqli_query($conn, $dec_query);
-
-                        if ($dec_query_run) {
-                          $row = mysqli_fetch_assoc($dec_query_run);
-                          $dec_total = $row['ls_status'];
-                          echo '<h1 class="card-number">' . $dec_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-hourglass-half"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Pending Leave Application</strong></h5>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-              <!--7th Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_app_list" class="card-link align-horizontal">
-                  <div class="card-box">
-                    <div>
-                      <h1>
+    <div class="mt-3 ms-3">
+      <h4>Dashboard</h4>
+    </div>
+    <div class="dash_content_main">
+      <?php if ($_SESSION['s_user_id'] == 1) : ?>
+        <!--1st Card-->
+        <div class="cards">
+          <div class="row ms-5">
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Leave_type_list.php">
+                <div class="card-box">
+                  <div>
+                    <h1>
                       <?php
-                        $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined'";
-                        $dec_query_run = mysqli_query($conn, $dec_query);
+                      $lt_query = "SELECT * from leave_type";
+                      $lt_query_run = mysqli_query($conn, $lt_query);
 
-                        if ($dec_query_run) {
-                          $row = mysqli_fetch_assoc($dec_query_run);
-                          $dec_total = $row['ls_status'];
-                          echo '<h1 class="card-number">' . $dec_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Declined Leave Application</strong></h5>
-                      </div>
+                      if ($lt_total = mysqli_num_rows($lt_query_run)) {
+                        echo '<h1 class="card-number">' . $lt_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fas fa-pen-square"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Leave Type</strong></h5>
                     </div>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
+            </div>
 
-              <!--8th Card-->
-              <div class="col-md-3 col-sm-6 mb-4">
-                <a href="em_list.php">
-                  <div class="card-box">
-                    <div>
-                      <h1>
-                        <?php
-                        $em_query = "SELECT COUNT(*) as em_id FROM employee";
-                        $em_query_run = mysqli_query($conn, $em_query);
+            <!--2nd Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Leave_app_list.php">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $dep_query = "SELECT * from leave_application";
+                      $dep_query_run = mysqli_query($conn, $dep_query);
 
-                        if ($em_query_run) {
-                          $row = mysqli_fetch_assoc($em_query_run);
-                          $em_total = $row['em_id'];
-                          echo '<h1 class="card-number">' . $em_total . '</h1>';
-                        } else {
-                          echo '<h1 class="card-number">0</h1>';
-                        }
-                        ?>
-                      </h1><br>
-                      <div class="icon-label">
-                        <i class="fa fa-light fa-users"></i>
-                        <h5><strong style="font-family: 'Glacial Indifference'">Total Employees</strong></h5>
-                      </div>
+                      if ($dep_total = mysqli_num_rows($dep_query_run)) {
+                        echo '<h1 class="card-number">' . $dep_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-clipboard-list"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Leave Application</strong></h5>
                     </div>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
+            </div>
+
+            <!--3rd Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Department_list.php" class="card-link">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $dep_query = "SELECT * from department";
+                      $dep_query_run = mysqli_query($conn, $dep_query);
+
+                      if ($dep_total = mysqli_num_rows($dep_query_run)) {
+                        echo '<h1 class="card-number">' . $dep_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-user-tie"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Department</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!--4th Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Designation_list.php">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $des_query = "SELECT * from designation";
+                      $des_query_run = mysqli_query($conn, $des_query);
+
+                      if ($des_total = mysqli_num_rows($des_query_run)) {
+                        echo '<h1 class="card-number">' . $des_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-clipboard-list"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Designation</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!--5th Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Leave_app_list.php" class="card-link align-horizontal">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $app_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted'";
+                      $app_query_run = mysqli_query($conn, $app_query);
+
+                      if ($app_query_run) {
+                        $row = mysqli_fetch_assoc($app_query_run);
+                        $app_total = $row['ls_status'];
+                        echo '<h1 class="card-number">' . $app_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-thumbs-up"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Approved Leave Application</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!--6th Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Leave_app_list.php" class="card-link align-horizontal">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending'";
+                      $dec_query_run = mysqli_query($conn, $dec_query);
+
+                      if ($dec_query_run) {
+                        $row = mysqli_fetch_assoc($dec_query_run);
+                        $dec_total = $row['ls_status'];
+                        echo '<h1 class="card-number">' . $dec_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-hourglass-half"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Pending Leave Application</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!--7th Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="Leave_app_list" class="card-link align-horizontal">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                    <?php
+                      $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined'";
+                      $dec_query_run = mysqli_query($conn, $dec_query);
+
+                      if ($dec_query_run) {
+                        $row = mysqli_fetch_assoc($dec_query_run);
+                        $dec_total = $row['ls_status'];
+                        echo '<h1 class="card-number">' . $dec_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa-solid fa-thumbs-down"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Declined Leave Application</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <!--8th Card-->
+            <div class="col-md-3 col-sm-6 mb-4">
+              <a href="em_list.php">
+                <div class="card-box">
+                  <div>
+                    <h1>
+                      <?php
+                      $em_query = "SELECT COUNT(*) as em_id FROM employee";
+                      $em_query_run = mysqli_query($conn, $em_query);
+
+                      if ($em_query_run) {
+                        $row = mysqli_fetch_assoc($em_query_run);
+                        $em_total = $row['em_id'];
+                        echo '<h1 class="card-number">' . $em_total . '</h1>';
+                      } else {
+                        echo '<h1 class="card-number">0</h1>';
+                      }
+                      ?>
+                    </h1><br>
+                    <div class="icon-label">
+                      <i class="fa fa-light fa-users"></i>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Total Employees</strong></h5>
+                    </div>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
-      </div>
+        </div>
     </div>
   </div>
 </form>
 <?php endif; ?>
 
 <style>
-  :root {
-    --bs-success-rgb: 71, 222, 152 !important;
-  }
-
-  html,
-  body {
-    height: 100%;
-    width: 100%;
-    font-family: Apple Chancery, cursive;
-    text-decoration: none;
-  }
-
-  .btn-info.text-light:hover,
-  .btn-info.text-light:focus {
-    background: #000;
-  }
-
   table,
-  tbody,
-  td,
-  tfoot,
-  th,
-  thead,
-  tr {
-    border-color: #ededed !important;
-    border-style: solid;
-    border-width: 1px !important;
-  }
+    tbody,
+    td,
+    tfoot,
+    th,
+    thead,
+    tr {
+      border-color: #afe2ff !important;
+      border-style: solid;
+      border-width: 1px !important;
+    }
+
+    #calendar {
+      background-color: rgb(219, 245, 255) !important;
+      height: 600px;
+      border-radius: 5px;
+    }
+
+    th {
+      background-color: rgb(235, 220, 10);
+    }
+
 </style>
 
-<form>
-  <br>
-  <div class="">
-    <div class="panel panel-default">
-      <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
-        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;Announcement</span></strong>
-      </div>
-    </div>
-  </div>
-</form>
+<hr>
+<div class="mt-3 ms-3">
+  <h4>Schedule</h4>
+</div>
 <div class="container py-12" id="page-container">
   <div class="row">
     <div class="col-md-9">
       <div id="calendar"></div>
     </div>
     <div class="col-md-3">
-      <div class="cardt rounded-0 shadow">
+      <div class="card rounded-0 shadow">
         <div class="card-header bg-gradient bg-primary text-light">
           <h5 class="card-title">Schedule Form</h5>
         </div>

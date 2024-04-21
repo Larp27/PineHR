@@ -18,7 +18,7 @@
       <div style="height:100vh;">
         <div class="d-flex justify-content-between align-items-center">
           <p class="fs-5 fw-bold text-uppercase">Address</p>
-          <a href="Address_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Address +</button></a>
+          <a href="Address_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary" style="background-color: #2468a0;">Add New Address +</button></a>
         </div>
         <div class="dash_content mt-3">
           <div class="dash_content_main">

@@ -21,7 +21,7 @@ include_once('./main.php');
 
               $result = mysqli_query($conn, $query);
             } {
-              echo '<a href="EmploymentStatus_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Employement Status +</button></a>';
+              echo '<a href="EmploymentStatus_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary" style="background-color: #2468a0;">Add New Employement Status +</button></a>';
             }
             ?>
         </div>
