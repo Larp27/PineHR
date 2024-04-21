@@ -33,6 +33,7 @@
       $em_joining_date = $row['em_joining_date'];
       $em_contract_end = $row['em_contract_end'];
       $em_profile_pic = $row['em_profile_pic'];
+      $employee_status = $row['employee_status'];
     } else {
       echo "Employee not found";
     }
@@ -232,11 +233,14 @@
               <label for="em_contract_end" class="fw-bold text-uppercase">Date of Leaving</label>
               <input type="text" class="form-control" placeholder="" id="em_contract_end" name="em_contract_end" aria-describedby="addon-wrapping" value="<?php echo isset($em_contract_end) ? $em_contract_end : ''; ?>" readonly>
             </div>
-            <div class="form-group">
+            <div class="form-group mb-3">
               <label for="em_email" class="fw-bold text-uppercase">Email</label>
               <input type="text" name="em_email" id="em_email" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($em_email) ? $em_email : ''; ?>" readonly>
             </div>
-
+            <div class="form-group">
+              <label for="employee_status" class="fw-bold text-uppercase">Employee Status</label>
+              <input type="text" name="employee_status" id="employee_status" class="form-control" aria-describedby="addon-wrapping" value="<?php echo isset($employee_status) ? $employee_status : ''; ?>" readonly>
+            </div>
             <div class="form-group mb-3"><br>
               <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
               <div class="mt-2">

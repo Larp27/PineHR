@@ -67,7 +67,7 @@ if (isset($_SESSION['s_em_email'])) {
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
           <a href="Dashboard.php">
-            <img src="bgimages/pine.png" alt="logo" style="width: 100px;height: 60px;margin-top: -15px; margin-left: -8px">
+            <img src="bgimages/pine.png" alt="logo" style="width: 90px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
           </a>
 
           <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
@@ -127,10 +127,10 @@ if (isset($_SESSION['s_em_email'])) {
           <div class="col-md-12">
           <ul class="nav nav-tabs">
                 <li class="nav-item">
-                  <a class="nav-link" href="employee.php">Home</a>
+                  <a class="nav-link fw-bold" href="employee.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="employee_profile.php">Profile</a>
+                  <a class="nav-link fw-bold" href="employee_profile.php">Profile</a>
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle active" aria-current="page" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>

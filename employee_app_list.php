@@ -64,7 +64,7 @@ if (isset($_SESSION['s_em_email'])) {
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
           <a href="Dashboard.php">
-            <img src="bgimages/pine.png" alt="logo" style="width: 100px;height: 60px;margin-top: -15px; margin-left: -8px">
+            <img src="bgimages/pine.png" alt="logo" style="width: 90px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
           </a>
           <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
           <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
@@ -90,13 +90,13 @@ if (isset($_SESSION['s_em_email'])) {
         <div class="col-md-12">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link" href="employee.php">Home</a>
+              <a class="nav-link fw-bold" href="employee.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="employee_profile.php">Profile</a>
+              <a class="nav-link fw-bold" href="employee_profile.php">Profile</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
+              <a class="nav-link dropdown-toggle fw-bold active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
               <ul class="dropdown-menu">
                 <?php
                 // Check if the user has any employee leave credits
@@ -124,9 +124,9 @@ if (isset($_SESSION['s_em_email'])) {
                 } elseif ($all_credits_zero) {
                   $tooltip_message = "All your leave types have zero available credits.";
                 }
-                echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item ' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
+                echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item fw-bold' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
                 ?>
-                <li><a class="dropdown-item" href="./employee_app_list.php">List</a></li>
+                <li><a class="dropdown-item active fw-bold" href="./employee_app_list.php">List</a></li>
               </ul>
             </li>
           </ul>
