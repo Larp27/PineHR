@@ -1,17 +1,26 @@
+<!--Declaration of user session -logout- -->
 <?php
 $title = 'Designation';
 $page = 'designation_list';
 include_once('./main.php');
 ?>
+<!--cont logout session-->
 
-<style>
-  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
-    border: none !important;
-    padding: 0px !important;
-  }
-</style>
+<form>
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
+        <strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-tie fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation</span></strong>
+        </strong>
+      </div><br>
 
 
+      <div class="col-md-7" style="width: 100%">
+        <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
+          <div class="panel-heading">
+            &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation List</span></strong>
+            </strong>
             <?php if ($_SESSION['s_user_id'] == 1) {
               $query = "select * from user_type";
 
@@ -20,37 +29,55 @@ include_once('./main.php');
               echo '<a href="Designation_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Designation +</button> </a>';
             }
             ?>
- 
+          </div>
 
-            <div class="dash_content mt-3">
+
+
+          <form>
+
+            <div class="dash_content">
               <div class="dash_content_main">
+
+
+
                 <table class="table" id="example">
                   <colgroup>
                     <col width="55%">
                     <col width="35%">
+
                   </colgroup>
                   <thead class="" style="background-color: rgb(255, 206, 46)">
                     <tr>
                       <th class="text-center p-2">Designation Name</th>
                       <th class="text-center p-2">Actions</th>
+
                     </tr>
                   </thead>
+
                   <?php
-                    $query = "SELECT * from designation";
-                    $result = mysqli_query($conn, $query);
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $r_des_id = $row['des_id'];
-                      $r_des_name = $row['des_name'];
-                    echo 
-                    "<tr> 
-                      <td class='text-center p-3'> $r_des_name </td>";
+                  $query = "SELECT * from designation";
+
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($result)) {
+
+                    $r_des_id = $row['des_id'];
+                    $r_des_name = $row['des_name'];
+
+                    echo "<tr> 
+                
+                    <td class='text-center p-3'> $r_des_name </td>";
                   ?>
-                      <td class='text-center p-3'>
-                        <div class="col-auto d-flex justify-content-center m-2">
-                          <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-des-id="<?php echo $row['des_id']; ?>" data-designation-name="<?php echo $row['des_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                          <a href="Designation/deleteDES.php?des_id=<?php echo $row['des_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Designation?')"><i class="fas fa-trash"></i> Delete </a>
-                        </div>
-                      </td>
+                    <!-- EDIT AND DELETE -->
+                    <td class='text-center p-3'>
+                      <div class="col-auto d-flex justify-content-center m-2">
+                        <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-des-id="<?php echo $row['des_id']; ?>" data-designation-name="<?php echo $row['des_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+
+                        <a href="Designation/deleteDES.php?des_id=<?php echo $row['des_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Designation?')"><i class="fas fa-trash"></i> Delete </a>
+                      </div>
+                    </td>
+
+
+
                     </tr>
                   <?php
                   }

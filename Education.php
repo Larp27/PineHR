@@ -3,23 +3,17 @@ $title = 'Education';
 $page = 'education';
 include_once('./main.php');
 ?>
-<style>
-  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
-    border: none !important;
-    padding: 0px !important;
-  }
-</style>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 p-5" style="height: 100vh;">
       <div class="shadow-lg p-3">
         <div class="d-flex justify-content-between align-items-center">
-          <p class="fw-bold fs-5 text-uppercase">Educational Attainment</p>
+          <p class="fw-bold fw-5 text-uppercase">Educational Attainment</p>
           <?php if ($_SESSION['s_user_id'] == 1) {
             $query = "select * from user_type";
             $result = mysqli_query($conn, $query);
           } {
-            echo '<a href="Education_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Educational Attainment +</button></a>';
+            echo '<a href="Education_add.php" class="text-decoration-none"><button type="button" class="btn btn-success">Add New Educational Attainment +</button></a>';
           }
           ?>
         </div>
