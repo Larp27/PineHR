@@ -81,7 +81,6 @@ if (isset($_SESSION['s_em_email'])) {
 
   }
 
-
   div.dataTables_wrapper div.dataTables_paginate ul.pagination li#example_previous,
   div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled {
     background-color: #8080792b !important;
@@ -91,17 +90,13 @@ if (isset($_SESSION['s_em_email'])) {
 </style>
 
   <body>
-
-    <!--LOGOUT -- getting user role to display specific features and function -->
     <?php
     if ($_SESSION['s_user_id'] == 1) {
       $query = "select * from user_type";
 
       $result = mysqli_query($conn, $query);
     }
-
     ?>
-    <!-- cont LOGOUT Session  -- -->
     <div id="dashmaincontainer">
       <div class="dash_sidebar" id="dash_sidebar">
         <div class="dash_sidebar_menus">

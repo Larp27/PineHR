@@ -3,12 +3,6 @@ $title = 'Blood Type';
 $page = 'bloodtype';
 include_once('./main.php');
 ?>
-<style>
-  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
-    border: none !important;
-    padding: 0px !important;
-  }
-</style>
 
 <div class="container-fluid">
   <div class="row">
@@ -20,7 +14,7 @@ include_once('./main.php');
             $query = "select * from user_type";
             $result = mysqli_query($conn, $query);
           } {
-            echo '<a href="BloodType_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Blood Type +</button></a>';
+            echo '<a href="BloodType_add.php" class="text-decoration-none"><button type="button" class="btn btn-success">Add New Blood Type +</button></a>';
           }
           ?>
         </div>

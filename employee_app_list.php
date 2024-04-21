@@ -146,11 +146,11 @@ if (isset($_SESSION['s_em_email'])) {
                     <strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Leave Application List History</strong>
                     <?php
                     $query = "SELECT la.*, lt.*, e.first_name, e.last_name
-                        FROM `leave_application` la 
-                        INNER JOIN `leave_type` lt ON la.lt_id = lt.lt_id 
-                        INNER JOIN `employee` e ON la.em_id = e.em_id
-                        WHERE la.em_id = $em_id 
-                        AND la.la_status IN ('Accepted', 'Declined')";
+                    FROM `leave_application` la 
+                    INNER JOIN `leave_type` lt ON la.lt_id = lt.lt_id 
+                    INNER JOIN `employee` e ON la.em_id = e.em_id
+                    WHERE la.em_id = $em_id 
+                    AND la.la_status IN ('Accepted', 'Declined')";
                     $result = mysqli_query($conn, $query);
                     if (mysqli_num_rows($result) > 0) {
                     ?>
@@ -209,9 +209,23 @@ if (isset($_SESSION['s_em_email'])) {
                       </table>
                       <button onclick="printTable('acceptedTable')" class="btn btn-primary">Print Table</button>
                     <?php } else {
-                      echo "<p><strong>No Accepted, Declined or Cancelled Applications</strong></p>";
+
+                      echo "<br><br><p><strong>No Accepted, Declined or Cancelled Applications Yet</strong></p>";
                     }
                     ?>
+                    <script>
+                      function printTable(tableId) {
+                        var tableToPrint = document.getElementById(tableId).cloneNode(true);
+                        var newWin = window.open('', 'Print-Window');
+                        newWin.document.open();
+                        newWin.document.write('<html><head><style>table { border-collapse: collapse; width: 100%; } th, td { text-align: left; padding: 8px; } tr:nth-child(even) { background-color: #f2f2f2; } th { background-color: #4CAF50; color: white; }</style></head><body onload="window.print()">' + tableToPrint.outerHTML + '</body></html>');
+                        newWin.document.close();
+                        setTimeout(function() {
+                          newWin.close();
+                        }, 10);
+                      }
+                    </script>
+
                   </div>
                 </div>
               </div>
@@ -219,18 +233,6 @@ if (isset($_SESSION['s_em_email'])) {
 
             <!-- Include DataTables JavaScript -->
             <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.7/js/jquery.dataTables.js"></script>
-
-            <script>
-              function printTable(tableId) {
-                var printWindow = window.open('', '', 'height=400,width=800');
-                printWindow.document.write('<html><head><title>Print Table</title>');
-                printWindow.document.write('</head><body>');
-                printWindow.document.write(document.getElementById(tableId).outerHTML);
-                printWindow.document.write('</body></html>');
-                printWindow.document.close();
-                printWindow.print();
-              }
-            </script>
 
 
             <div class="panel panel-default">
@@ -300,7 +302,7 @@ if (isset($_SESSION['s_em_email'])) {
                       </tbody>
                     </table>
                   <?php } else {
-                    echo "<p><strong>No Pending Applications</strong></p>";
+                    echo "<br><br><p><strong>No Pending Applications</strong></p>";
                   }
                   ?>
                 </div>

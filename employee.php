@@ -50,14 +50,14 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
-    
+
     <style>
-      .nav-tabs.nav-sm > li.nav-item > a.nav-link {
+      .nav-tabs.nav-sm>li.nav-item>a.nav-link {
         padding: 0.25rem 0.5rem;
         font-size: 0.9rem;
       }
 
-      .nav-tabs.nav-sm > li.nav-item {
+      .nav-tabs.nav-sm>li.nav-item {
         margin-bottom: 0;
       }
 
@@ -73,27 +73,27 @@ if (isset($_SESSION['s_em_email'])) {
         border-width: 1px !important;
       }
 
-    #calendar {
-      background-color: rgb(255, 251, 196) !important;
-      height: 600px;
-      border: 2px solid #2468a0;
-      border-radius: 5px;
-    }
-
-    th {
-      background-color:  rgb(235, 220, 10);
-    }
-    
-    .dashboard-card {
-      height: 130px;
-    }
-
-    @media (min-width: 768px) and (max-width: 1198px) {
-      .dashboard-card h5 {
-        text-align: center;
-        font-size: 16px !important;
+      #calendar {
+        background-color: rgb(255, 251, 196) !important;
+        height: 600px;
+        border: 2px solid #2468a0;
+        border-radius: 5px;
       }
-    }
+
+      th {
+        background-color: rgb(235, 220, 10);
+      }
+
+      .dashboard-card {
+        height: 130px;
+      }
+
+      @media (min-width: 768px) and (max-width: 1198px) {
+        .dashboard-card h5 {
+          text-align: center;
+          font-size: 16px !important;
+        }
+      }
     </style>
   </head>
 
@@ -212,122 +212,158 @@ if (isset($_SESSION['s_em_email'])) {
                             }
                             ?>
                           </h1>
-                        </a>
-                        <div class="d-flex mt-2">
-                          <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Pending Leave Application </h5> <!-- Adjusted text alignment -->
-                        </div>
+                      </a>
+                      <div class="d-flex mt-2">
+                        <i class="fa-solid fa-hourglass-half fa-xl me-1 mt-3"></i>
+                        <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Pending Leave Application </h5> <!-- Adjusted text alignment -->
                       </div>
                     </div>
-                    <div class="col-md-3">
-                      <a href="employee_app_list.php" class="text-decoration-none">
-                        <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
-                          <h1>
-                            <?php
-                            if (isset($_SESSION['s_em_id'])) {
-                              $em_id = $_SESSION['s_em_id'];
-                              $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted' AND em_id = $em_id";
-                              $count_query_run = mysqli_query($conn, $count_query);
-                              if ($count_query_run) {
-                                $row = mysqli_fetch_assoc($count_query_run);
-                                $count_total = $row['ls_status'];
-                                echo '<h1 class="text-end">' . $count_total . '</h1>';
-                              } else {
-                                echo '<h1 class="text-end">0</h1>';
-                              }
+                  </div>
+                  <div class="col-md-3">
+                    <a href="employee_app_list.php" class="text-decoration-none">
+                      <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
+                        <h1>
+                          <?php
+                          if (isset($_SESSION['s_em_id'])) {
+                            $em_id = $_SESSION['s_em_id'];
+                            $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted' AND em_id = $em_id";
+                            $count_query_run = mysqli_query($conn, $count_query);
+                            if ($count_query_run) {
+                              $row = mysqli_fetch_assoc($count_query_run);
+                              $count_total = $row['ls_status'];
+                              echo '<h1 class="text-end">' . $count_total . '</h1>';
+                            } else {
+                              echo '<h1 class="text-end">0</h1>';
                             }
-                            ?>
-                          </h1>
-                        </a>
-                        <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Approved Leave Application </h5> <!-- Adjusted text alignment -->
-                        </div>
-                      </div>
+                          }
+                          ?>
+                        </h1>
+                    </a>
+                    <div class="d-flex mt-3">
+                      <i class="fa-solid fa-thumbs-up fa-xl me-1 mt-3"></i>
+                      <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Approved Leave Application </h5> <!-- Adjusted text alignment -->
                     </div>
-                    <div class="col-md-3">
-                      <a href="employee_app_list.php" class="text-decoration-none">
-                        <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
-                          <h1>
-                            <?php
-                            if (isset($_SESSION['s_em_id'])) {
-                              $em_id = $_SESSION['s_em_id'];
-                              $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined' AND em_id = $em_id";
-                              $count_query_run = mysqli_query($conn, $count_query);
-                              if ($count_query_run) {
-                                $row = mysqli_fetch_assoc($count_query_run);
-                                $count_total = $row['ls_status'];
-                                echo '<h1 class="text-end">' . $count_total . '</h1>';
-                              } else {
-                                echo '<h1 class="text-end">0</h1>';
-                              }
-                            }
-                            ?>
-                          </h1>
-                        </a>
-                        <div class="d-flex mt-3">
-                          <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
-                          <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Declined Leave Application </h5> <!-- Adjusted text alignment -->
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-2"></div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <a href="employee_app_list.php" class="text-decoration-none">
+                    <div class="p-3 dashboard-card" style="box-shadow: 2px 6px 12px #2468a0; background-color:#c1e8ff;">
+                      <h1>
+                        <?php
+                        if (isset($_SESSION['s_em_id'])) {
+                          $em_id = $_SESSION['s_em_id'];
+                          $count_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined' AND em_id = $em_id";
+                          $count_query_run = mysqli_query($conn, $count_query);
+                          if ($count_query_run) {
+                            $row = mysqli_fetch_assoc($count_query_run);
+                            $count_total = $row['ls_status'];
+                            echo '<h1 class="text-end">' . $count_total . '</h1>';
+                          } else {
+                            echo '<h1 class="text-end">0</h1>';
+                          }
+                        }
+                        ?>
+                      </h1>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <i class="fa-solid fa-thumbs-down fa-xl me-1 mt-3"></i>
+                    <h5 class="fs-5 fw-bold mt-1 text-center text-md-start">Declined Leave Application </h5> <!-- Adjusted text alignment -->
                   </div>
                 </div>
               </div>
+              <div class="col-md-2"></div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <div class="border border-light border-top-1 p-0 bg-white">
-                <div class="d-flex" style="box-shadow: 0 2px 6px -1px #00213b; height: 50px;">
-                  <i class="fa-solid fa-calendar-days fa-lg mt-4 me-2 ps-2" style="color: #2468a0;"></i>
-                  <p class="fs-6 fw-bold mt-3 text-uppercase">Schedule of Events</p>
-                </div>
-              </div>
-              <div class="container py-12" id="page-container">
-                <div class="row">
-                  <div class="col-md-12 mt-4">
-                    <div class="calendar-container" style="height: 70vh;">
-                      <div id="calendar"  style="background-color: aquawhite;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
-                <div class="modal-dialog modal-dialog-centered">
-                  <div class="modal-content rounded-0">
-                    <div class="modal-header rounded-0">
-                      <h5 class="modal-title">Schedule Details</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body rounded-0">
-                      <div class="container-fluid">
-                        <dl>
-                          <dt class="text-muted">Title</dt>
-                          <dd id="title" class="fw-bold fs-4"></dd>
-                          <dt class="text-muted">Description</dt>
-                          <dd id="description" class=""></dd>
-                          <dt class="text-muted">Start</dt>
-                          <dd id="start" class=""></dd>
-                          <dt class="text-muted">End</dt>
-                          <dd id="end" class=""></dd>
-                        </dl>
-                      </div>
-                    </div>
-                    <div class="modal-footer rounded-0">
-                      <div class="text-end">
-                        <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
           </div>
         </div>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="border border-light border-top-1 p-0 bg-white">
+          <div class="d-flex" style="box-shadow: 0 2px 6px -1px #00213b; height: 50px;">
+            <i class="fa-solid fa-calendar-days fa-lg mt-4 me-2 ps-2" style="color: #2468a0;"></i>
+            <p class="fs-6 fw-bold mt-3 text-uppercase">Schedule of Events</p>
+          </div>
+        </div>
+        <div class="container py-12" id="page-container">
+          <div class="row">
+            <div class="col-md-12 mt-4">
+              <div class="calendar-container" style="height: 70vh;">
+                <div id="calendar" style="background-color: aquawhite;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-0">
+              <div class="modal-header rounded-0">
+                <h5 class="modal-title">Schedule Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body rounded-0">
+                <div class="container-fluid">
+                  <dl>
+                    <dt class="text-muted">Title</dt>
+                    <dd id="title" class="fw-bold fs-4"></dd>
+                    <dt class="text-muted">Description</dt>
+                    <dd id="description" class=""></dd>
+                    <dt class="text-muted">Start</dt>
+                    <dd id="start" class=""></dd>
+                    <dt class="text-muted">End</dt>
+                    <dd id="end" class=""></dd>
+                  </dl>
+                </div>
+              </div>
+              <div class="modal-footer rounded-0">
+                <div class="text-end">
+                  <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php
+        // Query to fetch upcoming schedules
+        $currentDateTime = date('Y-m-d H:i:s');
+        $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
+        $schedules = $conn->query($query);
+        $hasUpcomingSchedules = ($schedules && $schedules->num_rows > 0);
+        ?>
+        <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
+          <!-- Modal for Welcome Message -->
+          <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <!-- Add your welcome message or any other content here -->
+                  <p>Announcement Upcoming Event!</p>
+                  <p>Schedule Details</p>
+                  <ul>
+                    <!-- Output schedule details here -->
+                    <?php
+                    while ($row = $schedules->fetch_assoc()) {
+                      $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
+                      $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
+                      echo "<li>Event Title: " . $row['title'] . "</li>";
+                      echo "Start Date: " . $start_date . "<br>End Date: " . $end_date;
+                    }
+                    ?>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </div>
     <?php
     // Opening PHP tag

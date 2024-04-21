@@ -191,7 +191,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
               <!--5th Card-->
               <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_type_list.php" class="card-link align-horizontal">
+                <a href="Leave_app_list.php" class="card-link align-horizontal">
                   <div class="card-box">
                     <div>
                       <h1>
@@ -219,7 +219,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
               <!--6th Card-->
               <div class="col-md-3 col-sm-6 mb-4">
-                <a href="Leave_type_list.php" class="card-link align-horizontal">
+                <a href="Leave_app_list.php" class="card-link align-horizontal">
                   <div class="card-box">
                     <div>
                       <h1>
@@ -247,7 +247,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
               <!--7th Card-->
               <div class="col-md-3 col-sm-6 mb-4">
-                <a href="" class="card-link align-horizontal">
+                <a href="Leave_app_list" class="card-link align-horizontal">
                   <div class="card-box">
                     <div>
                       <h1>
