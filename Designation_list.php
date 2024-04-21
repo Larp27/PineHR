@@ -4,6 +4,13 @@ $page = 'designation_list';
 include_once('./main.php');
 ?>
 
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
+
 
             <?php if ($_SESSION['s_user_id'] == 1) {
               $query = "select * from user_type";

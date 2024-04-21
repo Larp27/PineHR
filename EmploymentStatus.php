@@ -3,6 +3,12 @@ $title = 'Employment Status';
 $page = 'employment_status';
 include_once('./main.php');
 ?>
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 
 <div class="container-fluid">
   <div class="row">

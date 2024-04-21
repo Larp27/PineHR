@@ -5,12 +5,16 @@ $page = 'leave_type_list';
 include_once('./main.php');
 ?>
 <!--cont logout session-->
-
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 
 <!--Department Process Add and Update JS-->
 <script src="Department/DepartmentJS.js"></script>
 <script src="Department/updateDEPT.js"></script>
-
 
 <form>
   <div class="col-md-12">

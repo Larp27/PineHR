@@ -6,46 +6,90 @@ if (isset($_SESSION['s_em_email'])) {
 ?>
   <!--cont logout session-->
 
-  <!DOCTYPE html>
-  <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave Type List| PINE HR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <!-- <link rel="stylesheet" href="css/main.css"> -->
 
-  <head>
-    <meta charset="UTF-8">
-    <title>Leave Type List| PINE HR</title>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <script src="script.js"></script>
+  <script src="imoJS.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
-    <script src="script.js"></script>
-    <script src="imoJS.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="dashboard2.css" />
-    <link rel="stylesheet" text="text/css" href="" />
+  <link rel="stylesheet" href="dashboard2.css" />
+  <link rel="stylesheet" text="text/css" href="" />
 
 
-    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
-    <!--Department Process Add and Update JS-->
-    <script src="Department/DepartmentJS.js"></script>
-    <script src="Department/updateDEPT.js"></script>
+  <!--Department Process Add and Update JS-->
+  <script src="Department/DepartmentJS.js"></script>
+  <script src="Department/updateDEPT.js"></script>
 
-    <!--offline bootstrap-->
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <script src="js/all.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+  <!--offline bootstrap-->
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/fontawesome.min.css">
+  <script src="js/all.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 
-    <!--Navbar CSS-->
-    <link rel="stylesheet" href="css/navbar2.css">
+  <!--Navbar CSS-->
+  <link rel="stylesheet" href="css/navbar2.css">
 
-    <script src="./script.js"></script>
-  </head>
+  <script src="./script.js"></script>
+</head>
+<style>
+  div.dataTables_wrapper div.dataTables_length select{
+    width: auto;
+    display: inline-block;
+    border-radius: 5px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  div.dataTables_wrapper div.dataTables_length select {
+    width: auto;
+    display: inline-block;
+    border-radius: 15px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+
+  div.dataTables_wrapper div#example_paginate ul.pagination li.paginate_button .page-item .active .page-link {
+
+    background-color: #EBB803 !important;
+
+  }
+
+
+  div.dataTables_wrapper div.dataTables_paginate ul.pagination li#example_previous,
+  div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled {
+    background-color: #8080792b !important;
+    border-color: #dee2e6 !important;
+    color: rgba(33, 37, 41, 0.75) !important;
+  }
+</style>
 
   <body>
 

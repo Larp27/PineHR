@@ -3,6 +3,13 @@ $title = 'Marital Status';
 $page = 'marital_status';
 include_once('./main.php');
 ?>
+<!--cont logout session-->
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 
 <div class="container-fluid">
   <div class="row">

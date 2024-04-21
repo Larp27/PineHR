@@ -3,6 +3,12 @@ $title = 'Education';
 $page = 'education';
 include_once('./main.php');
 ?>
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 p-5" style="height: 100vh;">
