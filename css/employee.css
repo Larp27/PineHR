@@ -27,3 +27,7 @@ div.dataTables_wrapper div.dataTables_length select {
 th {
   text-transform: uppercase !important;
 }
+
+td {
+  font-size: 15px !important;
+}

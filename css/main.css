@@ -102,7 +102,6 @@ div.dataTables_wrapper div.dataTables_length select {
   line-height: 1.5;
 }
 
-
 table {
   display: table;
   width: 100%;
@@ -112,9 +111,13 @@ table {
   text-indent: initial;
   border-spacing: 2px;
   border-collapse: collapse;
-  font-size: 12px;
+  font-size: 15px;
   border: 1px #dee2e6 solid !important;
   box-shadow: 4px 2px 14px rgb(192, 192, 192);
+}
+
+td {
+  font-size: 15px !important;
 }
 
 th {
