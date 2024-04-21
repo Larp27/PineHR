@@ -1,59 +1,61 @@
 <!--Declaration of user session -logout- -->
 <?php
-  session_start();
-  include "DBConnection.php";
-  if (isset($_SESSION['s_em_email'])) {
+session_start();
+include "DBConnection.php";
+if (isset($_SESSION['s_em_email'])) {
 ?>
-<!--cont logout session-->
+  <!--cont logout session-->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Profile | PINE HR</title>
+  <!DOCTYPE html>
+  <html lang="en">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <head>
+    <meta charset="UTF-8">
+    <title>Profile | PINE HR</title>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
-  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-  <!--offline bootstrap-->
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
-  <script src="js/all.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
-  <!--Navbar CSS-->
-  <link rel="stylesheet" href="css/navbar.css">
+    <!--offline bootstrap-->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <script src="js/all.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-  <style>
-    .nav-tabs.nav-sm>li.nav-item>a.nav-link {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.9rem;
-    }
+    <!--Navbar CSS-->
+    <link rel="stylesheet" href="css/navbar.css">
 
-    .nav-tabs.nav-sm>li.nav-item {
-      margin-bottom: 0;
-    }
-  </style>
-</head>
-<body>
-  <!--LOGOUT -- getting user role to display specific features and function -->
-  <?php
+    <style>
+      .nav-tabs.nav-sm>li.nav-item>a.nav-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .nav-tabs.nav-sm>li.nav-item {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--LOGOUT -- getting user role to display specific features and function -->
+    <?php
     $em_id = $_SESSION['s_em_id'];
     if ($_SESSION['s_user_id'] == 2) {
       $query = "Select * from employee where em_id = $em_id";
 
       $result = mysqli_query($conn, $query);
     }
-  ?>
-  <!-- cont LOGOUT Session  -- -->
+    ?>
+    <!-- cont LOGOUT Session  -- -->
     <div id="dashmaincontainer">
       <div class="dash_sidebar_menus">
         <br>
@@ -173,69 +175,75 @@
                   $employee_status = $employee_data['employee_status'];
                   $es_name = $employee_data['es_name'];
               ?>
-                <div class="col-md-12">
-                  <div class="">
-                    <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
-                      <div class="panel-heading border-0 d-flex p-0">
-                        <div class="me-3 ms-3 mt-3">
-                          <i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>
+                  <div class="col-md-12">
+                    <div class="">
+                      <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
+                        <div class="panel-heading border-0 d-flex p-0">
+                          <div class="me-3 ms-3 mt-3">
+                            <i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>
+                          </div>
+                          <p class="text-uppercase fw-bold fs-5 mt-3">Employee Profile</p>
                         </div>
-                        <p class="text-uppercase fw-bold fs-4 mt-3">Employee Profile</p>
-                      </div>
-                      <div class="row">
-                        <div class="col-12 d-flex">
-                          <div class="col-md-3 mt-4 ms-5">
-                            <img src="../PINEHR/<?php echo substr($employee_data['em_profile_pic'], 3); ?>" style="max-width:300px;max-height:300px;">
-                          </div>
-                          <div class="col-md-4 mt-3">
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">First Name:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $first_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Last Name:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $last_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Gender:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $em_gender; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Marital Status:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $ms_name ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Phone:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $em_phone; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Email:</label>
-                            <p class="ms-2 text-lowercase fw-bold" style="color: #b4b4b4;"><?php echo $em_email; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Birthday:</label>
-                            <p class="ms-2 fw-bold" style="color: #b4b4b4;"><?php echo date("F j, Y", strtotime($em_birthday)); ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Address:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $barangay . ', ' . $city; ?></p>
-                          </div>
-                          <div class="col-md-4 mt-3">
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Educational Attainment:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $education; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Department:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $dep_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Designation:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $des_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Employment Status:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $es_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Employee Status:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $employee_status; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Religion:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $r_name; ?></p>
-                            <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Blood Type:</label>
-                            <p class="ms-2 text-capitalize fw-bold" style="color: #b4b4b4;"><?php echo $bt_name; ?></p>
+                        <div class="row">
+                          <div class="col-12 d-flex">
+                            <div class="col-md-3 mt-4 ms-5">
+                              <img src="../PineHR/bgimages/ormoc_seal.jpg" alt="Logo" style="max-width: 150px; max-height: 150px; margin-bottom:20px; margin-left: 80px;">
+                              <div class="mt-2" style="display: inline-block; border: 2px solid #00008B; padding: 2px;">
+                                <img src="../PINEHR/<?php echo substr($employee_data['em_profile_pic'], 3); ?>" style="max-width:300px; max-height:300px;">
+                              </div>
+
+
+                            </div>
+                            <div class="col-md-4 mt-3">
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">First Name:</label>
+                              <p class="" style="color: black;"><?php echo $first_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Last Name:</label>
+                              <p class="" style="color: black;"><?php echo $last_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Gender:</label>
+                              <p class="" style="color: black;"><?php echo $em_gender; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Marital Status:</label>
+                              <p class="" style="color: black;"><?php echo $ms_name ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Phone:</label>
+                              <p class="" style="color: black;"><?php echo $em_phone; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Email:</label>
+                              <p class="" style="color: black;"><?php echo $em_email; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Birthday:</label>
+                              <p class="" style="color: black;"><?php echo date("F j, Y", strtotime($em_birthday)); ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Address:</label>
+                              <p class="" style="color: black;"><?php echo $barangay . ', ' . $city; ?></p>
+                            </div>
+                            <div class="col-md-4 mt-3">
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Educational Attainment:</label>
+                              <p class="" style="color: black;"><?php echo $education; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Department:</label>
+                              <p class="" style="color: black;"><?php echo $dep_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Designation:</label>
+                              <p class="" style="color: black;"><?php echo $des_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Employment Status:</label>
+                              <p class="" style="color: black;"><?php echo $es_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Employee Status:</label>
+                              <p class="" style="color: black;"><?php echo $employee_status; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Religion:</label>
+                              <p class="" style="color: black;"><?php echo $r_name; ?></p>
+                              <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">Blood Type:</label>
+                              <p class="" style="color: black;"><?php echo $bt_name; ?></p>
+
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="">
-                    <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
-                      <div class="panel-heading border-0 d-flex p-0">
-                        <div class="me-3 ms-3 mt-3">
-                          <img src="bgimages\leave.png" alt="" style="max-width: 45px;">
+                    <div class="">
+                      <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
+                        <div class="panel-heading border-0 d-flex p-0">
+                          <div class="me-3 ms-3 mt-3">
+                            <img src="bgimages\leave.png" alt="" style="max-width: 45px;">
+                          </div>
+                          <p class="text-uppercase fw-bold fs-5 mt-3">Available Leaves and Remaining Credits</p>
                         </div>
-                        <p class="text-uppercase fw-bold fs-4 mt-3">Available Leaves and Remaining Credits</p>
-                      </div>
 
-                      <?php
+                        <?php
                         $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE elc.em_id = $em_id");
                         $total_leave_types = $leave_types_query->num_rows;
                         $leave_types_per_column = ceil($total_leave_types / 2);
@@ -260,10 +268,10 @@
                           }
                         }
                         ?>
-                  
+
+                      </div>
                     </div>
                   </div>
-                </div>
               <?php
                 } else {
                   echo "No data found for the logged-in employee.";
@@ -276,115 +284,116 @@
       </div>
     </div>
   <?php
-    } else {
-      header("location: login.php");
-      exit();
-    }
+} else {
+  header("location: login.php");
+  exit();
+}
   ?>
 
-</body>
-</html>
-<script>
-  var sideBarIsOpen = true;
-  togglebtn.addEventListener('click', (event) => {
-    event.preventDefault();
+  </body>
 
-    if (sideBarIsOpen) {
-      dash_sidebar.style.width = '0%';
-      dash_sidebar.style.transition = '0.3s all';
-      dash_content_container.style.width = '100%';
-      sideBarIsOpen = false;
-    } else {
+  </html>
+  <script>
+    var sideBarIsOpen = true;
+    togglebtn.addEventListener('click', (event) => {
+      event.preventDefault();
 
-      dash_sidebar.style.width = '20%';
-      dash_sidebar.style.height = 'auto';
-      dash_content_container.style.width = '100%';
-      sideBarIsOpen = true;
-    }
-  });
+      if (sideBarIsOpen) {
+        dash_sidebar.style.width = '0%';
+        dash_sidebar.style.transition = '0.3s all';
+        dash_content_container.style.width = '100%';
+        sideBarIsOpen = false;
+      } else {
 
-  var updateUserModal = document.getElementById('updateUserModal');
-  updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var em_id = button.getAttribute('data-em-id'); // Extract info from data-* attributes
-    var gender = button.getAttribute('data-gender');
-    var first_name = button.getAttribute('data-f-name');
-    var last_name = button.getAttribute('data-l-name');
-    var des_id = button.getAttribute('data-des-id');
-    var dep_id = button.getAttribute('data-dep-id');
-    var es_id = button.getAttribute('data-es-id');
-    var bt_id = button.getAttribute('data-bt-id');
-    var phone = button.getAttribute('data-em-phone');
-    var address = button.getAttribute('data-em-address');
-    var birthday = button.getAttribute('data-em-birthday');
-    var role = button.getAttribute('data-role-id');
-    var email = button.getAttribute('data-em-email');
-    var join_date = button.getAttribute('data-em-join-date');
-    var contract_end = button.getAttribute('data-em-contract-end');
+        dash_sidebar.style.width = '20%';
+        dash_sidebar.style.height = 'auto';
+        dash_content_container.style.width = '100%';
+        sideBarIsOpen = true;
+      }
+    });
 
-    var modalBody = updateUserModal.querySelector('.modal-body');
-    modalBody.querySelector('#em_id').value = em_id;
-    modalBody.querySelector('#gender').value = gender;
-    modalBody.querySelector('#f_name').value = first_name;
-    modalBody.querySelector('#l_name').value = last_name;
-    modalBody.querySelector('#des_id').value = des_id;
-    modalBody.querySelector('#dep_id').value = dep_id;
-    modalBody.querySelector('#es_id').value = es_id;
-    modalBody.querySelector('#bt_id').value = bt_id;
-    modalBody.querySelector('#em_phone').value = phone;
-    modalBody.querySelector('#em_address').value = address;
-    modalBody.querySelector('#em_birthday').value = birthday;
-    modalBody.querySelector('#user_role').value = role;
-    modalBody.querySelector('#em_email').value = email;
-    modalBody.querySelector('#em_joining_date').value = join_date;
-    modalBody.querySelector('#em_contract_end').value = contract_end;
-  });
+    var updateUserModal = document.getElementById('updateUserModal');
+    updateUserModal.addEventListener('show.bs.modal', function(event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var em_id = button.getAttribute('data-em-id'); // Extract info from data-* attributes
+      var gender = button.getAttribute('data-gender');
+      var first_name = button.getAttribute('data-f-name');
+      var last_name = button.getAttribute('data-l-name');
+      var des_id = button.getAttribute('data-des-id');
+      var dep_id = button.getAttribute('data-dep-id');
+      var es_id = button.getAttribute('data-es-id');
+      var bt_id = button.getAttribute('data-bt-id');
+      var phone = button.getAttribute('data-em-phone');
+      var address = button.getAttribute('data-em-address');
+      var birthday = button.getAttribute('data-em-birthday');
+      var role = button.getAttribute('data-role-id');
+      var email = button.getAttribute('data-em-email');
+      var join_date = button.getAttribute('data-em-join-date');
+      var contract_end = button.getAttribute('data-em-contract-end');
 
-  $('.sidebar-btn').click(function() {
-    $(this).toggleClass("click");
-    $('.sidebar').toggleClass("show");
-    if ($('.sidebar').hasClass("show")) {
-      $('.sidebar').removeClass("hide");
-      $(this).removeClass("click");
-    } else {
-      $('.sidebar').addClass("hide");
-      $(this).addClass("click");
-    }
-  });
+      var modalBody = updateUserModal.querySelector('.modal-body');
+      modalBody.querySelector('#em_id').value = em_id;
+      modalBody.querySelector('#gender').value = gender;
+      modalBody.querySelector('#f_name').value = first_name;
+      modalBody.querySelector('#l_name').value = last_name;
+      modalBody.querySelector('#des_id').value = des_id;
+      modalBody.querySelector('#dep_id').value = dep_id;
+      modalBody.querySelector('#es_id').value = es_id;
+      modalBody.querySelector('#bt_id').value = bt_id;
+      modalBody.querySelector('#em_phone').value = phone;
+      modalBody.querySelector('#em_address').value = address;
+      modalBody.querySelector('#em_birthday').value = birthday;
+      modalBody.querySelector('#user_role').value = role;
+      modalBody.querySelector('#em_email').value = email;
+      modalBody.querySelector('#em_joining_date').value = join_date;
+      modalBody.querySelector('#em_contract_end').value = contract_end;
+    });
+
+    $('.sidebar-btn').click(function() {
+      $(this).toggleClass("click");
+      $('.sidebar').toggleClass("show");
+      if ($('.sidebar').hasClass("show")) {
+        $('.sidebar').removeClass("hide");
+        $(this).removeClass("click");
+      } else {
+        $('.sidebar').addClass("hide");
+        $(this).addClass("click");
+      }
+    });
 
 
-  $('.org-btn').click(function() {
-    $('nav ul .org-show').toggleClass("show1");
-    $('nav ul .first').toggleClass("rotate");
-  });
+    $('.org-btn').click(function() {
+      $('nav ul .org-show').toggleClass("show1");
+      $('nav ul .first').toggleClass("rotate");
+    });
 
-  $('.rep-btn').click(function() {
-    $('nav ul .rep-show').toggleClass("show2");
-    $('nav ul .second').toggleClass("rotate");
-  });
+    $('.rep-btn').click(function() {
+      $('nav ul .rep-show').toggleClass("show2");
+      $('nav ul .second').toggleClass("rotate");
+    });
 
-  $('.emp-btn').click(function() {
-    $('nav ul .emp-show').toggleClass("show3");
-    $('nav ul .third').toggleClass("rotate");
-  });
+    $('.emp-btn').click(function() {
+      $('nav ul .emp-show').toggleClass("show3");
+      $('nav ul .third').toggleClass("rotate");
+    });
 
-  $('.lev-btn').click(function() {
-    $('nav ul .lev-show').toggleClass("show4");
-    $('nav ul .fourth').toggleClass("rotate");
-  });
+    $('.lev-btn').click(function() {
+      $('nav ul .lev-show').toggleClass("show4");
+      $('nav ul .fourth').toggleClass("rotate");
+    });
 
-  $('.not-btn').click(function() {
-    $('nav ul .not-show').toggleClass("show5");
-    $('nav ul .fifth').toggleClass("rotate");
-  });
+    $('.not-btn').click(function() {
+      $('nav ul .not-show').toggleClass("show5");
+      $('nav ul .fifth').toggleClass("rotate");
+    });
 
-  $('nav ul li').click(function() {
-    $(this).addClass("active").siblings().removeClass("active");
-  });
+    $('nav ul li').click(function() {
+      $(this).addClass("active").siblings().removeClass("active");
+    });
 
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-  var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
