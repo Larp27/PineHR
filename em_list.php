@@ -9,8 +9,8 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 p-5 shadow-lg ">
-      <div style="height:100vh;">
+    <div class="col-md-12">
+      <div class="m-2 pt-2">
         <div class="d-flex justify-content-between align-items-center">
           <p class="fw-bold fs-5 text-uppercase">Employment List</p>
           <?php 
