@@ -1,10 +1,8 @@
-<!--Declaration of user session -logout- -->
 <?php
 session_start();
 include "DBConnection.php";
 if (isset($_SESSION['s_em_email'])) {
 ?>
-  <!--cont logout session-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +40,7 @@ if (isset($_SESSION['s_em_email'])) {
 
   <!--Navbar CSS-->
   <link rel="stylesheet" href="css/navbar2.css">
+  <link rel="stylesheet" href="css/employee.css">
 
   <script src="./script.js"></script>
 </head>

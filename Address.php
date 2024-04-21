@@ -112,7 +112,7 @@
   })
 </script>
 
-  <!--Education Process Add and Update JS-->
+<!--Education Process Add and Update JS-->
 <script src="Address/AddressJS.js"></script>
 <script src="Address/updateAddress.js"></script>
 <link rel="stylesheet" href="css/employee.css">
