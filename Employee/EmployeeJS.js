@@ -19,6 +19,7 @@ $(document).ready(function() {
     formData.append('user_id', $('#user_id').val());
     formData.append('em_joining_date', $('#em_joining_date').val());
     formData.append('em_contract_end', $('#em_contract_end').val());
+    formData.append('em_income', $('#em_income').val());
     formData.append('em_password', $('#em_password').val());
     formData.append('em_profile_pic', $('#em_profile_pic')[0].files[0]);
 
@@ -31,7 +32,7 @@ $(document).ready(function() {
       formData.append('leave_credits[]', leaveCredit); // Append leave credit
     });
 
-    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "") {
+    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('em_income') == "" || formData.get('address_id') == "") {
       $('#message').html('Please fill in all required fields');
       console.log(formData);
     } else {

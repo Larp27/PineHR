@@ -34,6 +34,7 @@
       $em_contract_end = $row['em_contract_end'];
       $em_profile_pic = $row['em_profile_pic'];
       $employee_status = $row['employee_status'];
+      $em_income = $row['em_income'];
     } else {
       echo "Employee not found";
     }
@@ -212,6 +213,11 @@
                   $es_qry->close();
                 } 
               ?>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="em_income" class="fw-bold text-uppercase">Daily Income</label>
+              <input type="text" class="form-control" placeholder="" id="em_income" name="em_income" aria-describedby="addon-wrapping" required value="<?php echo isset($em_income) ? $em_income : ''; ?>" readonly>
             </div>
             <div class="form-group mb-3">
               <label for="user_id" class="fw-bold text-uppercase">User Role</label>

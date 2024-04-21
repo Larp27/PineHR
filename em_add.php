@@ -73,9 +73,6 @@ include_once('./main.php');
             </script>
 
 
-
-
-
             <div class="form-group mb-3">
               <label for="first_name" class="fw-bold text-uppercase">First Name</label>
               <input type="text" class="form-control" placeholder="Employee's First Name" name="first_name" id="first_name" aria-describedby="addon-wrapping" required>
@@ -211,18 +208,31 @@ include_once('./main.php');
                 <?php endwhile; ?>
               </select>
             </div>
+
             <div class="form-group mb-3">
-              <label for="es_id" class="fw-bold  text-uppercase">Employment Status</label>
+              <label for="es_id" class="fw-bold text-uppercase">Employment Status</label>
               <select class="form-select" id="es_id" name="es_id" required>
                 <option <?php echo (!isset($user_id)) ? 'selected' : '' ?> disabled>Please Select Here</option>
                 <?php
-                $user_qry = $conn->query("SELECT * FROM employment_status order by es_name asc");
+                $user_qry = $conn->query("SELECT * FROM employment_status ORDER BY es_name ASC");
                 while ($row = $user_qry->fetch_assoc()) :
+                  // Fetch the es_income for each employment status
+                  $es_income = $row['es_income'];
                 ?>
-                  <option value="<?php echo $row['es_id'] ?>" <?php echo (isset($es_id) && $es_id == $row['es_id']) ? 'selected' : '' ?>><?php echo $row['es_name'] ?></option>
+                  <option value="<?php echo $row['es_id'] ?>" <?php echo (isset($es_id) && $es_id == $row['es_id']) ? 'selected' : '' ?>>
+                    <?php echo $row['es_name'] . " - $es_income Default Daily Income"; ?>
+                  </option>
                 <?php endwhile; ?>
               </select>
             </div>
+
+
+            <div class="form-group mb-3">
+              <label for="em_income" class="fw-bold text-uppercase">Daily Income</label>
+              <input type="text" class="form-control" placeholder="Daily Income" name="em_income" id="em_income" aria-describedby="addon-wrapping" required>
+            </div>
+
+
             <div class="form-group mb-3">
               <label for="user_id" class="fw-bold  text-uppercase">User Role</label>
               <select class="form-select" id="user_id" name="user_id" required>

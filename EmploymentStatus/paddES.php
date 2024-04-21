@@ -11,8 +11,9 @@
     $nextId = $row['es_id'] + 1;
 
     $es_name = $_POST['es_name'];
+    $es_income = $_POST['es_income'];
 
-    $query = "INSERT into employment_status(es_id, es_name) VALUES ('$nextId', '$es_name')";
+    $query = "INSERT into employment_status(es_id, es_name, es_income) VALUES ('$nextId', '$es_name', '$es_income')";
 
     $result = mysqli_query($conn, $query);
 

@@ -13,9 +13,9 @@
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-      echo "Successfully updated Education details.";
+      echo "<script>alert('Successfully updated Education details.'); window.location.href = '../Education.php';</script>";
     } else {
-      echo "Please check your query";
+      echo "<script>alert('Please check your query');</script>";
     }
   }
 ?>

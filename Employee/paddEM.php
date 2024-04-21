@@ -5,6 +5,14 @@ include "../DBConnection.php";
 function insertRecord(){
   global $conn;
 
+  // Check if em_income is set, otherwise set it to an empty string
+ // Check if em_income is set and is a valid numeric value
+ $em_income = isset($_POST['em_income']) ? $_POST['em_income'] : '';
+ if (!is_numeric($em_income)) {
+   echo "Invalid em_income value.";
+   return;
+ }
+
   $first_name = $_POST['first_name'];
   $last_name = $_POST['last_name'];
   $em_gender = $_POST['em_gender'];
@@ -28,7 +36,7 @@ function insertRecord(){
 
   $targetDirectory = "../uploads/";
   $em_profile_pic = '';
-  
+
   if(isset($_FILES['em_profile_pic'])){
     $fileName = $_FILES['em_profile_pic']['name'];
     $fileExt = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -37,15 +45,17 @@ function insertRecord(){
     $newFileName = $fileNameWithoutExt . '_' . $uniqueID . '.' . $fileExt;
     $targetFilePath = $targetDirectory . $newFileName;
 
+    // Define allowed file types
     $allowedTypes = array('jpg', 'png', 'jpeg', 'gif');
-    if (in_array($fileExt, $allowedTypes)){
+
+    if (in_array(strtolower($fileExt), $allowedTypes)){
       if (move_uploaded_file($_FILES['em_profile_pic']['tmp_name'], $targetFilePath)){
         $em_profile_pic = $targetFilePath;
       } else {
         echo "Error uploading file.";
         return;
       }
-    }else{
+    } else {
       echo "File type not allowed.";
       return;
     }
@@ -54,21 +64,21 @@ function insertRecord(){
     return;
   }
 
-  $query = "INSERT INTO employee (first_name, last_name, em_gender, ms_id, r_id, bt_id, em_birthday, em_phone, em_email, address_id, edu_id, dep_id, des_id, es_id, user_id, em_joining_date, em_contract_end, em_password, em_profile_pic) 
-    VALUES ('$first_name', '$last_name', '$em_gender', '$ms_id', '$r_id', '$bt_id', '$em_birthday', '$em_phone', '$em_email', '$address_id', '$edu_id', '$dep_id',  '$des_id', '$es_id', '$user_id', '$em_joining_date', '$em_contract_end', '$em_password', '$em_profile_pic')";
+  $query = "INSERT INTO employee (first_name, last_name, em_gender, ms_id, r_id, bt_id, em_birthday, em_phone, em_email, address_id, edu_id, dep_id,  des_id, es_id, user_id, em_joining_date, em_contract_end, em_password, em_income, em_profile_pic) 
+    VALUES ('$first_name', '$last_name', '$em_gender', '$ms_id', '$r_id', '$bt_id', '$em_birthday', '$em_phone', '$em_email', '$address_id', '$edu_id', '$dep_id', '$des_id', '$es_id', '$user_id', '$em_joining_date', '$em_contract_end', '$em_password', '$em_income', '$em_profile_pic')";
 
-    if(mysqli_query($conn, $query)){
-      // Get the last inserted employee ID
-      $em_id = mysqli_insert_id($conn);
-      
-      foreach($leave_type_ids as $index => $leave_type_id) {
-        $lt_id = $leave_type_id;
-        $credits = $leave_credits[$index];
-        $insertCreditsQuery = "INSERT INTO employee_leave_credits (em_id, lt_id, available_credits) VALUES ('$em_id', '$lt_id', '$credits')";
-        mysqli_query($conn, $insertCreditsQuery);
-      }
-      
-      echo "success";
+  if(mysqli_query($conn, $query)){
+    // Get the last inserted employee ID
+    $em_id = mysqli_insert_id($conn);
+
+    foreach($leave_type_ids as $index => $leave_type_id) {
+      $lt_id = $leave_type_id;
+      $credits = $leave_credits[$index];
+      $insertCreditsQuery = "INSERT INTO employee_leave_credits (em_id, lt_id, available_credits) VALUES ('$em_id', '$lt_id', '$credits')";
+      mysqli_query($conn, $insertCreditsQuery);
+    }
+
+    echo "success";
   } else {
     echo "Please check your query: " . mysqli_error($conn);
   }

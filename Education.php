@@ -92,9 +92,10 @@ include_once('./main.php');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#edu_id').value = edu_id;
-    modalBody.querySelector('#education').value = education;
+    modalBody.querySelector('#update_education').value = education; // Corrected ID here
   })
 </script>
+
 
 <!--Education Process Add and Update JS-->
 <script src="Education/EducationJS.js"></script>

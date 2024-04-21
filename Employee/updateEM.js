@@ -20,6 +20,7 @@ $(document).ready(function () {
     formData.append('employee_status', $('#employee_status').val());
     formData.append('em_joining_date', $('#em_joining_date').val());
     formData.append('em_contract_end', $('#em_contract_end').val());
+    formData.append('em_income', $('#em_income').val());
     
     // Check if password field is empty, if not append it
     if ($('#em_password').val() !== "") {
@@ -45,7 +46,8 @@ $(document).ready(function () {
       formData.append('leave_credits[]', leaveCredit);
     });
 
-    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "" || formData.get('employee_status') == "") {
+    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "" || formData.get('employee_status') == "" || formData.get('em_income') == "") {
+
       $('#message').html('Please fill in all required fields');
       // console.log(formData);
       // console.log("Employee Profile Picture:", formData.get('em_profile_pic'));
