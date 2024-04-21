@@ -13,14 +13,17 @@ if (isset($_SESSION['s_em_email'])) {
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
   <!-- <link rel="stylesheet" href="css/main.css"> -->
 
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   <script src="script.js"></script>
   <script src="imoJS.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="dashboard2.css" />
   <link rel="stylesheet" text="text/css" href="" />
@@ -285,7 +288,7 @@ if (isset($_SESSION['s_em_email'])) {
                               if ($r_lt_status == 'Pending') {
                                 $em_id = $_SESSION['s_em_id'];
                                 echo "<td class='text-center'>
-                              <div class='col-auto d-flex justify-content-center m-2'>
+                              <div class='col-auto d-flex justify-content-center'>
                                 <div class='dropdown'>
                                   <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
                                     Actions
@@ -312,8 +315,9 @@ if (isset($_SESSION['s_em_email'])) {
                                           <input type='hidden' name='lt_status' value='Cancelled'>
                                           <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
                                         </form></li>
-                                    <li><a class='dropdown-item btn btn-primary btn-sm' href='#' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</a></li>
+          
                                   </ul>
+                                  <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
                                 </div>
                               </div>
                             </td>";
