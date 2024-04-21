@@ -22,24 +22,26 @@
             <div class="dash_content_main m-4 pt-2">
               <table id="example" class="table">
                 <colgroup>
-                  <col width="10%">
+                  <col width="5%">
                   <col width="10%">
                   <col width="15%">
-                  <col width="40%">
+                  <col width="35%">
+                  <col width="10%">
                   <col width="25%">
                 </colgroup>
                 <thead class="" style="background-color: rgb(255, 206, 46)">
                   <tr>
-                    <th class="text-center p-2">Employee ID</th>
-                    <th class="text-center p-2">Profile</th>
-                    <th class="text-center p-2">Name</th>
-                    <th class="text-center p-2">Details</th>
-                    <th class="text-center p-2">Actions</th>
+                    <th class="text-center p-2 text-uppercase">ID</th>
+                    <th class="text-center p-2 text-uppercase">Profile</th>
+                    <th class="text-center p-2 text-uppercase">Name</th>
+                    <th class="text-center p-2 text-uppercase">Details</th>
+                    <th class="text-center p-2 text-uppercase">Status</th>
+                    <th class="text-center p-2 text-uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody style='font-size: 15px;'>
                   <?php
-                  $query = "SELECT DISTINCT e.em_id, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
+                  $query = "SELECT DISTINCT e.em_id, e.employee_status, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
                             FROM `employee` e 
                             INNER JOIN `department` d ON e.dep_id = d.dep_id 
                             INNER JOIN `designation` de ON de.des_id = e.des_id 
@@ -56,12 +58,12 @@
                       echo "<tr>";
                       echo "<td class='text-center p-3'>" . $row['em_id'] . "</td>";
                       echo "<td class='text-center p-3'><img src='../PINEHR/" . substr($row['em_profile_pic'], 3) . "' style='width:100%; height: 80px'></td>";
-                    
-                      echo "<td class='text-left p-3 text-capitalize'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
+                      echo "<td class='text-left p-3'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
                       echo "<td class='text-left p-3' style='font-size: 15px;'>
                               <strong>Department</strong>: " . $row['dep_name'] . " <br>
                               <strong>Designation</strong>: " . $row['des_name'] . "
                             </td>";
+                      echo "<td class='text-center p-3'>" . $row['employee_status'] . "</td>";
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
                                 <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>

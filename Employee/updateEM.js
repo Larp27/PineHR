@@ -17,6 +17,7 @@ $(document).ready(function () {
     formData.append('des_id', $('#des_id').val());
     formData.append('es_id', $('#es_id').val());
     formData.append('user_id', $('#user_id').val());
+    formData.append('employee_status', $('#employee_status').val());
     formData.append('em_joining_date', $('#em_joining_date').val());
     formData.append('em_contract_end', $('#em_contract_end').val());
     
@@ -44,10 +45,10 @@ $(document).ready(function () {
       formData.append('leave_credits[]', leaveCredit);
     });
 
-    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "") {
+    if (formData.get('first_name') == "" || formData.get('last_name') == "" || formData.get('dep_id') == "" || formData.get('des_id') == "" || formData.get('user_id') == "" || formData.get('em_gender') == "" || formData.get('bt_id') == "" || formData.get('em_phone') == "" || formData.get('em_birthday') == "" || formData.get('em_joining_date') == "" || formData.get('em_contract_end') == "" || formData.get('address_id') == "" || formData.get('employee_status') == "") {
       $('#message').html('Please fill in all required fields');
-      console.log(formData);
-      console.log("Employee Profile Picture:", formData.get('em_profile_pic'));
+      // console.log(formData);
+      // console.log("Employee Profile Picture:", formData.get('em_profile_pic'));
     } else {
       $.ajax({
         url: "Employee/updateEM.php",
