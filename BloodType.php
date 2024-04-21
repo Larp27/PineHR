@@ -14,7 +14,7 @@ include_once('./main.php');
             $query = "select * from user_type";
             $result = mysqli_query($conn, $query);
           } {
-            echo '<a href="BloodType_add.php" class="text-decoration-none"><button type="button" class="btn btn-success">Add New Blood Type +</button></a>';
+            echo '<a href="BloodType_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Blood Type +</button></a>';
           }
           ?>
         </div>

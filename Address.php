@@ -4,84 +4,66 @@
     $page = 'Address';
     include_once('./main.php');
       ?>
-<!--cont logout session-->
 
-<form>
-<div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;" >
-        <strong>
-        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Address</span></strong>
-       </strong>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 p-5" style="height: 100vh;">
+      <div class="shadow-lg p-3">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="fs-5 fw-bold text-uppercase">Address</p>
+          <a href="Address_add.php" class="text-decoration-none"><button type="button" class="btn btn-primary">Add New Address +</button></a>
+        </div>
+        <div class="dash_content mt-3">
+          <div class="dash_content_main">
+            <div class="table-responsive">
+              <table class="table" id="example">
+                <colgroup>
+                  <col width="10%">
+                  <col width="55%">
+                  <col width="35%">
+                </colgroup>
+                <thead class="" style="background-color: rgb(255, 206, 46)">
+                  <tr>
+                    <th class="text-center p-2">#</th>
+                    <th class="text-center p-2">Blood Type</th>
+                    <th class="text-center p-2">Actions</th>
+                  </tr>
+                </thead>
+                <?php
+                $i = 1;
+                $query = "SELECT * from blood_group";
 
-      </div><br>
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
 
-      <div class="col-md-7" style="width: 100%">
-    <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
-      <div class="panel-heading">
-      &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-lg" style="color: #2468a0;"></i>&nbsp;&nbsp;Address</span></strong>
-      
-      <?php if($_SESSION['s_user_id'] == 1 ){
-     $query = "select * from user_type";
-     
-     $result = mysqli_query($conn, $query);
-    }
-      { echo '<a href="Address_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Address +</button> </a>';}
-    ?>
+                  $r_bt_id = $row['bt_id'];
+                  $r_bt_name = $row['bt_name'];
 
+                  echo "<tr> 
+                    <td class='text-center p-3'>" . $i++ . "</td> <!-- Increment the counter and print its value -->
+                    <td class='text-center p-3'> $r_bt_name </td>";
+                ?>
+                  <td class='text-center p-3'>
+                    <div class="col-auto d-flex justify-content-center m-2">
+                      <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-bt-id="<?php echo $row['bt_id']; ?>" data-bt_name="<?php echo $row['bt_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
 
+                      <a href="BloodType/deleteBT.php?bt_id=<?php echo $row['bt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Blood Type Data?')"><i class="fas fa-trash"></i> Delete </a>
+                    </div>
+                  </td>
+                  </tr>
+                <?php
+                }
+                ?>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
 
-<div class ="dash_content">
-<div class ="dash_content_main">
-  
-<table class="table" id="example">
-<colgroup>
-    <col width="35%">
-    <col width="35%">
- 
-  </colgroup>
-  <thead class="" style ="background-color: rgb(255, 206, 46)">
-    <tr>
-      <th class="text-center p-2">Barangay</th>
-      <th class="text-center p-2">City</th>
-      <th class="text-center p-2">Actions</th>
-    </tr>
-    </thead>
- 
-        <?php
-       $query = "SELECT * from `address`";
-
-       $result = mysqli_query($conn, $query);
-       while($row = mysqli_fetch_assoc($result)){
-
-            $r_address_id = $row['address_id'];
-            $r_barangay = $row['barangay'];
-            $r_city = $row['city'];
-
-            echo "<tr> 
-                    <td class='text-center p-3'> $r_barangay </td>
-                    <td class='text-center p-3'> $r_city </td>";
-                    ?>
-                    <!-- EDIT AND DELETE -->
-                    <td class='text-center p-3'>
-                      <div class="col-auto d-flex justify-content-center m-2">
-                        <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn"  data-bs-toggle="modal" data-bs-target="#updateUserModal" data-address-id="<?php echo $row['address_id']; ?>"data-barangay="<?php echo $row['barangay']; ?>"data-city="<?php echo $row['city']; ?>"><i class="fas fa-edit"></i> Edit</button>
-
-                        <a href="Address/deleteADDRESS.php?address_id=<?php echo $row['address_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Address Data?')"><i class="fas fa-trash"></i> Delete </a>
-                      </div>
-                    </td>
-                    
-                  
-                    
-            </tr>
-        <?php
-       }
-        ?>
-
-<!-- Modal sa Update Button -->
- <div>
- <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,9 +90,6 @@
   </div>
 </div>
 
- </div>       
-
-
 <script>
   var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function (event) {
@@ -126,10 +105,7 @@
   })
 </script>
 
-   <!--Education Process Add and Update JS-->
-   <script src="Address/AddressJS.js"></script>
-    <script src="Address/updateAddress.js"></script>
-    <link rel="stylesheet" href="css/employee.css">
-
-
-  
+  <!--Education Process Add and Update JS-->
+<script src="Address/AddressJS.js"></script>
+<script src="Address/updateAddress.js"></script>
+<link rel="stylesheet" href="css/employee.css">
