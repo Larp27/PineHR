@@ -13,10 +13,10 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 p-5">
-      <div class="shadow-lg p-3" style="height:100%;">
+    <div class="col-md-12 p-5 shadow-lg ">
+      <div style="height:100vh;">
         <div class="d-flex justify-content-between align-items-center">
-          <p class="fw-bold fs-5 text-uppercase">Employment Status</p>
+          <p class="fw-bold fs-5 text-uppercase">Department</p>
           <?php if ($_SESSION['s_user_id'] == 1) {
               $query = "select * from user_type";
               $result = mysqli_query($conn, $query);

@@ -7,23 +7,18 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-<form>
-  <div class="col-md-12">
-    <div class="panel panel-default">
-      <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
-        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-clipboard-user fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee</strong></span>
-      </div><br>
-
-      <div class="col-md-7" style="width: 99%">
-        <div class="panel panel-default" style="margin-left: 20px; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0;">
-          <div class="panel-heading">
-            &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-lg" style="color: #2468a0;"></i>&nbsp;&nbsp;Employee List</strong></span>
-            <?php if ($_SESSION['s_user_id'] == 1) {
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12 p-5 shadow-lg ">
+      <div style="height:100vh;">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="fw-bold fs-5 text-uppercase">Employment List</p>
+          <?php 
+            if ($_SESSION['s_user_id'] == 1) {
               echo '<a href="em_add.php"><button type="button" class="btn btn-primary" style="float: right; background-color: #2468a0; border-color:#2468a0;"><i class="fa fa-plus" style="padding-right: 5px;" aria-hidden="true"></i> Add New Employee</button></a>';
             } ?>
           </div>
-
-          <div class="dash_content m-3">
+          <div class="dash_content mt-3">
             <div class="dash_content_main m-4 pt-2">
               <table id="example" class="table">
                 <colgroup>
@@ -67,7 +62,6 @@
                               <strong>Department</strong>:" . $row['dep_name'] . " <br>
                               <strong>Designation</strong>:" . $row['des_name'] . "
                             </td>";
-          
                       echo "<td class='text-center p-3'>
                               <div class='col-auto d-flex justify-content-center m-2'>
                                 <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
@@ -93,4 +87,4 @@
       </div>
     </div>
   </div>
-</form>
+</div>
