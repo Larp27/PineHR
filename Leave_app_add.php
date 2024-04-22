@@ -221,14 +221,22 @@ if (isset($_SESSION['s_em_email'])) {
                         <textarea name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
                       </div>
 
+                                           
                       <div class="mb-3">
-                        <label for="st_day" class="form-label fw-bold">Starting Day</label>
-                        <input type="date" class="form-control" name="st_day" required>
+                          <label for="st_day" class="form-label fw-bold">Starting Day</label>
+                          <input type="date" class="form-control" id="st_day" name="st_day" required>
                       </div>
+
                       <div class="mb-3">
-                        <label for="end_day" class="form-label fw-bold">Ending Day</label>
-                        <input type="date" class="form-control" name="end_day" required>
+                          <label for="end_day" class="form-label fw-bold">Ending Day</label>
+                          <input type="date" class="form-control" id="end_day" name="end_day" required>
                       </div>
+
+                      <script>
+                          document.getElementById('st_day').addEventListener('change', function() {
+                              document.getElementById('end_day').min = this.value;
+                          });
+                      </script>
                      
 
 
