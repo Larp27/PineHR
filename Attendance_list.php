@@ -12,6 +12,11 @@ include_once('./main.php');
   .top-right-buttons .btn {
     margin-left: 10px;
   }
+
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
 </style>
 
 <script src="./script.js"></script>

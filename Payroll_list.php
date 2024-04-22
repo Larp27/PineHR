@@ -5,7 +5,12 @@ include_once('./main.php');
 ?>
 <script src="./script.js"></script>
 <link rel="stylesheet" href="css/employee.css">
-
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 
 <body>
   <div class="container-fluid">
