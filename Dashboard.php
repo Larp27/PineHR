@@ -10,46 +10,48 @@ if (!isset($_SESSION['show_welcome_modal'])) {
 <?php
 
 if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
-    $currentDateTime = date('Y-m-d H:i:s');
-    $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
-    $schedules = $conn->query($query);
-    if ($schedules && $schedules->num_rows > 0) {
+  $currentDateTime = date('Y-m-d H:i:s');
+  $query = "SELECT * FROM `schedule_list` WHERE `start_datetime` > '$currentDateTime'";
+  $schedules = $conn->query($query);
+  if ($schedules && $schedules->num_rows > 0) {
 ?>
-        <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Add your welcome message or any other content here -->
-                        <p>Announcement Upcoming Event!</p>
-                        <p>Schedule Details</p>
-                        <ul>
-                            <?php
-                            while ($row = $schedules->fetch_assoc()) {
-                                $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
-                                $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
-                                echo "<li>Event: " . $row['title'] . "</li>";
-                                echo "Start Date: " . $start_date . "<br>End Date: " . $end_date;
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        <script>
-            $(document).ready(function() {
-                $('#welcomeModal').modal('show');
-                <?php
-                // Reset the session variable to false to prevent the modal from appearing again
-                $_SESSION['show_welcome_modal'] = false;
-                ?>
-            });
-        </script>
+
+  <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Add your welcome message or any other content here -->
+          <p>Announcement Upcoming Event!</p>
+          <p>Schedule Details</p>
+          <ul>
+            <?php
+            while ($row = $schedules->fetch_assoc()) {
+              $start_date = date("F d, Y h:i A", strtotime($row['start_datetime']));
+              $end_date = date("F d, Y h:i A", strtotime($row['end_datetime']));
+              echo "<li>Event: " . $row['title'] . "</li>";
+              echo "Start Date: " . $start_date . "<br>End Date: " . $end_date;
+            }
+            ?>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  $(document).ready(function() {
+    $('#welcomeModal').modal('show');
+    <?php
+    // Reset the session variable to false to prevent the modal from appearing again
+    $_SESSION['show_welcome_modal'] = false;
+    ?>
+  });
+</script>
 <?php
-    }
+  }
 }
 ?>
 
