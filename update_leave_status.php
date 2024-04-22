@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $deduct_query = "UPDATE employee_leave_credits SET available_credits = available_credits - 1 WHERE em_id = '$approved_by' AND lt_id = '$lt_id'";
       if (mysqli_query($conn, $deduct_query)) {
         echo "Leave application accepted successfully.";
+      // ngare 
+
+
         header("Location: Leave_app_list.php");
         exit;
       } else {
@@ -53,7 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = "UPDATE leave_application SET la_status = 'Declined' WHERE la_id = '$la_id'";
 
     if (mysqli_query($conn, $query)) {
+      
       echo "Leave application declined successfully.";
+      // ngare 
+
       header("Location: Leave_app_list.php");
       exit;
     } else {

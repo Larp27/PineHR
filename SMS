@@ -1,0 +1,186 @@
+<?php
+use Infobip\Configuration;
+use Infobip\Api\SmsApi;
+use Infobip\Model\SmsDestination;
+use Infobip\Model\SmsTextualMessage;
+use Infobip\Model\SmsAdvancedTextualRequest;
+use Twilio\Rest\Client;
+
+require __DIR__ . "/vendor/autoload.php";
+
+function sendInfobipSMS($number, $message) {
+    $base_url = "https://9lxgdd.api.infobip.com";
+    $api_key = "79e987825a231d71ba43c87d0c18832d-2ae83074-b9f3-4dbd-ba5b-cabc608f27df";
+
+    $configuration = new Configuration(host: $base_url, apiKey: $api_key);
+    $api = new SmsApi(config: $configuration);
+
+    $destination = new SmsDestination(to: $number);
+
+    $message = new SmsTextualMessage(
+        destinations: [$destination],
+        text: $message,
+        from: " asdasd"
+    );
+
+    $request = new SmsAdvancedTextualRequest(messages: [$message]);
+
+    return $api->sendSmsMessage($request);
+}
+
+include('includes/connect.php');
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $message = $_POST["message"];
+    $selectedContacts = $_POST["contacts"];
+
+    foreach ($selectedContacts as $contactId) {
+        $sql = "SELECT contact FROM user_data WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $contactId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (!$result) {
+            die("Query failed: " . $conn->error);
+        }
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $phoneNumber = $row["contact"];
+
+            // Send SMS using Infobip
+            $response = sendInfobipSMS($phoneNumber, $message);
+
+            // Check for errors in the Infobip response
+            if ($response->getMessages()[0]->getStatus()->getGroupName() === "REJECTED") {
+                echo "SMS sending failed to {$row["contact"]}: {$response->getMessages()[0]->getStatus()->getDescription()}<br>";
+            } else {
+
+                echo "<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'SMS sent successfully.',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'sms.php'; 
+            });
+        });
+      </script>";
+
+            }
+        } else {
+            echo "Contact with ID $contactId not found in the database<br>";
+        }
+
+        // Close the prepared statement
+        $stmt->close();
+    }
+}
+
+
+// Close the database connection
+?>
+
+<?php 
+ 	include('includes/header.php');
+
+ ?>
+ <div class="container-fluid px-4">
+                        
+                         
+<script>
+       function validateForm() {
+    var checkboxes = document.getElementsByName('contacts[]');
+    var selectedContacts = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+    if (!selectedContacts) {
+        alert("Please select at least one contact before submitting.");
+        return false;
+    }
+
+    // Continue with form submission
+    return true;
+}
+    </script>
+    
+    <div class="container-fluid px-4">
+<h1 class="mt-4">Send SMS</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
+                            <li class="breadcrumb-item active">SMS</li>
+
+
+                        </ol>    
+                        <br>
+
+    <style>
+    
+
+    form {
+        /* Additional styling for the form */
+        max-width: 600px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    /* Additional styles for form elements if needed */
+</style>
+
+<div class="form-container">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" onsubmit="return validateForm();">
+    <h1 class="SMS">Send SMS </h1>
+
+    <label for="message">Message:</label>
+    <textarea name="message" id="message" rows="4" cols="50" required></textarea>
+    <br>
+
+    <label for="selectAll">Select All Contacts:</label>
+    <input type="checkbox" id="selectAll" onclick="selectAllContacts()">
+    <br>
+
+    <label for="contacts">Contacts:</label>
+    <?php
+    $sql = "SELECT id, contact FROM user_data";
+    $result = $conn->query($sql);
+
+    if (!$result) {
+        die("Query failed: " . $conn->error);
+    }
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<input type=\"checkbox\" name=\"contacts[]\" value=\"{$row["id"]}\" id=\"contact{$row["id"]}\">";
+      
+        echo "<label for=\"contact{$row["id"]}\">{$row["contact"]}</label><br>";
+    }
+    ?>
+    
+    <br>
+
+<input type="submit" value="Send SMS">
+</form>
+</div>
+
+<script>
+    function selectAllContacts() {
+        var checkboxes = document.getElementsByName('contacts[]');
+        var selectAllCheckbox = document.getElementById('selectAll');
+
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = selectAllCheckbox.checked;
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php
+include('includes/footer.php');
+include('includes/scripts.php');
+?>
+ 
