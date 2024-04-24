@@ -6,7 +6,7 @@ $fromdate = $_POST['fromdate'];
 $todate = $_POST['todate'];
 $start_date  = $fromdate;
 $end_date    = $todate;
-$selected_employees = implode(",", $_POST['employee']); // Convert array of selected employee IDs to comma-separated string
+$selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee']) : ''; // Convert array of selected employee IDs to comma-separated string, or empty if none selected
 ?>
 <html lang="en">
 
@@ -32,8 +32,6 @@ $selected_employees = implode(",", $_POST['employee']); // Convert array of sele
 
 <body>
 
-
-
   <div class="container-sm mt-3">
     <table class="table">
       <thead class="text-center">
@@ -43,7 +41,6 @@ $selected_employees = implode(",", $_POST['employee']); // Convert array of sele
         </tr>
         <tr>
           <td colspan="6">Date from <?php echo $start_date; ?> To <?php echo $end_date; ?></td>
-
         </tr>
       </thead>
       <tbody>
@@ -58,14 +55,14 @@ $selected_employees = implode(",", $_POST['employee']); // Convert array of sele
         </tr>
 
         <?php
-
+        // Modify the query to include condition based on selected employees or retrieve all if no employees are selected
         $query = "SELECT p.*, e.last_name, e.first_name FROM payroll p
         INNER JOIN employee e ON p.em_id = e.em_id";
-         if (!empty($selected_employees)) {
-          $query .= " AND e.em_id IN ($selected_employees)";
+        if (!empty($selected_employees)) {
+          $query .= " WHERE e.em_id IN ($selected_employees)";
         }
         $result = mysqli_query($conn, $query);
-        // Fetch and display attendance records
+        // Fetch and display payroll records
         while ($row = mysqli_fetch_assoc($result)) {
           echo "<tr>";
           echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>";
@@ -75,11 +72,8 @@ $selected_employees = implode(",", $_POST['employee']); // Convert array of sele
           echo "<td>" . $row['payroll_deduction'] . "</td>";
           echo "<td>" . $row['payroll_twd'] . "</td>";
           echo "<td>" . $row['payroll_total'] . "</td>";
+          echo "</tr>";
         }
-        echo "<tr>";
-        echo "</tr>";
-
-
         ?>
 
       </tbody>

@@ -5,7 +5,7 @@ $fromdate = $_POST['fromdate'];
 $todate = $_POST['todate'];
 $start_date  = $fromdate;
 $end_date    = $todate;
-$selected_employees = implode(",", $_POST['employee']); // Convert array of selected employee IDs to comma-separated string
+$selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee']) : ''; // Convert array of selected employee IDs to comma-separated string, or empty if none selected
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -156,6 +156,7 @@ if (isset($_SESSION['s_em_email'])) {
                 <ul class="rep-show">
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style="font-family: 'Glacial Indifference';">Attendance Reports</a></i></li>
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style="font-family: 'Glacial Indifference';">Payroll Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style="font-family: 'Glacial Indifference';">Leave Reports</a></i></li>
                 </ul>
               </li>
 
