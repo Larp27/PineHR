@@ -33,7 +33,8 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
         <tr>
           <th>Employee</th>
           <th>Leave Type</th>
-          <th>Date Start - End</th>
+          <th>Leave Start Date</th>
+          <th>Leave End Date</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -53,7 +54,8 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
           echo "<tr>";
           echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>"; // Display last name and first name
           echo "<td>[" . $row['lt_code'] . "] " . $row['lt_name'] . "</td>"; // lt_code inside square brackets
-          echo "<td>" . $row['la_date_start']. " " . $row['la_date_end'] ."</td>";
+          echo "<td>" . $row['la_date_start'] . "</td>";
+          echo "<td>" . $row['la_date_end'] . "</td>";
           echo "<td>" . $row['la_status'] . "</td>";
           echo "</tr>";
         }
