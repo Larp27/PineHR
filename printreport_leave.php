@@ -1,7 +1,10 @@
 <?php
 session_start();
 include "DBConnection.php";
-
+$fromdate = $_POST['fromdate'];
+$todate = $_POST['todate'];
+$start_date  = $fromdate;
+$end_date    = $todate;
 $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee']) : ''; // Convert array of selected employee IDs to comma-separated string, or empty if none selected
 ?>
 <!DOCTYPE html>
@@ -30,7 +33,7 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
         <tr>
           <th>Employee</th>
           <th>Leave Type</th>
-          <th>Date</th>
+          <th>Date Start - End</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -50,7 +53,7 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
           echo "<tr>";
           echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>"; // Display last name and first name
           echo "<td>[" . $row['lt_code'] . "] " . $row['lt_name'] . "</td>"; // lt_code inside square brackets
-          echo "<td>" . $row['la_date_start'] . "</td>";
+          echo "<td>" . $row['la_date_start']. " " . $row['la_date_end'] ."</td>";
           echo "<td>" . $row['la_status'] . "</td>";
           echo "</tr>";
         }

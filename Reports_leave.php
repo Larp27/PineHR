@@ -10,8 +10,21 @@ include_once('DBConnection.php');
 $query = "SELECT em_id, first_name, last_name FROM employee";
 $result = mysqli_query($conn, $query);
 
-// Check if query was successful
-if (!$result) {
+// Fetch leave types for dropdown
+$leave_types_query = "SELECT lt_id, lt_name FROM leave_type";
+$leave_types_result = mysqli_query($conn, $leave_types_query);
+
+// Get filter values
+$filter_lt_id = isset($_POST['leaveType']) ? $_POST['leaveType'] : '';
+
+// Retrieve leave type parameter from URL
+$url_lt_id = isset($_GET['leaveType']) ? $_GET['leaveType'] : '';
+
+// Set filter leave type based on URL parameter or form submission and only override if URL leave type is present
+$filter_lt_id = !empty($url_lt_id) ? $url_lt_id : $filter_lt_id;
+
+// Check if queries were successful
+if (!$result || !$leave_types_result) {
   die("Database query failed."); // You can handle this error better in your actual application
 }
 ?>
@@ -30,14 +43,14 @@ if (!$result) {
             <div class="col-md-12 p-5 shadow-lg ">
               <div style="height:100vh;">
                 <div class="d-flex justify-content-between align-items-center">
-                  <p class="fw-bold fs-5 text-uppercase">LEAVE APPLICATION Report Filter by:</p>
+                  <p class="fw-bold fs-5 text-uppercase">Report by filter:</p>
                   <div class="top-right-buttons">
 
 
                     <form action="printreport_leave.php" method="post">
                       <div class="d-flex">
-                        <div class="col-md-4 me-5">
-                        <label for="employee_select"><strong>Select Employee:</strong></label>
+                        <div class="col-md-3 me-3">
+                          <label for="employee_select"><strong>Select Employee:</strong></label>
                           <select id="employee_select" class="form-control" name="employee[]" onchange="updateLeaveStatus(this.value)">
                             <option value="" disabled selected>Select an Employee here</option>
                             <?php
@@ -53,24 +66,65 @@ if (!$result) {
                             ?>
                           </select>
                         </div>
-                        
-                        <div class="col-md-3 me-5">
-                          <label for="status_select"><strong>Select Leave Status:</strong></label>
-                          <select id="status_select" class="form-control" name="leavestatus[]" required>
-                            <option value="" disabled selected>Select Status here</option>
+                            
+                        <div class="col-md-2 me-3">
+                          <label for="leaveType" class="form-label text-capitalize fw-bold">Leave Type:</label>
+                          <select name="leaveType" id="leaveType" class="form-select">
+                            <option value="">All</option>
+                            <?php
+                            // Iterate over the result to create options
+                            while ($row = mysqli_fetch_assoc($leave_types_result)) {
+                            ?>
+                              <option value="<?php echo $row['lt_id']; ?>" <?php if ($row['lt_id'] == $filter_lt_id) echo 'selected'; ?>><?php echo $row['lt_name']; ?></option>
+                            <?php } ?>
                           </select>
                         </div>
 
+                        <?php
+                        // Fetch enum values for status dropdown
+                        $status_query = "SHOW COLUMNS FROM `leave_application` LIKE 'la_status'";
+                        $status_result = mysqli_query($conn, $status_query);
+                        $row = mysqli_fetch_assoc($status_result);
+                        $enum_values = explode("','", substr($row['Type'], 6, -2));
 
+                        // Get filter values
+                        $filter_status = isset($_POST['status']) ? $_POST['status'] : '';
 
-                        <div class="col-md-3 me-5">
-                          <label for="date_input"><strong>Select date:</strong></label>
-                          <input type="date" id="date_input" class="form-control" name="date" required>
+                        // Retrieve status parameter from URL
+                        $url_status = isset($_GET['status']) ? $_GET['status'] : '';
+
+                        // Set filter status based on URL parameter or form submission and only override if URL status is present
+                        $filter_status = !empty($url_status) ? $url_status : $filter_status;
+                        ?>
+
+                        <div class="col-md-2 me-4">
+                          <label for="status" class="form-label text-capitalize fw-bold">Status:</label>
+                          <select name="status" id="status" class="form-select">
+                            <option value="">All</option>
+                            <?php foreach ($enum_values as $value) {
+                              // Skip 'Pending' status
+                              if ($value == 'Pending') continue;
+                            ?>
+                              <option value="<?php echo $value; ?>" <?php if ($value == $filter_status) echo 'selected'; ?>><?php echo ucfirst($value); ?></option>
+                            <?php } ?>
+
+                          </select>
                         </div>
 
-                       
+                        <script>
+                          function submitFormWithSelectedDate() {
+                            document.getElementById("filterForm").submit();
+                          }
+                        </script>
 
-
+                        <div class="col-md-2  me-3">
+                          <label for="fromdate_input"><strong>Select start date:</strong></label>
+                          <input type="date" id="fromdate_input" class="form-control" name="fromdate" required>
+                        </div>
+                        <div class="col-md-2  me-3">
+                          <label for="todate_input"><strong>Select end date:</strong></label>
+                          <input type="date" id="todate_input" class="form-control" name="todate" required>
+                        </div>
 
 
                       </div>
