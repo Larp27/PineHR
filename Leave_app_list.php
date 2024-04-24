@@ -12,8 +12,7 @@ if (isset($_SESSION['s_em_email'])) {
     <title>Leave Type List| PINE HR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <!-- <link rel="stylesheet" href="css/main.css"> -->
-
+    <link rel="stylesheet" href="css/main.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -214,7 +213,93 @@ if (isset($_SESSION['s_em_email'])) {
                   }
                   ?>
                 </div>
+
                 <div class="dash_content mt-3">
+                <?php
+                  // Fetch leave types for dropdown
+                  $em_id = $_SESSION['s_em_id'];
+                  $leave_types_query = "SELECT lt.lt_id, lt.lt_name, ec.available_credits FROM leave_type lt INNER JOIN employee_leave_credits ec ON lt.lt_id = ec.lt_id
+                  WHERE ec.em_id = $em_id";
+                  $leave_types_result = mysqli_query($conn, $leave_types_query);
+
+                  // Fetch enum values for status dropdown
+                  $status_query = "SHOW COLUMNS FROM `leave_application` LIKE 'la_status'";
+                  $status_result = mysqli_query($conn, $status_query);
+                  $row = mysqli_fetch_assoc($status_result);
+                  $enum_values = explode("','", substr($row['Type'], 6, -2));
+                ?>
+                <div class="row my-3">
+                  <div class="col-6"></div>
+                  <div class="col-6">
+                    <?php
+                      // Fetch leave types for dropdown
+                      
+                      $leave_types_query = "SELECT * FROM leave_type";
+                      $leave_types_result = mysqli_query($conn, $leave_types_query);
+
+                      // Fetch enum values for status dropdown
+                      $status_query = "SHOW COLUMNS FROM `leave_application` LIKE 'la_status'";
+                      $status_result = mysqli_query($conn, $status_query);
+                      $row = mysqli_fetch_assoc($status_result);
+                      $enum_values = explode("','", substr($row['Type'], 6, -2));
+
+                      // Get filter values
+                      $filter_lt_id = isset($_POST['leaveType']) ? $_POST['leaveType'] : '';
+                      $filter_status = isset($_POST['status']) ? $_POST['status'] : '';
+
+                      // Retrieve status parameter from URL
+                      $url_status = isset($_GET['status']) ? $_GET['status'] : '';
+
+                      // Set filter status based on URL parameter or form submission and only override if URL status is present
+                      $filter_status = !empty($url_status) ? $url_status : $filter_status;
+                    ?>
+                    <form method="post" id="filterForm">
+                      <div class="row align-items-end">
+                        <div class="col-8">
+                          <div class="row">
+                            <div class="col-6">
+                              <label for="leaveType" class="form-label text-capitalize fw-bold">Leave Type:</label>
+                              <select name="leaveType" id="leaveType" class="form-select">
+                                <option value="">All</option>
+                                <?php while ($row = mysqli_fetch_assoc($leave_types_result)) { ?>
+                                  <option value="<?php echo $row['lt_id']; ?>" <?php if ($row['lt_id'] == $filter_lt_id) echo 'selected'; ?>><?php echo $row['lt_name']; ?></option>
+                                <?php } ?>
+                              </select>
+                            </div>
+                            <div class="col-6">
+                              <label for="status" class="form-label text-capitalize fw-bold">Status:</label>
+                              <select name="status" id="status" class="form-select">
+                                <option value="">All</option>
+                                <?php foreach ($enum_values as $value) { ?>
+                                  <option value="<?php echo $value; ?>" <?php if ($value == $filter_status) echo 'selected'; ?>><?php echo $value; ?></option>
+                                <?php } ?>
+                              </select>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-4 text-end">
+                            <button type="button" class="btn btn-primary fw-bold" onclick="submitFormWithSelectedStatus()">Apply Filter</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                    <script>
+                      // JavaScript function of the Filter Status to update status parameter and submit the form
+                      function submitFormWithSelectedStatus() {
+                        var form = document.getElementById('filterForm');
+                        var url = new URL(window.location.href);
+                        var selectedStatus = document.getElementById('status').value;
+                        
+                        // Update status parameter with selected value
+                        url.searchParams.set('status', selectedStatus);
+                        
+                        // Update form action with modified URL
+                        form.action = url.toString();
+                        form.submit();
+                      }
+                    </script>
+                  </div>
+                </div>
                   <div class="dash_content_main">
                     <table class="table border shadow-lg" id="example">
                       <colgroup>
@@ -235,10 +320,27 @@ if (isset($_SESSION['s_em_email'])) {
                         </tr>
                       </thead>
                       <?php
-                      $query = "SELECT la.*, e.first_name, e.last_name, lt.lt_code, lt.lt_name, la.la_reason
-            FROM `leave_application` la 
-            INNER JOIN `employee` e ON la.em_id = e.em_id 
-            INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
+                        $query = "SELECT la.*, e.first_name, e.last_name, lt.lt_code, lt.lt_name, la.la_reason
+                        FROM `leave_application` la 
+                        INNER JOIN `employee` e ON la.em_id = e.em_id 
+                        INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
+            
+                        $whereClause = [];
+                        
+                        if (!empty($filter_lt_id)) {
+                            $whereClause[] = "la.lt_id = $filter_lt_id";
+                        }
+                        
+                        if (!empty($filter_status)) {
+                            $whereClause[] = "la.la_status = '$filter_status'";
+                        }
+                        
+                        if (!empty($whereClause)) {
+                            $query .= " WHERE " . implode(" AND ", $whereClause);
+                        }
+                        
+                        $query .= " ORDER BY la.la_date_start DESC";
+
                       $result = mysqli_query($conn, $query);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $r_first_name = $row['first_name'];
@@ -258,6 +360,8 @@ if (isset($_SESSION['s_em_email'])) {
                         } else {
                           $date_display = "$r_la_date_start - $r_la_date_end";
                         }
+
+
                         $status_color = '';
                         switch ($r_lt_status) {
                           case 'Accepted':

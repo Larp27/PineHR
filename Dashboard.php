@@ -77,7 +77,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="Leave_type_list.php">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $lt_query = "SELECT * from leave_type";
@@ -103,7 +103,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="Leave_app_list.php">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $dep_query = "SELECT * from leave_application";
@@ -129,7 +129,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="Department_list.php" class="card-link">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $dep_query = "SELECT * from department";
@@ -155,7 +155,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="Designation_list.php">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $des_query = "SELECT * from designation";
@@ -179,9 +179,9 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
             <!--5th Card-->
             <div class="col-md-3 col-sm-6 mb-4">
-              <a href="Leave_app_list.php" class="card-link align-horizontal">
+              <a href="Leave_app_list.php?status=Accepted" class="card-link align-horizontal">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $app_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Accepted'";
@@ -198,7 +198,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-thumbs-up"></i>
-                      <h5><strong style="font-family: 'Glacial Indifference'">Approved Leave Application</strong></h5>
+                      <h5><strong style="font-family: 'Glacial Indifference'">Accepted Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -207,9 +207,9 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
             <!--6th Card-->
             <div class="col-md-3 col-sm-6 mb-4">
-              <a href="Leave_app_list.php" class="card-link align-horizontal">
+              <a href="Leave_app_list.php?status=Pending" class="card-link align-horizontal">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Pending'";
@@ -235,9 +235,9 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 
             <!--7th Card-->
             <div class="col-md-3 col-sm-6 mb-4">
-              <a href="Leave_app_list" class="card-link align-horizontal">
+              <a href="Leave_app_list.php?status=Declined" class="card-link align-horizontal">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                     <?php
                       $dec_query = "SELECT COUNT(*) as ls_status FROM leave_application WHERE la_status = 'Declined'";
@@ -265,7 +265,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="em_list.php">
                 <div class="card-box">
-                  <div>
+                  <div class="text-dark">
                     <h1>
                       <?php
                       $em_query = "SELECT COUNT(*) as em_id FROM employee";
