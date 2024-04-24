@@ -266,7 +266,7 @@ if (isset($_SESSION['s_em_email'])) {
                 </div>
 
                 <div class="modal-footer">
-                  <a href="Dashboard.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
+                  <a href="Leave_app_add.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
                   <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
                 </div>
               </form>

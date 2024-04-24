@@ -4,99 +4,100 @@ include "DBConnection.php";
 if (isset($_SESSION['s_em_email'])) {
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Leave Type List| PINE HR</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-  <!-- <link rel="stylesheet" href="css/main.css"> -->
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Leave Type List| PINE HR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <!-- <link rel="stylesheet" href="css/main.css"> -->
 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  <script src="script.js"></script>
-  <script src="imoJS.js"></script>
+    <script src="script.js"></script>
+    <script src="imoJS.js"></script>
 
-  <link rel="stylesheet" href="dashboard2.css" />
-  <link rel="stylesheet" text="text/css" href="" />
+    <link rel="stylesheet" href="dashboard2.css" />
+    <link rel="stylesheet" text="text/css" href="" />
 
 
-  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
-  <!--Department Process Add and Update JS-->
-  <script src="Department/DepartmentJS.js"></script>
-  <script src="Department/updateDEPT.js"></script>
+    <!--Department Process Add and Update JS-->
+    <script src="Department/DepartmentJS.js"></script>
+    <script src="Department/updateDEPT.js"></script>
 
-  <!--offline bootstrap-->
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
-  <script src="js/all.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+    <!--offline bootstrap-->
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <script src="js/all.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-  <!--Navbar CSS-->
-  <link rel="stylesheet" href="css/navbar2.css">
-  <link rel="stylesheet" href="css/employee.css">
+    <!--Navbar CSS-->
+    <link rel="stylesheet" href="css/navbar2.css">
+    <link rel="stylesheet" href="css/employee.css">
 
-  <script src="./script.js"></script>
-</head>
-<style>
+    <script src="./script.js"></script>
+  </head>
+  <style>
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+      border: none !important;
+      padding: 0px !important;
+    }
 
-  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
-    border: none !important;
-    padding: 0px !important;
-  }
+    div.dataTables_wrapper div.dataTables_length select {
+      width: auto;
+      display: inline-block;
+      border-radius: 5px;
+      padding-top: .30rem;
+      padding-bottom: .30rem;
+      padding-left: .5rem;
+      padding-right: 2.5rem;
+      font-size: .875rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
 
-  div.dataTables_wrapper div.dataTables_length select{
-    width: auto;
-    display: inline-block;
-    border-radius: 5px;
-    padding-top: .30rem;
-    padding-bottom: .30rem;
-    padding-left: .5rem;
-    padding-right: 2.5rem;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-  }
+    div.dataTables_wrapper div.dataTables_length select {
+      width: auto;
+      display: inline-block;
+      border-radius: 15px;
+      padding-top: .30rem;
+      padding-bottom: .30rem;
+      padding-left: .5rem;
+      padding-right: 2.5rem;
+      font-size: .875rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
 
-  div.dataTables_wrapper div.dataTables_length select {
-    width: auto;
-    display: inline-block;
-    border-radius: 15px;
-    padding-top: .30rem;
-    padding-bottom: .30rem;
-    padding-left: .5rem;
-    padding-right: 2.5rem;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-  }
-  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
-    border: none !important;
-    padding: 0px !important;
-  }
+    div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+      border: none !important;
+      padding: 0px !important;
+    }
 
-  div.dataTables_wrapper div#example_paginate ul.pagination li.paginate_button .page-item .active .page-link {
+    div.dataTables_wrapper div#example_paginate ul.pagination li.paginate_button .page-item .active .page-link {
 
-    background-color: #EBB803 !important;
+      background-color: #EBB803 !important;
 
-  }
+    }
 
-  div.dataTables_wrapper div.dataTables_paginate ul.pagination li#example_previous,
-  div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled {
-    background-color: #8080792b !important;
-    border-color: #dee2e6 !important;
-    color: rgba(33, 37, 41, 0.75) !important;
-  }
-</style>
+    div.dataTables_wrapper div.dataTables_paginate ul.pagination li#example_previous,
+    div.dataTables_wrapper div.dataTables_paginate a#example_next.paginate_button.disabled {
+      background-color: #8080792b !important;
+      border-color: #dee2e6 !important;
+      color: rgba(33, 37, 41, 0.75) !important;
+    }
+  </style>
 
   <body>
     <?php
@@ -239,9 +240,9 @@ if (isset($_SESSION['s_em_email'])) {
                       </thead>
                       <?php
                       $query = "SELECT la.*, e.first_name, e.last_name, lt.lt_code, lt.lt_name, la.la_reason
-                      FROM `leave_application` la 
-                      INNER JOIN `employee` e ON la.em_id = e.em_id 
-                      INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
+            FROM `leave_application` la 
+            INNER JOIN `employee` e ON la.em_id = e.em_id 
+            INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
                       $result = mysqli_query($conn, $query);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $r_first_name = $row['first_name'];
@@ -253,6 +254,7 @@ if (isset($_SESSION['s_em_email'])) {
                         $r_la_date_start = date("F j, Y", strtotime($row['la_date_start']));
                         $r_la_date_end = date("F j, Y", strtotime($row['la_date_end']));
                         $r_lt_status = $row['la_status'];
+                        $r_la_remarks = $row['la_remarks'];
                         $r_la_reason = $row['la_reason'];
 
                         if (date("F Y", strtotime($r_la_date_start)) == date("F Y", strtotime($r_la_date_end))) {
@@ -263,88 +265,131 @@ if (isset($_SESSION['s_em_email'])) {
                         $status_color = '';
                         switch ($r_lt_status) {
                           case 'Accepted':
-                            $status_color = 'bg-success'; 
+                            $status_color = 'bg-success';
                             break;
                           case 'Declined':
-                            $status_color = 'bg-danger'; 
+                            $status_color = 'bg-danger';
                             break;
                           case 'Cancelled':
-                            $status_color = 'bg-warning'; 
+                            $status_color = 'bg-warning';
                             break;
                           case 'Pending':
                           default:
-                            $status_color = 'bg-secondary'; 
+                            $status_color = 'bg-secondary';
                             break;
                         }
 
                         $final = "<tr> 
-                          <td class='text-center'>$r_last_name, $r_first_name</td>
-                          <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
-                          <td class='text-center'>$date_display</td>
-                          <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
-                              echo $final;
+                        <td class='text-center'>$r_last_name, $r_first_name</td>
+                        <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
+                        <td class='text-center'>$date_display</td>
+                        <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
+                        echo $final;
 
-                              // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
-                              if ($r_lt_status == 'Pending') {
-                                $em_id = $_SESSION['s_em_id'];
-                                echo "<td class='text-center'>
-                              <div class='col-auto d-flex justify-content-center'>
-                                <div class='dropdown'>
-                                  <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
-                                    Actions
-                                  </button>
-                                  <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                                    <li><form action='update_leave_status.php' method='POST'>
-                                          <input type='hidden' name='la_id' value='$emp_id'>
-                                          <input type='hidden' name='s_em_id' value='$em_id'>
-                                          <input type='hidden' name='lt_id' value='$lt_id'>
-                                          <input type='hidden' name='lt_status' value='Accepted'>
-                                          <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
-                                        </form></li>
-                                    <li><form action='update_leave_status.php' method='POST'>
-                                          <input type='hidden' name='la_id' value='$emp_id'>
-                                          <input type='hidden' name='s_em_id' value='$em_id'>
-                                          <input type='hidden' name='lt_id' value='$lt_id'>
-                                          <input type='hidden' name='lt_status' value='Declined'>
-                                          <button type='submit' name='decline' class='dropdown-item btn btn-danger btn-sm'><i class='fas fa-times'></i> Decline</button>
-                                        </form></li>
-                                    <li><form action='update_leave_status.php' method='POST'>
-                                          <input type='hidden' name='la_id' value='$emp_id'>
-                                          <input type='hidden' name='s_em_id' value='$em_id'>
-                                          <input type='hidden' name='lt_id' value='$lt_id'>
-                                          <input type='hidden' name='lt_status' value='Cancelled'>
-                                          <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
-                                        </form></li>
-          
-                                  </ul>
-                                  <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
-                                </div>
-                              </div>
-                            </td>";
+                        // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
+                        if ($r_lt_status == 'Pending') {
+                          $em_id = $_SESSION['s_em_id'];
+
+                          echo "<td class='text-center'>
+            <div class='col-auto d-flex justify-content-center'>
+                <div class='dropdown'>
+                    <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                        Actions
+                    </button>
+                    <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                        <li>
+                            <form action='update_leave_status.php' method='POST'>
+                                <input type='hidden' name='la_id' value='$emp_id'>
+                                <input type='hidden' name='s_em_id' value='$em_id'>
+                                <input type='hidden' name='lt_id' value='$lt_id'>
+                                <input type='hidden' name='lt_status' value='Accepted'>
+                                <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
+                            </form>
+                        </li>
+                        <li>
+                            <!-- Decline modal trigger button -->
+                            <button type='button' class='dropdown-item btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#declineModal$emp_id' data-em-id='$em_id'><i class='fas fa-times'></i> Decline</button>
+                        </li>
+                        <li>
+                            <form action='update_leave_status.php' method='POST'>
+                                <input type='hidden' name='la_id' value='$emp_id'>
+                                <input type='hidden' name='s_em_id' value='$em_id'>
+                                <input type='hidden' name='lt_id' value='$lt_id'>
+                                <input type='hidden' name='lt_status' value='Cancelled'>
+                                <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
+                </div>
+            </div>
+        </td>";
+                        } else {
+                          echo "<td class='text-center'>
+            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>";
+
+                          if ($r_lt_status != 'Pending') {
+                            echo "
+                <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
                           } else {
-                            echo "<td class='text-center'>
-                            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
-                                <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>";
-
-                            if ($r_lt_status != 'Pending') {
-                              echo "
-                                  <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
-                            } else {
-                              echo "";
-                            }
-
-                            echo "</div>
-                              </td>";
+                            echo "";
                           }
+
+                          echo "</div>
+        </td>";
                         }
-                        ?>
+
+                        // Modal for Decline action
+                        echo "<div class='modal fade' id='declineModal$emp_id' tabindex='-1' aria-labelledby='declineModalLabel$emp_id' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='declineModalLabel$emp_id'>Decline Leave Application</h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                </div>
+                                <div class='modal-body'>
+                                    <p>Are you sure you want to decline this leave application?</p>
+                                    <div class='mb-3'>
+                                        <label for='la_remarks$emp_id' class='form-label'>Remarks:</label>
+                                        <textarea class='form-control' id='la_remarks$emp_id' name='la_remarks' rows='5'></textarea>
+                                    </div>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                   
+                                    <form id='declineForm$emp_id' action='update_leave_status.php' method='POST'>
+                                        <input type='hidden' name='la_id' value='$emp_id'>
+                                        <input type='hidden' name='lt_id' value='$lt_id'>
+                                        <input type='hidden' name='lt_status' value='Declined'>
+                                        <input type='hidden' name='la_remarks' id='la_remarks_hidden_$emp_id'>
+                                        <input type='hidden' name='s_em_id' id='s_em_id$emp_id'>
+                                        <button type='submit' name='decline' class='btn btn-danger'>Decline</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";         
+                      }
+                      ?>
+                          
+                    <script>
+                        document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
+                            var remarks = document.getElementById('la_remarks$emp_id').value;
+                            document.getElementById('la_remarks_hidden_$emp_id').value = remarks;
+                        });
+                    </script>
+
+
+
+
                     </table>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>      
+        </div>
 
         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
@@ -399,16 +444,16 @@ if (isset($_SESSION['s_em_email'])) {
             </div>
           </div>
         </div>
-        <?php
-        if (isset($_GET['uid1'])) {
-          $uid1  = $_GET['uid1'];
-          mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
-        }
-        } else {
-          header("location: login.php");
-          exit();
-        }
-          ?>
+      <?php
+      if (isset($_GET['uid1'])) {
+        $uid1  = $_GET['uid1'];
+        mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
+      }
+    } else {
+      header("location: login.php");
+      exit();
+    }
+      ?>
       </div>
     </div>
 
@@ -426,23 +471,23 @@ if (isset($_SESSION['s_em_email'])) {
       });
 
       var sideBarIsOpen = true;
-        togglebtn.addEventListener('click', (event) => {
-          event.preventDefault();
+      togglebtn.addEventListener('click', (event) => {
+        event.preventDefault();
 
-          if (sideBarIsOpen) {
-            dash_sidebar.style.width = '0%';
-            dash_sidebar.style.transition = '0.3s all';
-            dash_content_container.style.width = '100%';
-            sideBarIsOpen = false;
-          } else {
+        if (sideBarIsOpen) {
+          dash_sidebar.style.width = '0%';
+          dash_sidebar.style.transition = '0.3s all';
+          dash_content_container.style.width = '100%';
+          sideBarIsOpen = false;
+        } else {
 
-            dash_sidebar.style.width = '15%';
-            dash_sidebar.style.height = 'auto';
-            dash_content_container.style.width = '100%';
-            sideBarIsOpen = true;
-          }
-        });
-        
+          dash_sidebar.style.width = '15%';
+          dash_sidebar.style.height = 'auto';
+          dash_content_container.style.width = '100%';
+          sideBarIsOpen = true;
+        }
+      });
+
       $('.sidebar-btn').click(function() {
         $(this).toggleClass("click");
         $('.sidebar').toggleClass("show");
@@ -517,4 +562,5 @@ if (isset($_SESSION['s_em_email'])) {
       });
     </script>
   </body>
-</html>
+
+  </html>
