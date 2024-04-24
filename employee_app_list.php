@@ -23,16 +23,11 @@ if (isset($_SESSION['s_em_email'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
   <script src="script.js"></script>
-  <script src="imoJS.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
   <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
-  <!--offline bootstrap-->
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
-  <script src="js/all.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
   <!--Navbar CSS-->
@@ -373,23 +368,6 @@ if (isset($_SESSION['s_em_email'])) {
 </script>
 <script>
   var sideBarIsOpen = true;
-
-  togglebtn.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    if (sideBarIsOpen) {
-      dash_sidebar.style.width = '0%';
-      dash_sidebar.style.transition = '0.3s all';
-      dash_content_container.style.width = '100%';
-      sideBarIsOpen = false;
-    } else {
-
-      dash_sidebar.style.width = '20%';
-      dash_sidebar.style.height = 'auto';
-      dash_content_container.style.width = '100%';
-      sideBarIsOpen = true;
-    }
-  });
 
   $('.sidebar-btn').click(function() {
     $(this).toggleClass("click");
