@@ -103,6 +103,7 @@ if (isset($_SESSION['s_em_email'])) {
     <?php
     if ($_SESSION['s_user_id'] == 1) {
       $query = "select * from user_type";
+      $em_id = $_SESSION['s_em_id'];
 
       $result = mysqli_query($conn, $query);
     }
@@ -279,6 +280,37 @@ if (isset($_SESSION['s_em_email'])) {
                             break;
                         }
 
+                        echo "<div class='modal fade' id='declineModal_$emp_id' tabindex='-1' aria-labelledby='declineModalLabel' aria-hidden='true'>
+                        <div class='modal-dialog'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h5 class='modal-title' id='declineModalLabel'>Decline Leave Application</h5>
+                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                </div>
+                                <form id='declineForm' action='update_leave_status.php' method='POST'>
+                                <div class='modal-body'>
+                                    <p>Are you sure you want to decline this leave application?</p>
+                                    <div class='mb-3'>
+                                        <label for='la_remarks' class='form-label'>Remarks:</label>
+                                        <textarea class='form-control' id='la_remarks' name='la_remarks' rows='5'></textarea>
+                                    </div>
+                                </div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
+                                   
+                                 
+                                        <input type='hidden' name='la_id' value='$emp_id'>
+                                        <input type='hidden' name='lt_id' value='$lt_id'>
+                                        <input type='hidden' name='s_em_id' value='$em_id'>
+                                        <button type='submit' name='decline' class='btn btn-danger'>Decline</button>
+                                    
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                    ";
+
                         $final = "<tr> 
                         <td class='text-center'>$r_last_name, $r_first_name</td>
                         <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
@@ -288,7 +320,7 @@ if (isset($_SESSION['s_em_email'])) {
 
                         // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
                         if ($r_lt_status == 'Pending') {
-                          $em_id = $_SESSION['s_em_id'];
+                          
 
                           echo "<td class='text-center'>
             <div class='col-auto d-flex justify-content-center'>
@@ -308,7 +340,7 @@ if (isset($_SESSION['s_em_email'])) {
                         </li>
                         <li>
                             <!-- Decline modal trigger button -->
-                            <button type='button' class='dropdown-item btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#declineModal$emp_id' data-em-id='$em_id'><i class='fas fa-times'></i> Decline</button>
+                            <button type='button' class='dropdown-item btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#declineModal_$emp_id' data-em-id='$em_id'><i class='fas fa-times'></i> Decline</button>
                         </li>
                         <li>
                             <form action='update_leave_status.php' method='POST'>
@@ -338,48 +370,20 @@ if (isset($_SESSION['s_em_email'])) {
 
                           echo "</div>
         </td>";
+        
                         }
 
-                        // Modal for Decline action
-                        echo "<div class='modal fade' id='declineModal$emp_id' tabindex='-1' aria-labelledby='declineModalLabel$emp_id' aria-hidden='true'>
-                        <div class='modal-dialog'>
-                            <div class='modal-content'>
-                                <div class='modal-header'>
-                                    <h5 class='modal-title' id='declineModalLabel$emp_id'>Decline Leave Application</h5>
-                                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-                                </div>
-                                <div class='modal-body'>
-                                    <p>Are you sure you want to decline this leave application?</p>
-                                    <div class='mb-3'>
-                                        <label for='la_remarks$emp_id' class='form-label'>Remarks:</label>
-                                        <textarea class='form-control' id='la_remarks$emp_id' name='la_remarks' rows='5'></textarea>
-                                    </div>
-                                </div>
-                                <div class='modal-footer'>
-                                    <button type='button' class='btn btn-secondary' data-bs-dismiss='modal'>Close</button>
-                                   
-                                    <form id='declineForm$emp_id' action='update_leave_status.php' method='POST'>
-                                        <input type='hidden' name='la_id' value='$emp_id'>
-                                        <input type='hidden' name='lt_id' value='$lt_id'>
-                                        <input type='hidden' name='lt_status' value='Declined'>
-                                        <input type='hidden' name='la_remarks' id='la_remarks_hidden_$emp_id'>
-                                        <input type='hidden' name='s_em_id' id='s_em_id$emp_id'>
-                                        <button type='submit' name='decline' class='btn btn-danger'>Decline</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>";         
-                      }
-                      ?>
-                          
-                    <script>
-                        document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
-                            var remarks = document.getElementById('la_remarks$emp_id').value;
-                            document.getElementById('la_remarks_hidden_$emp_id').value = remarks;
-                        });
-                    </script>
-
+                           
+                      }      
+                ?>
+                <script>
+                    document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
+                        var remarks = document.getElementById('la_remarks$emp_id').value;
+                        var emp_id = document.getElementById('s_em_id$emp_id').value; // Retrieve emp_id
+                        remarks += ' (Employee ID: ' + emp_id + ')'; // Append emp_id to remarks
+                        document.getElementById('la_remarks_hidden_$emp_id').value = remarks;
+                    });
+                </script>
 
 
 

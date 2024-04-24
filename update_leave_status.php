@@ -120,10 +120,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(isset($_POST['s_em_id']) && !empty($_POST['s_em_id'])) {
             $la_id = $_POST['la_id'];
             $ako = $_POST['s_em_id'];
-            $la_remarks = $_POST['la_remarks']; // Assigning the value of la_remarks to $la_remarks
+            $la_remarks = $_POST['la_remarks'];
     
             // Update leave application status to Declined and insert remarks
-            $query = "UPDATE leave_application SET la_status = 'Declined', la_remarks = '$la_remarks' WHERE la_id = '$la_id'";
+            $query = "UPDATE leave_application SET la_status = 'Declined', la_remarks = '$la_remarks', la_approved_by = '$ako' WHERE la_id = '$la_id'";
     
             if (mysqli_query($conn, $query)) {
                 // Send SMS notification
