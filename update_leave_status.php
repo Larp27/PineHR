@@ -135,9 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $recipientNumber = $em_phone; // Replace this with the recipient's phone number
                     $message = "Your leave application has been declined! Remarks: $la_remarks"; // Include remarks in the message
                     $status = sendInfobipSMS($recipientNumber, $message);
-                    if ($status !== true) {
-                        echo "Error sending SMS: $status";
-                    }
+                    echo $status;
                 } else {
                     echo "Error retrieving employee phone number or invalid employee ID";
                 }
