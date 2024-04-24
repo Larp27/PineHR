@@ -80,7 +80,7 @@ include_once('./main.php');
           </div>
           <div class="mb-3">
             <label for="update_es_name" class="form-label">&nbsp;Employment Status</label>
-            <input type="text" class="form-control" id="update_es_names" name="es_name">
+            <input type="text" class="form-control" id="update_es_name" name="es_name">
           </div>
           <div class="mb-3">
             <label for="update_es_income" class="form-label">&nbsp;Default Income</label>

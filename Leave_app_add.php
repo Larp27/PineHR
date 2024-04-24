@@ -20,10 +20,8 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
     <script src="script.js"></script>
-    <script src="imoJS.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" href="dashboard2.css" />
+    
     <link rel="stylesheet" text="text/css" href="" />
 
 
@@ -34,9 +32,6 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="Department/updateDEPT.js"></script>
 
     <!--offline bootstrap-->
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <!--Navbar CSS-->
@@ -420,7 +415,7 @@ if (isset($_SESSION['s_em_email'])) {
   </script>
 
   <script>
-    var updateUserModal = document.getElementById('updateUserModal');
+    /*var updateUserModal = document.getElementById('updateUserModal');
     updateUserModal.addEventListener('show.bs.modal', function(event) {
       var button = event.relatedTarget; // Button that triggered the modal
       var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
@@ -430,6 +425,6 @@ if (isset($_SESSION['s_em_email'])) {
       modalBody.querySelector('#dep_id').value = dep_id;
       modalBody.querySelector('#dep_name').value = dep_name;
 
-    })
+    })*/
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

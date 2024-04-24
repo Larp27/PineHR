@@ -22,8 +22,6 @@ if (isset($_SESSION['s_em_email'])) {
   <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
   <!--offline bootstrap-->
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
   <script src="js/all.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
@@ -36,7 +34,6 @@ if (isset($_SESSION['s_em_email'])) {
   <!--calendar links-->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
   <link rel="stylesheet" href="./css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/fontawesome.min.css">
   <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
   <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
   <script src="./js/jquery-3.6.0.min.js"></script>
@@ -139,7 +136,7 @@ if (isset($_SESSION['s_em_email'])) {
             <div>
               <form id="leaveForm" class="form m-3" action="save_leave_application2.php" method="post">
                 <div class="mb-3">
-                  <label for="imId" class="form-label fw-bold">Employee ID</label>
+                  <label for="emId" class="form-label fw-bold">Employee ID</label>
                   <div class="input-group">
                     <input type="text" class="form-control" style="cursor:pointer;" id="emId" name="emId" data-bs-toggle="tooltip" data-bs-placement="top" title="The Employee ID is set by default and cannot be edited." value="<?php echo $_SESSION['s_em_id']; ?>" readonly>
                     <span class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="top" title="This field is read-only.">
@@ -149,7 +146,7 @@ if (isset($_SESSION['s_em_email'])) {
                 </div>
                 <div class="mb-3">
                   <label for="leave" class="form-label fw-bold">Type of Leave</label>
-                  <select name="leave" class="form-select" aria-label="Default select example" required>
+                  <select id="leave" class="form-select" aria-label="Default select example" required>
                     <option class="fw-bold" selected disabled>Select a Leave</option>
                     <?php
                       $em_id = $_SESSION['s_em_id'];
@@ -167,16 +164,16 @@ if (isset($_SESSION['s_em_email'])) {
                   </select>
                 </div>
                 <div class="mb-3">
-                  <label for="leave_reason" class="form-label fw-bold">Leave Reason</label>
-                  <textarea name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
+                  <label for="reason" class="form-label fw-bold">Leave Reason</label>
+                  <textarea id="reason" name="reason" cols="30" placeholder="State your Reason" rows="5" class="form-control" required></textarea>
                 </div>
                 <div class="mb-3">
                   <label for="st_day" class="form-label fw-bold">Starting Day</label>
-                  <input type="date" class="form-control" name="st_day" required>
+                  <input id="st_day" class="form-control" name="st_day" required>
                 </div>
                 <div class="mb-3">
                   <label for="end_day" class="form-label fw-bold">Ending Day</label>
-                  <input type="date" class="form-control" name="end_day" required>
+                  <input id="end_day" class="form-control" name="end_day" required>
                 </div>
                 <div class="mb-3 text-end">
                   <button type="submit" id="submitLeave" class="btn btn-primary">ADD</button>

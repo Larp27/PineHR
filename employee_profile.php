@@ -25,8 +25,6 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
     <!--offline bootstrap-->
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
     <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -238,7 +236,7 @@ if (isset($_SESSION['s_em_email'])) {
                       <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
                         <div class="panel-heading border-0 d-flex p-0">
                           <div class="me-3 ms-3 mt-3">
-                            <img src="bgimages\leave.png" alt="" style="max-width: 45px;">
+                          <i class="fa-solid fa-person-through-window fa-2xl" style="color: #2468a0;"></i>
                           </div>
                           <p class="text-uppercase fw-bold fs-5 mt-3">Available Leaves and Remaining Credits</p>
                         </div>

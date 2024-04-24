@@ -24,9 +24,7 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <script src="script.js"></script>
-    <script src="imoJS.js"></script>
 
-    <link rel="stylesheet" href="dashboard2.css" />
     <link rel="stylesheet" text="text/css" href="" />
 
 
@@ -37,9 +35,6 @@ if (isset($_SESSION['s_em_email'])) {
     <script src="Department/updateDEPT.js"></script>
 
     <!--offline bootstrap-->
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-    <script src="js/all.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
     <!--Navbar CSS-->
@@ -377,12 +372,12 @@ if (isset($_SESSION['s_em_email'])) {
                       }      
                 ?>
                 <script>
-                    document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
+                   /* document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
                         var remarks = document.getElementById('la_remarks$emp_id').value;
                         var emp_id = document.getElementById('s_em_id$emp_id').value; // Retrieve emp_id
                         remarks += ' (Employee ID: ' + emp_id + ')'; // Append emp_id to remarks
                         document.getElementById('la_remarks_hidden_$emp_id').value = remarks;
-                    });
+                    });*/
                 </script>
 
 
@@ -462,19 +457,9 @@ if (isset($_SESSION['s_em_email'])) {
     </div>
 
     <script>
-      var updateUserModal = document.getElementById('updateUserModal');
-      updateUserModal.addEventListener('show.bs.modal', function(event) {
-        var button = event.relatedTarget; // Button that triggered the modal
-        var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
-        var dep_name = button.getAttribute('data-dep-name'); // Extract info from data-* attributes
+      
 
-        var modalBody = updateUserModal.querySelector('.modal-body');
-        modalBody.querySelector('#dep_id').value = dep_id;
-        modalBody.querySelector('#dep_name').value = dep_name;
-
-      });
-
-      var sideBarIsOpen = true;
+      /*var sideBarIsOpen = true;
       togglebtn.addEventListener('click', (event) => {
         event.preventDefault();
 
@@ -490,7 +475,7 @@ if (isset($_SESSION['s_em_email'])) {
           dash_content_container.style.width = '100%';
           sideBarIsOpen = true;
         }
-      });
+      });*/
 
       $('.sidebar-btn').click(function() {
         $(this).toggleClass("click");

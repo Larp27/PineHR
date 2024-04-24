@@ -11,7 +11,14 @@ div.dash_sidebar {
   width: 18%;
   height: 100%;
   background: #cae1ef;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+div.dash_sidebar::-webkit-scrollbar {
+  width: 0;
+  display: none;
 }
 
 div.dash_sidebar .dash_sidebar_menus {
@@ -22,7 +29,7 @@ div.dash_content_container {
   margin-left: 18%;
   width: 100%; 
   background: #f6f8fa;
-  overflow-y: auto; 
+  overflow-y: hidden; 
 }
 
 ul.dash_menu_lists{

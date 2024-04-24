@@ -1,6 +1,6 @@
 <?php
 $title = 'Reports Leave';
-$page = 'Reports_leave';
+$page = 'reports_leave';
 include_once('./main.php');
 
 // Include your database connection

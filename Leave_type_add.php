@@ -10,7 +10,7 @@ include_once('./main.php');
 
 <!--Department Process Add and Update JS-->
 <script src="Leave_type/LeavetypeJS.js"></script>
-<script src="Leave_type/updateJS.js"></script>
+<!--<script src="Leave_type/updateJS.js"></script>-->
 
 
 <form>
