@@ -50,7 +50,7 @@ include_once('./main.php');
               </thead>
               <?php
               $i = 1;
-              $rows = mysqli_query($conn, "SELECT p.*, e.first_name, e.last_name FROM payroll p INNER JOIN employee e ON p.em_name = e.em_id");
+              $rows = mysqli_query($conn, "SELECT * FROM `payroll` p INNER JOIN `employee` e ON p.em_id = e.em_id");
               foreach ($rows as $row) :
               ?>
                 <tr>
@@ -90,13 +90,13 @@ include_once('./main.php');
 
     $reader = new SpreadsheetReader($targetDirectory);
     foreach ($reader as $key => $row) {
-      $em_name = $row[0];
+      $em_id = $row[0];
       $payroll_date = explode('/', $row[1])[2] . '-' . explode('/', $row[1])[1] . '-' . explode('/', $row[1])[0];
       $payroll_income = $row[2];
       $payroll_deduction = $row[3];
       $payroll_twd = $row[4];
       $payroll_total = $row[5];
-      mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_name', '$payroll_start_date', '$payroll_end_date' , '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total')");
+      mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_id', '$payroll_start_date', '$payroll_end_date' , '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total')");
     }
 
     echo

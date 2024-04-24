@@ -25,17 +25,26 @@ include_once('./main.php');
                                 <p id="message" class=text-danger> </p>
 
                                 <div class="form-group mb-3">
-                                    <label for="payroll_id" class="fw-bold">Employee Name</label>
-                                    <select class="form-select" id="payroll_id" name="payroll_id" required>
+                                    <label for="em_id" class="fw-bold">Employee Name</label>
+                                    <select class="form-select" id="em_id" name="em_id" required>
                                         <option <?php echo (!isset($ms_id)) ? 'selected' : '' ?> disabled>Please Select Here</option>
                                         <?php
-                                        $em_qry = $conn->query("SELECT * FROM employee order by last_name asc");
+                                        $em_qry = $conn->query("SELECT * FROM employee ORDER BY last_name ASC");
                                         while ($row = $em_qry->fetch_assoc()) :
+                                            $em_full_name = $row['last_name'] . ', ' . $row['first_name'];
+                                            $em_income = $row['em_income'];
                                         ?>
-                                            <option value="<?php echo $row['em_id'] ?>" <?php echo (isset($em_id) && $em_id == $row['em_id']) ? 'selected' : '' ?>><?php echo $row['last_name'] ?>, <?php echo $row['first_name'] ?></option>
+                                            <option value="<?php echo $row['em_id'] ?>" <?php echo (isset($em_id) && $em_id == $row['em_id']) ? 'selected' : '' ?>>
+                                                <?php echo 'Name: ' . $em_full_name . ' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; >>>Income: ' . $em_income . '' ?>
+                                            </option>
+
+
+
+
                                         <?php endwhile; ?>
                                     </select>
                                 </div>
+
 
                                 &nbsp;<strong><span>Payroll Date Range</span></strong><br><br>
                                 &nbsp;<strong><span>Payroll Start Date</span></strong>
@@ -70,8 +79,9 @@ include_once('./main.php');
                                 </script>
 
 
-                                &nbsp;<strong><span>Payroll Income</span></strong><br>
-                                <br><input type="text" class="form-control" placeholder="Type here" id="payroll_income" name="payroll_income" aria-describedby="addon-wrapping"><br>
+                                <strong><span>Payroll Income</span></strong><br><br>
+                                <input type="text" class="form-control" placeholder="Manually type the income here for modification" id="payroll_income" name="payroll_income" aria-describedby="addon-wrapping"><br>
+
 
                                 &nbsp;<strong><span>Payroll Deduction</span></strong><br>
                                 <br><input type="text" class="form-control" placeholder="Type here" id="payroll_deduction" name="payroll_deduction" aria-describedby="addon-wrapping"><br>

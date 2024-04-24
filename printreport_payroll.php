@@ -6,6 +6,7 @@ $fromdate = $_POST['fromdate'];
 $todate = $_POST['todate'];
 $start_date  = $fromdate;
 $end_date    = $todate;
+$selected_employees = implode(",", $_POST['employee']); // Convert array of selected employee IDs to comma-separated string
 ?>
 <html lang="en">
 
@@ -48,7 +49,8 @@ $end_date    = $todate;
       <tbody>
         <tr>
           <th>Employee</th>
-          <th>Date</th>
+          <th>Start Date</th>
+          <th>End Date</th>
           <th>Daily Income</th>
           <th>Deduction</th>
           <th>Total Working Days</th>
@@ -57,16 +59,22 @@ $end_date    = $todate;
 
         <?php
 
-        $query = "SELECT * FROM payroll WHERE payroll.payroll_date BETWEEN '" . $start_date . "' AND '" . $end_date . "'";
+        $query = "SELECT p.*, e.last_name, e.first_name FROM payroll p
+        INNER JOIN employee e ON p.em_id = e.em_id";
+         if (!empty($selected_employees)) {
+          $query .= " AND e.em_id IN ($selected_employees)";
+        }
         $result = mysqli_query($conn, $query);
+        // Fetch and display attendance records
         while ($row = mysqli_fetch_assoc($result)) {
           echo "<tr>";
-          echo "<td>" . $row['em_name'] . "</td>";
-          echo "<td>" . $row['payroll_date'] . "</td>";
+          echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>";
+          echo "<td>" . $row['payroll_start_date'] . "</td>";
+          echo "<td>" . $row['payroll_end_date'] . "</td>";
           echo "<td>" . $row['payroll_income'] . "</td>";
           echo "<td>" . $row['payroll_deduction'] . "</td>";
           echo "<td>" . $row['payroll_twd'] . "</td>";
-          echo "<td>" . $row['payroll'] . "</td>";
+          echo "<td>" . $row['payroll_total'] . "</td>";
         }
         echo "<tr>";
         echo "</tr>";
@@ -74,24 +82,15 @@ $end_date    = $todate;
 
         ?>
 
-
-
-
       </tbody>
     </table>
   </div>
 
-
-
-
-
-
-
-
   <script>
-    window.print();
+    window.print(); // Print the page
+    // Redirect back to reports page after 1 second (optional)
     setTimeout(function() {
-      // window.location.href = '../reports';
+      window.location.href = '../Pinehr/Reports_payroll.php';
     }, 1000);
   </script>
 </body>

@@ -105,12 +105,12 @@ include_once('./main.php');
 
       $reader = new SpreadsheetReader($targetDirectory);
       foreach ($reader as $key => $row) {
-        $em_name = $row[0];
+        $em_id = $row[0];
         $att_date = explode('/', $row[1])[2] . '-' . explode('/', $row[1])[1] . '-' . explode('/', $row[1])[0];
         $att_s_in = $row[2];
         $att_s_out = $row[3];
-        $total_hr = $row[4];
-        mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_name', '$att_date', '$att_s_in', '$att_s_out', '$total_hr')");
+        $total_hours = $row[4];
+        mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_id', '$att_date', '$att_s_in', '$att_s_out', '$total_hours')");
       }
 
       echo

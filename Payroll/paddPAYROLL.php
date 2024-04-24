@@ -6,7 +6,7 @@ function insertRecord() {
     global $conn;
 
     // Check if the form fields are set and not empty
-    if(isset($_POST['payroll_start_date'], $_POST['payroll_end_date'], $_POST['payroll_income'], $_POST['payroll_deduction'], $_POST['payroll_twd'], $_POST['em_name'])) {
+    if(isset($_POST['payroll_start_date'], $_POST['payroll_end_date'], $_POST['payroll_income'], $_POST['payroll_deduction'], $_POST['payroll_twd'], $_POST['em_id'])) {
 
         // Get the maximum payroll ID
         $query = "SELECT MAX(payroll_id) AS payroll_id FROM payroll";
@@ -15,7 +15,7 @@ function insertRecord() {
         $nextId = $row['payroll_id'] + 1;
 
         // Get form field values
-        $em_name = $_POST['em_name']; // Assuming em_name is correct, change it if needed
+        $em_id = $_POST['em_id'];
         $payroll_start_date = $_POST['payroll_start_date'];
         $payroll_end_date = $_POST['payroll_end_date'];
         $payroll_income = $_POST['payroll_income'];
@@ -24,9 +24,9 @@ function insertRecord() {
         $payroll_total = $_POST['payroll_total']; // Fetch the computed total directly from the form
 
         // Prepare and execute the insert query
-        $query = "INSERT INTO payroll(payroll_id, em_name, payroll_start_date, payroll_end_date, payroll_income, payroll_deduction, payroll_twd, payroll_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO payroll(payroll_id, em_id, payroll_start_date, payroll_end_date, payroll_income, payroll_deduction, payroll_twd, payroll_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $query);
-        mysqli_stmt_bind_param($stmt, "isssdddi", $nextId, $em_name, $payroll_start_date, $payroll_end_date, $payroll_income, $payroll_deduction, $payroll_twd, $payroll_total);
+        mysqli_stmt_bind_param($stmt, "isssdddi", $nextId, $em_id, $payroll_start_date, $payroll_end_date, $payroll_income, $payroll_deduction, $payroll_twd, $payroll_total);
         $result = mysqli_stmt_execute($stmt);
 
         // Check if the query executed successfully
