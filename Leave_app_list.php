@@ -6,7 +6,6 @@ if (isset($_SESSION['s_em_email'])) {
 
   <!DOCTYPE html>
   <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <title>Leave Type List| PINE HR</title>

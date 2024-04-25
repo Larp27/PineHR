@@ -1,19 +1,18 @@
 <!--Declaration of user session -logout- -->
 <?php
-session_start();
-include "DBConnection.php";
-if (isset($_SESSION['s_em_email'])) {
+  session_start();
+  include "DBConnection.php";
+  if (isset($_SESSION['s_em_email'])) {
 ?>
  
 <body>
-  <!--LOGOUT -- getting user role to display specific features and function -->
   <?php
-  $em_id = $_SESSION['s_em_id'];
-  if ($_SESSION['s_user_id'] == 2) {
-    $query = "Select * from employee where em_id = $em_id";
+    $em_id = $_SESSION['s_em_id'];
+    if ($_SESSION['s_user_id'] == 2) {
+      $query = "Select * from employee where em_id = $em_id";
 
-    $result = mysqli_query($conn, $query);
-  }
+      $result = mysqli_query($conn, $query);
+    }
   ?>
   <div id="dashmaincontainer">
     <div class="dash_sidebar_menus">
@@ -314,3 +313,10 @@ if (isset($_SESSION['s_em_email'])) {
       newWin.close();
     }, 10);
   }
+</script>
+<?php
+  } else {
+    header("Location: login.php");
+    exit(); 
+  }
+?>

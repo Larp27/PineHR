@@ -1,11 +1,41 @@
 <?php
-session_start();
-include "DBConnection.php";
-$fromdate = $_POST['fromdate'];
-$todate = $_POST['todate'];
-$start_date  = $fromdate;
-$end_date    = $todate;
-$selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee']) : ''; // Convert array of selected employee IDs to comma-separated string, or empty if none selected
+  session_start();
+  include "DBConnection.php";
+  $fromdate = $_GET['fromdate'] ?? '';
+  $todate = $_GET['todate'] ?? '';
+  $employee = $_GET['employee'] ?? '';
+  $leaveType = $_GET['leaveType'] ?? '';
+  $status = $_GET['status'] ?? '';
+
+  // Build the WHERE clause based on the provided filter values
+  $whereClause = [];
+  if (!empty($fromdate)) {
+    $whereClause[] = "la.la_date_start >= '$fromdate'";
+  }
+  if (!empty($todate)) {
+    $whereClause[] = "la.la_date_end <= '$todate'";
+  }
+  if (!empty($employee)) {
+    $whereClause[] = "la.em_id = $employee";
+  }
+  if (!empty($leaveType)) {
+    $whereClause[] = "la.lt_id = $leaveType";
+  }
+  if (!empty($status)) {
+    $whereClause[] = "la.la_status = '$status'";
+  }
+
+  $query = "SELECT la.*, e.last_name, e.first_name, lt.lt_code, lt.lt_name
+          FROM leave_application la
+          INNER JOIN employee e ON la.em_id = e.em_id
+          INNER JOIN leave_type lt ON la.lt_id = lt.lt_id";
+
+  // Add WHERE clause if any filter is provided
+  if (!empty($whereClause)) {
+    $query .= " WHERE " . implode(" AND ", $whereClause);
+  }
+
+  $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,20 +70,11 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
       </thead>
       <tbody>
         <?php
-        $query = "SELECT la.*, e.last_name, e.first_name, lt.lt_code, lt.lt_name
-                  FROM leave_application la
-                  INNER JOIN employee e ON la.em_id = e.em_id
-                  INNER JOIN leave_type lt ON la.lt_id = lt.lt_id";
-        // If specific employees are selected, add a condition to filter by their IDs
-        if (!empty($selected_employees)) {
-          $query .= " WHERE la.em_id IN ($selected_employees)";
-        }
-        $result = mysqli_query($conn, $query);
         // Fetch and display leave application records
         while ($row = mysqli_fetch_assoc($result)) {
           echo "<tr>";
-          echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>"; // Display last name and first name
-          echo "<td>[" . $row['lt_code'] . "] " . $row['lt_name'] . "</td>"; // lt_code inside square brackets
+          echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>";
+          echo "<td>[" . $row['lt_code'] . "] " . $row['lt_name'] . "</td>";
           echo "<td>" . $row['la_date_start'] . "</td>";
           echo "<td>" . $row['la_date_end'] . "</td>";
           echo "<td>" . $row['la_status'] . "</td>";
@@ -63,12 +84,16 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
       </tbody>
     </table>
   </div>
-  <script>
-    window.print(); // Print the page
-    // Redirect back to reports page after 1 second (optional)
-    setTimeout(function() {
-      window.location.href = '../Pinehr/Reports_leave.php';
-    }, 1000);
-  </script>
 </body>
 </html>
+<script>
+  window.print();
+
+  // Close the new tab when the print dialog is closed or canceled
+  window.onafterprint = function() {
+    window.close();
+  };
+  window.onbeforeunload = function() {
+    window.close();
+  };
+</script>
