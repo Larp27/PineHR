@@ -31,7 +31,7 @@ include_once('./main.php');
               </colgroup>
               <thead class="" style="background-color: rgb(255, 206, 46)">
                 <tr>
-                  <th class="text-center p-2 text-uppercase">ID</th>
+                  <th class="text-center p-2 text-uppercase">#</th>
                   <th class="text-center p-2 text-uppercase">Profile</th>
                   <th class="text-center p-2 text-uppercase">Name</th>
                   <th class="text-center p-2 text-uppercase">Details</th>
@@ -41,6 +41,7 @@ include_once('./main.php');
               </thead>
               <tbody style='font-size: 15px;'>
                 <?php
+                 $i = 1;
                 $query = "SELECT DISTINCT e.em_id, e.employee_status, e.em_profile_pic, e.last_name, e.first_name, d.dep_name, de.des_name
                             FROM `employee` e 
                             INNER JOIN `department` d ON e.dep_id = d.dep_id 
@@ -71,7 +72,7 @@ include_once('./main.php');
                         break;
                     }
                     echo "<tr>";
-                    echo "<td class='text-center p-3'>" . $row['em_id'] . "</td>";
+                    echo "<td class='text-center p-3'>" . $i++ . "</td>";
                     echo "<td class='text-center p-3'><img src='../PINEHR/" . substr($row['em_profile_pic'], 3) . "' style='width:60%; height: 80px; border-radius: 50%; border: 2px solid #2468a0;'></td>";
                     echo "<td class='text-left p-3'>" . $row['last_name'] . ", " . $row['first_name'] . "</td>";
                     echo "<td class='text-left p-3' style='font-size: 15px;'>
