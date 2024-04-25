@@ -24,7 +24,7 @@ include_once('./main.php');
         </div>
         <div class="dash_content mt-3">
           <div class="dash_content_main">
-            <table class="" id="example">
+            <table class="table" id="example">
               <colgroup>
                 <col width="10%">
                 <col width="40%">
