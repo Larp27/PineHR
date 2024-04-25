@@ -4,7 +4,6 @@ $page = 'employee_list';
 include_once('./main.php');
 ?>
 
-<script src="./script.js"></script>
 <style>
   div.dataTables_wrapper div.dataTables_paginate .paginate_button {
     border: none !important;

@@ -33,7 +33,6 @@ if (!$result || !$leave_types_result) {
   die("Database query failed."); // You can handle this error better in your actual application
 }
 ?>
-<script src="./script.js"></script>
 <style>
   div.dataTables_wrapper div.dataTables_paginate .paginate_button {
     border: none !important;
