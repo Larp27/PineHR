@@ -538,7 +538,8 @@ if (isset($_SESSION['s_em_email'])) {
               <div class="modal-body">
                 <p><strong>Employee Name:</strong> <?php echo $r_last_name ?>, <?php echo $r_first_name ?></p>
                 <p><strong>Leave Type:</strong> [<?php echo $r_lt_code ?>] - <?php echo $r_lt_name ?></p>
-                <p><strong>Date:</strong> <?php echo $date_display ?></p>
+                <p><strong>Date Start:</strong> <?php echo $r_la_date_start ?></p>
+                <p><strong>Date End:</strong> <?php echo $r_la_date_end ?></p>
                 <p><strong>Reason:</strong> <?php echo $r_la_reason ?></p>
               </div>
               <div class="modal-footer">
