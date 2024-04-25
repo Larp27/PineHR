@@ -4,8 +4,47 @@ $page = 'employee_list';
 include_once('./main.php');
 ?>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="./script.js"></script>
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+
+  div.dataTables_wrapper div.dataTables_length select{
+    width: auto;
+    display: inline-block;
+    border-radius: 5px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  div.dataTables_wrapper div.dataTables_length select {
+    width: auto;
+    display: inline-block;
+    border-radius: 15px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  th {
+    text-transform: uppercase !important;
+  }
+
+  td {
+    font-size: 15px !important;
+  }
+</style>
 
 <div class="container-fluid">
   <div class="row">
