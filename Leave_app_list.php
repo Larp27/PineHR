@@ -169,6 +169,7 @@ if (isset($_SESSION['s_em_email'])) {
                 <ul class="rep-show">
                   <li><a href="Reports_att.php" style="font-family: 'Glacial Indifference';">Attendance Reports</a></li>
                   <li><a href="Reports_payroll.php" style="font-family: 'Glacial Indifference';">Payroll Reports</a></li>
+                  <li><a href="Reports_leave.php" style="font-family: 'Glacial Indifference';">Leave Reports</a></li>
                 </ul>
               </li>
             </ul>
