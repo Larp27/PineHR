@@ -1,14 +1,5 @@
 <?php
 session_start();
-// Clear the session data for email and password if they exist
-if (isset($_SESSION['s_em_email'])) {
-    unset($_SESSION['s_em_email']);
-    session_destroy();
-}
-if (isset($_SESSION['s_em_password'])) {
-    unset($_SESSION['s_em_password']);
-    session_destroy();
-}
 include "DBConnection.php";
 
 $em_email = $_POST['em_email'];
@@ -45,4 +36,5 @@ if (mysqli_num_rows($result) > 0) {
     header("location: login.php?error=Invalid username/password.");
     exit();
 }
+
 ?>
