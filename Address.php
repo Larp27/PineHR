@@ -23,7 +23,7 @@
         <div class="dash_content mt-3">
           <div class="dash_content_main">
             <div class="table-responsive">
-              <table class="" id="example">
+              <table class="table" id="example">
                 <colgroup>
                   <col width="10%">
                   <col width="55%">
