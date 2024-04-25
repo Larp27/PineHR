@@ -1,11 +1,30 @@
 <?php
-session_start();
-include "DBConnection.php";
-$fromdate = $_POST['fromdate'];
-$todate = $_POST['todate'];
-$start_date  = $fromdate;
-$end_date    = $todate;
-$selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee']) : ''; // Convert array of selected employee IDs to comma-separated string, or empty if none selected
+  session_start();
+  include "DBConnection.php";
+  $fromdate = $_GET['fromdate'] ?? '';
+  $todate = $_GET['todate'] ?? '';
+  $employee = $_GET['employee'] ?? '';
+
+  // Build the WHERE clause based on the provided filter values
+  $whereClause = [];
+  if (!empty($employee)) {
+    $whereClause[] = "attendance.em_id = $employee";
+  }
+
+  $query = "SELECT attendance.*, last_name, first_name FROM attendance 
+            INNER JOIN employee ON attendance.em_id = employee.em_id";
+
+  // Add WHERE clause if any filter is provided
+  if (!empty($whereClause)) {
+    $query .= " WHERE " . implode(" AND ", $whereClause);
+  }
+
+  // Add date range filter only if both fromdate and todate are present
+  if (!empty($fromdate) && !empty($todate)) {
+    $query .= " AND attendance.att_date BETWEEN '$fromdate' AND '$todate'";
+  }
+
+  $result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,11 +47,33 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
           <a href="index.php"><img src="bgimages/ormoc_seal.jpg" alt="logo" style="width: 100px;height: 100px; margin-left: 210px"></a>
           <th colspan="6">Ormoc City LGU Attendance</th>
         </tr>
-        <tr>
-          <td colspan="6">Date from <?php echo $start_date; ?> To <?php echo $end_date; ?></td>
-        </tr>
-      </thead>
-      <tbody>
+        <?php
+          $fromdate_obj = new DateTime($fromdate);
+          $todate_obj = new DateTime($todate);
+
+          $from_month = $fromdate_obj->format('F'); // Full month name
+          $to_month = $todate_obj->format('F'); // Full month name
+          $from_day = $fromdate_obj->format('j'); // Day without leading zeros
+          $to_day = $todate_obj->format('j'); // Day without leading zeros
+          $from_year = $fromdate_obj->format('Y'); // Full year
+          $to_year = $todate_obj->format('Y'); // Full year
+
+          // Format the date range string
+          $date_range = '';
+          if ($from_month === $to_month && $from_year === $to_year) {
+            // Same month and year
+            $date_range = "<td colspan='6'>Date from $from_month $from_day - $to_day, $to_year</td>";
+          } elseif ($from_month !== $to_month && $from_year === $to_year) {
+            // Different month but same year
+            $date_range = "<td colspan='6'> Date from $from_month $from_day - $to_month $to_day, $to_year</td>";
+          } else {
+            // Different month and year
+            $date_range = "<td colspan='6'>Date from $from_month $from_day, $from_year - $to_month $to_day, $to_year</td>";
+          }
+
+          // Output the formatted date range
+          echo $date_range;
+        ?>
         <tr>
           <th>Employee</th>
           <th>Attendance Date</th>
@@ -40,36 +81,33 @@ $selected_employees = isset($_POST['employee']) ? implode(",", $_POST['employee'
           <th>Sign Out</th>
           <th>Working Hour</th>
         </tr>
+      </thead>
+      <tbody>
+
         <?php
-        $query = "SELECT attendance.*, last_name, first_name 
-                  FROM attendance 
-                  INNER JOIN employee ON attendance.em_id = employee.em_id 
-                  WHERE attendance.att_date BETWEEN '" . $start_date . "' AND '" . $end_date . "'";
-        // If specific employees are selected, add a condition to filter by their IDs
-        if (!empty($selected_employees)) {
-          $query .= " AND employee.em_id IN ($selected_employees)";
-        }
-        $result = mysqli_query($conn, $query);
-        // Fetch and display attendance records
-        while ($row = mysqli_fetch_assoc($result)) {
-          echo "<tr>";
-          echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>"; // Display last name and first name
-          echo "<td>" . $row['att_date'] . "</td>";
-          echo "<td>" . date('H:i', strtotime($row['att_s_in'])) . "</td>"; // Format sign in time to hour and minute
-          echo "<td>" . date('H:i', strtotime($row['att_s_out'])) . "</td>"; // Format sign out time to hour and minute
-          echo "<td>" . $row['total_hr'] . "</td>";
-          echo "</tr>";
-        }
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . $row['last_name'] . " " . $row['first_name'] . "</td>"; 
+            echo "<td>" . $row['att_date'] . "</td>";
+            echo "<td>" . date('H:i', strtotime($row['att_s_in'])) . "</td>";
+            echo "<td>" . date('H:i', strtotime($row['att_s_out'])) . "</td>";
+            echo "<td>" . $row['total_hr'] . "</td>";
+            echo "</tr>";
+          }
         ?>
       </tbody>
     </table>
   </div>
-  <script>
-    window.print(); // Print the page
-    // Redirect back to reports page after 1 second (optional)
-    setTimeout(function() {
-      window.location.href = '../Pinehr/Reports_att.php';
-    }, 1000);
-  </script>
 </body>
 </html>
+<script>
+  window.print();
+
+  // Close the new tab when the print dialog is closed or canceled
+  window.onafterprint = function() {
+    window.close();
+  };
+  window.onbeforeunload = function() {
+    window.close();
+  };
+</script>
