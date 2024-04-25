@@ -140,18 +140,15 @@
                   <span class="input-group-text">@ormochr.com</span>
                 </div>
               </div>
-              <div class="form-group mb-3">
-                <label for="em_old_password" class="fw-bold text-uppercase">Old Password</label>
-                <input type="password" class="form-control" placeholder="" id="em_old_password" name="em_old_password" aria-describedby="addon-wrapping" value="">
-                <i class="far fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" id="toggleOldPassword"  onclick="showOldPassword()"></i>
+              <div class="form-group mb-3 password-toggle">
+                <label for="current_password" class="form-label">Current Password</label>
+                <input type="password" class="form-control" id="current_password" name="current_password" required>
+                <i id="current_password-toggle-icon" class="toggle-icon fas fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" onclick="togglePassword('current_password')"></i>
               </div>
-              <div class="form-group mb-3">
-                <label for="em_new_password" class="fw-bold text-uppercase">New Password</label>
-                <div class="password-tooltip">
-                  <span class="tooltip-content" data-bs-toggle="tooltip" data-bs-placement="top" title="Leave the New Password Field blank if you don't want to update your password."></span>
-                  <input type="password" name="em_new_password" id="em_new_password" class="form-control" value="">
-                  <i class="far fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" id="toggleNewPassword"  onclick="showNewPassword()"></i>
-                </div>
+              <div class="form-group mb-3 password-toggle">
+                <label for="new_password" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="new_password" name="new_password" required>
+                <i id="new_password-toggle-icon" class="toggle-icon fas fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" onclick="togglePassword('new_password')"></i>
               </div>
 
 
@@ -278,29 +275,36 @@
     $('#example').DataTable();
   });
 
-  function showNewPassword(){
-    var new_password = document.getElementById("em_new_password");
-    var toogle_new_password = document.getElementById("toggleNewPassword");
-    if (new_password.type === "password") {
-      new_password.type = "text";
-      toogle_new_password.classList.toggle("fa-eye")
+  function togglePassword(id) {
+    let passwordField = document.getElementById(id);
+    let toggleIcon = document.getElementById('toggle' + id.charAt(0).toUpperCase() + id.slice(1));
+
+    if (passwordField.value !== '') {
+      toggleIcon.style.display = 'inline-block';
     } else {
-      new_password.type = "password";
-      toogle_new_password.classList.toggle("fa-eye-slash")
+      toggleIcon.style.display = 'none';
+    }
+
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      toggleIcon.classList.toggle("fa-eye")
+      toggleIcon.classList.remove('fa-eye-slash');
+    } else {
+      passwordField.type = 'password';
+      toggleIcon.classList.toggle("fa-eye-slash")
+      toggleIcon.classList.remove('fa-eye');
     }
   }
 
-  function showOldPassword(){
-    var old_password = document.getElementById("em_old_password");
-    var toogle_old_password = document.getElementById("toggleOldPassword");
-    if (old_password.type === "password") {
-      old_password.type = "text";
-      toogle_old_password.classList.toggle("fa-eye")
-    } else {
-      old_password.type = "password";
-      toogle_old_password.classList.toggle("fa-eye-slash")  
-    }
-  }
+  // Add event listeners to the password fields to toggle the eye icon visibility dynamically
+  document.getElementById('old_password').addEventListener('input', function() {
+    togglePassword('old_password');
+  });
+
+  document.getElementById('new_password').addEventListener('input', function() {
+    togglePassword('new_password');
+  });
+
 </script>
 <script>
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
