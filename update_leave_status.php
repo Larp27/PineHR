@@ -46,7 +46,7 @@ function sendInfobipSMS($number, $message)
           document.addEventListener('DOMContentLoaded', function () {
               Swal.fire({
                   icon: 'success',
-                  title: ' okay na boss.',
+                  title: ' SMS SENT TO THE EMPLOYEE.',
                   showConfirmButton: false,
                   timer: 1500
               }).then(() => {
