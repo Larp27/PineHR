@@ -16,7 +16,6 @@ if (empty($em_email)) {
 }
 
 
-
 $query = "select * from employee where em_email = '$em_email' and em_password = '$em_password'";
 
 $result = mysqli_query($conn, $query);

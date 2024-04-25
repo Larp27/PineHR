@@ -253,14 +253,22 @@ include_once('./main.php');
               <label for="em_contract_end" class="fw-bold  text-uppercase">Date of Leaving</label>
               <input type="date" class="form-control" placeholder="" id="em_contract_end" aria-describedby="addon-wrapping">
             </div>
+            
             <div class="form-group mb-3">
               <label for="em_email" class="fw-bold text-uppercase">Email</label>
-              <input type="email" class="form-control" placeholder="" id="em_email" aria-describedby="addon-wrapping">
+              <div class="input-group">
+                <input type="email" class="form-control" placeholder="" id="em_email" aria-describedby="addon-wrapping">
+                <span class="input-group-text">@ormochr.com</span>
+              </div>
             </div>
+            
+
             <div class="form-group mb-3">
-              <label for="em_password" class="fw-bold  text-uppercase">Password</label>
-              <input type="text" class="form-control" placeholder="" id="em_password" aria-describedby="addon-wrapping">
+              <label for="em_password" class="fw-bold text-uppercase">Password (Default)</label>
+              <input type="text" class="form-control" placeholder="(Default Password)" id="em_password" aria-describedby="addon-wrapping" value="ormochr123" readonly>
             </div>
+
+
             <div class="form-group mb-3">
               <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
               <input type="file" class="form-control" id="em_profile_pic" name="em_profile_pic" accept="image/*">
