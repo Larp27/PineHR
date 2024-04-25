@@ -12,8 +12,6 @@
   $query = "SELECT em_id, first_name, last_name FROM employee";
   $result = mysqli_query($conn, $query);
 ?>
-
-<script src="./script.js"></script>
 <style>
   div.dataTables_wrapper div.dataTables_paginate .paginate_button {
     border: none !important;

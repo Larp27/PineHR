@@ -43,13 +43,14 @@ if (isset($_SESSION['s_em_email'])) {
 
   <!--Navbar CSS-->
   <link rel="stylesheet" href="css/navbar2.css">
-
+  
   <!-- DATATABLES OFFLINE -->
   <link rel="stylesheet" href="DataTables/css/bootstrap.min.css">
   <link rel="stylesheet" href="DataTables/css/bootstrap5.min.css">
   <script src="DataTables/js/jquery-3.7.0.js"></script>
   <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
   <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
+  <script src="./script.js"></script>
 </head>
 <body>
   <!--LOGOUT -- getting user role to display specific features and function -->
