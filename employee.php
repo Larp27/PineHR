@@ -11,11 +11,11 @@ if (isset($_SESSION['s_em_email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | PINE HR</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/employee.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+  
   <!-- Modal Jquery for logging in -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -33,52 +33,52 @@ if (isset($_SESSION['s_em_email'])) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="./js/script.js"></script>
-
-  <style>
-    .nav-tabs.nav-sm>li.nav-item>a.nav-link {
-      padding: 0.25rem 0.5rem;
-      font-size: 0.9rem;
-    }
-
-    .nav-tabs.nav-sm>li.nav-item {
-      margin-bottom: 0;
-    }
-
-    table,
-    tbody,
-    td,
-    tfoot,
-    th,
-    thead,
-    tr {
-      border-color: #2468a0 !important;
-      border-style: solid;
-      border-width: 1px !important;
-    }
-
-    #calendar {
-      background-color: rgb(255, 251, 196) !important;
-      height: 600px;
-      border: 2px solid #2468a0;
-      border-radius: 5px;
-    }
-
-    th {
-      background-color: rgb(235, 220, 10);
-    }
-
-    .dashboard-card {
-      height: 130px;
-    }
-
-    @media (min-width: 768px) and (max-width: 1198px) {
-      .dashboard-card h5 {
-        text-align: center;
-        font-size: 16px !important;
-      }
-    }
-  </style>
 </head>
+
+<style>
+  .nav-tabs.nav-sm>li.nav-item>a.nav-link {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .nav-tabs.nav-sm>li.nav-item {
+    margin-bottom: 0;
+  }
+
+  table,
+  tbody,
+  td,
+  tfoot,
+  th,
+  thead,
+  tr {
+    border-color: #2468a0 !important;
+    border-style: solid;
+    border-width: 1px !important;
+  }
+
+  #calendar {
+    background-color: rgb(255, 251, 196) !important;
+    height: 600px;
+    border: 2px solid #2468a0;
+    border-radius: 5px;
+  }
+
+  th {
+    background-color: rgb(235, 220, 10);
+  }
+
+  .dashboard-card {
+    height: 130px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1198px) {
+    .dashboard-card h5 {
+      text-align: center;
+      font-size: 16px !important;
+    }
+  }
+</style>
 <body>
   <?php
   if ($_SESSION['s_user_id'] == 1) {
@@ -354,8 +354,8 @@ if (isset($_SESSION['s_em_email'])) {
 
 <?php
   } else {
-  header("location: login.php");
-  exit();
+    header("location: login.php");
+    exit();
   }
 ?>
 </body>

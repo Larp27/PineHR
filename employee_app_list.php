@@ -4,7 +4,36 @@
   include "DBConnection.php";
   if (isset($_SESSION['s_em_email'])) {
 ?>
- 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard | PINE HR</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/employee.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+
+  <!-- Modal Jquery for logging in -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!--Navbar CSS-->
+  <link rel="stylesheet" href="css/navbar.css">
+
+  <!-- DATATABLES OFFLINE -->
+  <link rel="stylesheet" href="DataTables/css/bootstrap.min.css">
+  <link rel="stylesheet" href="DataTables/css/bootstrap5.min.css">
+  <script src="DataTables/js/jquery-3.7.0.js"></script>
+  <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
+  <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
+</head>
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+</style>
 <body>
   <?php
     $em_id = $_SESSION['s_em_id'];
@@ -313,6 +342,10 @@
       newWin.close();
     }, 10);
   }
+
+  $(document).ready(function () {
+    $('#employeeTable').DataTable();
+  })
 </script>
 <?php
   } else {

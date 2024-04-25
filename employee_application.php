@@ -93,7 +93,7 @@ if (isset($_SESSION['s_em_email'])) {
               <a class="nav-link fw-bold" href="employee_profile.php">Profile</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link fw-bold dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
+              <a class="nav-link fw-bold dropdown-toggle text-dark active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
               <ul class="dropdown-menu">
                 <?php
                 // Check if the user has any employee leave credits
@@ -123,7 +123,7 @@ if (isset($_SESSION['s_em_email'])) {
                 }
                 echo '<li data-bs-toggle="tooltip" data-bs-placement="top" title="' . $tooltip_message . '"><a class="dropdown-item active fw-bold' . $application_disabled . '" href="employee_application.php" >Application</a></li>';
                 ?>
-                <li><a class="dropdown-item fw-bold" href="./employee_app_list.php">List</a></li>
+                <li><a class="dropdown-item fw-bold text-dark" href="./employee_app_list.php">List</a></li>
               </ul>
             </li>
           </ul>
