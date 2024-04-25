@@ -135,7 +135,6 @@ if (!$result || !$leave_types_result) {
                               <option value="<?php echo $value; ?>" <?php echo $selected; ?>><?php echo ucfirst($value); ?></option>
                             <?php } ?>
                           </select>
-
                         </div>
 
                         <div class="col-md-2 mx-2">
