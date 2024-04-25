@@ -28,7 +28,7 @@
         </div>
         <div class="dash_content mt-3">
           <div class="dash_content_main">
-            <table class="table" id="example">
+            <table class="" id="example">
               <colgroup>
                 <col width="10%">
                 <col width="55%">
