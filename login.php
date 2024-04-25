@@ -135,6 +135,18 @@
         text-decoration: underline;
         font-family: sans-serif;
     }
+
+    .error {
+  font-size: small;
+  width: auto; /* Let the width adjust based on content */
+  max-width: 50%; /* Ensure it doesn't exceed the container width */
+  height: auto; /* Let the height adjust based on content */
+  padding: 5px; /* Add some padding for better appearance */
+  margin: 12px;
+}
+
+
+    
 </style>
 
 <body>
@@ -150,14 +162,10 @@
 
         <?php if (isset($_GET['error'])) { ?>
 
-            <p class="error"><?php echo $_GET['error']; ?></p>
+            <p class="error alert alert-danger" role="alert" id="error-message"><?php echo $_GET['error']; ?></p>
         <?php } ?>
-        <?php if (isset($_GET['error2'])) { ?>
 
-            <p class="error2"><?php echo $_GET['error2']; ?></p>
-        <?php } ?><br>
-
-        <input type="text" name="em_email" placeholder="Email">
+        <input type="email" name="em_email" placeholder="Email">
         <input type="password" name="em_password" placeholder="Password"><br>
         <button type="submit" class="login">Login</button>
 
@@ -194,9 +202,21 @@
                 }
             }
         </style>
+
+        <script>
+            // Get the error message element
+            var errorMessage = document.getElementById('error-message');
+
+            // If the error message element exists
+            if (errorMessage) {
+            // Set a timeout to make it disappear after 5 seconds
+             setTimeout(function() {
+                errorMessage.style.display = 'none';
+                    }, 5000); // 5000 milliseconds = 5 seconds
+            }
+        </script>
         </body>
         
-</html>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
