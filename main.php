@@ -2,6 +2,19 @@
 <?php
 session_start();
 include "DBConnection.php";
+
+// Check for user inactivity
+$inactive_timeout = 300; // 5 minutes in seconds
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $inactive_timeout)) {
+    session_unset();     // unset $_SESSION variable for the run-time 
+    session_destroy();   // destroy session data in storage
+    echo '<script>alert("You have been logged out due to inactivity."); window.location.href = "logout.php";</script>'; // JavaScript alert message
+    exit();
+}
+
+$_SESSION['last_activity'] = time(); // Update last activity time
+
+
 if (isset($_SESSION['s_em_email'])) {
   // Fetch the profile picture path from the database based on the logged-in user's ID
   $query = "SELECT em_profile_pic FROM employee WHERE em_id = ?";
@@ -51,6 +64,18 @@ if (isset($_SESSION['s_em_email'])) {
   <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
   <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
   <script src="./script.js"></script>
+
+  <style>
+    /* CSS for the alert message */
+    .alert {
+      background-color: #f8d7da; /* Red */
+      color: #721c24; /* White */
+      padding: 10px 20px; /* Padding */
+      border-radius: 5px; /* Rounded corners */
+      margin-bottom: 20px; /* Margin bottom */
+      border: 1px solid transparent; /* Transparent border */
+    }
+  </style>
 </head>
 <body>
   <!--LOGOUT -- getting user role to display specific features and function -->
