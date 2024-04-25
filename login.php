@@ -162,7 +162,7 @@
 
         <?php if (isset($_GET['error'])) { ?>
 
-            <p class="error alert alert-danger" role="alert"><?php echo $_GET['error']; ?></p>
+            <p class="error alert alert-danger" role="alert" id="error-message"><?php echo $_GET['error']; ?></p>
         <?php } ?>
 
         <input type="email" name="em_email" placeholder="Email">
@@ -202,9 +202,21 @@
                 }
             }
         </style>
+
+        <script>
+            // Get the error message element
+            var errorMessage = document.getElementById('error-message');
+
+            // If the error message element exists
+            if (errorMessage) {
+            // Set a timeout to make it disappear after 5 seconds
+             setTimeout(function() {
+                errorMessage.style.display = 'none';
+                    }, 5000); // 5000 milliseconds = 5 seconds
+            }
+        </script>
         </body>
         
-</html>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
