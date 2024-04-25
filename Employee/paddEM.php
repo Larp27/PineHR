@@ -21,7 +21,7 @@ function insertRecord(){
   $bt_id = $_POST['bt_id'];
   $em_birthday = $_POST['em_birthday'];
   $em_phone = '+63' . $_POST['em_phone']; // Prepend +63 to the phone number
-  $em_email = $_POST['em_email'];
+  $em_email = $_POST['em_email'] . '@ormochr.com'; // Concatenate @ormochr.com
   $address_id = $_POST['address_id'];
   $edu_id = $_POST['edu_id'];
   $dep_id = $_POST['dep_id'];
