@@ -56,7 +56,8 @@ include_once('./main.php');
                 ?>
                   <td class='text-center p-3'>
                     <div class="col-auto d-flex justify-content-center m-2">
-                      <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-bt-id="<?php echo $row['bt_id']; ?>" data-bt_name="<?php echo $row['bt_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                    <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-bt-id="<?php echo $row['bt_id']; ?>" data-bt-name="<?php echo $row['bt_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+
 
                       <a href="BloodType/deleteBT.php?bt_id=<?php echo $row['bt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Blood Type Data?')"><i class="fas fa-trash"></i> Delete </a>
                     </div>
@@ -100,16 +101,16 @@ include_once('./main.php');
 </div>
 
 <script>
-  var updateUserModal = document.getElementById('updateUserModal');
-  updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var bt_id = button.getAttribute('data-bt_id'); // Extract info from data-* attributes
-    var bt_name = button.getAttribute('data-bt_name'); // Extract info from data-* attributes
+ updateUserModal.addEventListener('show.bs.modal', function(event) {
+  var button = event.relatedTarget; // Button that triggered the modal
+  var bt_id = button.getAttribute('data-bt-id'); // Extract info from data-* attributes
+  var bt_name = button.getAttribute('data-bt-name'); // Extract info from data-* attributes
 
-    var modalBody = updateUserModal.querySelector('.modal-body');
-    modalBody.querySelector('#bt_id').value = bt_id;
-    modalBody.querySelector('#bt_name').value = bt_name;
-  })
+  var modalBody = updateUserModal.querySelector('.modal-body');
+  modalBody.querySelector('#bt_id').value = bt_id;
+  modalBody.querySelector('#update_bt_name').value = bt_name;
+});
+
 </script>
 
 <!--Education Process Add and Update JS-->

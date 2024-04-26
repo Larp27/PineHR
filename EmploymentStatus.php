@@ -9,7 +9,7 @@ include_once('./main.php');
     padding: 0px !important;
   }
 
-  div.dataTables_wrapper div.dataTables_length select{
+  div.dataTables_wrapper div.dataTables_length select {
     width: auto;
     display: inline-block;
     border-radius: 5px;
@@ -42,7 +42,6 @@ include_once('./main.php');
   td {
     font-size: 15px !important;
   }
-
 </style>
 
 <div class="container-fluid">
@@ -85,7 +84,8 @@ include_once('./main.php');
                     <td class='text-center p-3'><?= $row['es_income'] ?></td>
                     <td class='text-center p-3'>
                       <div class="col-auto d-flex justify-content-center m-2">
-                        <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-es-id="<?= $row['es_id'] ?>" data-es-name="<?= $row['es_name'] ?>"data-es-income="<?= $row['es_income'] ?>"><i class="fas fa-edit"></i> Edit</button>
+                        <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-es-id="<?= $row['es_id'] ?>" data-es-name="<?= $row['es_name'] ?>" data-es-income="<?= $row['es_income'] ?>"><i class="fas fa-edit"></i> Edit</button>
+
                         <a href="EmploymentStatus/deleteES.php?es_id=<?= $row['es_id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Employment Status Data?')"><i class="fas fa-trash"></i> Delete</a>
                       </div>
                     </td>
@@ -139,7 +139,8 @@ include_once('./main.php');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#es_id').value = es_id;
-    modalBody.querySelector('#update_es_names').value = es_name;
+    modalBody.querySelector('#update_es_name').value = es_name;
     modalBody.querySelector('#update_es_income').value = es_income;
+
   });
 </script>

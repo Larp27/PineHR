@@ -54,7 +54,8 @@ include_once('./main.php');
               ?>
                   <td class='text-center p-3'>
                     <div class="col-auto d-flex justify-content-center m-2">
-                      <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-des-id="<?php echo $row['des_id']; ?>" data-designation-name="<?php echo $row['des_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+                    <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-designation-id="<?php echo $row['des_id']; ?>" data-designation-name="<?php echo $row['des_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+
                       <a href="Designation/deleteDES.php?des_id=<?php echo $row['des_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Designation?')"><i class="fas fa-trash"></i> Delete </a>
 
                     </div>
@@ -95,17 +96,16 @@ include_once('./main.php');
 </div>
 
 <script>
-  var updateUserModal = document.getElementById('updateUserModal');
-  updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var des_id = button.getAttribute('data-des-id'); // Extract info from data-* attributes
-    var des_name = button.getAttribute('data-des-name'); // Extract info from data-* attributes
+ updateUserModal.addEventListener('show.bs.modal', function(event) {
+  var button = event.relatedTarget; // Button that triggered the modal
+  var des_id = button.getAttribute('data-designation-id'); // Extract info from data-* attributes
+  var des_name = button.getAttribute('data-designation-name'); // Extract info from data-* attributes
 
-    var modalBody = updateUserModal.querySelector('.modal-body');
-    modalBody.querySelector('#des_id').value = des_id;
-    modalBody.querySelector('#des_name').value = des_name;
+  var modalBody = updateUserModal.querySelector('.modal-body');
+  modalBody.querySelector('#des_id').value = des_id;
+  modalBody.querySelector('#update_des_name').value = des_name;
+});
 
-  })
 </script>
 
 

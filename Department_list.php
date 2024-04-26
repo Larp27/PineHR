@@ -1,7 +1,7 @@
 <?php
-  $title = 'Department';
-  $page = 'department_list';
-  include_once('./main.php');
+$title = 'Department';
+$page = 'department_list';
+include_once('./main.php');
 ?>
 
 <style>
@@ -18,12 +18,12 @@
         <div class="d-flex justify-content-between align-items-center">
           <p class="fw-bold fs-5 text-uppercase">Department</p>
           <?php if ($_SESSION['s_user_id'] == 1) {
-              $query = "select * from user_type";
-              $result = mysqli_query($conn, $query);
-            } {
-              echo '<a href="Department_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Department +</button> </a>';
-            }
-            ?>
+            $query = "select * from user_type";
+            $result = mysqli_query($conn, $query);
+          } {
+            echo '<a href="Department_add.php"><i ><button type="button" class="btn btn-success" style="float: right; background-color: #2468a0;"></i>&nbsp;&nbsp;Add New Department +</button> </a>';
+          }
+          ?>
         </div>
         <div class="dash_content mt-3">
           <div class="dash_content_main">
@@ -39,27 +39,28 @@
                 </tr>
               </thead>
               <?php
-                $query = "SELECT * from department";
+              $query = "SELECT * from department";
 
-                $result = mysqli_query($conn, $query);
-                while ($row = mysqli_fetch_assoc($result)) {
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_assoc($result)) {
 
-                  $r_dep_id = $row['dep_id'];
-                  $r_dep_name = $row['dep_name'];
+                $r_dep_id = $row['dep_id'];
+                $r_dep_name = $row['dep_name'];
 
-                echo 
+                echo
                 "<tr> 
                   <td class='text-center p-3'> $r_dep_name </td>";
               ?>
-                  <td class='text-center p-3'>
-                    <div class="col-auto d-flex justify-content-center m-2">
-                      <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-dep-id="<?php echo $row['dep_id']; ?>" data-department-name="<?php echo $row['dep_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
-                      <a href="Department/deleteDEPT.php?dep_id=<?php echo $row['dep_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Department?')"><i class="fas fa-trash"></i> Delete </a>
-                    </div>
-                  </td>
+                <td class='text-center p-3'>
+                  <div class="col-auto d-flex justify-content-center m-2">
+                  <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-dep-id="<?php echo $row['dep_id']; ?>" data-dep-name="<?php echo $row['dep_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
+
+                    <a href="Department/deleteDEPT.php?dep_id=<?php echo $row['dep_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Department?')"><i class="fas fa-trash"></i> Delete </a>
+                  </div>
+                </td>
                 </tr>
               <?php
-                }
+              }
               ?>
             </table>
           </div>
@@ -68,7 +69,7 @@
     </div>
   </div>
 </div>
-         
+
 <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -93,7 +94,6 @@
 </div>
 
 <script>
-  var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
     var button = event.relatedTarget; // Button that triggered the modal
     var dep_id = button.getAttribute('data-dep-id'); // Extract info from data-* attributes
@@ -101,9 +101,8 @@
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#dep_id').value = dep_id;
-    modalBody.querySelector('#dep_name').value = dep_name;
-
-  })
+    modalBody.querySelector('#update_dep_name').value = dep_name;
+  });
 </script>
 
 <!--Department Process Add and Update JS-->

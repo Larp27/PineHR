@@ -105,11 +105,12 @@
     var r_name = button.getAttribute('data-r_name'); // Extract info from data-* attributes
 
     var modalBody = updateUserModal.querySelector('.modal-body');
-    modalBody.querySelector('#r_id').value = bt_id;
-    modalBody.querySelector('#r_name').value = bt_name;
+    modalBody.querySelector('#r_id').value = r_id;
+    modalBody.querySelector('#update_r_name').value = r_name;
 
   })
 </script>
+
 
 <!--Education Process Add and Update JS-->
 <script src="Religion/ReligionJS.js"></script>

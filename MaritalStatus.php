@@ -106,10 +106,10 @@ include_once('./main.php');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#ms_id').value = ms_id;
-    modalBody.querySelector('#ms_name').value = ms_name;
-
-  })
+    modalBody.querySelector('#update_ms_name').value = ms_name;
+  });
 </script>
+
 
 <!--Education Process Add and Update JS-->
 <script src="MaritalStatus/MaritalStatusJS.js"></script>
