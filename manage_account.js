@@ -39,13 +39,16 @@ $(document).ready(function () {
       contentType: false,
       success: function (data) {
         if (data.toLowerCase().includes('success')) {
-          $('#exampleModalCenter').modal('show');
+          if ($('#exampleModalCenter').length) {
+            $('#exampleModalCenter').modal('show');
+          } else {
+            window.location.href = 'user_manage_account.php';
+          }
         } else {
           $('#message').html(data);
         }
         $('form').trigger('reset');
       }
     });
-    
   });
 });

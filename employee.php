@@ -11,11 +11,19 @@ if (isset($_SESSION['s_em_email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | PINE HR</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/employee.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
+
+  <!--offline bootstrap-->
+  <script src="js/bootstrap.min.js"></script>
+
   <!-- Modal Jquery for logging in -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -24,14 +32,8 @@ if (isset($_SESSION['s_em_email'])) {
 
   <!--calendar links-->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
-  <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
-  <script src="./js/jquery-3.6.0.min.js"></script>
-  <script src="./js/bootstrap.min.js"></script>
   <script src="./fullcalendar/lib/main.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   <script src="./js/script.js"></script>
 </head>
 
@@ -95,12 +97,40 @@ if (isset($_SESSION['s_em_email'])) {
     </div>
     <div class="dash_content_container" id="dash_content_container">
       <div class="dash_topnav" id="dash_topnav">
-        <a href="Dashboard.php">
-          <img src="bgimages/pine.png" alt="logo" style="width: 90px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
-        </a>
-        <h10 style="font-family: 'Glacial Indifference';"><?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?></h10>
-        <a href="logout.php" id="lougoutbtn" class="text-decoration-none" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+        <div class="row">
+          <div class="col-auto">
+            <a href="Dashboard.php">
+              <img src="bgimages/pine.png" alt="logo" style="width: 100px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
+            </a>
+          </div>
+          <div class="col text-end">
+            <div class="dropdown" style="cursor: pointer;">
+              <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <?php
+                  if (isset($_SESSION['em_profile_pic'])) {
+                    echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                  } else {
+                    echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+                  }
+                ?>
+                <?php 
+                  $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
+                  $result = mysqli_query($conn, $query);
+
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                  }
+                ?>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="user_manage_account.php">Manage Account</a></li>
+                  <li><a class="dropdown-item fw-bold" href="logout.php">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div>
         <div id="exampleModal" class="modal fade">
           <div class="modal-dialog modal-dialog-centered">

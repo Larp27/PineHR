@@ -67,8 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conn, $update_query)) {
         echo "Employee data updated successfully";
-        header("Location: manage_account.php");
-        exit(); // Exit to prevent further execution
+        if ($_SESSION('s_user_id') === 2) {
+          header("Location: user_manage_account.php");
+        } else {
+          header("Location: manage_account.php");
+        }
+
+        exit(); 
     } else {
         echo "Error updating employee data: " . mysqli_error($conn);
     }
