@@ -33,36 +33,26 @@ if (isset($_SESSION['s_em_email'])) {
 <head>
   <meta charset="UTF-8">
   <title><?php echo $title; ?> | PINE HR</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/navbar2.css">
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-  <!--<script src="script.js"></script>-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-
+  <!-- Font Awesome -->
   <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
-  <!--offline bootstrap-->
-  <script src="js/bootstrap.min.js"></script>
-
-  <!-- Modal Jquery for logging in -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  <!--Navbar CSS-->
-  <link rel="stylesheet" href="css/navbar2.css">
-  
-  <!-- DATATABLES OFFLINE -->
-  <link rel="stylesheet" href="DataTables/css/bootstrap.min.css">
-  <link rel="stylesheet" href="DataTables/css/bootstrap5.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="DataTables/css/dataTables.bootstrap5.min.css">
   <script src="DataTables/js/jquery-3.7.0.js"></script>
-  <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
-  <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
+  <script src="DataTables/js/jquery.dataTables.min.js"></script>
+  <script src="DataTables/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Your custom script -->
   <script src="./script.js"></script>
 
   <!--font links google-->
@@ -70,6 +60,7 @@ if (isset($_SESSION['s_em_email'])) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <!--LOGOUT -- getting user role to display specific features and function -->
   <?php
@@ -191,9 +182,9 @@ if (isset($_SESSION['s_em_email'])) {
           echo "<img src='..//uploads/default_profile_pic.png' style='max-width:50px; max-height:50px; border-radius: 50%; ' alt='default profile pic'>";
         }
         ?>
-        <h10 style="">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
+        <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
 
-        <a href="logout.php" id="lougoutbtn" style=" color: white; text-decoration:none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+        <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white; text-decoration:none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
       </div>
       <div>
         <div id="exampleModal" class="modal fade">

@@ -73,7 +73,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
       <?php if ($_SESSION['s_user_id'] == 1) : ?>
         <!--1st Card-->
         <div class="cards">
-          <div class="row ms-5">
+          <div class="row ms-2">
             <div class="col-md-3 col-sm-6 mb-4">
               <a href="Leave_type_list.php">
                 <div class="card-box">
@@ -324,7 +324,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 <div class="mt-3 ms-3">
   <h4>Schedule</h4>
 </div>
-<div class="container py-12" id="page-container">
+<div class="container py-12" style="height: 100vh !important;" id="page-container">
   <div class="row">
     <div class="col-md-9">
       <div id="calendar"></div>
