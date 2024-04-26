@@ -8,7 +8,7 @@ if (isset($_SESSION['s_em_email'])) {
   <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Leave Type List| PINE HR</title>
+    <title>Leave Type List | PINE HR</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -422,59 +422,55 @@ if (isset($_SESSION['s_em_email'])) {
                           
 
                           echo "<td class='text-center'>
-            <div class='col-auto d-flex justify-content-center'>
-                <div class='dropdown'>
-                    <button class='btn btn-secondary dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
-                        Actions
-                    </button>
-                    <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                        <li>
-                            <form action='update_leave_status.php' method='POST'>
-                                <input type='hidden' name='la_id' value='$emp_id'>
-                                <input type='hidden' name='s_em_id' value='$em_id'>
-                                <input type='hidden' name='lt_id' value='$lt_id'>
-                                <input type='hidden' name='lt_status' value='Accepted'>
-                                <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
-                            </form>
-                        </li>
-                        <li>
-                            <!-- Decline modal trigger button -->
-                            <button type='button' class='dropdown-item btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#declineModal_$emp_id' data-em-id='$em_id'><i class='fas fa-times'></i> Decline</button>
-                        </li>
-                        <li>
-                            <form action='update_leave_status.php' method='POST'>
-                                <input type='hidden' name='la_id' value='$emp_id'>
-                                <input type='hidden' name='s_em_id' value='$em_id'>
-                                <input type='hidden' name='lt_id' value='$lt_id'>
-                                <input type='hidden' name='lt_status' value='Cancelled'>
-                                <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
-                            </form>
-                        </li>
-                    </ul>
-                    <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
-                </div>
-            </div>
-        </td>";
+                                  <div class='col-auto d-flex justify-content-center'>
+                                    <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal' data-emp-id='$emp_id'><i class='fas fa-eye'></i> View</button>
+                                    <div class='dropdown'>
+                                      <button class='btn btn-secondary btn-sm dropdown-toggle' type='button' id='dropdownMenuButton' data-bs-toggle='dropdown' aria-expanded='false'>
+                                        Actions
+                                      </button>
+                                      <ul class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
+                                        <li>
+                                          <form action='update_leave_status.php' method='POST'>
+                                            <input type='hidden' name='la_id' value='$emp_id'>
+                                            <input type='hidden' name='s_em_id' value='$em_id'>
+                                            <input type='hidden' name='lt_id' value='$lt_id'>
+                                            <input type='hidden' name='lt_status' value='Accepted'>
+                                            <button type='submit' name='accept' class='dropdown-item btn btn-success btn-sm'><i class='fas fa-check'></i> Accept</button>
+                                          </form>
+                                        </li>
+                                        <li>
+                                          <!-- Decline modal trigger button -->
+                                          <button type='button' class='dropdown-item btn btn-danger btn-sm' data-bs-toggle='modal' data-bs-target='#declineModal_$emp_id' data-em-id='$em_id'><i class='fas fa-times'></i> Decline</button>
+                                        </li>
+                                        <li>
+                                          <form action='update_leave_status.php' method='POST'>
+                                            <input type='hidden' name='la_id' value='$emp_id'>
+                                            <input type='hidden' name='s_em_id' value='$em_id'>
+                                            <input type='hidden' name='lt_id' value='$lt_id'>
+                                            <input type='hidden' name='lt_status' value='Cancelled'>
+                                            <button type='submit' name='cancel' class='dropdown-item btn btn-warning btn-sm'><i class='fas fa-ban'></i> Cancel</button>
+                                          </form>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </td>";
                         } else {
                           echo "<td class='text-center'>
-            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
-                <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm update-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>";
+                                  <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                                    <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal' data-emp-id='$emp_id'><i class='fas fa-eye'></i> View</button>";
 
                           if ($r_lt_status != 'Pending') {
-                            echo "
-                <a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
+                            echo "<a href='Leave_application/deleteLA.php?la_id=$emp_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Leave Application?\")'><i class='fas fa-trash'></i> Delete</a>";
                           } else {
                             echo "";
                           }
 
                           echo "</div>
-        </td>";
-        
+                              </td>";
                         }
-
-                           
-                      }      
-                ?>
+                    }      
+                 ?>
                 <script>
                    /* document.getElementById('declineForm$emp_id').addEventListener('submit', function(event) {
                         var remarks = document.getElementById('la_remarks$emp_id').value;
@@ -527,27 +523,40 @@ if (isset($_SESSION['s_em_email'])) {
             </div>
           </div>
         </div>
-        <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="viewModalLabel"><i class="fas fa-eye"></i>&nbsp;Leave Application Details</h5>
 
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p><strong>Employee Name:</strong> <?php echo $r_last_name ?>, <?php echo $r_first_name ?></p>
-                <p><strong>Leave Type:</strong> [<?php echo $r_lt_code ?>] - <?php echo $r_lt_name ?></p>
-                <p><strong>Date Start:</strong> <?php echo $r_la_date_start ?></p>
-                <p><strong>Date End:</strong> <?php echo $r_la_date_end ?></p>
-                <p><strong>Reason:</strong> <?php echo $r_la_reason ?></p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+       <!-- VIEW MODAL -->
+       <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModalLabel"><i class="fas fa-eye"></i>&nbsp;Leave Application Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="viewModalBody">
+              <!-- Content will be dynamically populated here -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
+      </div>
+
+      <script>
+        $(document).ready(function() {
+          $('.view-user-btn').click(function() {
+            var empId = $(this).data('emp-id');
+            $.ajax({
+              url: 'get_leave_application_details.php',
+              type: 'GET',
+              data: { emp_id: empId },
+              success: function(response) {
+                $('#viewModalBody').html(response);
+              }
+            });
+          });
+        });
+      </script>
       <?php
       if (isset($_GET['uid1'])) {
         $uid1  = $_GET['uid1'];
@@ -628,33 +637,6 @@ if (isset($_SESSION['s_em_email'])) {
       $('nav ul li').click(function() {
         $(this).addClass("active").siblings().removeClass("active");
       });
-
-      function populateViewModal(employeeName, leaveType, leaveDate, leaveStatus) {
-        document.getElementById("view_employee_name").innerText = employeeName;
-        document.getElementById("view_leave_type").innerText = leaveType;
-        document.getElementById("view_leave_date").innerText = leaveDate;
-        document.getElementById("view_leave_reason").innerText = leaveReason;
-      }
-
-      // Event listener for view button click
-      document.querySelectorAll('.view-button').forEach(item => {
-        item.addEventListener('click', event => {
-          // Extract leave application data from the row
-          const row = event.target.closest('tr');
-          const employeeName = row.cells[0].innerText;
-          const leaveType = row.cells[1].innerText;
-          const leaveDate = row.cells[2].innerText;
-          const leaveReason = row.cells[3].innerText;
-
-          // Populate the view modal with the extracted data
-          populateViewModal(employeeName, leaveType, leaveDate, leaveReasons);
-
-          // Show the view modal
-          const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
-          viewModal.show();
-        });
-      });
     </script>
   </body>
-
   </html>
