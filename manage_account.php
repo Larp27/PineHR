@@ -190,32 +190,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.leave-type-checkbox');
-    checkboxes.forEach(function(checkbox) {
-      checkbox.addEventListener('change', function() {
-        const leaveTypeId = this.value;
-        const creditInput = document.getElementById('credits_' + leaveTypeId);
-        if (this.checked) {
-          creditInput.classList.remove('d-none');
-        } else {
-          creditInput.classList.add('d-none');
-        }
-      });
-
-      // Trigger change event for checkboxes on page load to initially show/hide credit input fields
-      checkbox.dispatchEvent(new Event('change'));
-    });
-
-    // Check the checkboxes for leave types with available credits
-    <?php
-    $leave_credits_query = $conn->query("SELECT lt_id FROM employee_leave_credits WHERE em_id = $em_id");
-    while ($row = $leave_credits_query->fetch_assoc()) {
-      $lt_id = $row['lt_id'];
-      echo "document.getElementById('leave_type_$lt_id').checked = true;\n";
-      echo "document.getElementById('credits_$lt_id').classList.remove('d-none');\n";
-    }
-    ?>
-
     const barangaySelect = document.getElementById('address_id');
     const citySelect = document.getElementById('city');
     barangaySelect.addEventListener('change', function() {
@@ -238,11 +212,6 @@
       } else {
         citySelect.value = '';
       }
-    });
-
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl);
     });
   });
 
@@ -269,11 +238,6 @@
     form.appendChild(input);
   });
 
-
-  // INITIALIZE DATATABLE
-  $(document).ready(function() {
-    $('#example').DataTable();
-  });
 
   function togglePassword(id) {
     let passwordField = document.getElementById(id);
@@ -312,6 +276,3 @@
     return new bootstrap.Tooltip(tooltipTriggerEl);
   });
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="Employee/updateEM.js"></script>
