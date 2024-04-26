@@ -419,8 +419,6 @@ if (isset($_SESSION['s_em_email'])) {
 
                         // Show dropdown menu for Accept, Decline, Cancel, and View based on the status
                         if ($r_lt_status == 'Pending') {
-                          
-
                           echo "<td class='text-center'>
                                   <div class='col-auto d-flex justify-content-center'>
                                     <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal' data-emp-id='$emp_id'><i class='fas fa-eye'></i> View</button>
