@@ -197,7 +197,14 @@ if (isset($_SESSION['s_em_email'])) {
                 echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
               }
             ?>
-              <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>
+            <?php 
+              $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
+              $result = mysqli_query($conn, $query);
+
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo $row['first_name'] . ' ' . $row['last_name'] . "";
+              }
+            ?>
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="manage_account.php">Manage Account</a></li>
