@@ -146,6 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: Employee ID is not set or empty";
         }
     }
+
      elseif (isset($_POST['cancel'])) {
         $la_id = $_POST['la_id'];
 
@@ -153,10 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $query = "UPDATE leave_application SET la_status = 'Cancelled' WHERE la_id = '$la_id'";
 
         if (mysqli_query($conn, $query)) {
-            // Send SMS notification
-            $message = "Your leave application has been cancelled."; // Customize your message
-            $status = sendInfobipSMS($recipientNumber, $message);
-            echo $status; // Print the status of SMS sending
+         
 
             // Redirect after processing
             header("Location: Leave_app_list.php");

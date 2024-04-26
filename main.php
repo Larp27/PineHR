@@ -55,17 +55,10 @@ if (isset($_SESSION['s_em_email'])) {
   <!-- Your custom script -->
   <script src="./script.js"></script>
 
-  <style>
-    /* CSS for the alert message */
-    .alert {
-      background-color: #f8d7da; /* Red */
-      color: #721c24; /* White */
-      padding: 10px 20px; /* Padding */
-      border-radius: 5px; /* Rounded corners */
-      margin-bottom: 20px; /* Margin bottom */
-      border: 1px solid transparent; /* Transparent border */
-    }
-  </style>
+  <!--font links google-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -93,17 +86,17 @@ if (isset($_SESSION['s_em_email'])) {
         <?php if ($_SESSION['s_user_id'] == 1) : ?>
           <nav class="sidebar">
             <ul>
-              <li <?php echo ($page == 'dashboard') ? 'class="active"' : '' ?>><a href="Dashboard.php" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
+              <li <?php echo ($page == 'dashboard') ? 'class="active"' : '' ?>><a href="Dashboard.php" style=""><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
               <li <?php echo ($page == 'department_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'department_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="org-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
+                <a href="#" class="org-btn" style=""><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
                   <span class="fas fa-caret-down first"></span>
                 </a>
                 <ul class="org-show">
-                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style="font-family: 'Glacial Indifference';">Department</a></i></li>
-                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style="font-family: 'Glacial Indifference';">Designation</a></i></li>
+                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style="">Department</a></i></li>
+                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style="">Designation</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'education') ? 'class="active"' : '' ?> 
@@ -118,59 +111,59 @@ if (isset($_SESSION['s_em_email'])) {
                   <?php echo ($page == 'religion_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                <a href="#" class="pro-btn" style=""><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
                   <span class="fas fa-caret-down sixth"></span>
                 </a>
                 <ul class="pro-show">
-                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
-                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
-                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
-                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
-                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
-                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
+                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="">Educational Attainment</a></i></li>
+                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="">Blood Type</a></i></li>
+                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="">Address</a></i></li>
+                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="">Employment Status</a></i></li>
+                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="">Religion</a></i></li>
+                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="">Marital Status</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'employee_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'employee_add') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'profile') ? 'class="active"' : '' ?>>
-                <a href="#" class="emp-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
+                <a href="#" class="emp-btn" style=""><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
                 </a>
                 <ul class="emp-show">
-                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style="font-family: 'Glacial Indifference';">Employee List</a></i></li>
-                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style="font-family: 'Glacial Indifference';">Add Employee</a></i></li>
+                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style="">Employee List</a></i></li>
+                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style="">Add Employee</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'leave_type_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_type_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="lev-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
+                <a href="#" class="lev-btn" style=""><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
                   <span class="fas fa-caret-down fourth"></span>
                 </a>
                 <ul class="lev-show">
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style="font-family: 'Glacial Indifference';">Leave Type List</a></i></li>
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style="font-family: 'Glacial Indifference';">Application List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style="">Leave Type List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style="">Application List</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'attendance_list') ? 'class="active"' : '' ?>>
-                <a href="attendance_list.php" style="font-family: 'Glacial Indifference';">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
+                <a href="attendance_list.php" style="">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
                 </a>
               </li>
               <li <?php echo ($page == 'payroll_list') ? 'class="active"' : '' ?>>
-                <a href="Payroll_list.php" style="font-family: 'Glacial Indifference';">&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
+                <a href="Payroll_list.php" style="">&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
                 </a>
               </li>
               <li <?php echo ($page == 'reports_attendance') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'reports_payroll') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'reports_leave') ? 'class="active"' : '' ?>>
-                <a href="#" class="rep-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
+                <a href="#" class="rep-btn" style=""><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
                   <span class="fas fa-caret-down second"></span>
                 </a>
                 <ul class="rep-show">
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style="font-family: 'Glacial Indifference';">Attendance Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style="font-family: 'Glacial Indifference';">Payroll Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style="font-family: 'Glacial Indifference';">Leave Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style="">Attendance Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style="">Payroll Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style="">Leave Reports</a></i></li>
                 </ul>
               </li>
 
@@ -182,26 +175,16 @@ if (isset($_SESSION['s_em_email'])) {
     </div>
     <div class="dash_content_container" id="dash_content_container">
       <div class="dash_topnav" id="dash_topnav">
-     
-      <div class="text-end">
-        <div class="dropdown" style="cursor: pointer;">
-          <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          <?php
-            if (isset($_SESSION['em_profile_pic'])) {
-              echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
-            } else {
-              echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
-            }
-          ?>
-            <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="manage_account.php">Manage Account</a></li>
-            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-  
+      <?php
+        if (isset($_SESSION['em_profile_pic'])) {
+          echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='max-width:60px; max-height:50px; border-radius: 50%; ' alt='Profile Picture'>";
+        } else {
+          echo "<img src='..//uploads/default_profile_pic.png' style='max-width:50px; max-height:50px; border-radius: 50%; ' alt='default profile pic'>";
+        }
+        ?>
+        <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
+
+        <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white; text-decoration:none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
       </div>
       <div>
         <div id="exampleModal" class="modal fade">
