@@ -56,11 +56,9 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
 ?>
 
 <!--calendar links-->
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
-<link rel="stylesheet" href="./css/bootstrap.min.css">
+
 <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
-<script src="./js/jquery-3.6.0.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+
 <script src="./fullcalendar/lib/main.min.js"></script>
 <!--calendar links-->
 
@@ -92,7 +90,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fas fa-pen-square"></i>
-                      <h5><strong style>Leave Type</strong></h5>
+                      <h5><strong style="">Leave Type</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -118,7 +116,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-clipboard-list"></i>
-                      <h5><strong style>Leave Application</strong></h5>
+                      <h5><strong style="">Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -144,7 +142,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-user-tie"></i>
-                      <h5><strong style>Department</strong></h5>
+                      <h5><strong style="">Department</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -170,7 +168,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-clipboard-list"></i>
-                      <h5><strong style>Designation</strong></h5>
+                      <h5><strong style="">Designation</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -198,7 +196,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-thumbs-up"></i>
-                      <h5><strong style>Accepted Leave Application</strong></h5>
+                      <h5><strong style="">Accepted Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -226,7 +224,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-hourglass-half"></i>
-                      <h5><strong style>Pending Leave Application</strong></h5>
+                      <h5><strong style="">Pending Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -254,7 +252,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-thumbs-down"></i>
-                      <h5><strong style>Declined Leave Application</strong></h5>
+                      <h5><strong style="">Declined Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -282,7 +280,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa fa-light fa-users"></i>
-                      <h5><strong style>Total Employees</strong></h5>
+                      <h5><strong style="">Total Employees</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -418,7 +416,6 @@ foreach ($schedules->fetch_all(MYSQLI_ASSOC) as $row) {
 if (isset($conn)) $conn->close();
 ?>
 <!-- Move script tags here -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   var scheds = <?= json_encode($sched_res) ?>;
 </script>

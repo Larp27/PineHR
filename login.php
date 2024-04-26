@@ -31,12 +31,6 @@ if (isset($_SESSION['s_em_password'])) {
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-
-    <!--font links google-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-</head>
 </head>
 <style>
     html,
@@ -59,16 +53,12 @@ if (isset($_SESSION['s_em_password'])) {
         padding-top: 300px;
     }
 
-    /*font google*/
 
 
     * {
-        font-family: "Roboto", sans-serif;
-        font-weight: 400;
-        font-style: normal;
+        font-family: sans-serif;
+        box-sizing: border-box;
     }
-
-
 
     form {
         color: black;
@@ -169,17 +159,16 @@ if (isset($_SESSION['s_em_password'])) {
     }
 
     .error {
-        font-size: small;
-        width: auto;
-        /* Let the width adjust based on content */
-        max-width: 50%;
-        /* Ensure it doesn't exceed the container width */
-        height: auto;
-        /* Let the height adjust based on content */
-        padding: 5px;
-        /* Add some padding for better appearance */
-        margin: 12px;
-    }
+  font-size: small;
+  width: auto; /* Let the width adjust based on content */
+  max-width: 50%; /* Ensure it doesn't exceed the container width */
+  height: auto; /* Let the height adjust based on content */
+  padding: 5px; /* Add some padding for better appearance */
+  margin: 12px;
+}
+
+
+    
 </style>
 
 <body>
@@ -190,7 +179,7 @@ if (isset($_SESSION['s_em_password'])) {
         <a href="index.php"><img src="bgimages/pine.png" alt="logo" style="width: 195px;height: 185px;margin-left: 110px"></a>
         <a>
 
-            <h1 style="font-size:18px">HUMAN RESOURCE <br>MONITORING AND PROFILING<br>MANAGEMENT SYSTEM </h1>
+            <h1 style="font-family: 'Glacial Indifference'; font-size:18px">HUMAN RESOURCE <br>MONITORING AND PROFILING<br>MANAGEMENT SYSTEM </h1>
         </a>
 
         <?php if (isset($_GET['error'])) { ?>
@@ -242,16 +231,16 @@ if (isset($_SESSION['s_em_password'])) {
 
             // If the error message element exists
             if (errorMessage) {
-                // Set a timeout to make it disappear after 5 seconds
-                setTimeout(function() {
-                    errorMessage.style.display = 'none';
-                }, 5000); // 5000 milliseconds = 5 seconds
+            // Set a timeout to make it disappear after 5 seconds
+             setTimeout(function() {
+                errorMessage.style.display = 'none';
+                    }, 5000); // 5000 milliseconds = 5 seconds
             }
         </script>
         </body>
+        
 
 
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 </html>

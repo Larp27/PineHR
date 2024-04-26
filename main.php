@@ -4,7 +4,7 @@ session_start();
 include "DBConnection.php";
 
 // Check for user inactivity
-$inactive_timeout = 7200; // 2 hours in seconds
+$inactive_timeout = 300; // 5 minutes in seconds
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $inactive_timeout)) {
     session_unset();     // unset $_SESSION variable for the run-time 
     session_destroy();   // destroy session data in storage
@@ -33,26 +33,38 @@ if (isset($_SESSION['s_em_email'])) {
 <head>
   <meta charset="UTF-8">
   <title><?php echo $title; ?> | PINE HR</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
   <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/navbar2.css">
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
-  <!-- Font Awesome -->
+  <!--<script src="script.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
 
-  <!-- DataTables -->
-  <link rel="stylesheet" href="DataTables/css/dataTables.bootstrap5.min.css">
-  <script src="DataTables/js/jquery-3.7.0.js"></script>
-  <script src="DataTables/js/jquery.dataTables.min.js"></script>
-  <script src="DataTables/js/dataTables.bootstrap5.min.js"></script>
+  <!--offline bootstrap-->
+  <script src="js/bootstrap.min.js"></script>
 
-  <!-- Your custom script -->
+  <!-- Modal Jquery for logging in -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!--Navbar CSS-->
+  <link rel="stylesheet" href="css/navbar2.css">
+  
+  <!-- DATATABLES OFFLINE -->
+  <link rel="stylesheet" href="DataTables/css/bootstrap.min.css">
+  <link rel="stylesheet" href="DataTables/css/bootstrap5.min.css">
+  <script src="DataTables/js/jquery-3.7.0.js"></script>
+  <script src="DataTables/js/js_jquery.dataTables.min.js"></script>
+  <script src="DataTables/js/js_dataTables.bootstrap5.min.js"></script>
   <script src="./script.js"></script>
 
   <!--font links google-->
@@ -91,12 +103,12 @@ if (isset($_SESSION['s_em_email'])) {
                   <?php echo ($page == 'designation_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'department_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="org-btn"><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
+                <a href="#" class="org-btn" style=""><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
                   <span class="fas fa-caret-down first"></span>
                 </a>
                 <ul class="org-show">
-                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style>Department</a></i></li>
-                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style>Designation</a></i></li>
+                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style="">Department</a></i></li>
+                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style="">Designation</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'education') ? 'class="active"' : '' ?> 
@@ -111,59 +123,59 @@ if (isset($_SESSION['s_em_email'])) {
                   <?php echo ($page == 'religion_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="pro-btn" style><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                <a href="#" class="pro-btn" style=""><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
                   <span class="fas fa-caret-down sixth"></span>
                 </a>
                 <ul class="pro-show">
-                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style>Educational Attainment</a></i></li>
-                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style>Blood Type</a></i></li>
-                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style>Address</a></i></li>
-                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style>Employment Status</a></i></li>
-                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style>Religion</a></i></li>
-                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style>Marital Status</a></i></li>
+                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="">Educational Attainment</a></i></li>
+                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="">Blood Type</a></i></li>
+                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="">Address</a></i></li>
+                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="">Employment Status</a></i></li>
+                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="">Religion</a></i></li>
+                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="">Marital Status</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'employee_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'employee_add') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'profile') ? 'class="active"' : '' ?>>
-                <a href="#" class="emp-btn" style><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
+                <a href="#" class="emp-btn" style=""><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
                 </a>
                 <ul class="emp-show">
-                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style>Employee List</a></i></li>
-                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style>Add Employee</a></i></li>
+                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style="">Employee List</a></i></li>
+                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style="">Add Employee</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'leave_type_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_type_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="lev-btn" style><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
+                <a href="#" class="lev-btn" style=""><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
                   <span class="fas fa-caret-down fourth"></span>
                 </a>
                 <ul class="lev-show">
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style>Leave Type List</a></i></li>
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style>Application List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style="">Leave Type List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style="">Application List</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'attendance_list') ? 'class="active"' : '' ?>>
-                <a href="attendance_list.php" style>&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
+                <a href="attendance_list.php" style="">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
                 </a>
               </li>
               <li <?php echo ($page == 'payroll_list') ? 'class="active"' : '' ?>>
-                <a href="Payroll_list.php" style>&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
+                <a href="Payroll_list.php" style="">&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
                 </a>
               </li>
               <li <?php echo ($page == 'reports_attendance') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'reports_payroll') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'reports_leave') ? 'class="active"' : '' ?>>
-                <a href="#" class="rep-btn" style><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
+                <a href="#" class="rep-btn" style=""><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
                   <span class="fas fa-caret-down second"></span>
                 </a>
                 <ul class="rep-show">
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style>Attendance Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style>Payroll Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style>Leave Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style="">Attendance Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style="">Payroll Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style="">Leave Reports</a></i></li>
                 </ul>
               </li>
 
@@ -175,17 +187,35 @@ if (isset($_SESSION['s_em_email'])) {
     </div>
     <div class="dash_content_container" id="dash_content_container">
       <div class="dash_topnav" id="dash_topnav">
-      <?php
-        if (isset($_SESSION['em_profile_pic'])) {
-          echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='max-width:60px; max-height:50px; border-radius: 50%; ' alt='Profile Picture'>";
-        } else {
-          echo "<img src='..//uploads/default_profile_pic.png' style='max-width:50px; max-height:50px; border-radius: 50%; ' alt='default profile pic'>";
-        }
-        ?>
-        <h10 style>&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?>!</h10>
+        <div class="text-end">
+          <div class="dropdown" style="cursor: pointer;">
+            <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php
+              if (isset($_SESSION['em_profile_pic'])) {
+                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+              } else {
+                echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+              }
+            ?>
+            <?php 
+              $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
+              $result = mysqli_query($conn, $query);
 
-        <a href="logout.php" id="lougoutbtn" style="color: white; text-decoration:none;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+              while ($row = mysqli_fetch_assoc($result)) {
+                echo $row['first_name'] . ' ' . $row['last_name'] . "";
+              }
+            ?>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="manage_account.php">Manage Account</a></li>
+              <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
+            </ul>
+
+          </div>
+        </div>
       </div>
+      <div>
+  
       <div>
         <div id="exampleModal" class="modal fade">
           <div class="modal-dialog modal-dialog-centered">

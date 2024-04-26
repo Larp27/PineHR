@@ -75,7 +75,7 @@
   }
 </style>
 
-<form method="post" action="" enctype="multipart/form-data">
+<form method="post" id="updateEmployeeForm" enctype="multipart/form-data">
   <input type="hidden" id="em_id" name="em_id" value="<?php echo $_SESSION['s_em_id']; ?>">
   <div class="panel panel-default">
     <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
@@ -142,15 +142,14 @@
               </div>
               <div class="form-group mb-3 password-toggle">
                 <label for="current_password" class="form-label">Current Password</label>
-                <input type="password" class="form-control" id="current_password" name="current_password" required>
-                <i id="current_password-toggle-icon" class="toggle-icon fas fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" onclick="togglePassword('current_password')"></i>
+                <input type="password" class="form-control" id="current_password" name="current_password">
+                <i id="toggleCurrent_password" class="toggle-icon fas fa-eye-slash" style="display: none; float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px; position: relative; z-index: 2;" onclick="togglePassword('current_password')"></i>
               </div>
               <div class="form-group mb-3 password-toggle">
                 <label for="new_password" class="form-label">New Password</label>
-                <input type="password" class="form-control" id="new_password" name="new_password" required>
-                <i id="new_password-toggle-icon" class="toggle-icon fas fa-eye-slash" style="float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px;   position: relative; z-index: 2;" onclick="togglePassword('new_password')"></i>
+                <input type="password" class="form-control" id="new_password" name="new_password">
+                <i id="toggleNew_password" class="toggle-icon fas fa-eye-slash" style="display: none; float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px; position: relative; z-index: 2;" onclick="togglePassword('new_password')"></i>
               </div>
-
 
               <div class="form-group mb-3">
                 <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
@@ -168,7 +167,7 @@
     </div>
 
     <div class="m-4 text-end">
-      <button type="button" class="btn btn-success text-bold" name="btnUpdateEmployee" id="btnUpdateEmployee">UPDATE</button>
+      <button type="button" class="btn btn-success text-bold" name="manage_account_btn" id="manage_account_btn">UPDATE</button>
     </div>
 
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -181,7 +180,7 @@
             &nbsp;&nbsp;New Employee Added!. Thank you.
           </div>
           <div class="modal-footer">
-            <a href="em_list.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+            <a href="manage_account.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
           </div>
         </div>
       </div>
@@ -190,32 +189,6 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const checkboxes = document.querySelectorAll('.leave-type-checkbox');
-    checkboxes.forEach(function(checkbox) {
-      checkbox.addEventListener('change', function() {
-        const leaveTypeId = this.value;
-        const creditInput = document.getElementById('credits_' + leaveTypeId);
-        if (this.checked) {
-          creditInput.classList.remove('d-none');
-        } else {
-          creditInput.classList.add('d-none');
-        }
-      });
-
-      // Trigger change event for checkboxes on page load to initially show/hide credit input fields
-      checkbox.dispatchEvent(new Event('change'));
-    });
-
-    // Check the checkboxes for leave types with available credits
-    <?php
-    $leave_credits_query = $conn->query("SELECT lt_id FROM employee_leave_credits WHERE em_id = $em_id");
-    while ($row = $leave_credits_query->fetch_assoc()) {
-      $lt_id = $row['lt_id'];
-      echo "document.getElementById('leave_type_$lt_id').checked = true;\n";
-      echo "document.getElementById('credits_$lt_id').classList.remove('d-none');\n";
-    }
-    ?>
-
     const barangaySelect = document.getElementById('address_id');
     const citySelect = document.getElementById('city');
     barangaySelect.addEventListener('change', function() {
@@ -264,54 +237,61 @@
       }
     };
     input.click();
-
     const form = document.querySelector('form');
     form.appendChild(input);
-  });
-
-
-  // INITIALIZE DATATABLE
-  $(document).ready(function() {
-    $('#example').DataTable();
   });
 
   function togglePassword(id) {
     let passwordField = document.getElementById(id);
     let toggleIcon = document.getElementById('toggle' + id.charAt(0).toUpperCase() + id.slice(1));
 
-    if (passwordField.value !== '') {
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      toggleIcon.classList.remove('fa-eye-slash');
+      toggleIcon.classList.add('fa-eye');
+    } else {
+      passwordField.type = 'password';
+      toggleIcon.classList.remove('fa-eye');
+      toggleIcon.classList.add('fa-eye-slash');
+    }
+  }
+
+  // Add event listeners to the password fields to toggle the eye icon visibility dynamically
+  document.getElementById('current_password').addEventListener('input', function() {
+    let toggleIcon = document.getElementById('toggleCurrent_password');
+    if (this.value !== '') {
       toggleIcon.style.display = 'inline-block';
     } else {
       toggleIcon.style.display = 'none';
     }
 
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
-      toggleIcon.classList.toggle("fa-eye")
-      toggleIcon.classList.remove('fa-eye-slash');
+    // Add required attribute to password fields based on user input
+    const newPasswordInput = document.getElementById('new_password');
+    if (this.value !== '') {
+      this.setAttribute('required', 'required');
+      newPasswordInput.setAttribute('required', 'required');
     } else {
-      passwordField.type = 'password';
-      toggleIcon.classList.toggle("fa-eye-slash")
-      toggleIcon.classList.remove('fa-eye');
+      this.removeAttribute('required');
+      newPasswordInput.removeAttribute('required');
     }
-  }
-
-  // Add event listeners to the password fields to toggle the eye icon visibility dynamically
-  document.getElementById('old_password').addEventListener('input', function() {
-    togglePassword('old_password');
   });
 
   document.getElementById('new_password').addEventListener('input', function() {
-    togglePassword('new_password');
-  });
+    let toggleIcon = document.getElementById('toggleNew_password');
+    if (this.value !== '') {
+      toggleIcon.style.display = 'inline-block';
+    } else {
+      toggleIcon.style.display = 'none';
+    }
 
-</script>
-<script>
-  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
+    const currentPasswordInput = document.getElementById('current_password');
+    if (this.value !== '') {
+      this.setAttribute('required', 'required');
+      currentPasswordInput.setAttribute('required', 'required');
+    } else {
+      this.removeAttribute('required');
+      currentPasswordInput.removeAttribute('required');
+    }
   });
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="Employee/updateEM.js"></script>
+<script src="manage_account.js"></script>

@@ -63,12 +63,38 @@ if (isset($_SESSION['s_em_email'])) {
       </div>
       <div class="dash_content_container" id="dash_content_container">
         <div class="dash_topnav" id="dash_topnav">
-          <a href="Dashboard.php">
-            <img src="bgimages/pine.png" alt="logo" style="width: 90px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
-          </a>
-          <!--<a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>-->
-          <h10 style="font-family: 'Glacial Indifference';"><?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name']; ?></h10>
-          <a href="logout.php" id="lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+          <div class="row">
+            <div class="col-auto">
+              <a href="Dashboard.php">
+                <img src="bgimages/pine.png" alt="logo" style="width: 100px; margin-top: -20px; margin-left: -8px; margin-bottom: -20px;">
+              </a>
+            </div>
+            <div class="col text-end">
+              <div class="dropdown" style="cursor: pointer;">
+                <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <?php
+                    if (isset($_SESSION['em_profile_pic'])) {
+                      echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                    } else {
+                      echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+                    }
+                  ?>
+                  <?php 
+                    $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
+                    $result = mysqli_query($conn, $query);
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                    }
+                  ?>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="user_manage_account.php">Manage Account</a></li>
+                    <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!--Modal for logout-->

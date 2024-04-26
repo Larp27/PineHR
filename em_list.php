@@ -56,10 +56,10 @@
   }
 </style>
 
-<div class="container-fluid shadow-lg">
+<div class="container-fluid shadow-lg h-100">
   <div class="row">
     <div class="col-md-12 shadow-lg">
-      <div class="m-2 pt-2" style="height:150vh;">
+      <div class="m-2 pt-2 h-100" style="height:200vh;">
         <div class="d-flex justify-content-between align-items-center">
           <p class="fw-bold fs-5 text-uppercase">Employment List</p>
           <?php
