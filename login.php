@@ -55,10 +55,16 @@
     padding-top: 300px;
   }
 
-  * {
-    font-family: sans-serif;
-    box-sizing: border-box;
-  }
+  /*font google*/
+
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 
   form {
     color: black;
@@ -167,7 +173,7 @@
   <div class="container"><br><br><br><br><br><br>
     <a href="index.php"><img src="bgimages/pine.png" alt="logo" style="width: 195px;height: 185px;margin-left: 110px"></a>
     <a>
-      <h1 style="font-family: 'Glacial Indifference'; font-size:18px">HUMAN RESOURCE <br>MONITORING AND PROFILING<br>MANAGEMENT SYSTEM </h1>
+      <h1 style="font-size:18px">HUMAN RESOURCE <br>MONITORING AND PROFILING<br>MANAGEMENT SYSTEM </h1>
     </a>
     <?php if (isset($_GET['error'])) { ?>
       <p class="error alert alert-danger" role="alert" id="error-message"><?php echo $_GET['error']; ?></p>
