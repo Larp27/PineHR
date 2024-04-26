@@ -184,7 +184,7 @@ if (isset($_SESSION['s_em_email'])) {
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'user_manage_account.php') ? 'active' : ''; ?>" href="user_manage_account.php">Manage Account</a></li>
-                  <li><a class="dropdown-item fw-bold" href="logout.php">Logout</a></li>
+                  <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
               </ul>
             </div>
           </div>
