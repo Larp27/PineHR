@@ -92,7 +92,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fas fa-pen-square"></i>
-                      <h5><strong style="">Leave Type</strong></h5>
+                      <h5><strong style>Leave Type</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -118,7 +118,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-clipboard-list"></i>
-                      <h5><strong style="">Leave Application</strong></h5>
+                      <h5><strong style>Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -144,7 +144,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-user-tie"></i>
-                      <h5><strong style="">Department</strong></h5>
+                      <h5><strong style>Department</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -170,7 +170,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-clipboard-list"></i>
-                      <h5><strong style="">Designation</strong></h5>
+                      <h5><strong style>Designation</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-thumbs-up"></i>
-                      <h5><strong style="">Accepted Leave Application</strong></h5>
+                      <h5><strong style>Accepted Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -226,7 +226,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-hourglass-half"></i>
-                      <h5><strong style="">Pending Leave Application</strong></h5>
+                      <h5><strong style>Pending Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -254,7 +254,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa-solid fa-thumbs-down"></i>
-                      <h5><strong style="">Declined Leave Application</strong></h5>
+                      <h5><strong style>Declined Leave Application</strong></h5>
                     </div>
                   </div>
                 </div>
@@ -282,7 +282,7 @@ if (isset($_SESSION['s_em_email']) && $_SESSION['show_welcome_modal']) {
                     </h1><br>
                     <div class="icon-label">
                       <i class="fa fa-light fa-users"></i>
-                      <h5><strong style="">Total Employees</strong></h5>
+                      <h5><strong style>Total Employees</strong></h5>
                     </div>
                   </div>
                 </div>

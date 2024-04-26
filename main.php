@@ -91,12 +91,12 @@ if (isset($_SESSION['s_em_email'])) {
                   <?php echo ($page == 'designation_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'department_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="org-btn" style=""><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
+                <a href="#" class="org-btn"><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
                   <span class="fas fa-caret-down first"></span>
                 </a>
                 <ul class="org-show">
-                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style="">Department</a></i></li>
-                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style="">Designation</a></i></li>
+                  <li><i class="fa-solid fa-building-user fa-sm" style="color: #2468a0;"><a href="Department_list.php" style>Department</a></i></li>
+                  <li> <i class="fa-solid fa-user-tie fa-xs" style="color: #2468a0;"><a href="Designation_list.php" style>Designation</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'education') ? 'class="active"' : '' ?> 
@@ -111,59 +111,59 @@ if (isset($_SESSION['s_em_email'])) {
                   <?php echo ($page == 'religion_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'marital_status_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="pro-btn" style=""><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
+                <a href="#" class="pro-btn" style><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
                   <span class="fas fa-caret-down sixth"></span>
                 </a>
                 <ul class="pro-show">
-                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="">Educational Attainment</a></i></li>
-                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="">Blood Type</a></i></li>
-                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="">Address</a></i></li>
-                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="">Employment Status</a></i></li>
-                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="">Religion</a></i></li>
-                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="">Marital Status</a></i></li>
+                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style>Educational Attainment</a></i></li>
+                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style>Blood Type</a></i></li>
+                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style>Address</a></i></li>
+                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style>Employment Status</a></i></li>
+                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style>Religion</a></i></li>
+                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style>Marital Status</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'employee_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'employee_add') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'profile') ? 'class="active"' : '' ?>>
-                <a href="#" class="emp-btn" style=""><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
+                <a href="#" class="emp-btn" style><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                   <span class="fas fa-caret-down third"></span>
                 </a>
                 <ul class="emp-show">
-                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style="">Employee List</a></i></li>
-                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style="">Add Employee</a></i></li>
+                  <li><i class="fa-solid fa-clipboard-user fa-sm" style="color: #2468a0;"><a href="em_list.php" style>Employee List</a></i></li>
+                  <li><i class="fa-solid fa-plus fa-sm" style="color: #2468a0;"><a href="em_add.php" style>Add Employee</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'leave_type_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_type_add') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'leave_app_add') ? 'class="active"' : '' ?>>
-                <a href="#" class="lev-btn" style=""><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
+                <a href="#" class="lev-btn" style><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
                   <span class="fas fa-caret-down fourth"></span>
                 </a>
                 <ul class="lev-show">
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style="">Leave Type List</a></i></li>
-                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style="">Application List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php" style>Leave Type List</a></i></li>
+                  <li><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php" style>Application List</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'attendance_list') ? 'class="active"' : '' ?>>
-                <a href="attendance_list.php" style="">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
+                <a href="attendance_list.php" style>&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
                 </a>
               </li>
               <li <?php echo ($page == 'payroll_list') ? 'class="active"' : '' ?>>
-                <a href="Payroll_list.php" style="">&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
+                <a href="Payroll_list.php" style>&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
                 </a>
               </li>
               <li <?php echo ($page == 'reports_attendance') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'reports_payroll') ? 'class="active"' : '' ?>
                   <?php echo ($page == 'reports_leave') ? 'class="active"' : '' ?>>
-                <a href="#" class="rep-btn" style=""><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
+                <a href="#" class="rep-btn" style><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
                   <span class="fas fa-caret-down second"></span>
                 </a>
                 <ul class="rep-show">
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style="">Attendance Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style="">Payroll Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style="">Leave Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php" style>Attendance Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php" style>Payroll Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php" style>Leave Reports</a></i></li>
                 </ul>
               </li>
 
