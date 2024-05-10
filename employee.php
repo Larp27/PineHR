@@ -11,6 +11,8 @@ if (isset($_SESSION['s_em_email'])) {
 <head>
   <meta charset="UTF-8">
   <title>Dashboard | PINE HR</title>
+  <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
+
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/employee.css">
 

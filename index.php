@@ -63,6 +63,8 @@ session_start();
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>PINE HR - Home</title>
+
+  <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
   <meta content="" name="description">
   <meta content="" name="keywords">
 

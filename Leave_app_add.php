@@ -10,6 +10,7 @@ if (isset($_SESSION['s_em_email'])) {
   <head>
     <meta charset="UTF-8">
     <title>Leave Type List| PINE HR</title>
+    <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">

@@ -7,8 +7,11 @@
  <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard | PINE HR</title>
+    <meta charset="UTF-8">
+    <title>Leave | PINE HR</title>
+    <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
+
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/employee.css">

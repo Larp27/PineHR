@@ -7,6 +7,10 @@ if (isset($_SESSION['s_em_email'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Leave Application | PINE HR</title>
+    <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
