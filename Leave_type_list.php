@@ -75,7 +75,7 @@ include_once('./main.php');
                     $final .= "<td class='text-center p-3'> $r_date_created</td>";
                     echo $final;
               ?>
-                <td class='text-center p-3'>
+                <td class='text-center p-1'>
                     <div class="col-auto d-flex justify-content-center m-2">&nbsp;
                       <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-lt-id="<?php echo $row['lt_id']; ?>" data-lt-code="<?php echo $row['lt_code']; ?>" data-lt-name="<?php echo $row['lt_name']; ?>" data-lt-description="<?php echo $row['lt_description']; ?>" data-lt-credit="<?php echo $row['lt_credit']; ?>" data-lt-status="<?php echo $row['lt_status']; ?>"><i class="fas fa-edit"></i> Edit</button>
                       <a href="Leave_type/deleteLT.php?lt_id=<?php echo $row['lt_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Leave Type?')"><i class="fas fa-trash"></i> Delete </a>

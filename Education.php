@@ -50,7 +50,7 @@ include_once('./main.php');
                       <td class='text-center p-3'>" . $i++ . "</td> 
                       <td class='text-center p-3'> $r_education </td>";
                   ?>
-                  <td class='text-center p-3'>
+                  <td class='text-center p-1'>
                     <div class="col-auto d-flex justify-content-center m-2">
                       <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-edu-id="<?php echo $row['edu_id']; ?>" data-education="<?php echo $row['education']; ?>"><i class="fas fa-edit"></i> Edit</button>
                       <a href="Education/deleteEDU.php?edu_id=<?php echo $row['edu_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Education Data?')"><i class="fas fa-trash"></i> Delete </a>

@@ -55,7 +55,7 @@ include_once('./main.php');
                   <td class='text-center p-3'>" . $i++ . "</td> <!-- Increment the counter and print its value -->
                   <td class='text-center p-3'> $ms_name </td>";
               ?>
-                  <td class='text-center p-3'>
+                  <td class='text-center p-1'>
                     <div class="col-auto d-flex justify-content-center m-2">
                       <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-ms_id="<?php echo $row['ms_id']; ?>" data-ms_name="<?php echo $row['ms_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
 

@@ -56,7 +56,7 @@
                   <td class='text-center p-3'>" . $i++ . "</td> <!-- Increment the counter and print its value -->
                   <td class='text-center p-3'> $r_r_name </td>";
               ?>
-                  <td class='text-center p-3'>
+                  <td class='text-center p-1'>
                     <div class="col-auto d-flex justify-content-center m-2">
                       <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-r-id="<?php echo $row['r_id']; ?>" data-r_name="<?php echo $row['r_name']; ?>"><i class="fas fa-edit"></i> Edit</button>
                       <a href="Religion/deleteR.php?r_id=<?php echo $row['r_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Blood Type Data?')"><i class="fas fa-trash"></i> Delete </a>
