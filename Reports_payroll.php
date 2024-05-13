@@ -112,10 +112,11 @@
                   <div class="dash_content_main">
                    <table class="table border shadow-lg" id="example">
                       <colgroup>
-                        <col width="5%">
+                        <col width="4%">
                         <col width="15%">
-                        <col width="8%">
-                        <col width="8%">
+                        <col width="15%">
+                        <col width="10%">
+                        <col width="10%">
                         <col width="10%">
                         <col width="10%">
                         <col width="15%">
@@ -123,19 +124,22 @@
                       </colgroup>
                       <thead class="" style="background-color: rgb(255, 206, 46)">
                         <tr>
-                          <th>#</th>
-                          <th>Employee Name</th>
-                          <th>Start Date</th>
-                          <th>End Date</th>
-                          <th>Daily Income</th>
-                          <th>Deduction</th>
-                          <th>Total Working Days</th>
-                          <th>Total Salary</th>
+                          <th class='text-center p-2'>#</th>
+                          <th class='text-center p-2'>Employee Name</th>
+                          <th class='text-center p-2'>Department</th>
+                          <th class='text-center p-2'>Start Date</th>
+                          <th class='text-center p-2'>End Date</th>
+                          <th class='text-center p-2'>Daily Income</th>
+                          <th class='text-center p-2'>Deduction</th>
+                          <th class='text-center p-2'>Total Working Days</th>
+                          <th class='text-center p-2'>Total Salary</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
-                          $query = "SELECT * FROM `payroll` p INNER JOIN `employee` e ON p.em_id = e.em_id";
+                          $query = "SELECT * FROM `payroll` p 
+                          INNER JOIN `employee` e ON p.em_id = e.em_id
+                          INNER JOIN `department` d ON e.dep_id = d.dep_id";
 
                           // Check if filters are set
                           if(isset($_POST['apply_filter'])) {
@@ -166,14 +170,15 @@
                           while ($row = mysqli_fetch_assoc($result)) {
                         ?>
                           <tr class="text-capitalize">
-                            <td> <?php echo $i++; ?> </td>
-                            <td> <?php echo $row["last_name"] . ", " . $row["first_name"]; ?> </td>
-                            <td> <?php echo $row["payroll_start_date"]; ?> </td>
-                            <td> <?php echo $row["payroll_end_date"]; ?> </td>
-                            <td> <?php echo $row["payroll_income"]; ?> </td>
-                            <td> <?php echo $row["payroll_deduction"]; ?> </td>
-                            <td> <?php echo $row["payroll_twd"]; ?> </td>
-                            <td> <?php echo $row["payroll_total"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $i++; ?> </td>
+                            <td class='text-left p-3'> <?php echo $row["last_name"] . ", " . $row["first_name"]; ?> </td>
+                            <td class='text-left p-3'> <?php echo $row["dep_name"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_start_date"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_end_date"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_income"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_deduction"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_twd"]; ?> </td>
+                            <td class='text-center p-3'> <?php echo $row["payroll_total"]; ?> </td>
                           </tr>
                         <?php } ?>
                       </tbody>

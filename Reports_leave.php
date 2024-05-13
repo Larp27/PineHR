@@ -160,26 +160,32 @@ if (!$result || !$leave_types_result) {
                   <div class="dash_content_main">
                     <table class="table border shadow-lg" id="example">
                       <colgroup>
+                        <col width="5%">
                         <col width="20%">
                         <col width="20%">
                         <col width="20%">
-                        <col width="15%">
+                        <col width="20%">
                       </colgroup>
                       <thead class="" style="background-color: rgb(255, 206, 46)">
                         <tr>
-                          <th class="text-center p-1">Employee</th>
-                          <th class="text-center p-1">Leave Type</th>
-                          <th class="text-center p-1">Date</th>
-                          <th class="text-center p-1">Status</th>
+                          <th class='text-center p-2'>#</th>
+                          <th class='text-center p-2'>Employee</th>
+                          <th class='text-center p-2'>Department</th>
+                          <th class='text-center p-2'>Leave Type</th>
+                          <th class='text-center p-2'>Date</th>
+                          <th class='text-center p-2'>Status</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php
                           // Define the SQL query to fetch data
-                          $query = "SELECT la.*, e.first_name, e.last_name, lt.lt_code, lt.lt_name, la.la_reason
-                                    FROM `leave_application` la 
-                                    INNER JOIN `employee` e ON la.em_id = e.em_id 
-                                    INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id";
+                          $query = "SELECT la.*, e.first_name, e.last_name, d.dep_name, lt.lt_code, lt.lt_name, la.la_reason
+                          FROM `leave_application` la 
+                          INNER JOIN `employee` e ON la.em_id = e.em_id 
+                          INNER JOIN `leave_type` lt ON lt.lt_id = la.lt_id
+                          INNER JOIN `department` d ON d.dep_id = e.dep_id";
+                
+                          
 
                           // If the filter form is submitted, apply the filter conditions
                           if (isset($_POST['apply_filter'])) {
@@ -218,12 +224,14 @@ if (!$result || !$leave_types_result) {
                           }
 
                           // Execute the query
+                          $i = 1;
                           $result = mysqli_query($conn, $query);
 
                           // Display the results
                           while ($row = mysqli_fetch_assoc($result)) {
                             $r_first_name = $row['first_name'];
                             $r_last_name = $row['last_name'];
+                            $r_dep_name = $row['dep_name'];
                             $r_lt_code = $row['lt_code'];
                             $r_lt_name = $row['lt_name'];
                             $emp_id = $row['la_id'];
@@ -257,10 +265,12 @@ if (!$result || !$leave_types_result) {
                             }
 
                             echo "<tr> 
-                                    <td class='text-center'>$r_last_name, $r_first_name</td>
-                                    <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
-                                    <td class='text-center'>$date_display</td>
-                                    <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>
+                                    <td class='text-center p-3'>" . $i++ . "</td>
+                                    <td class='text-left p-3'>$r_last_name, $r_first_name</td>
+                                    <td class='text-left p-3'>$r_dep_name</td>
+                                    <td class='text-left p-3'>[$r_lt_code] - $r_lt_name</td>
+                                    <td class='text-center p-3'>$date_display</td>
+                                    <td class='text-center p-3'><span class='badge $status_color'>$r_lt_status</span></td>
                                   </tr>";
                           }
                         ?>

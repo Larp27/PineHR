@@ -112,24 +112,27 @@ if (!$result) {
                   <div class="dash_content_main">
                   <table class="table border shadow-lg" id="example">
                     <colgroup>
-                      <col width="10%">
+                      <col width="5%">
                       <col width="20%">
                       <col width="20%">
                       <col width="15%">
                     </colgroup>
                     <thead class="" style="background-color: rgb(255, 206, 46)">
                       <tr>
-                        <th class="text-center p-2">#</th>
-                        <th class="text-center p-2">Employee Name</th>
-                        <th class="text-center p-2">Attendance Date</th>
-                        <th class="text-center p-2">Sign In</th>
-                        <th class="text-center p-2">Sign Out</th>
-                        <th class="text-center p-2">Total Working Hours</th>
+                        <th class='text-center p-2'>#</th>
+                        <th class='text-center p-2'>Employee Name</th>
+                        <th class='text-center p-2'>Department</th>
+                        <th class='text-center p-2'>Attendance Date</th>
+                        <th class='text-center p-2'>Sign In</th>
+                        <th class='text-center p-2'>Sign Out</th>
+                        <th class='text-center p-2'>Total Working Hours</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                        $query = "SELECT * FROM `attendance` a INNER JOIN `employee` e ON e.em_id = a.em_id";
+                        $query = "SELECT * FROM `attendance` a 
+                        INNER JOIN `employee` e ON e.em_id = a.em_id
+                        INNER JOIN `department` d ON e.dep_id = d.dep_id";
 
                         // Check if filters are set
                         if(isset($_POST['apply_filter'])) {
@@ -160,6 +163,7 @@ if (!$result) {
                         while ($row = mysqli_fetch_assoc($result)) {
                           $r_first_name = $row['first_name'];
                           $r_last_name = $row['last_name'];
+                          $r_dep_name = $row['dep_name'];
                           $r_att_date = $row['att_date'];
                           $r_att_s_in = date("h:i A", strtotime($row['att_s_in']));
                           $r_att_s_out = date("h:i A", strtotime($row['att_s_out'])); 
@@ -168,7 +172,8 @@ if (!$result) {
                           echo 
                           "<tr> 
                             <td class='text-center p-3'>" . $i++ . "</td>
-                            <td class='text-center p-3'>$r_last_name, $r_first_name </td>
+                            <td class='text-left p-3'>$r_last_name, $r_first_name </td>
+                            <td class='text-left p-3'> $r_dep_name </td>
                             <td class='text-center p-3'> $r_att_date </td>
                             <td class='text-center p-3'> $r_att_s_in </td>
                             <td class='text-center p-3'> $r_att_s_out </td>

@@ -436,8 +436,8 @@ if (isset($_SESSION['s_em_email'])) {
                     ";
 
                         $final = "<tr> 
-                        <td class='text-center'>$r_last_name, $r_first_name</td>
-                        <td class='text-center'>[$r_lt_code] - $r_lt_name</td>
+                        <td class='text-left'>$r_last_name, $r_first_name</td>
+                        <td class='text-left'>[$r_lt_code] - $r_lt_name</td>
                         <td class='text-center'>$date_display</td>
                         <td class='text-center'><span class='badge $status_color'>$r_lt_status</span></td>";
                         echo $final;

@@ -1,47 +1,46 @@
 <?php
-  $title = 'Manage Account';
-  $page = 'manage_account';
-  include_once('./main.php');
+$title = 'Manage Account';
+$page = 'manage_account';
+include_once('./main.php');
 ?>
 
 <?php
-  if (isset($_SESSION['s_em_id'])) {
-    $em_id = ($_SESSION['s_em_id']);
+if (isset($_SESSION['s_em_id'])) {
+  $em_id = ($_SESSION['s_em_id']);
 
-    $query = "SELECT * FROM employee WHERE em_id = $em_id";
-    $result = mysqli_query($conn, $query);
+  $query = "SELECT * FROM employee WHERE em_id = $em_id";
+  $result = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($result) > 0) {
-      $row = mysqli_fetch_assoc($result);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
 
-      $em_id = $row['em_id'];
-      $des_id = $row['des_id'];
-      $dep_id = $row['dep_id'];
-      $bt_id = $row['bt_id'];
-      $user_id = $row['user_id'];
-      $es_id = $row['es_id'];
-      $address_id = $row['address_id'];
-      $edu_id = $row['edu_id'];
-      $r_id = $row['r_id'];
-      $ms_id = $row['ms_id'];
-      $first_name = $row['first_name'];
-      $last_name = $row['last_name'];
-      $em_email = $row['em_email'];
-      $em_gender = $row['em_gender'];
-      $em_phone = $row['em_phone'];
-      $em_birthday = $row['em_birthday'];
-      $em_joining_date = $row['em_joining_date'];
-      $em_contract_end = $row['em_contract_end'];
-      $em_profile_pic = $row['em_profile_pic'];
-      $employee_status = $row['employee_status'];
-      $em_income = $row['em_income'];
-      
-    } else {
-      echo "Employee not found";
-    }
+    $em_id = $row['em_id'];
+    $des_id = $row['des_id'];
+    $dep_id = $row['dep_id'];
+    $bt_id = $row['bt_id'];
+    $user_id = $row['user_id'];
+    $es_id = $row['es_id'];
+    $address_id = $row['address_id'];
+    $edu_id = $row['edu_id'];
+    $r_id = $row['r_id'];
+    $ms_id = $row['ms_id'];
+    $first_name = $row['first_name'];
+    $last_name = $row['last_name'];
+    $em_email = $row['em_email'];
+    $em_gender = $row['em_gender'];
+    $em_phone = $row['em_phone'];
+    $em_birthday = $row['em_birthday'];
+    $em_joining_date = $row['em_joining_date'];
+    $em_contract_end = $row['em_contract_end'];
+    $em_profile_pic = $row['em_profile_pic'];
+    $employee_status = $row['employee_status'];
+    $em_income = $row['em_income'];
   } else {
-    echo "Employee ID not provided";
+    echo "Employee not found";
   }
+} else {
+  echo "Employee ID not provided";
+}
 ?>
 
 <style>
@@ -170,6 +169,35 @@
       <button type="button" class="btn btn-success text-bold" name="manage_account_btn" id="manage_account_btn">UPDATE</button>
     </div>
 
+    <!--Fill in Necessary fields error -->
+    <script>
+      document.getElementById('manage_account_btn').addEventListener('click', function() {
+        // Get all required input fields
+        var requiredFields = document.querySelectorAll('[required]');
+
+        // Flag to track if any required field is empty
+        var isEmpty = false;
+
+        // Check if any required field is empty
+        requiredFields.forEach(function(field) {
+          if (!field.value.trim()) {
+            isEmpty = true;
+            field.classList.add('is-invalid'); // Add class to highlight the field
+          } else {
+            field.classList.remove('is-invalid'); // Remove class if the field is filled
+          }
+        });
+
+        // If any required field is empty, show error message and prevent modal from showing
+        if (isEmpty) {
+          document.getElementById('message').textContent = 'Please fill in all required fields.';
+        } else {
+          // Submit the form if all required fields are filled
+          document.getElementById('updateEmployeeForm').submit();
+        }
+      });
+    </script>
+
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -177,7 +205,7 @@
             <h5 class="modal-title text-success" id="exampleModalLongTitle">Recorded Successfully!</h5>
           </div>
           <div class="modal-body">
-            &nbsp;&nbsp;New Employee Added!. Thank you.
+            &nbsp;&nbsp;Updated Successfuly!. Thank you.
           </div>
           <div class="modal-footer">
             <a href="manage_account.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>

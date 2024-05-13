@@ -29,39 +29,46 @@ include_once('./main.php');
           <div class="mt-3">
             <table class="table" id="example">
               <colgroup>
-                <col width="5%">
-                <col width="15%">
+                <col width="4%">
                 <col width="10%">
                 <col width="15%">
-                <col width="15%">
-                <col width="15%">
+                <col width="7%">
+                <col width="7%">
+                <col width="8%">
+                <col width="5%">
+                <col width="12%">
+                <col width="10%">
               </colgroup>
               <thead class="" style="background-color: rgb(255, 206, 46)">
                 <tr>
-                  <th>#</th>
-                  <th>Employee Name</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Daily Income</th>
-                  <th>Deduction</th>
-                  <th>Total Working Days</th>
-                  <th>Total Salary</th>
+                  <th class='text-center p-2' >#</th>
+                  <th class='text-center p-2'>Employee Name</th>
+                  <th class='text-center p-2'>Department</th>
+                  <th class='text-center p-2'>Start Date</th>
+                  <th class='text-center p-2'>End Date</th>
+                  <th class='text-center p-2'>Daily Income</th>
+                  <th class='text-center p-2'>Deduction</th>
+                  <th class='text-center p-2'>Total Working Days</th>
+                  <th class='text-center p-2'>Total Salary</th>
                 </tr>
               </thead>
               <?php
               $i = 1;
-              $rows = mysqli_query($conn, "SELECT * FROM `payroll` p INNER JOIN `employee` e ON p.em_id = e.em_id");
+              $rows = mysqli_query($conn, "SELECT * FROM `payroll` p 
+              INNER JOIN `employee` e ON p.em_id = e.em_id
+              INNER JOIN `department` d ON e.dep_id = d.dep_id");
               foreach ($rows as $row) :
               ?>
                 <tr>
-                  <td> <?php echo $i++; ?> </td>
-                  <td> <?php echo $row["last_name"] . ", " . $row["first_name"]; ?> </td>
-                  <td> <?php echo $row["payroll_start_date"]; ?> </td>
-                  <td> <?php echo $row["payroll_end_date"]; ?> </td>
-                  <td> <?php echo $row["payroll_income"]; ?> </td>
-                  <td> <?php echo $row["payroll_deduction"]; ?> </td>
-                  <td> <?php echo $row["payroll_twd"]; ?> </td>
-                  <td> <?php echo $row["payroll_total"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $i++; ?> </td>
+                  <td class='text-left p-3'> <?php echo $row["last_name"] . ", " . $row["first_name"]; ?> </td>
+                  <td class='text-left p-3'> <?php echo $row["dep_name"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_start_date"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_end_date"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_income"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_deduction"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_twd"]; ?> </td>
+                  <td class='text-center p-3'> <?php echo $row["payroll_total"]; ?> </td>
                 </tr>
               <?php endforeach; ?>
             </table>
