@@ -177,7 +177,7 @@ if (isset($_SESSION['s_em_email'])) {
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php">Attendance Reports</a></i></li>
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php">Payroll Reports</a></i></li>
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php">Leave Reports</a></i></li>
-                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="#">Employee Reports</a></i></li>
+                  <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_employee.php">Employee Reports</a></i></li>
                 </ul>
               </li>
               <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
