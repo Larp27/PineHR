@@ -3,17 +3,17 @@
   include "../DBConnection.php";
 
   if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $bt_id= $_GET['bt_id'];
+    $inq_id= $_GET['inq_id'];
 
     
-    $query = "DELETE FROM blood_group WHERE bt_id = $bt_id";
+    $query = "DELETE FROM inquiries WHERE inq_id = $inq_id";
 
     if(mysqli_query($conn, $query)) {
-      echo "Education Deleted Successfully.";
-      header("Location: ../BloodType.php");
+      echo "Message Deleted Successfully.";
+      header("Location: ../Inquiries.php");
       exit();
     } else {
-      header("Location: ../Education.php");
+      header("Location: ../Inquiries.php");
       exit();
     }
 

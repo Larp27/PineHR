@@ -248,7 +248,7 @@ session_start();
                 </div>
               </div>
               <div class="form-group">
-                <label for="inq_message">Message</label>
+                <label for="inq_message">Inquiry</label>
                 <textarea class="form-control" name="inq_message" rows="10" id="inq_message"></textarea>
               </div>
 
