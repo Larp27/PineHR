@@ -5,6 +5,7 @@
   $todate = $_GET['todate'] ?? '';
   $employee = $_GET['employee'] ?? '';
   $department = $_GET['department'] ?? '';
+  $employmentstatus = $_GET['employmentstatus'] ?? '';
 
   // Build the WHERE clause based on the provided filter values
   $whereClause = [];
@@ -20,6 +21,10 @@
 
   if (!empty($department)) {
     $whereClause[] = "e.dep_id = $department";
+  }
+
+  if (!empty($employmentstatus)) {
+    $whereClause[] = "e.es_id = $employmentstatus";
   }
 
   $query = "SELECT * FROM `employee` e
@@ -71,7 +76,19 @@
       <thead class="text-center">
         <tr>
           <a href="index.php"><img src="bgimages/ormoc_seal.jpg" alt="logo" style="width: 100px;height: 100px; margin-left: 210px"></a>
-          <th colspan="6">Ormoc City LGU Employee List</th>
+          <?php
+            if (!empty($employmentstatus)) {
+              if ($employmentstatus == 1) {
+                echo '<th colspan="6">Ormoc City LGU Regular List</th>';
+              } else if ($employmentstatus == 2) {
+                echo '<th colspan="6">Ormoc City LGU Casual List</th>';
+              } else if ($employmentstatus == 3) {
+                echo '<th colspan="6">Ormoc City LGU Job Order List</th>';
+              }
+            } else {
+              echo '<th colspan="6">Ormoc City LGU Employee List</th>';
+            }
+          ?>
         </tr>
         <?php
           $fromdate_obj = new DateTime($fromdate);
