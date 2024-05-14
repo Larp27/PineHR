@@ -66,45 +66,74 @@ include_once('./main.php');
             <table class="table" id="example">
               <colgroup>
                 <col width="5%">
-                <col width="20%">
-                <col width="20%">
+                <col width="10%">
                 <col width="15%">
-                <col width="15%">
+                <col width="10%">
+                <col width="20%">
+                <col width="10%">
+                <col width="10%">
+                <col width="20%">
               </colgroup>
               <thead class="" style="background-color: rgb(255, 206, 46)">
                 <tr>
                   <th class="text-center p-2">#</th>
                   <th class="text-center p-2">Name</th>
                   <th class="text-center p-2">Message</th>
-                  <th class="text-center p-2">Status</th>
+                  <th class="text-center p-2">Message Status</th>
+                  <th class="text-center p-2">Response</th>
+                  <th class="text-center p-2">Response Status</th>
                   <th class="text-center p-2">Date</th>
                   <th class="text-center p-2">Action</th>
-  
                 </tr>
               </thead>
               <?php
-              $i = 1;
-              $query = "SELECT * FROM `inquiries`";
-              $result = mysqli_query($conn, $query);
-              while ($row = mysqli_fetch_assoc($result)) {
-                $r_inq_name = $row['inq_name'];
-                $r_inq_message = $row['inq_message'];
-                $r_inq_status = $row['inq_status'];
-                $r_inq_date = $row['inq_date'];
-                echo 
-                "<tr> 
-                    <td class='text-center p-3'>" . $i++ . "</td>
-                    <td class='text-left p-3'> $r_inq_name </td>
-                    <td class='text-left p-3'> $r_inq_message </td>
-                    <td class='text-center p-3'> $r_inq_status </td>
-                    <td class='text-center p-3'> $r_inq_date </td>
-                    <td class='text-center p-3'>  </td>
-                  </tr>";
+                $i = 1;
+                $query = "SELECT * FROM `inquiries`";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $r_inq_name = $row['inq_name'];
+                  $r_inq_message = $row['inq_message'];
+                  $r_inq_status = $row['inq_status'];
+                  $r_inq_response = $row['inq_response'];
+                  $r_inq_response_status = $row['inq_response_status'];
+                  $r_inq_date = $row['inq_date'];
               ?>
-              <?php
-              }
-              ?>
-              
+                <tr> 
+                  <td class='text-center p-3'><?php echo $i++; ?></td>
+                  <td class='text-center p-3 text-capitalize'><?php echo $r_inq_name; ?></td>
+                  <td class="text-start text-truncate" style="max-width: 150px;">
+                    <?= !empty($r_inq_message) ? $r_inq_message : '----------------'; ?>
+                  </td>
+                  <td class='text-center p-3'>
+                    <span class='badge bg-primary'><?php echo $r_inq_status; ?></span>
+                  </td>
+                  <td class="<?= !empty($r_inq_response) ? 'text-start text-justify' : 'text-center'; ?>">
+                    <?= !empty($r_inq_response) ? substr($r_inq_response, 0, 100) . '...' : '----------------'; ?>
+                  </td>
+                  <td class="text-center">
+                    <span class="badge bg-success text-uppercase p-1"><?= !empty($r_inq_response_status) ? $r_inq_response_status : '----------------'; ?></span>
+                  </td>
+                  <td class='text-center p-3'><?php echo date('F j, Y', strtotime($r_inq_date)); ?></td>
+                  <td class='text-center p-3'>
+                    <div class='btn-group'>
+                      <button type='button' class='view-message-btn rounded-0 bg-success-subtle p-2' style='font-size: 13px;' data-bs-toggle='modal' data-bs-target='#readModal<?php echo $inquiry['id']; ?>'>
+                        View Message
+                      </button>
+                      <?php if (!empty($inquiry['response'])): ?>
+                        <button type='button' class='view-reponse-btn rounded-0 bg-success p-2' style='font-size: 13px;' data-bs-toggle='modal' data-bs-target='#viewResponseModal<?php echo $inquiry['id']; ?>'>
+                          View Response
+                        </button>
+                      <?php else: ?>
+                        <button type='button' class='respond-btn rounded-0 bg-info p-2' style='font-size: 13px;' data-bs-toggle='modal' data-bs-target='#respondModal<?php echo $inquiry['id']; ?>'>
+                          Respond
+                        </button>
+                      <?php endif; ?>
+                    </div>
+                  </td>
+                </tr>
+                <?php
+                  }
+                ?>
             </table>
           </div>
         </div>
