@@ -179,6 +179,10 @@ if (isset($_SESSION['s_em_email'])) {
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php">Leave Reports</a></i></li>
                 </ul>
               </li>
+              <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
+                <a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries
+                </a>
+              </li>
 
               </form>
             </ul>

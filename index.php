@@ -207,19 +207,21 @@ session_start();
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location: </h4>
-                <p>Anubing St., Ormoc Citye</p>
+                <p>Ormoc City, Leyte, Philippines</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>ralphjoseph.rivera@wlcormoc.edu.ph</p>
+                <p>peterdaniel.palompon@wlcormoc.edu.ph</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+639 00909 49090</p>
+                <p>+6390090949090</p>
+                <p>+6399457132970 </p>
               </div>
 
 
@@ -228,33 +230,43 @@ session_start();
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="Inquiries.php" method="post" role="form" class="php-email-form" id="inquiryForm">
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="name">Your Name</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
+                  <label for="inq_name">Your Name</label>
+                  <input type="text" name="inq_name" class="form-control" id="inq_name" required>
                 </div>
               </div>
               <div class="form-group">
-                <label for="name">Subject</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
+                <label for="inq_message">Message</label>
+                <textarea class="form-control" name="inq_message" rows="10" id="inq_message" required></textarea>
               </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
+
+              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" id="buttonSAVE" style="background-color: #2468a0; width:300px; margin-left: 200px">
+                Submit
+              </button>
+              
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title text-success" id="exampleModalLongTitle">Recorded Successfully!</h5>
+                </div>
+                <div class="modal-body">
+                  &nbsp;&nbsp;Inquiry Submitted!
+                </div>
+                <div class="modal-footer">
+                  <a href="Index.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+                </div>
               </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+            </div>
+          </div>
             </form>
           </div>
+          <script src="Inquiries/InquiriesJS.js"></script>
+
+        
 
         </div>
 
@@ -355,6 +367,7 @@ session_start();
 
   <!-- Template Main JS File -->
   <script src="./landingpage/main.js"></script>
+
 
 </body>
 

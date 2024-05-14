@@ -121,6 +121,6 @@ include_once('./main.php');
           </div>
         </div>
 
-        <!--Department Process Add and Update JS-->
+        <!--Attendance Process Add and Update JS-->
         <script src="Attendance/AttendanceJS.js"></script>
         <script src="Attendance/updateATT.js"></script>
