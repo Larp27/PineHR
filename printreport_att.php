@@ -4,11 +4,16 @@
   $fromdate = $_GET['fromdate'] ?? '';
   $todate = $_GET['todate'] ?? '';
   $employee = $_GET['employee'] ?? '';
+  $department = $_GET['department'] ?? '';
 
   // Build the WHERE clause based on the provided filter values
   $whereClause = [];
   if (!empty($employee)) {
     $whereClause[] = "attendance.em_id = $employee";
+  }
+
+  if (!empty($department)) {
+    $whereClause[] = "employee.dep_id = $department";
   }
 
   $query = "SELECT attendance.*, last_name, first_name FROM attendance 

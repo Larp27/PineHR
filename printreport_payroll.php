@@ -4,6 +4,7 @@
   $fromdate = $_GET['fromdate'] ?? '';
   $todate = $_GET['todate'] ?? '';
   $employee = $_GET['employee'] ?? '';
+  $department = $_GET['department'] ?? '';
 
   // Build the WHERE clause based on the provided filter values
   $whereClause = [];
@@ -15,6 +16,10 @@
   }
   if (!empty($employee)) {
     $whereClause[] = "p.em_id = $employee";
+  }
+
+  if (!empty($department)) {
+    $whereClause[] = "e.dep_id = $department";
   }
 
   $query = "SELECT * FROM `payroll` p INNER JOIN `employee` e ON p.em_id = e.em_id";

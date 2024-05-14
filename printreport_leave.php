@@ -4,6 +4,7 @@
   $fromdate = $_GET['fromdate'] ?? '';
   $todate = $_GET['todate'] ?? '';
   $employee = $_GET['employee'] ?? '';
+  $department = $_GET['department'] ?? '';
   $leaveType = $_GET['leaveType'] ?? '';
   $status = $_GET['status'] ?? '';
 
@@ -17,6 +18,9 @@
   }
   if (!empty($employee)) {
     $whereClause[] = "la.em_id = $employee";
+  }
+  if (!empty($department)) {
+    $whereClause[] = "e.dep_id = $department";
   }
   if (!empty($leaveType)) {
     $whereClause[] = "la.lt_id = $leaveType";

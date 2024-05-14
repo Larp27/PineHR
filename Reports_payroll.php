@@ -69,7 +69,7 @@
                   <div class="top-right-buttons">
                     <form method="post" id="filterForm">
                       <div class="d-flex">
-                        <div class="col-md-3 mx-2">
+                        <div class="col-md-2 mx-2">
                           <label for="employee_select" class="form-label text-capitalize fw-bold">Employee:</label>
                           <select id="employee_select" class="form-select" name="employee">
                             <option value="">All</option>
@@ -84,6 +84,23 @@
                                   $selected = ($_POST['employee'] ?? '') == $em_id ? 'selected' : '';
                                   // Display employee's full name as the option text
                                   echo "<option class='text-capitalize' value='$em_id' $selected>$first_name $last_name</option>";
+                              }
+                            ?>
+                          </select>
+                        </div>
+
+                        <div class="col-md-2 mx-2">
+                          <label for="department_select" class="form-label text-capitalize fw-bold">Department:</label>
+                          <select id="department_select" class="form-select" name="department">
+                            <option value="">All</option>
+                            <?php
+                              $query_departments = "SELECT dep_id, dep_name FROM department";
+                              $result_departments = mysqli_query($conn, $query_departments);
+                              while ($row_department = mysqli_fetch_assoc($result_departments)) {
+                                $dep_id = $row_department['dep_id'];
+                                $dep_name = $row_department['dep_name'];
+                                $selected_department = ($_POST['department'] ?? '') == $dep_id ? 'selected' : '';
+                                echo "<option value='$dep_id' $selected_department>$dep_name</option>";
                               }
                             ?>
                           </select>
@@ -150,6 +167,12 @@
                               $employee_id = $_POST['employee'];
                               $filter_conditions[] = "p.em_id = $employee_id";
                             }
+
+                            // Department filter
+                            if (!empty($_POST['department'])) {
+                              $department_id = $_POST['department'];
+                              $filter_conditions[] = "e.dep_id = $department_id";
+                            }
                         
                             // Date range filter
                             if (!empty($_POST['fromdate']) && !empty($_POST['todate'])) {
@@ -197,6 +220,7 @@
   function printReport() {
     // Get filter values
     var employee = document.getElementById('employee_select').value;
+    var department = document.getElementById('department_select').value;
     var fromdate = document.getElementById('fromdate_input').value;
     var todate = document.getElementById('todate_input').value;
 
@@ -206,6 +230,7 @@
 
     // Add filter parameters if they have values
     if (employee !== '') params.push('employee=' + employee);
+    if (department !== '') params.push('department=' + department);
     if (fromdate !== '') params.push('fromdate=' + fromdate);
     if (todate !== '') params.push('todate=' + todate);
 
@@ -226,6 +251,7 @@
   // Function to reset all filter selections
   function resetFilters() {
     document.getElementById('employee_select').value = '';
+    document.getElementById('department_select').value = '';
     document.getElementById('fromdate_input').value = '';
     document.getElementById('todate_input').value = '';
   }

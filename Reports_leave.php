@@ -110,6 +110,23 @@ if (!$result || !$leave_types_result) {
                             ?>
                           </select>
                         </div>
+
+                        <div class="col-md-2 mx-2">
+                          <label for="department_select" class="form-label text-capitalize fw-bold">Department:</label>
+                          <select id="department_select" class="form-select" name="department">
+                            <option value="">All</option>
+                            <?php
+                              $query_departments = "SELECT dep_id, dep_name FROM department";
+                              $result_departments = mysqli_query($conn, $query_departments);
+                              while ($row_department = mysqli_fetch_assoc($result_departments)) {
+                                $dep_id = $row_department['dep_id'];
+                                $dep_name = $row_department['dep_name'];
+                                $selected_department = ($_POST['department'] ?? '') == $dep_id ? 'selected' : '';
+                                echo "<option value='$dep_id' $selected_department>$dep_name</option>";
+                              }
+                            ?>
+                          </select>
+                        </div>
                             
                         <div class="col-md-2 mx-2">
                           <label for="leaveType" class="form-label text-capitalize fw-bold">Leave Type:</label>
@@ -137,12 +154,12 @@ if (!$result || !$leave_types_result) {
                           </select>
                         </div>
 
-                        <div class="col-md-2 mx-2">
+                        <div class="col-md-1 mx-2">
                           <label for="fromdate_input" class="form-label text-capitalize fw-bold">Start Date:</label>
                           <input type="date" id="fromdate_input" class="form-control" name="fromdate" value="<?php echo $_POST['fromdate'] ?? ''; ?>">
                         </div>
 
-                        <div class="col-md-2 mx-2">
+                        <div class="col-md-1 mx-2">
                           <label for="todate_input" class="form-label text-capitalize fw-bold">End Date:</label>
                           <input type="date" id="todate_input" class="form-control" name="todate" value="<?php echo $_POST['todate'] ?? ''; ?>">
                         </div>
@@ -197,6 +214,12 @@ if (!$result || !$leave_types_result) {
                               $employee_id = $_POST['employee'];
                               $filter_conditions[] = "la.em_id = $employee_id";
                             }
+
+                          // Department filter
+                          if (!empty($_POST['department'])) {
+                            $department_id = $_POST['department'];
+                            $filter_conditions[] = "e.dep_id = $department_id";
+                          }
 
                             // Leave type filter
                             if (!empty($_POST['leaveType'])) {
@@ -290,6 +313,7 @@ if (!$result || !$leave_types_result) {
   function printReport() {
     // Get filter values
     var employee = document.getElementById('employee_select').value;
+    var department = document.getElementById('department_select').value;
     var leaveType = document.getElementById('leaveType').value;
     var status = document.getElementById('status').value;
     var fromdate = document.getElementById('fromdate_input').value;
@@ -301,6 +325,7 @@ if (!$result || !$leave_types_result) {
 
     // Add filter parameters if they have values
     if (employee !== '') params.push('employee=' + employee);
+    if (department !== '') params.push('department=' + department);
     if (leaveType !== '') params.push('leaveType=' + leaveType);
     if (status !== '') params.push('status=' + status);
     if (fromdate !== '') params.push('fromdate=' + fromdate);
@@ -323,6 +348,7 @@ if (!$result || !$leave_types_result) {
   // Function to reset all filter selections
   function resetFilters() {
     document.getElementById('employee_select').value = '';
+    document.getElementById('department_select').value = '';
     document.getElementById('leaveType').value = '';
     document.getElementById('status').value = '';
     document.getElementById('fromdate_input').value = '';
