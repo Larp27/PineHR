@@ -90,6 +90,23 @@ if (!$result) {
                         </div>
 
                         <div class="col-md-2 mx-2">
+                          <label for="employment_status_select" class="form-label text-capitalize fw-bold">Employment Status:</label>
+                          <select id="employment_status_select" class="form-select" name="employment_status">
+                            <option value="">All</option>
+                            <?php
+                              $query_employment_statuses = "SELECT es_id, es_name FROM employment_status";
+                              $result_employment_statuses = mysqli_query($conn, $query_employment_statuses);
+                              while ($row_employment_status = mysqli_fetch_assoc($result_employment_statuses)) {
+                                $es_id = $row_employment_status['es_id'];
+                                $es_name = $row_employment_status['es_name'];
+                                $selected_employment_status = ($_POST['employment_status'] ?? '') == $es_id ? 'selected' : '';
+                                echo "<option value='$es_id' $selected_employment_status>$es_name</option>";
+                              }
+                            ?>
+                          </select>
+                        </div>
+
+                        <div class="col-md-2 mx-2">
                           <label for="department_select" class="form-label text-capitalize fw-bold">Department:</label>
                           <select id="department_select" class="form-select" name="department">
                             <option value="">All</option>
@@ -170,6 +187,12 @@ if (!$result) {
                             $department_id = $_POST['department'];
                             $filter_conditions[] = "e.dep_id = $department_id";
                           }
+
+                          // Employment Status filter
+                          if (!empty($_POST['employment_status'])) {
+                            $employment_status_id = $_POST['employment_status'];
+                            $filter_conditions[] = "e.es_id = $employment_status_id";
+                          }
                       
                           // Date range filter
                           if (!empty($_POST['fromdate']) && !empty($_POST['todate'])) {
@@ -227,6 +250,7 @@ if (!$result) {
     // Get filter values
     var employee = document.getElementById('employee_select').value;
     var department = document.getElementById('department_select').value;
+    var employmentstatus = document.getElementById('employment_status_select').value;
     var fromdate = document.getElementById('fromdate_input').value;
     var todate = document.getElementById('todate_input').value;
 
@@ -237,6 +261,7 @@ if (!$result) {
     // Add filter parameters if they have values
     if (employee !== '') params.push('employee=' + employee);
     if (department !== '') params.push('department=' + department);
+    if (employmentstatus !== '') params.push('employmentstatus=' + employmentstatus);
     if (fromdate !== '') params.push('fromdate=' + fromdate);
     if (todate !== '') params.push('todate=' + todate);
 
@@ -258,6 +283,7 @@ if (!$result) {
   function resetFilters() {
     document.getElementById('employee_select').value = '';
     document.getElementById('department_select').value = '';
+    document.getElementById('employment_status_select').value = '';
     document.getElementById('fromdate_input').value = '';
     document.getElementById('todate_input').value = '';
   }
