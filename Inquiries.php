@@ -68,10 +68,11 @@ include_once('./main.php');
             <table class="table" id="example">
               <colgroup>
                 <col width="5%">
-                <col width="20%">
-                <col width="20%">
+                <col width="10%">
                 <col width="15%">
-                <col width="15%">
+                <col width="10%">
+                <col width="10%">
+                <col width="20%">
               </colgroup>
               <thead class="" style="background-color: rgb(255, 206, 46)">
                 <tr>
