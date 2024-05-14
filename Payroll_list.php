@@ -22,7 +22,7 @@ include_once('./main.php');
             <div class="top-right-buttons">
               <div class="d-flex">
                 <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>
-                <a href="payroll_add.php" class="btn btn-success" style="background-color: #2468a0;">Add New Payroll +</a>
+                <a href="Payroll_add.php" class="btn btn-success" style="background-color: #2468a0;">Add New Payroll +</a>
               </div>
             </div>
           </div>

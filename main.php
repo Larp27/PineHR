@@ -160,7 +160,7 @@ if (isset($_SESSION['s_em_email'])) {
                 </ul>
               </li>
               <li <?php echo ($page == 'attendance_list') ? 'class="active"' : '' ?>>
-                <a href="attendance_list.php">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
+                <a href="Attendance_list.php">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
                 </a>
               </li>
               <li <?php echo ($page == 'payroll_list') ? 'class="active"' : '' ?>>
