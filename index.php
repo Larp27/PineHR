@@ -83,6 +83,16 @@ session_start();
   <!-- Template Main CSS File -->
   <link href="landingpage/style.css" rel="stylesheet">
 
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+  <!--<script src="script.js"></script>-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
   <!-- =======================================================
   * Template Name: Arsha
   * Updated: Sep 18 2023 with Bootstrap v5.3.2
@@ -230,7 +240,7 @@ session_start();
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="Inquiries.php" method="post" role="form" class="php-email-form" id="inquiryForm">
+            <form method="post" role="form" class="php-email-form" id="inquiryForm">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="inq_name">Your Name</label>
@@ -239,13 +249,15 @@ session_start();
               </div>
               <div class="form-group">
                 <label for="inq_message">Message</label>
-                <textarea class="form-control" name="inq_message" rows="10" id="inq_message" required></textarea>
+                <textarea class="form-control" name="inq_message" rows="10" id="inq_message"></textarea>
               </div>
 
-              <button class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter" id="buttonSAVE" style="background-color: #2468a0; width:300px; margin-left: 200px">
+              <button class="btn btn-success" id="inquiryButtonSAVE" style="background-color: #2468a0; width:300px; margin-left: 200px">
                 Submit
               </button>
-              
+            </form>
+          </div>
+
           <!-- Modal -->
           <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -257,18 +269,13 @@ session_start();
                   &nbsp;&nbsp;Inquiry Submitted!
                 </div>
                 <div class="modal-footer">
-                  <a href="Index.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+                  <a href="index.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
                 </div>
               </div>
             </div>
           </div>
-            </form>
-          </div>
-          <script src="Inquiries/InquiriesJS.js"></script>
-
-        
-
         </div>
+        <script src="Inquiries/InquiriesJS.js"></script>
 
       </div>
     </section><!-- End Contact Section -->

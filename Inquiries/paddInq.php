@@ -13,17 +13,14 @@
     $inq_name = $_POST['inq_name'];
     $inq_message = $_POST['inq_message'];
     $inq_status = 'Unseen';
-    $inq_date = date('Y-m-d H:i:s');
 
-     // Prepare the insert query using prepared statements
-     $stmt = $conn->prepare("INSERT INTO inquiries (inq_id, inq_name, inq_message, inq_status, inq_date) VALUES (?, ?, ?, ?, ?)");
-     $stmt->bind_param("issss", $nextId, $inq_name, $inq_message, $inq_status, $inq_date);
+    $query = "INSERT INTO inquiries (inq_name, inq_message, inq_status) VALUES ('$inq_name', '$inq_message', '$inq_status')";
+    $result = mysqli_query($conn, $query);
  
-     // Execute the query
-     if ($stmt->execute()) {
-         echo "";
-    }else{
-       echo "Please check your query";
+    if ($result) {
+      echo "success";
+    } else {
+      echo "Error: " . mysqli_error($conn);
     }
   } 
 ?>
