@@ -123,12 +123,12 @@ if (!$result) {
                           </select>
                         </div>
 
-                        <div class="col-md-2 mx-2">
+                        <div class="col-md-1 mx-2">
                           <label for="fromdate_input" class="form-label text-capitalize fw-bold">Start Date:</label>
                           <input type="date" id="fromdate_input" class="form-control" name="fromdate" value="<?php echo $_POST['fromdate'] ?? ''; ?>">
                         </div>
 
-                        <div class="col-md-2 mx-2">
+                        <div class="col-md-1 mx-2">
                           <label for="todate_input" class="form-label text-capitalize fw-bold">End Date:</label>
                           <input type="date" id="todate_input" class="form-control" name="todate" value="<?php echo $_POST['todate'] ?? ''; ?>">
                         </div>
