@@ -7,6 +7,47 @@ include_once('./main.php');
 <script src="./script.js"></script>
 <link rel="stylesheet" href="css/employee.css">
 
+<style>
+  div.dataTables_wrapper div.dataTables_paginate .paginate_button {
+    border: none !important;
+    padding: 0px !important;
+  }
+
+  div.dataTables_wrapper div.dataTables_length select{
+    width: auto;
+    display: inline-block;
+    border-radius: 5px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  div.dataTables_wrapper div.dataTables_length select {
+    width: auto;
+    display: inline-block;
+    border-radius: 15px;
+    padding-top: .30rem;
+    padding-bottom: .30rem;
+    padding-left: .5rem;
+    padding-right: 2.5rem;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  th {
+    text-transform: uppercase !important;
+  }
+
+  td {
+    font-size: 15px !important;
+  }
+</style>
+
 
 <body>
   <div class="container-fluid">
@@ -57,6 +98,7 @@ include_once('./main.php');
                     <td class='text-left p-3'> $r_inq_message </td>
                     <td class='text-center p-3'> $r_inq_status </td>
                     <td class='text-center p-3'> $r_inq_date </td>
+                    <td class='text-center p-3'>  </td>
                   </tr>";
               ?>
               <?php
