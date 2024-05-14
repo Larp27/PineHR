@@ -90,8 +90,6 @@ include_once('./main.php');
                   $r_inq_name = $row['inq_name'];
                   $r_inq_message = $row['inq_message'];
                   $r_inq_status = $row['inq_status'];
-                  $r_inq_response = $row['inq_response'];
-                  $r_inq_response_status = $row['inq_response_status'];
                   $r_inq_date = $row['inq_date'];
               ?>
                 <tr> 
