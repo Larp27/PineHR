@@ -12,7 +12,7 @@
 
     $inq_name = $_POST['inq_name'];
     $inq_message = $_POST['inq_message'];
-    $inq_status = 'Unseen';
+    $inq_status = 'Unanswered';
 
     $query = "INSERT INTO inquiries (inq_name, inq_message, inq_status) VALUES ('$inq_name', '$inq_message', '$inq_status')";
     $result = mysqli_query($conn, $query);
