@@ -68,7 +68,7 @@ include_once('./main.php');
             <table class="table" id="example">
               <colgroup>
                 <col width="5%">
-                <col width="10%">
+                <col width="15%">
                 <col width="15%">
                 <col width="10%">
                 <col width="10%">
@@ -86,40 +86,50 @@ include_once('./main.php');
 
                 </tr>
               </thead>
-              <?php
-              $i = 1;
-              $query = "SELECT * FROM `inquiries`";
-              $result = mysqli_query($conn, $query);
-              while ($row = mysqli_fetch_assoc($result)) {
-                $r_inq_id = $row['inq_id'];
-                $r_inq_name = $row['inq_name'];
-                $r_inq_number = $row['inq_number'];
-                $r_inq_message = $row['inq_message'];
-                $r_inq_status = $row['inq_status'];
-                $r_inq_date = date('m/d/Y h:i A', strtotime($row['inq_date']));
-                echo "<tr> 
+              <tbody>
+                <?php
+                  $i = 1;
+                  $query = "SELECT * FROM `inquiries`";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $r_inq_id = $row['inq_id'];
+                    $r_inq_name = $row['inq_name'];
+                    $r_inq_number = $row['inq_number'];
+                    $r_inq_message = $row['inq_message'];
+                    $r_inq_status = $row['inq_status'];
+                    $r_inq_date = date('F d, Y', strtotime($row['inq_date']));
+
+                    // Define badge color based on status
+                    $badge_color = ($r_inq_status == 'Answered') ? 'success' : 'warning';
+                    echo "<tr> 
                             <td class='text-center p-3'>" . $i++ . "</td>
-                            <td class='text-left p-3'>$r_inq_name</td>
-                            <td class='text-left p-3'>$r_inq_number</td>
+                            <td class='text-center p-3 text-capitalize'>$r_inq_name</td>
+                            <td class='text-center p-3 text-capitalize'>$r_inq_number</td>
                             <td class='text-center'>
-                                <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
-                                    <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-id='$r_inq_id' data-message='$r_inq_message' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
-                                </div>
+                              <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                                <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-id='$r_inq_id' data-message='$r_inq_message' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
+                              </div>
                             </td>
-                            <td class='text-center p-3'>$r_inq_status</td>
-                            <td class='text-center p-3'>$r_inq_date</td>
-                            <td>  
-                         
-                            
-                            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
-                            <button type='button' class='py-1 px-2 me-1 btn btn-success btn-sm reply-user-btn' data-id='<?php echo $r_inq_id; ?>' data-bs-toggle='modal' data-bs-target='#replyModal'><i class='fas fa-reply'></i> Reply</button>
-                            <a href='Inquiries/deleteInq.php?inq_id=$r_inq_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Message?\")'><i class='fas fa-trash'></i> Delete</a></div> </td>
-                        </tr>";
-                    }
-                    ?>
-                    </tbody>
-                </table>
-            </div>
+                            <td class='text-center p-3'><span class='badge bg-$badge_color'>$r_inq_status</span></td>
+                            <td class='text-center p-3'>$r_inq_date</td>  
+                            <td>"; 
+
+                            // Check if status is 'Answered' and only display the reply button if not
+                            if ($r_inq_status != 'Answered') {
+                                echo "<div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                                        <button type='button' class='py-1 px-2 me-1 btn btn-success btn-sm reply-user-btn' data-id='$r_inq_id' data-bs-toggle='modal' data-bs-target='#replyModal'><i class='fas fa-reply'></i> Reply</button>
+                                        <a href='Inquiries/deleteInq.php?inq_id=$r_inq_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Message?\")'><i class='fas fa-trash'></i> Delete</a>
+                                      </div>";
+                            } else {
+                              echo "<div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                                        <a href='Inquiries/deleteInq.php?inq_id=$r_inq_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Message?\")'><i class='fas fa-trash'></i> Delete</a>
+                                      </div>";
+                            }
+                  }
+                ?>
+              </tbody>
+            </table>
+          </div>
         </div>
     </div>
 </div>
@@ -133,7 +143,7 @@ include_once('./main.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form id="replyForm">
+        <form id="replyForm" action="Inquiries/saveReply.php" method="post">
           <input type="hidden" id="replyInqId" name="inq_id">
           <div class="mb-3">
             <label for="inq_reply" class="form-label">Your Message</label>
@@ -147,16 +157,19 @@ include_once('./main.php');
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-  var replyButtons = document.querySelectorAll('.reply-user-btn');
-  replyButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
-      var inqId = button.getAttribute('data-id');
-      document.getElementById('replyInqId').value = inqId;
+  document.addEventListener("DOMContentLoaded", function() {
+    const replyButtons = document.querySelectorAll(".reply-user-btn");
+    const replyInqIdInput = document.getElementById("replyInqId");
+
+    replyButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        const inqId = this.getAttribute("data-id");
+        replyInqIdInput.value = inqId;
+      });
     });
   });
-});
 </script>
+
 
 
 <!-- View Modal -->
