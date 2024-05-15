@@ -179,7 +179,7 @@ if (!$result) {
                           // Employee filter
                           if (!empty($_POST['employee'])) {
                             $employee_id = $_POST['employee'];
-                            $filter_conditions[] = "a.em_id = $employee_id";
+                            $filter_conditions[] = "e.em_id = $employee_id";
                           }
 
                           // Department filter
