@@ -44,7 +44,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Printable Payroll </title>
+  <title>Employee List Print </title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
@@ -64,14 +64,13 @@
   <div class="container-sm mt-3">
     <table class="table">
     <colgroup>
-      <col width="5%">
-      <col width="15%">
-      <col width="8%">
-      <col width="8%">
-      <col width="10%">
       <col width="10%">
       <col width="15%">
       <col width="10%">
+      <col width="10%">
+      <col width="10%">
+      <col width="10%">
+
     </colgroup>
       <thead class="text-center">
         <tr>
@@ -123,7 +122,6 @@
           <th>Department</th>
           <th>Gender</th>
           <th>Address</th>
-          <th>Contact Number</th>
           <th>Status</th>
           <th>Date Joining</th>
         </tr>
@@ -137,7 +135,6 @@
             echo "<td>" . $row['dep_name'] . "</td>";
             echo "<td>" . $row['em_gender'] . "</td>";
             echo "<td>" . $row['barangay'] . " " . $row ['city'] . "</td>";
-            echo "<td>" . $row['em_phone'] . "</td>";
             echo "<td>" . $row['employee_status'] . "</td>";
             echo "<td>" . $row['em_joining_date'] . "</td>";
             echo "</tr>";
