@@ -71,7 +71,7 @@ if (!$result) {
                   <div class="top-right-buttons">
                     <form method="post" id="filterForm">
                       <div class="d-flex">
-                        <div class="col-md-2 mx-2">
+                      <div class="col-md-1 mx-2 hidden">
                           <label for="employee_select" class="form-label text-capitalize fw-bold">Employee:</label>
                           <select id="employee_select" class="form-select" name="employee">
                             <option value="">All</option>
@@ -153,10 +153,13 @@ if (!$result) {
                   <div class="dash_content_main">
                     <table class="table border shadow-lg" id="example">
                       <colgroup>
+                        <col width="2%">
+                        <col width="10%">
+                        <col width="20%">
                         <col width="5%">
                         <col width="15%">
-                        <col width="15%">
-                        <col width="5%">
+                        <col width="10%">
+                        <col width="10%">
                       </colgroup>
                       <thead class="" style="background-color: rgb(255, 206, 46)">
                         <tr>
@@ -165,7 +168,6 @@ if (!$result) {
                           <th class='text-center p-2'>Department</th>
                           <th class='text-center p-2'>Gender</th>
                           <th class='text-center p-2'>Address</th>
-                          <th class='text-center p-2'>Contact Number</th>
                           <th class='text-center p-2'>Status</th>
                           <th class='text-center p-2'>Date Joining</th>
 
@@ -224,7 +226,6 @@ if (!$result) {
                           $r_em_gender = $row['em_gender'];
                           $r_barangay = $row['barangay'];
                           $r_city = $row['city'];
-                          $r_em_phone = $row['em_phone'];
                           $r_employee_status = $row['employee_status'];
                           $r_em_joining_date = $row['em_joining_date'];
 
@@ -235,7 +236,6 @@ if (!$result) {
                             <td class='text-left p-3'> $r_dep_name </td>
                             <td class='text-center p-3'> $r_em_gender </td>
                             <td class='text-center p-3'> $r_barangay, $r_city </td>
-                            <td class='text-center p-3'> $r_em_phone </td>
                             <td class='text-center p-3'> $r_employee_status</td>
                             <td class='text-center p-3'> $r_em_joining_date</td>
                           </tr>";
