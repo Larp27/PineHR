@@ -246,7 +246,14 @@ session_start();
                   <label for="inq_name">Your Name</label>
                   <input type="text" name="inq_name" class="form-control" id="inq_name" required>
                 </div>
+                <div class="form-group col-md-6">
+                  <label for="inq_number">Contact Number</label>
+                  <div class="input-group">
+                  <span class="input-group-text">+63</span>
+                  <input type="text" name="inq_number" class="form-control" id="inq_number" aria-describedby="addon-wrapping" minlength="10" maxlength="10" oninput="limitInputLength(this, 10);" required>
+                </div>
               </div>
+
               <div class="form-group">
                 <label for="inq_message">Inquiry</label>
                 <textarea class="form-control" name="inq_message" rows="10" id="inq_message"></textarea>

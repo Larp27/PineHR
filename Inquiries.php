@@ -78,6 +78,7 @@ include_once('./main.php');
                 <tr>
                   <th class="text-center p-2">#</th>
                   <th class="text-center p-2">Name</th>
+                  <th class="text-center p-2">Contact Number</th>
                   <th class="text-center p-2">Inquiry</th>
                   <th class="text-center p-2">Status</th>
                   <th class="text-center p-2">Date</th>
@@ -92,12 +93,14 @@ include_once('./main.php');
               while ($row = mysqli_fetch_assoc($result)) {
                 $r_inq_id = $row['inq_id'];
                 $r_inq_name = $row['inq_name'];
+                $r_inq_number = $row['inq_number'];
                 $r_inq_message = $row['inq_message'];
                 $r_inq_status = $row['inq_status'];
                 $r_inq_date = date('m/d/Y h:i A', strtotime($row['inq_date']));
                 echo "<tr> 
                             <td class='text-center p-3'>" . $i++ . "</td>
                             <td class='text-left p-3'>$r_inq_name</td>
+                            <td class='text-left p-3'>$r_inq_number</td>
                             <td class='text-center'>
                                 <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
                                     <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-id='$r_inq_id' data-message='$r_inq_message' data-bs-toggle='modal' data-bs-target='#viewModal'><i class='fas fa-eye'></i> View</button>
@@ -105,7 +108,12 @@ include_once('./main.php');
                             </td>
                             <td class='text-center p-3'>$r_inq_status</td>
                             <td class='text-center p-3'>$r_inq_date</td>
-                            <td>  <div class='col-auto d-flex justify-content-center m-2 align-items-center'><a href='Inquiries/deleteInq.php?inq_id=$r_inq_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Message?\")'><i class='fas fa-trash'></i> Delete</a></div> </td>
+                            <td>  
+                         
+                            
+                            <div class='col-auto d-flex justify-content-center m-2 align-items-center'>
+                            <button type='button' class='py-1 px-2 me-1 btn btn-success btn-sm reply-user-btn' data-id='<?php echo $r_inq_id; ?>' data-bs-toggle='modal' data-bs-target='#replyModal'><i class='fas fa-reply'></i> Reply</button>
+                            <a href='Inquiries/deleteInq.php?inq_id=$r_inq_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Message?\")'><i class='fas fa-trash'></i> Delete</a></div> </td>
                         </tr>";
                     }
                     ?>
@@ -115,6 +123,41 @@ include_once('./main.php');
         </div>
     </div>
 </div>
+
+<!-- Reply Modal -->
+<div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="replyModalLabel">Reply to Inquiry</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="replyForm">
+          <input type="hidden" id="replyInqId" name="inq_id">
+          <div class="mb-3">
+            <label for="inq_reply" class="form-label">Your Message</label>
+            <textarea class="form-control" id="replyMessage" name="inq_reply" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Reply</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  var replyButtons = document.querySelectorAll('.reply-user-btn');
+  replyButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var inqId = button.getAttribute('data-id');
+      document.getElementById('replyInqId').value = inqId;
+    });
+  });
+});
+</script>
+
 
 <!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
@@ -130,6 +173,8 @@ include_once('./main.php');
                     <textarea class="form-control" id="inq_message" name="inq_message" readonly rows="7"></textarea>
                 </div>
             </div>
+           
+                
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>

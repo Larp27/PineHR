@@ -3,9 +3,11 @@ $(document).ready(function() {
     e.preventDefault();
 
     var inq_name = $('#inq_name').val();
+    var inq_number = $('#inq_number').val();
     var inq_message = $('#inq_message').val();
 
-    if (inq_name == "" || inq_message == "") {
+
+    if (inq_name == "" || inq_message == "" || inq_number == "") {
       $('#message').html('Please fill in the required fields');
     } else {
       $.ajax({
@@ -13,6 +15,7 @@ $(document).ready(function() {
         method: 'POST',
         data: {
           inq_name: inq_name,
+          inq_number: inq_number,
           inq_message: inq_message
         },
         success: function(data) {
