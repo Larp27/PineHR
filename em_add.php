@@ -273,6 +273,7 @@ include_once('./main.php');
               <label for="em_profile_pic" class="fw-bold text-uppercase">Profile Picture</label>
               <input type="file" class="form-control" id="em_profile_pic" name="em_profile_pic" accept="image/*">
             </div>
+            
           </div>
         </div>
       </div>
