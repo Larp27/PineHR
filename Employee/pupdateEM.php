@@ -66,8 +66,14 @@ function updateEmployee(){
 
   $query .= " WHERE em_id = '$em_id'";
 
-  // Delete the employee leave credits when the lt_id is not in the submitted leave credits
-  $query_delete = "DELETE FROM employee_leave_credits WHERE em_id = '$em_id' AND lt_id NOT IN (" . implode(",", array_map('intval', $leave_type_ids)) . ")";
+  $query_delete = "";
+  if (!empty($leave_type_ids)) {
+    $query_delete = "DELETE FROM employee_leave_credits WHERE em_id = '$em_id' AND lt_id NOT IN (" . implode(",", array_map('intval', $leave_type_ids)) . ")";
+  } else {
+    // If leave_type_ids is empty, delete all records for the employee
+    $query_delete = "DELETE FROM employee_leave_credits WHERE em_id = '$em_id'";
+  }
+
   if (!mysqli_query($conn, $query_delete)) {
     echo "Failed to delete unchecked leave types: " . mysqli_error($conn);
   }
