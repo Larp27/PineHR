@@ -84,7 +84,7 @@ if (isset($_SESSION['s_em_id'])) {
       </strong>
     </div>
   </div>
-  <div>
+  <div style="height:100vh;">
     <div class="card card-outline card-primary m-3 mb-4">
       <div class="card-header">
         <div class="panel-heading" style="padding: 2px !important;">
