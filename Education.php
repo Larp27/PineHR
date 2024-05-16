@@ -67,8 +67,8 @@ include_once('./main.php');
     </div>
   </div>
 </div>
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Education</h1>
@@ -89,17 +89,34 @@ include_once('./main.php');
     </div>
   </div>
 </div>
+
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Education Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a href = "Education.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+      </div>
+    </div>
+  </div>
+</div>
 <script>
   var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
     var button = event.relatedTarget;
-    var edu_id = button.getAttribute('data-edu_id');
+    var edu_id = button.getAttribute('data-edu-id');
     var education = button.getAttribute('data-education');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#edu_id').value = edu_id;
-    modalBody.querySelector('#update_education').value = education; // Corrected ID here
-  })
+    modalBody.querySelector('#update_education').value = education;
+  });
 </script>
 
 
