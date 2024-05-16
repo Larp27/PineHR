@@ -100,6 +100,10 @@ if (isset($_SESSION['s_em_email'])) {
           <nav class="sidebar">
             <ul>
               <li <?php echo ($page == 'dashboard') ? 'class="active"' : '' ?>><a href="Dashboard.php"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
+              <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
+                <a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries
+                </a>
+              </li>
               <li <?php echo ($page == 'department_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_add') ? 'class="active"' : '' ?> 
@@ -180,10 +184,7 @@ if (isset($_SESSION['s_em_email'])) {
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_employee.php">Employee Reports</a></i></li>
                 </ul>
               </li>
-              <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
-                <a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries
-                </a>
-              </li>
+              
 
               </form>
             </ul>

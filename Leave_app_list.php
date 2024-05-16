@@ -111,10 +111,11 @@ if (isset($_SESSION['s_em_email'])) {
               <img src="bgimages/pine.png" alt="logo" style="width: 150px;height: 135px;margin-top: -15px; margin-left: -8px">
             </a>
           </center>
-          <br>
+          
           <nav class="sidebar">
             <ul>
               <li><a href="Dashboard.php" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
+              <li><a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries</a></li>
               <li>
                 <a href="#" class="org-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
                   <span class="fas fa-caret-down first"></span>
