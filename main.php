@@ -100,6 +100,10 @@ if (isset($_SESSION['s_em_email'])) {
           <nav class="sidebar">
             <ul>
               <li <?php echo ($page == 'dashboard') ? 'class="active"' : '' ?>><a href="Dashboard.php"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
+              <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
+                <a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries
+                </a>
+              </li>
               <li <?php echo ($page == 'department_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_list') ? 'class="active"' : '' ?> 
                   <?php echo ($page == 'designation_add') ? 'class="active"' : '' ?> 
@@ -180,10 +184,7 @@ if (isset($_SESSION['s_em_email'])) {
                   <li><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_employee.php">Employee Reports</a></i></li>
                 </ul>
               </li>
-              <li <?php echo ($page == 'inquiries') ? 'class="active"' : '' ?>>
-                <a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries
-                </a>
-              </li>
+              
 
               </form>
             </ul>
@@ -198,7 +199,7 @@ if (isset($_SESSION['s_em_email'])) {
             <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <?php
               if (isset($_SESSION['em_profile_pic'])) {
-                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:40px; height:40px; border-radius: 50%; margin: 0; padding: 0; ' alt='Profile Picture'>";
               } else {
                 echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
               }
@@ -208,7 +209,7 @@ if (isset($_SESSION['s_em_email'])) {
               $result = mysqli_query($conn, $query);
 
               while ($row = mysqli_fetch_assoc($result)) {
-                echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                echo '<span style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
               }
             ?>
             </a>
