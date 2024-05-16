@@ -111,7 +111,7 @@ if (isset($_SESSION['s_em_email'])) {
               <img src="bgimages/pine.png" alt="logo" style="width: 150px;height: 135px;margin-top: -15px; margin-left: -8px">
             </a>
           </center>
-          
+
           <nav class="sidebar">
             <ul>
               <li><a href="Dashboard.php" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
@@ -185,7 +185,7 @@ if (isset($_SESSION['s_em_email'])) {
             <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
             <?php
               if (isset($_SESSION['em_profile_pic'])) {
-                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:40px; height:40px; border-radius: 50%; margin: 0; padding: 0; ' alt='Profile Picture'>";
               } else {
                 echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
               }
@@ -195,7 +195,7 @@ if (isset($_SESSION['s_em_email'])) {
               $result = mysqli_query($conn, $query);
 
               while ($row = mysqli_fetch_assoc($result)) {
-                echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                echo '<span style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
               }
             ?>
             </a>
