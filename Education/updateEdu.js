@@ -6,7 +6,7 @@ $(document).ready(function() {
     if (education == "") {
       console.log(edu_id)
       console.log(education)
-      $('#message').html('Please fill in the required fields');
+      $('#message').html('Please fill in the education field.');
     } else {
       $.ajax({
         url: 'Education/updateEDU.php',

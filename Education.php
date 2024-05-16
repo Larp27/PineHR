@@ -75,13 +75,14 @@ include_once('./main.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p id="message" class=text-danger></p>
         <form method="post" action="">
           <div class="mb-3">
             <input type="hidden" class="form-control" id="edu_id" name="edu_id">
           </div>
           <div class="mb-3">
             <label for="update_education" class="form-label">&nbsp;Education</label>
-            <input type="text" class="form-control" id="update_education" name="education">
+            <input type="text" class="form-control" id="update_education" name="education" required>
           </div>
           <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateEducation">Update</button>
         </form>
