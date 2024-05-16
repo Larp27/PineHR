@@ -1,7 +1,7 @@
 <!--Declaration of user session -logout- -->
 <?php
   $title = 'Address';
-  $page = 'Address';
+  $page = 'address';
   include_once('./main.php');
 ?>
 
