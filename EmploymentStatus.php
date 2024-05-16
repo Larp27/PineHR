@@ -101,25 +101,26 @@ include_once('./main.php');
 </div>
 
 <!-- Modal for Update Employment Status -->
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Employment Status</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p id="message" class=text-danger></p>
         <form method="post" action="EmploymentStatus/updateES.php">
           <div class="mb-3">
             <input type="hidden" class="form-control" id="es_id" name="es_id">
           </div>
           <div class="mb-3">
             <label for="update_es_name" class="form-label">&nbsp;Employment Status</label>
-            <input type="text" class="form-control" id="update_es_name" name="es_name">
+            <input type="text" class="form-control" id="update_es_name" name="es_name" required>
           </div>
           <div class="mb-3">
             <label for="update_es_income" class="form-label">&nbsp;Default Income</label>
-            <input type="text" class="form-control" id="update_es_income" name="es_income">
+            <input type="text" class="form-control" id="update_es_income" name="es_income" required>
           </div>
           <button type="submit" class="btn btn-success" name="btnUpdate" id="btnUpdateEmploymentStatus">Update</button>
         </form>
@@ -128,7 +129,23 @@ include_once('./main.php');
   </div>
 </div>
 
-<!-- Script for fetching data into modal -->
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Employment Status Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href = "EmploymentStatus.php">Done</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
@@ -141,6 +158,8 @@ include_once('./main.php');
     modalBody.querySelector('#es_id').value = es_id;
     modalBody.querySelector('#update_es_name').value = es_name;
     modalBody.querySelector('#update_es_income').value = es_income;
-
   });
 </script>
+
+<script src="EmploymentStatus/EmploymentStatusJS.js"></script>
+<script src="EmploymentStatus/updateES.js"></script>

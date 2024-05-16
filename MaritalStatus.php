@@ -74,8 +74,8 @@ include_once('./main.php');
   </div>
 </div>
 
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Marital Status</h1>
@@ -97,12 +97,29 @@ include_once('./main.php');
   </div>
 </div>
 
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Marital Status Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href = "MaritalStatus.php">Done</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
   var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var ms_id = button.getAttribute('data-ms_id'); // Extract info from data-* attributes
-    var ms_name = button.getAttribute('data-ms_name'); // Extract info from data-* attributes
+    var button = event.relatedTarget;
+    var ms_id = button.getAttribute('data-ms_id');
+    var ms_name = button.getAttribute('data-ms_name');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#ms_id').value = ms_id;

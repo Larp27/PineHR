@@ -74,14 +74,15 @@
   </div>
 </div>
 
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Religion</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p id="message" class=text-danger></p>
         <form method="post" action="">
           <div class="mb-3">
             <input type="hidden" class="form-control" id="r_id" name="r_id">
@@ -97,20 +98,34 @@
   </div>
 </div>
 
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Religion Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href = "Religion.php">Done</a>
+      </div>
+    </div>
+  </div>
+
 <script>
   var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
-    var button = event.relatedTarget; // Button that triggered the modal
-    var r_id = button.getAttribute('data-r_id'); // Extract info from data-* attributes
-    var r_name = button.getAttribute('data-r_name'); // Extract info from data-* attributes
+    var button = event.relatedTarget;
+    var r_id = button.getAttribute('data-r-id');
+    var r_name = button.getAttribute('data-r_name');
 
     var modalBody = updateUserModal.querySelector('.modal-body');
     modalBody.querySelector('#r_id').value = r_id;
     modalBody.querySelector('#update_r_name').value = r_name;
-
-  })
+  });
 </script>
-
 
 <!--Education Process Add and Update JS-->
 <script src="Religion/ReligionJS.js"></script>

@@ -77,46 +77,65 @@
 
 <!-- Modal sa Update Button -->
 <div>
- <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+ <div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Address</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p id="message" class=text-danger></p>
         <form method="post" action="">
-        <div class="mb-3">
-            <input type="hidden" class="form-control" id="edu_id" name="edu_id">
-          </div>
           <div class="mb-3">
-            <label for="update_barangay" class="form-label">&nbsp;Barangay</label>
-            <input type="text" class="form-control" id="update_barangay" name="barangay">
-          </div>
-          <div class="mb-3">
-            <label for="update_city" class="form-label">&nbsp;City</label>
-            <input type="text" class="form-control" id="update_city" name="city">
-          </div>
-          <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateAddress">Update</button>
+              <input type="hidden" class="form-control" id="address_id" name="address_id">
+            </div>
+            <div class="mb-3">
+              <label for="update_barangay" class="form-label">&nbsp;Barangay</label>
+              <input type="text" class="form-control" id="update_barangay" name="barangay" required>
+            </div>
+            <div class="mb-3">
+              <label for="update_city" class="form-label">&nbsp;City</label>
+              <input type="text" class="form-control" id="update_city" name="city" required>
+            </div>
+            <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateAddress">Update</button>
         </form>
       </div>
     </div>
   </div>
 </div>
 
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Address Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href = "Address.php">Done</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
+  var updateUserModal = document.getElementById('updateUserModal');
   updateUserModal.addEventListener('show.bs.modal', function(event) {
-  var button = event.relatedTarget; // Button that triggered the modal
-  var address_id = button.getAttribute('data-address_id'); // Extract info from data-* attributes
-  var barangay = button.getAttribute('data-barangay'); // Extract info from data-* attributes
-  var city = button.getAttribute('data-city'); // Extract info from data-* attributes
+    var button = event.relatedTarget;
+    var address_id = button.getAttribute('data-address_id');
+    var barangay = button.getAttribute('data-barangay');
+    var city = button.getAttribute('data-city');
 
-  var modalBody = updateUserModal.querySelector('.modal-body');
-  modalBody.querySelector('#edu_id').value = address_id;  
-  modalBody.querySelector('#update_barangay').value = barangay;
-  modalBody.querySelector('#update_city').value = city;
-});
 
+    var modalBody = updateUserModal.querySelector('.modal-body');
+    modalBody.querySelector('#address_id').value = address_id;  
+    modalBody.querySelector('#update_barangay').value = barangay;
+    modalBody.querySelector('#update_city').value = city;
+  });
 </script>
 
 <!--Education Process Add and Update JS-->

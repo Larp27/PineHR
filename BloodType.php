@@ -76,21 +76,22 @@ include_once('./main.php');
 </div>
 
 <div>
-  <div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="updateUserModalLabel">Update Blood Type</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <p id="message" class=text-danger></p>
           <form method="post" action="">
             <div class="mb-3">
               <input type="hidden" class="form-control" id="bt_id" name="bt_id">
             </div>
             <div class="mb-3">
               <label for="update_bt_name" class="form-label">&nbsp;Blood Type</label>
-              <input type="text" class="form-control" id="update_bt_name" name="bt_name">
+              <input type="text" class="form-control" id="update_bt_name" name="bt_name" required>
             </div>
             <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateBloodType">Update</button>
           </form>
@@ -100,17 +101,34 @@ include_once('./main.php');
   </div>
 </div>
 
+<div class="modal" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-success" id="exampleModalLongTitle">Updated Successfully!</h5>
+     
+      </div>
+      <div class="modal-body">
+      &nbsp;&nbsp;Updated Blood Type Details Successfully! Thank you.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-success" href = "BloodType.php">Done</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
- updateUserModal.addEventListener('show.bs.modal', function(event) {
-  var button = event.relatedTarget; // Button that triggered the modal
-  var bt_id = button.getAttribute('data-bt-id'); // Extract info from data-* attributes
-  var bt_name = button.getAttribute('data-bt-name'); // Extract info from data-* attributes
+  var updateUserModal = document.getElementById('updateUserModal');
+  updateUserModal.addEventListener('show.bs.modal', function(event) {
+    var button = event.relatedTarget;
+    var bt_id = button.getAttribute('data-bt-id');
+    var bt_name = button.getAttribute('data-bt-name');
 
-  var modalBody = updateUserModal.querySelector('.modal-body');
-  modalBody.querySelector('#bt_id').value = bt_id;
-  modalBody.querySelector('#update_bt_name').value = bt_name;
-});
-
+    var modalBody = updateUserModal.querySelector('.modal-body');
+    modalBody.querySelector('#bt_id').value = bt_id;
+    modalBody.querySelector('#update_bt_name').value = bt_name;
+  });
 </script>
 
 <!--Education Process Add and Update JS-->

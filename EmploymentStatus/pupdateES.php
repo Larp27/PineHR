@@ -14,11 +14,9 @@ function updateEmploymentStatus() {
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        // If update is successful, create a JavaScript alert and redirect to EmploymentStatus.php
-        echo "<script>alert('Successfully updated Employment Status details.'); window.location.href = '../EmploymentStatus.php';</script>";
-    } else {
-        // If update fails, create a JavaScript alert
-        echo "<script>alert('Error: Unable to update Employment Status details. Please try again later.');</script>";
+        echo "success";
+      } else {
+        echo "Error updating employment status: " . mysqli_error($conn);
+      }
     }
-}
-?>
+  ?>

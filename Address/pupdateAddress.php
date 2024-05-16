@@ -14,9 +14,9 @@
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-      echo "Successfully updated Education details.";
+      echo "success";
     } else {
-      echo "Please check your query";
+      echo "Error updating address: " . mysqli_error($conn);
     }
   }
 ?>

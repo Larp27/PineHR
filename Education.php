@@ -102,7 +102,7 @@ include_once('./main.php');
       &nbsp;&nbsp;Updated Education Details Successfully! Thank you.
       </div>
       <div class="modal-footer">
-        <a href = "Education.php"><button type="button" class="btn btn-success" data-dismiss="modal">Done</button></a>
+        <a class="btn btn-success" href = "Education.php">Done</a>
       </div>
     </div>
   </div>

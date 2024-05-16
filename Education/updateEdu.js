@@ -4,8 +4,6 @@ $(document).ready(function() {
     var education = $('#update_education').val();
       
     if (education == "") {
-      console.log(edu_id)
-      console.log(education)
       $('#message').html('Please fill in the education field.');
     } else {
       $.ajax({
