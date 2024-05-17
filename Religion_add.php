@@ -6,8 +6,7 @@ include_once('./main.php');
 ?>
 <!--cont logout session-->
 
-<div class="col-md-12">
-    <div class="panel panel-default">
+<div class="col-md-12" style="height:100vh;">
         <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
             <strong>
                 &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-hands-praying fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Religion</span></strong>
