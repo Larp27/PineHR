@@ -109,7 +109,7 @@ include_once('./main.php');
                 </tr>";
               }
               ?>
-              <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+              <div class="modal" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -143,9 +143,6 @@ include_once('./main.php');
                   });
                 });
               </script>
-
-
-
             </table>
           </div>
         </div>
