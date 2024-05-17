@@ -369,7 +369,7 @@ if (isset($_GET['em_id'])) {
 
     <div class="m-4 text-end">
       <button type="button" class="btn btn-success text-bold" name="btnUpdateEmployee" id="btnUpdateEmployee">UPDATE</button>
-      <a href="em_list.php" class="btn btn-warning text-uppercase text-bold" data-toggle="modal" data-target="#exampleModalCenter" id="btnClose" name="btnClose">Cancel</a>
+      <a href="em_list.php" class="btn btn-warning text-uppercase fw-bold" data-toggle="modal" data-target="#exampleModalCenter" id="btnClose" name="btnClose">Cancel</a>
     </div>
 
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

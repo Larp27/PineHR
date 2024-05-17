@@ -19,7 +19,7 @@
   $is_inquiries_active = ($page == 'inquiries');
   $is_organization_active = ($page == 'department_list' || $page == 'designation_list' || $page == 'designation_add' || $page == 'department_add');
   $is_profiling_active = ($page == 'education' || $page == 'education_add' || $page == 'bloodtype' || $page == 'bloodtype_add' || $page == 'address' || $page == 'address_add' || $page == 'employment_status' || $page == 'employment_status_add' || $page == 'religion' || $page == 'religion_add' || $page == 'marital_status' || $page == 'marital_status_add');
-  $is_employee_active = ($page == 'employee_list' || $page == 'employee_add' || $page == 'profile');
+  $is_employee_active = ($page == 'employee_list' || $page == 'employee_add' || $page == 'certificate' || $page == 'certificate_add');
   $is_leave_active = ($page == 'leave_type_list' || $page == 'leave_type_add' || $page == 'leave_app_list' || $page == 'leave_app_add');
   $is_attendance_active = ($page == 'attendance_list' || $page == 'attendance_add');
   $is_payroll_active = ($page == 'payroll_list' || $page == 'payroll_add');
@@ -138,12 +138,16 @@
                   
                   <!-- Organization Submenu -->
                   <ul class="org-show <?php echo $is_organization_active ? 'visible' : '' ?>">
-                    <li style="margin-top: 5px;" <?php echo ($page == 'department_list' || $page == 'department_add') ? 'class="nav_active"' : '' ?>>
-                      <a href="Department_list.php" class="px-1 dropdownIcon"><i class="fa-solid fa-building-user fa-lg"></i>&nbsp;&nbsp;&nbsp;Department</a>
-                    </li>
-                    <li <?php echo ($page == 'designation_list' || $page == 'designation_add') ? 'class="nav_active"' : '' ?>>
-                      <a href="Designation_list.php" class="px-1 dropdownIcon"><i class="fa-solid fa-user-tie fa-lg"></i>&nbsp;&nbsp;&nbsp;Designation</a>
-                    </li>
+                    <a href="Department_list.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'department_list' || $page == 'department_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-building-user fa-2xl"></i>&nbsp;&nbsp;&nbsp;Department
+                      </li>
+                    </a>
+                    <a href="Designation_list.php" class="px-1 dropdownIcon">
+                      <li <?php echo ($page == 'designation_list' || $page == 'designation_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-user-tie fa-lg"></i>&nbsp;&nbsp;&nbsp;Designation
+                      </li>
+                    </a>
                   </ul>
                 </li>
 
@@ -156,28 +160,62 @@
                   </div>
 
                   <!-- Profiling Submenu -->
-                  <ul class="pro-show" <?php echo $is_profiling_active ? 'visible' : '' ?>>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'education' || $page == 'education_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php">Educational Attainment</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'bloodtype' || $page == 'bloodtype_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php">Blood Type</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'address' || $page == 'address_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php">Address</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'employment_status' || $page == 'employment_status_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php">Employment Status</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'religion' || $page == 'religion_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php">Religion</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'marital_status' || $page == 'marital_status_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php">Marital Status</a></i></li>
+                  <ul class="pro-show <?php echo $is_profiling_active ? 'visible' : '' ?>">
+                    <a href="Education.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'education' || $page == 'education_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-graduation-cap  fa-lg"></i>&nbsp;&nbsp;&nbsp;Educational Attainment
+                      </li>
+                    </a>
+                    <a href="BloodType.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'bloodtype' || $page == 'bloodtype_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-droplet  fa-lg"></i>&nbsp;&nbsp;&nbsp;Blood Type
+                      </li>
+                    </a>
+                    <a href="Address.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'address' || $page == 'address_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-location-dot  fa-lg"></i>&nbsp;&nbsp;&nbsp;Address
+                      </li>
+                    </a>
+                    <a href="EmploymentStatus.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'employment_status' || $page == 'employment_status_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-briefcase  fa-lg"></i>&nbsp;&nbsp;&nbsp;Employment Status
+                      </li>
+                    </a>
+                    <a href="Religion.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'religion' || $page == 'religion_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-hands-praying  fa-lg"></i>&nbsp;&nbsp;&nbsp;Religion
+                      </li>
+                    </a>
+                    <a href="MaritalStatus.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'marital_status' || $page == 'marital_status_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-people-roof  fa-lg"></i>&nbsp;&nbsp;&nbsp;Marital Status
+                      </li>
+                    </a>
                   </ul>
                 </li>
 
                 <!-- Employees -->
                 <li class="li_hover <?php echo $is_employee_active ? 'active' : '' ?>">
                   <div <?php echo $is_employee_active ? 'class="active_link"' : '' ?> style="cursor: pointer;">
-                    <a class="emp-btn"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
+                    <a class="emp-btn"><i class="fa-solid fa-user-group fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
                       <span class="fas fa-caret-down third"></span>
                     </a>
                   </div>
 
                   <!-- Employees Submenu -->
-                  <ul class="emp-show" <?php echo $is_employee_active ? 'visible' : '' ?>>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'employee_list' || $page == 'employee_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="em_list.php">Employee List</a></i></li>
+                  <ul class="emp-show <?php echo $is_employee_active ? 'visible' : '' ?>">
+                    <a href="em_list.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'employee_list' || $page == 'employee_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-graduation-cap fa-lg"></i>&nbsp;&nbsp;&nbsp;Employee List
+                      </li>
+                    </a>
+                    <a href="Certificate.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'certificate' || $page == 'certificate_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Employee Certificates
+                      </li>
+                    </a>
                   </ul>
+
                 </li>
 
                 <!-- Leave -->
@@ -189,10 +227,19 @@
                   </div>
 
                   <!-- Leave Submenu -->
-                  <ul class="lev-show" <?php echo $is_leave_active ? 'visible' : '' ?>>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'leave_type_list' || $page == 'leave_type_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_type_list.php">Leave Type List</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'leave_app_list' || $page == 'leave_app_add') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-list-check fa-sm" style="color: #2468a0;"><a href="Leave_app_list.php">Application List</a></i></li>
+                  <ul class="lev-show <?php echo $is_leave_active ? 'visible' : '' ?>">
+                    <a href="Leave_type_list.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'leave_type_list' || $page == 'leave_type_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-list-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Leave Type List
+                      </li>
+                    </a>
+                    <a href="Leave_app_list.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'leave_app_list' || $page == 'leave_app_add') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-list-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Application List
+                      </li>
+                    </a>
                   </ul>
+
                 </li>
 
                 <!-- Attendance -->
@@ -222,11 +269,27 @@
                   </div>
 
                   <!-- Reports Submenu -->
-                  <ul class="rep-show" <?php echo $is_reports_active ? 'visible' : '' ?>>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'reports_attendance') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_att.php">Attendance Reports</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'reports_payroll') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_payroll.php">Payroll Reports</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'reports_leave') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_leave.php">Leave Reports</a></i></li>
-                    <li style="margin-top: 5px;" <?php echo ($page == 'reports_employee') ? 'class="nav_active"' : '' ?>><i class="fa-solid fa-file fa-sm" style="color: #2468a0;"><a href="Reports_employee.php">Employee Reports</a></i></li>
+                  <ul class="rep-show <?php echo $is_reports_active ? 'visible' : '' ?>">
+                    <a href="Reports_att.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'reports_attendance') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Attendance Reports
+                      </li>
+                    </a>
+                    <a href="Reports_payroll.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'reports_payroll') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Payroll Reports
+                      </li>
+                    </a>
+                    <a href="Reports_leave.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'reports_leave') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Leave Reports
+                      </li>
+                    </a>
+                    <a href="Reports_employee.php" class="px-1 dropdownIcon">
+                      <li style="margin-top: 5px;" <?php echo ($page == 'reports_employee') ? 'class="nav_active"' : '' ?>>
+                        <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Employee Reports
+                      </li>
+                    </a>
                   </ul>
                 </li>
               </ul>
@@ -242,11 +305,18 @@
               <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
               <?php
                 if (isset($_SESSION['em_profile_pic'])) {
-                  echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:40px; height:40px; border-radius: 50%; margin: 0; padding: 0; ' alt='Profile Picture'>";
+                  $imageSource = '';
+                  if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                    $imageSource = '../PINEHR/' . substr($_SESSION['em_profile_pic'], 3);
+                  } else {
+                    $imageSource = '../pinesolutions.com/' . substr($_SESSION['em_profile_pic'], 3);
+                  }
+                  echo "<img src='" . $imageSource . " 'style='width:55px; height:50px; border-radius: 50%; margin: 0; padding: 0;' alt='Profile Picture'>";
                 } else {
-                  echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+                  echo "<img src='../uploads/default_profile_pic.png' style='style='width:55px; height:50px; border-radius: 50%; margin: 0; padding: 0;' alt='default profile pic'>";
                 }
               ?>
+
               <?php 
                 $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
                 $result = mysqli_query($conn, $query);

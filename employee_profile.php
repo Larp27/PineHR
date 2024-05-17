@@ -75,9 +75,15 @@ if (isset($_SESSION['s_em_email'])) {
                 <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <?php
                     if (isset($_SESSION['em_profile_pic'])) {
-                      echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                      $imageSource = '';
+                      if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                        $imageSource = '../PINEHR/' . substr($_SESSION['em_profile_pic'], 3);
+                      } else {
+                        $imageSource = '../pinesolutions.com/' . substr($_SESSION['em_profile_pic'], 3);
+                      }
+                      echo "<img src='" . $imageSource . " 'style='width:60px; height:60px; border-radius: 50%;' alt='Profile Picture'>";
                     } else {
-                      echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+                      echo "<img src='../uploads/default_profile_pic.png' style='style='width:60px; height:60px; border-radius: 50%;' alt='default profile pic'>";
                     }
                   ?>
                   <?php 
@@ -85,7 +91,7 @@ if (isset($_SESSION['s_em_email'])) {
                     $result = mysqli_query($conn, $query);
 
                     while ($row = mysqli_fetch_assoc($result)) {
-                      echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                      echo '<span class="fw-bold" style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
                     }
                   ?>
                 </a>
@@ -212,13 +218,25 @@ if (isset($_SESSION['s_em_email'])) {
                         <div class="row">
                           <div class="col-12 d-flex">
                             <div class="col-md-3 mt-4 ms-5">
-                              <img src="../PineHR/bgimages/ormoc_seal.jpg" alt="Logo" style="max-width: 150px; max-height: 150px; margin-bottom:20px; margin-left: 80px;">
+                              <?php
+                                $logoPath = '';
+                                $profilePicPath = '';
+
+                                if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                                  $logoPath = '../PINEHR/bgimages/ormoc_seal.jpg';
+                                  $profilePicPath = '../PINEHR/' . substr($employee_data['em_profile_pic'], 3);
+                                } else {
+                                  $logoPath = '../pinesolutions.com/bgimages/ormoc_seal.jpg';
+                                  $profilePicPath = '../pinesolutions.com/' . substr($employee_data['em_profile_pic'], 3);
+                                }
+                              ?>
+                              <img src="<?php echo $logoPath; ?>" alt="Logo" style="max-width: 150px; max-height: 150px; margin-bottom:20px; margin-left: 80px;">
+
                               <div class="mt-2" style="display: inline-block; border: 2px solid #00008B; padding: 2px;">
-                                <img src="../PINEHR/<?php echo substr($employee_data['em_profile_pic'], 3); ?>" style="max-width:300px; max-height:300px;">
+                                <img src="<?php echo $profilePicPath; ?>" style="max-width:300px; max-height:300px;">
                               </div>
-
-
                             </div>
+
                             <div class="col-md-4 mt-3">
                               <label style="font-weight: bold; margin-bottom: 5px; text-transform: uppercase;">First Name:</label>
                               <p class="" style="color: black;"><?php echo $first_name; ?></p>

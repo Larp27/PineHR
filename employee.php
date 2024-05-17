@@ -110,9 +110,15 @@ if (isset($_SESSION['s_em_email'])) {
               <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 <?php
                   if (isset($_SESSION['em_profile_pic'])) {
-                    echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:60px; height:60px; border-radius: 50%; ' alt='Profile Picture'>";
+                    $imageSource = '';
+                    if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                      $imageSource = '../PINEHR/' . substr($_SESSION['em_profile_pic'], 3);
+                    } else {
+                      $imageSource = '../pinesolutions.com/' . substr($_SESSION['em_profile_pic'], 3);
+                    }
+                    echo "<img src='" . $imageSource . " 'style='width:60px; height:60px; border-radius: 50%;' alt='Profile Picture'>";
                   } else {
-                    echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
+                    echo "<img src='../uploads/default_profile_pic.png' style='style='width:60px; height:60px; border-radius: 50%;' alt='default profile pic'>";
                   }
                 ?>
                 <?php 
@@ -120,7 +126,7 @@ if (isset($_SESSION['s_em_email'])) {
                   $result = mysqli_query($conn, $query);
 
                   while ($row = mysqli_fetch_assoc($result)) {
-                    echo $row['first_name'] . ' ' . $row['last_name'] . "";
+                    echo '<span class="fw-bold" style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
                   }
                 ?>
               </a>
@@ -343,7 +349,7 @@ if (isset($_SESSION['s_em_email'])) {
       ?>
       <?php if (isset($_SESSION['s_em_email']) && $hasUpcomingSchedules) : ?>
         <div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Welcome <?php echo $_SESSION['s_first_name'] . " " . $_SESSION['s_last_name']; ?>!</h5>

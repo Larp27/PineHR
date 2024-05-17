@@ -1,5 +1,4 @@
 <?php 
-   
-   require_once('paddCERT.php');
-    insertRecord();
+  require_once('paddCERT.php');
+  insertRecord();
 ?>

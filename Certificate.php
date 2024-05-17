@@ -82,12 +82,18 @@ include_once('./main.php');
 
                 // Check if cert_media field is empty or null
                 if (!empty($r_cert_media)) {
-                  echo "<img src='../PINEHR/" . substr($r_cert_media, 3) . "' style='width:150px; height: 80px; border: 2px solid #2468a0;'>";
+                  $imageSource = '';
+                  if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                      $imageSource = '../PINEHR/' . substr($r_cert_media, 3);
+                  } else {
+                      $imageSource = '../pinesolutions.com/' . substr($r_cert_media, 3);
+                  }
+                  echo "<img src='" . $imageSource . "' style='width:150px; height: 80px; border: 2px solid #2468a0;'>";
                 } else {
                   // If cert_media is empty, display a placeholder image
                   echo "<img src='bgimages/blank.png' style='width:150px; height: 80px; border: 2px solid #2468a0;'>";
                 }
-
+              
                 echo "</td>
                   <td class='text-center p-3'> $r_cert_date </td>
                   <td class='text-center p-3'> $r_cert_uploaded </td>
