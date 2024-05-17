@@ -1,48 +1,14 @@
 <?php
-session_start();
-include "DBConnection.php";
-if (isset($_SESSION['s_em_email'])) {
+$title = 'Leave';
+$page = 'leave_app_list';
+include_once('./main.php');
 ?>
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Leave Type List | PINE HR</title>
-    <link rel="icon" type="image/png" href="./bgimages/img_tab.png">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="css/main.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-
-    <script src="script.js"></script>
-
-    <link rel="stylesheet" text="text/css" href="" />
-
-
-    <script src="https://kit.fontawesome.com/bac4e43ce9.js" crossorigin="anonymous"></script>
-
+  
     <!--Department Process Add and Update JS-->
     <script src="Department/DepartmentJS.js"></script>
     <script src="Department/updateDEPT.js"></script>
 
-    <!--offline bootstrap-->
-    <script src="js/bootstrap.min.js"></script>
-
-    <!--Navbar CSS-->
-    <link rel="stylesheet" href="css/navbar2.css">
-    <link rel="stylesheet" href="css/employee.css">
-
-    <script src="./script.js"></script>
-  </head>
   <style>
     div.dataTables_wrapper div.dataTables_paginate .paginate_button {
       border: none !important;
@@ -93,137 +59,6 @@ if (isset($_SESSION['s_em_email'])) {
       color: rgba(33, 37, 41, 0.75) !important;
     }
   </style>
-
-  <body>
-    <?php
-    if ($_SESSION['s_user_id'] == 1) {
-      $query = "select * from user_type";
-      $em_id = $_SESSION['s_em_id'];
-
-      $result = mysqli_query($conn, $query);
-    }
-    ?>
-    <div id="dashmaincontainer">
-      <div class="dash_sidebar" id="dash_sidebar">
-        <div class="dash_sidebar_menus">
-          <br>
-          <center><a href="Dashboard.php">
-              <img src="bgimages/pine.png" alt="logo" style="width: 150px;height: 135px;margin-top: -15px; margin-left: -8px">
-            </a>
-          </center>
-
-          <nav class="sidebar">
-            <ul>
-              <li><a href="Dashboard.php" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-gauge fa-spin fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Dashboard</a></li>
-              <li><a href="Inquiries.php">&nbsp;<i class="fa-solid fa-question fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Inquiries</a></li>
-              <li>
-                <a href="#" class="org-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-landmark fa-2xl" style="color: #2468a0; "></i>&nbsp;&nbsp;&nbsp;&nbsp;Organization
-                  <span class="fas fa-caret-down first"></span>
-                </a>
-                <ul class="org-show">
-                  <li><a href="Department_list.php" style="font-family: 'Glacial Indifference';">Department</a></li>
-                  <li><a href="Designation_list.php" style="font-family: 'Glacial Indifference';">Designation</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#" class="pro-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-address-card fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PROFILING
-                  <span class="fas fa-caret-down sixth"></span>
-                </a>
-                <ul class="pro-show">
-                  <li><i class="fa-solid fa-graduation-cap fa-sm" style="color: #2468a0;"><a href="Education.php" style="font-family: 'Glacial Indifference';">Educational Attainment</a></i></li>
-                  <li><i class="fa-solid fa-droplet fa-sm" style="color: #2468a0;"><a href="BloodType.php" style="font-family: 'Glacial Indifference';">Blood Type</a></i></li>
-                  <li><i class="fa-solid fa-location-dot fa-sm" style="color: #2468a0;"><a href="Address.php" style="font-family: 'Glacial Indifference';">Address</a></i></li>
-                  <li><i class="fa-solid fa-briefcase fa-sm" style="color: #2468a0;"><a href="EmploymentStatus.php" style="font-family: 'Glacial Indifference';">Employment Status</a></i></li>
-                  <li><i class="fa-solid fa-hands-praying fa-sm" style="color: #2468a0;"><a href="Religion.php" style="font-family: 'Glacial Indifference';">Religion</a></i></li>
-                  <li><i class="fa-solid fa-people-roof fa-sm" style="color: #2468a0;"><a href="MaritalStatus.php" style="font-family: 'Glacial Indifference';">Marital Status</a></i></li>
-                </ul>
-              </li>
-              <li>
-                <a href="#" class="emp-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Employees
-                  <span class="fas fa-caret-down third"></span>
-                </a>
-                <ul class="emp-show">
-                  <li><a href="em_list.php" style="font-family: 'Glacial Indifference';">Employee List</a></li>
-                  <li><a href="em_add.php" style="font-family: 'Glacial Indifference';">Add Employee</a></li>
-                </ul>
-              </li>
-              <li class="active">
-                <a href="#" class="lev-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-user-large-slash fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;LEAVE
-                  <span class="fas fa-caret-down fourth"></span>
-                </a>
-                <ul class="lev-show">
-                  <li><a href="Leave_type_list.php" style="font-family: 'Glacial Indifference';">Leave Type List</a></li>
-                  <li><a href="Leave_app_list.php" style="font-family: 'Glacial Indifference';">Application List</a></li>
-                </ul>
-              </li>
-              <li>
-                <a href="attendance_list.php" style="font-family: 'Glacial Indifference';">&nbsp;<i class="fa-solid fa-calendar-days fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;ATTENDANCE
-                </a>
-              </li>
-              <li>
-                <a href="Payroll_list.php" style="font-family: 'Glacial Indifference';">&nbsp;<i class=" fa-solid fa-money-check-dollar fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;PAYROLL
-                </a>
-              </li>
-              <li>
-                <a href="#" class="rep-btn" style="font-family: 'Glacial Indifference';"><i class="fa-solid fa-rectangle-list fa-2xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;&nbsp;REPORTS
-                  <span class="fas fa-caret-down second"></span>
-                </a>
-                <ul class="rep-show">
-                  <li><a href="Reports_att.php" style="font-family: 'Glacial Indifference';">Attendance Reports</a></li>
-                  <li><a href="Reports_payroll.php" style="font-family: 'Glacial Indifference';">Payroll Reports</a></li>
-                  <li><a href="Reports_leave.php" style="font-family: 'Glacial Indifference';">Leave Reports</a></li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-      <div class="dash_content_container" id="dash_content_container">
-      <div class="dash_topnav" id="dash_topnav">
-        <div class="text-end">
-          <div class="dropdown" style="cursor: pointer;">
-            <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-            <?php
-              if (isset($_SESSION['em_profile_pic'])) {
-                echo "<img src='../PINEHR/" . substr($_SESSION['em_profile_pic'], 3) . "' style='width:40px; height:40px; border-radius: 50%; margin: 0; padding: 0; ' alt='Profile Picture'>";
-              } else {
-                echo "<img src='..//uploads/default_profile_pic.png' style='width:60px; height:60px; border-radius: 50%; ' alt='default profile pic'>";
-              }
-            ?>
-            <?php 
-              $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
-              $result = mysqli_query($conn, $query);
-
-              while ($row = mysqli_fetch_assoc($result)) {
-                echo '<span style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
-              }
-            ?>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="manage_account.php">Manage Account</a></li>
-              <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
-            </ul>
-
-          </div>
-        </div>
-      </div>
-        <div id="exampleModal" class="modal fade">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <form id="addProductForm" action="">
-                <div class="modal-header">
-                  <h4 class="modal-title">Are you sure you want to logout?</h4>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-footer">
-                  <a href="Leave_app_list.php"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button></a>
-                  <a href="logout.php"><button type="button" class="btn btn-primary" name="btnSave2" id="btnSave2">Yes</button></a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12 p-5 shadow-lg">
@@ -586,81 +421,7 @@ if (isset($_SESSION['s_em_email'])) {
         $uid1  = $_GET['uid1'];
         mysqli_query($conn, "UPDATE `leave_application` SET `la_status`= 1 where `la_id` = $uid1");
       }
-    } else {
-      header("location: login.php");
-      exit();
-    }
       ?>
       </div>
     </div>
 
-    <script>
-      
-
-      /*var sideBarIsOpen = true;
-      togglebtn.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        if (sideBarIsOpen) {
-          dash_sidebar.style.width = '0%';
-          dash_sidebar.style.transition = '0.3s all';
-          dash_content_container.style.width = '100%';
-          sideBarIsOpen = false;
-        } else {
-
-          dash_sidebar.style.width = '15%';
-          dash_sidebar.style.height = 'auto';
-          dash_content_container.style.width = '100%';
-          sideBarIsOpen = true;
-        }
-      });*/
-
-      $('.sidebar-btn').click(function() {
-        $(this).toggleClass("click");
-        $('.sidebar').toggleClass("show");
-        if ($('.sidebar').hasClass("show")) {
-          $('.sidebar').removeClass("hide");
-          $(this).removeClass("click");
-        } else {
-          $('.sidebar').addClass("hide");
-          $(this).addClass("click");
-        }
-      });
-
-
-      $('.org-btn').click(function() {
-        $('nav ul .org-show').toggleClass("show1");
-        $('nav ul .first').toggleClass("rotate");
-      });
-
-      $('.rep-btn').click(function() {
-        $('nav ul .rep-show').toggleClass("show2");
-        $('nav ul .second').toggleClass("rotate");
-      });
-
-      $('.emp-btn').click(function() {
-        $('nav ul .emp-show').toggleClass("show3");
-        $('nav ul .third').toggleClass("rotate");
-      });
-
-      $('.lev-btn').click(function() {
-        $('nav ul .lev-show').toggleClass("show4");
-        $('nav ul .fourth').toggleClass("rotate");
-      });
-
-      $('.not-btn').click(function() {
-        $('nav ul .not-show').toggleClass("show5");
-        $('nav ul .fifth').toggleClass("rotate");
-      });
-
-      $('.pro-btn').click(function() {
-        $('nav ul .pro-show').toggleClass("show6");
-        $('nav ul .sixth').toggleClass("rotate");
-      });
-
-      $('nav ul li').click(function() {
-        $(this).addClass("active").siblings().removeClass("active");
-      });
-    </script>
-  </body>
-  </html>
