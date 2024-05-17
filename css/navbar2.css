@@ -206,15 +206,17 @@ nav ul {
 nav ul li {
   line-height: 50px;
   border-top: 1px solid hsl(0 0% 50% / 0.3);
+  cursor: pointer;
 }
 
-nav ul li:last-child {
-  border-bottom: 1px solid hsl(0 0% 50% / 0.5);
+.dropdownIcon {
+  color: black !important;
+  font-size: 13px !important;
 }
 
 nav ul li a {
   position: relative;
-  color: black;
+  color: black !important;
   text-decoration: none;
   font-size: 0.8rem;
   letter-spacing: 1px;
@@ -222,22 +224,48 @@ nav ul li a {
   font-weight: 600;
   display: block;
   width: 100%;
-  border-left: 2px solid transparent;
+  border-left: none;
+  cursor: pointer;
+  text-decoration: none !important;
 }
 
 nav ul li.active a {
-  color: #2468a0;
-  background: #fce99c;
-  border-left-color: #e5b15e;
+  color: black !important;
 }
 
-nav ul li a:hover {
-  background: #fdcb24;
+.active_link {
+  background-color: #fce99c !important;
+  border-left: 2px solid #e5b15e !important;
+}
+
+nav ul li div a:hover {
+  background-color: #fdcb24 !important;
+}
+
+nav ul .li_hover ul li:hover {
+  background-color: #fdcb24 !important;
+  color: black !important;
+  border-left: none !important;
+}
+
+nav ul .nav_hover li a:hover {
+  background-color: #fdcb24;
+  padding: 10px;
+  color: black !important;
+}
+
+.nav_active {
+  background-color: rgb(253 253 136 / 68%) !important;
+  border-left: 2px solid #e5b15e !important;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: black !important;
 }
 
 nav ul ul {
   position: static;
   display: none;
+  color: black !important;
 }
 
 nav ul .org-show.show1 {
@@ -279,13 +307,11 @@ nav ul ul li a {
 
 nav ul li.active ul li a {
   color: black;
-  background: #cae1ef;
   border-left-color: transparent;
 }
 
 nav ul ul li a:hover {
   color: #2468a0!important;
-  background: #fce99c!important;
 }
 
 nav ul li a span {
