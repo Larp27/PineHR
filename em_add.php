@@ -20,7 +20,7 @@ include_once('./main.php');
     <div class="card-header">
       <div class="panel-heading" style="padding: 2px !important;">
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Employee</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Employee</span></strong>
         </strong>
       </div>
     </div>
@@ -284,7 +284,7 @@ include_once('./main.php');
     <div class="card-header">
       <div class="panel-heading" style="padding: 2px !important;">
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Types Permission</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Types Permission</span></strong>
         </strong>
       </div>
     </div>

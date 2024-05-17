@@ -89,7 +89,7 @@ if (isset($_SESSION['s_em_id'])) {
       <div class="card-header">
         <div class="panel-heading" style="padding: 2px !important;">
           <strong>
-            &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Update Information Details</span></strong>
+            &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Update Information Details</span></strong>
           </strong>
         </div>
       </div>

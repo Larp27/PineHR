@@ -180,7 +180,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Department</span></strong>
+        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Department</span></strong>
        </strong>
       </div><br>
 
@@ -189,7 +189,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Department</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Department</span></strong>
          </strong>
         </div>
         
@@ -244,7 +244,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Department List</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Department List</span></strong>
        </strong>
       </div>
       

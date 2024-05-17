@@ -216,12 +216,15 @@ if (isset($_SESSION['s_em_email'])) {
         </div>
       </div>
       <div class="col-md-12">
-        <ul class="nav nav-tabs nav-sm">
+        <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link active fw-bold" aria-current="page" href="employee.php">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fw-bold" href="employee_profile.php">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" aria-current="page" href="employee_certificate.php">Certificates</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link fw-bold dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
@@ -274,7 +277,7 @@ if (isset($_SESSION['s_em_email'])) {
               <div class="card-header">
                 <div class="panel-heading" style="padding: 2px !important;">
                   <strong>
-                    &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Update Information Details</span></strong>
+                    &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Update Information Details</span></strong>
                   </strong>
                 </div>
               </div>

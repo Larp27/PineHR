@@ -182,7 +182,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-tag fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation</span></strong>
+        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-tag fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation</span></strong>
        </strong>
       </div><br>
 
@@ -191,7 +191,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Designation</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Designation</span></strong>
          </strong>
         </div>
         
@@ -246,7 +246,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation List</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation List</span></strong>
        </strong>
       </div>
       

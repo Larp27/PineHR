@@ -12,7 +12,7 @@ include_once('./main.php');
     <div class="panel panel-default">
       <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;">
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-tie fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-tie fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Designation</span></strong>
         </strong>
       </div><br>
 
@@ -20,7 +20,7 @@ include_once('./main.php');
         <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0;">
           <div class="panel-heading">
             <strong>
-              &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Designation</span></strong>
+              &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add Designation</span></strong>
             </strong>
           </div>
 

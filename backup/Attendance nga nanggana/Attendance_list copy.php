@@ -116,7 +116,7 @@
         <div class = "dash_topnav" id = "dash_topnav">
         <a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>   <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name'];?>!</h10>
           
-        <a href="logout.php" id = "lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+        <a href="logout.php" id = "lougoutbtn" style="font-family: 'Glacial Indifference'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
       </div>
       
       <!--Modal for logout-->
@@ -168,7 +168,7 @@
     <div class="panel panel-default">
       <div class="panel-heading" style="box-shadow: 0 4px 5px -1px #2468a0;" >
         <strong>
-        &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Attendance</span></strong>
+        &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-building-user fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Attendance</span></strong>
        </strong>
       </div><br>
 
@@ -177,7 +177,7 @@
     <div class="panel panel-default" style="margin-left: 20px; width: 98%; box-shadow: -3px 5px 8px #2468a0, 3px 5px 8px #2468a0; ">
       <div class="panel-heading" >
         <strong>
-          &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Attendance List</span></strong>
+          &nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-table-list fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Attendance List</span></strong>
        </strong>
      
 

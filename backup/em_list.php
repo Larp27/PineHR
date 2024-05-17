@@ -179,7 +179,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
        
-          <span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></strong></i>&nbsp;&nbsp;Employee</span>
+          <span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></strong></i>&nbsp;&nbsp;Employee</span>
       
       </div><br>
 
@@ -187,7 +187,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         
-          <span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-users-between-lines fa-xl" style="color: #2468a0;"></strong></i>&nbsp;&nbsp;Employee List</span>
+          <span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-users-between-lines fa-xl" style="color: #2468a0;"></strong></i>&nbsp;&nbsp;Employee List</span>
       
       </div>
       

@@ -170,7 +170,7 @@ if (isset($_SESSION['s_em_email'])) {
           <div class="panel panel-default m-4">
             <div class="panel-heading">
               <strong>
-                <span><strong style="font-family: 'Glacial Indiffernce'" class="text-uppercase"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application</span></strong>
+                <span><strong style="font-family: 'Glacial Indifference'" class="text-uppercase"><i class="fa-solid fa-house fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Leave Application</span></strong>
               </strong>
             </div>
             <div>

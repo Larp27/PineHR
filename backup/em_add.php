@@ -181,7 +181,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-        &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Employee</span></strong>
+        &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Employee</span></strong>
        </strong>
       </div><br><br>
 
@@ -190,7 +190,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-          &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add New Employee</span></strong>
+          &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add New Employee</span></strong>
          </strong>
         </div>
         
@@ -250,16 +250,16 @@
             
             <!--Second Column-->
             <table class="table">
-            <tr><th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Employee NID</span></strong>
+            <tr><th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Employee NID</span></strong>
             <input type="text" class="form-control" placeholder="(Max. 10)" id = "em_nid" style="width: 370px">
             </th><br>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Role</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Role</span></strong>
             <input type="text" class="form-control" placeholder="Select Role" id = "em_role" style="width: 370px">
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Gender</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Gender</span></strong>
             <input type="text" class="form-control" placeholder="Select Gender" id = "em_gender" style="width: 370px">
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Blood Group</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Blood Group</span></strong>
             <input type="text" class="form-control" placeholder="Select Blood Group" id = "em_blood_group" style="width: 370px">
             </th>
             </table>
@@ -267,16 +267,16 @@
             <!--Third Column-->
             <table class="table">
             <tr>  
-                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Contact Number</span></strong>
+                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Contact Number</span></strong>
             <input type="text" class="form-control" placeholder="ex.09123456789" id = "em_phone" style="width: 370px">
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Birth</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Birth</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "emp_birthday" style="width: 370px">
             </th><br>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Joining</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Joining</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "em_joining_date" style="width: 370px">
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Leaving</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Leaving</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "em_contract_end" style="width: 370px">
             </th>
             </table>
@@ -285,10 +285,10 @@
              <table class="table">
            
              <tr>  
-                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Email</span></strong>
+                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Email</span></strong>
             <input type="text" class="form-control" placeholder="email@email.com" id = "em_email" style="width: 370px">
             </th> <br>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Image</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Image</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "em_image" style="width: 370px; margin-right: 770px">
             </th>
           

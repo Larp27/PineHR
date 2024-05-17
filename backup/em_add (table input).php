@@ -115,7 +115,7 @@
         <div class = "dash_topnav" id = "dash_topnav">
         <a href="" id ="togglebtn"><i class ="fa-solid fa-bars"></i></a>   <h10 style="font-family: 'Glacial Indifference';">&nbsp; Welcome <?php echo $_SESSION['s_first_name'];  ?> <?php echo $_SESSION['s_last_name'];?>!</h10>
           
-        <a href="logout.php" id = "lougoutbtn" style="font-family: 'Glacial Indiffernce'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
+        <a href="logout.php" id = "lougoutbtn" style="font-family: 'Glacial Indifference'; color: white;" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-duotone fa-arrow-right-from-bracket"></i>&nbsp; Logout</a>
       </div>
       
       <!--Modal for logout-->
@@ -169,7 +169,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>
-        &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Employee</span></strong>
+        &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-group fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Employee</span></strong>
        </strong>
       </div><br><br>
 
@@ -178,7 +178,7 @@
       <div class="panel panel-default">
         <div class="panel-heading">
           <strong>
-          &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indiffernce'"><i class="fa-solid fa-user-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add New Employee</span></strong>
+          &nbsp;&nbsp;&nbsp;<span><strong style="font-family: 'Glacial Indifference'"><i class="fa-solid fa-user-plus fa-xl" style="color: #2468a0;"></i>&nbsp;&nbsp;&nbsp;Add New Employee</span></strong>
          </strong>
         </div>
         
@@ -284,7 +284,7 @@
               </select>
             </th>
 
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Gender</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Gender</span></strong>
             <select class="form-select" id="em_gender" name="em_gender" style="width: 450px" required>
               <option <?php echo (!isset($em_gender)) ? 'selected' : '' ?> disabled>Please Select Here
             
@@ -303,7 +303,7 @@
             </th>
 
 
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Blood Group</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Blood Group</span></strong>
             <select class="form-select" id="bt_name" name="bt_name" style="width: 500px" required>
               <option <?php echo (!isset($bt_name)) ? 'selected' : '' ?> disabled>Please Select Here
 
@@ -325,16 +325,16 @@
             <!--Third Column-->
             <table class="table">
             <tr>  
-                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Contact Number</span></strong>
+                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Contact Number</span></strong>
             <input type="text" class="form-control" placeholder="ex.09123456789" id = "em_phone" style="width: 370px">
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Birth</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Birth</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "emp_birthday" style="width: 370px">
             </th><br>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Joining</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Joining</span></strong>
             <input type="date" id="em_joining_date" class="form-control" name="em_joining_date" style="width: 370px" required >
             </th>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Date of Leaving</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Date of Leaving</span></strong>
             <input type="date" id="em_contract_end" class="form-control" name="em_contract_end" style="width: 370px" required >
             </th>
             </table>
@@ -343,10 +343,10 @@
              <table class="table">
            
              <tr>  
-                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Email</span></strong>
+                <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Email</span></strong>
             <input type="text" class="form-control" placeholder="email@email.com" id = "em_email" style="width: 370px">
             </th> <br>
-            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indiffernce'">Image</span></strong>
+            <th>  &nbsp;<span><strong style="font-family: 'Glacial Indifference'">Image</span></strong>
             <input type="text" class="form-control" placeholder="Type here" id = "em_image" style="width: 370px; margin-right: 770px">
             </th>
           
