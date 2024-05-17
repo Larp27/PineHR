@@ -140,7 +140,7 @@
                   <ul class="org-show <?php echo $is_organization_active ? 'visible' : '' ?>">
                     <a href="Department_list.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'department_list' || $page == 'department_add') ? 'class="nav_active"' : '' ?>>
-                        <i class="fa-solid fa-building-user fa-2xl"></i>&nbsp;&nbsp;&nbsp;Department
+                        <i class="fa-solid fa-building-user fa-lg"></i>&nbsp;&nbsp;&nbsp;Department
                       </li>
                     </a>
                     <a href="Designation_list.php" class="px-1 dropdownIcon">

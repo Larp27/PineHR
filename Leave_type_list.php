@@ -93,8 +93,8 @@ include_once('./main.php');
   </div>
 </div>
 
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="updateUserModalLabel">Edit Leave Type Details</h1>
@@ -129,7 +129,9 @@ include_once('./main.php');
               <option value="0">Inactive</option>
             </select>
           </div>
-          <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateLeaveType">Update</button>
+          <div style="text-align: right;">
+            <button type="button" class="btn btn-success" name="btnUpdate" id="btnUpdateLeaveType">Update</button>
+          </div>
         </form>
       </div>
     </div>

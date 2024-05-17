@@ -170,8 +170,6 @@ include_once('./main.php');
   });
 </script>
 
-
-
 <!-- View Modal -->
 <div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

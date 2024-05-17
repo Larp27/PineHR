@@ -104,8 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($result && mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_assoc($result);
                     $em_phone = $row['em_phone'];
-                    $recipientNumber = $em_phone; // Replace this with the recipient's phone number
-                    $message = "Your leave application has been accepted."; // Customize your message
+                    $recipientNumber = $em_phone;
+                    $message = "Your leave application has been accepted.";
                     $status = sendInfobipSMS($recipientNumber, $message);
                     echo $status; // Print the status of SMS sending
                 }

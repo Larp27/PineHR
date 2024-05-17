@@ -99,7 +99,7 @@ include_once('./main.php');
                   <td class='text-center p-3'> $r_cert_uploaded </td>
                   <td class='text-center p-1'>
                   <div class='col-auto d-flex justify-content-center m-2'>
-                  <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-user-btn' data-bs-toggle='modal' data-bs-target='#viewModal' data-media='$r_cert_media' data-cert-id='$r_cert_id' data-title='$r_cert_title' data-description='$r_cert_description'><i class='fas fa-eye'></i> View</button>
+                  <button type='button' class='py-1 px-2 me-1 btn btn-primary btn-sm view-certificate-btn' data-bs-toggle='modal' data-bs-target='#viewModal' data-media='$r_cert_media' data-cert-id='$r_cert_id' data-title='$r_cert_title' data-description='$r_cert_description'><i class='fas fa-eye'></i> View</button>
 
 
                     <a href='Certificate/deleteCert.php?cert_id=$r_cert_id' class='btn btn-danger btn-sm' onclick='return confirm(\"Are you sure you want to delete this Certificate Data?\")'><i class='fas fa-trash'></i> Delete </a>
@@ -109,6 +109,7 @@ include_once('./main.php');
                 </tr>";
               }
               ?>
+              <!-- VIEW MODAL  -->
               <div class="modal" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
@@ -128,13 +129,14 @@ include_once('./main.php');
 
               <script>
                 $(document).ready(function() {
-                  $('.view-user-btn').click(function() {
+                  $('.view-certificate-btn').click(function() {
                     var cert_id = $(this).data('cert-id');
+                    console.log(cert_id);
                     $.ajax({
                       url: 'get_certificate_details.php',
-                      type: 'GET',
+                      type: 'POST',
                       data: {
-                        cert_id : cert_id
+                        cert_id: cert_id
                       },
                       success: function(response) {
                         $('#viewModalBody').html(response);
