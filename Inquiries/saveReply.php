@@ -71,31 +71,26 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$inq_id = $_POST['inq_id'];
 		$reply_message = $_POST['inq_reply'];
-
+	
 		$sql = "UPDATE inquiries SET inq_status = 'Answered', inq_reply = '$reply_message' WHERE inq_id = '$inq_id'";
 		$result = mysqli_query($conn, $sql);
-
+	
 		if ($result) {
-			// Retrieve contact number from the database
-			$query = "SELECT inq_number FROM inquiries WHERE inq_id = '$inq_id'";
-			$result = mysqli_query($conn, $query);
-
-			if ($result && mysqli_num_rows($result) > 0) {
-				$row = mysqli_fetch_assoc($result);
-				$phone_number = $row['inq_number'];
-
-				// Send SMS using Infobip if successfully updated on the database
-				$inquiry_info = "Thank you for your inquiry. We have reviewed it and here is our response:\n\n$reply_message";
-				$responseStatus = sendInfobipSMS($phone_number, $inquiry_info);
-
-				if ($responseStatus !== false) {
-					echo "SMS sent successfully.";
-				} else {
-					echo "Failed to send SMS: " . $responseStatus;
-				}
+			// Replace $phone_number with a specific sample number
+			$phone_number = "+639465393171"; // Sample specific phone number
+	
+			// Send SMS using Infobip if successfully updated on the database
+			$inquiry_info = "Thank you for your inquiry. We have reviewed it and here is our response:\n\n$reply_message";
+			$responseStatus = sendInfobipSMS($phone_number, $inquiry_info);
+	
+			if ($responseStatus !== false) {
+				echo "SMS sent successfully.";
 			} else {
-				echo "Error: Failed to retrieve contact number from the database." . $inq_id;
+				echo "Failed to send SMS: " . $responseStatus;
 			}
+		} else {
+			echo "Error: Failed to update inquiry status.";
 		}
 	}
+	
 ?>

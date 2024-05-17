@@ -328,12 +328,12 @@ if (isset($_SESSION['s_em_email'])) {
                         </div>
                       </div>
                       <div class="form-group mb-3 password-toggle">
-                        <label for="current_password" class="form-label">Current Password</label>
+                        <label for="current_password" class="form-label fw-bold text-uppercase">Current Password</label>
                         <input type="password" class="form-control" id="current_password" name="current_password">
                         <i id="toggleCurrent_password" class="toggle-icon fas fa-eye-slash" style="display: none; float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px; position: relative; z-index: 2;" onclick="togglePassword('current_password')"></i>
                       </div>
                       <div class="form-group mb-3 password-toggle">
-                        <label for="new_password" class="form-label">New Password</label>
+                        <label for="new_password" class="form-label fw-bold text-uppercase">New Password</label>
                         <input type="password" class="form-control" id="new_password" name="new_password">
                         <i id="toggleNew_password" class="toggle-icon fas fa-eye-slash" style="display: none; float: right; margin-left: -30px; margin-top: -25px; margin-right: 10px; position: relative; z-index: 2;" onclick="togglePassword('new_password')"></i>
                       </div>

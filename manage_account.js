@@ -39,6 +39,13 @@ $(document).ready(function () {
       contentType: false,
       success: function (data) {
         if (data.toLowerCase().includes('success')) {
+          // Show success notification
+          var notification = $('<div class="alert alert-success" role="alert">Inputs recorded successfully!</div>');
+          $('body').append(notification);
+          setTimeout(function() {
+            notification.fadeOut('slow');
+          }, 3000); // Hide notification after 3 seconds
+
           if ($('#exampleModalCenter').length) {
             $('#exampleModalCenter').modal('show');
           } else {
