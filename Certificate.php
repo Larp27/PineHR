@@ -33,10 +33,10 @@ include_once('./main.php');
                 <col width="3%">
                 <col width="10%">
                 <col width="15%">
+                <col width="7%">
+                <col width="15%">
                 <col width="8%">
-                <col width="20%">
-                <col width="8%">
-                <col width="8%">
+                <col width="10%">
                 <col width="10%">
                 <col width="8%">
               </colgroup>
@@ -61,13 +61,12 @@ include_once('./main.php');
 
               $result = mysqli_query($conn, $query);
               while ($row = mysqli_fetch_assoc($result)) {
-
                 $r_cert_id = $row['cert_id'];
                 $r_cert_title = $row['cert_title'];
                 $r_cert_description = $row['cert_description'];
                 $r_cert_media = $row['cert_media'];
-                $r_cert_date = date('Y-m-d', strtotime($row['cert_date']));
-                $r_cert_uploaded = date('Y-m-d', strtotime($row['cert_uploaded']));
+                $r_cert_date = date('M d, Y', strtotime($row['cert_date']));
+                $r_cert_uploaded = date('M d, Y', strtotime($row['cert_uploaded']));
                 $r_first_name = $row['first_name'];
                 $r_last_name = $row['last_name'];
                 $r_dep_name = $row['dep_name'];

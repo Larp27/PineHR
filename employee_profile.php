@@ -41,6 +41,40 @@ if (isset($_SESSION['s_em_email'])) {
       .nav-tabs.nav-sm>li.nav-item {
         margin-bottom: 0;
       }
+
+      table,
+      tbody,
+      td,
+      tfoot,
+      th,
+      thead,
+      tr {
+        border-color: #2468a0 !important;
+        border-style: solid;
+        border-width: 1px !important;
+      }
+
+      #calendar {
+        background-color: rgb(255, 251, 196) !important;
+        height: 600px;
+        border: 2px solid #2468a0;
+        border-radius: 5px;
+      }
+
+      th {
+        background-color: rgb(235, 220, 10);
+      }
+
+      .dashboard-card {
+        height: 130px;
+      }
+
+      @media (min-width: 768px) and (max-width: 1198px) {
+        .dashboard-card h5 {
+          text-align: center;
+          font-size: 16px !important;
+        }
+      }
     </style>
   </head>
 
@@ -124,12 +158,15 @@ if (isset($_SESSION['s_em_email'])) {
           </div>
         </div>
         <div class="col-md-12">
-          <ul class="nav nav-tabs nav-sm">
+          <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link fw-bold" href="employee.php">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active fw-bold" aria-current="page" href="employee_profile.php">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold" aria-current="page" href="employee_certificate.php">Certificates</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link fw-bold dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>

@@ -118,6 +118,9 @@
           <li class="nav-item">
             <a class="nav-link fw-bold" href="employee_profile.php">Profile</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bold" aria-current="page" href="employee_certificate.php">Certificates</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle fw-bold active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Leave</a>
             <ul class="dropdown-menu">
