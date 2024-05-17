@@ -78,42 +78,60 @@ include_once('./main.php');
     </div>
   </div>
 
-
   <?php
-  if (isset($_POST["import"])) {
+if (isset($_POST["import"])) {
+    // Extracting file information
     $fileName = $_FILES["excel"]["name"];
-    $fileExtension = explode('.', $fileName);
-    $fileExtension = strtolower(end($fileExtension));
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    
+    // Creating a new file name based on current date and time
     $newFileName = date("Y.m.d") . " - " . date("h.i.sa") . "." . $fileExtension;
 
-    $targetDirectory = "csv_uploads/"    . $newFileName;
-    move_uploaded_file($_FILES['excel']['tmp_name'], $targetDirectory);
+    // Setting target directory for file upload
+    $targetDirectory = "csv_uploads/" . $newFileName;
 
-    error_reporting(0);
-    ini_set('display_errors', 0);
+    // Moving the uploaded file to the target directory
+    if (move_uploaded_file($_FILES['excel']['tmp_name'], $targetDirectory)) {
+        // Suppressing error messages and displaying no errors
+        error_reporting(0);
+        ini_set('display_errors', 0);
 
-    require 'excelReader/excel_reader2.php';
-    require 'excelReader/SpreadsheetReader.php';
+        // Including necessary Excel reader files
+        require 'excelReader/excel_reader2.php';
+        require 'excelReader/SpreadsheetReader.php';
 
-    $reader = new SpreadsheetReader($targetDirectory);
-    foreach ($reader as $key => $row) {
-      $em_id = $row[0];
-      $payroll_date = explode('/', $row[1])[2] . '-' . explode('/', $row[1])[1] . '-' . explode('/', $row[1])[0];
-      $payroll_income = $row[2];
-      $payroll_deduction = $row[3];
-      $payroll_twd = $row[4];
-      $payroll_total = $row[5];
-      mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_id', '$payroll_start_date', '$payroll_end_date' , '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total')");
+        // Opening the Excel file for reading
+        $reader = new SpreadsheetReader($targetDirectory);
+        
+        // Looping through each row in the Excel file
+        foreach ($reader as $key => $row) {
+            // Extracting data from each row
+            $em_id = $row[0];
+            $payroll_start_date = date("Y-m-d", strtotime(str_replace('/', '-', $row[1])));
+            $payroll_income = $row[2];
+            $payroll_deduction = $row[3];
+            $payroll_twd = $row[4];
+            $payroll_total = $row[5];
+            $payroll_end_date = date("Y-m-d", strtotime(str_replace('/', '-', $row[6])));
+            
+            // Inserting data into the database table 'payroll'
+            mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_id', '$payroll_start_date', '$payroll_end_date', '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total', '$payroll_end_date')");
+        }
+        
+        // Displaying success message after import
+        echo "<script>
+                alert('Successfully Imported');
+                document.location.href = '';
+              </script>";
+    } else {
+        // Displaying error message if file upload fails
+        echo "<script>
+                alert('File upload failed');
+              </script>";
     }
+}
+?>
 
-    echo
-    "<script>
-    alert('Succesfully Imported');
-    document.location.href = '';
-    </script>
-    ";
-  }
-  ?>
 
   <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -123,7 +141,7 @@ include_once('./main.php');
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Attendance (CSV File)<img src="bgimages/CSV.png" style="width: 45px; height: 55px"></span>
+          <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Payroll (CSV File)<img src="bgimages/CSV.png" style="width: 45px; height: 55px"></span>
           <form style="margin-left: 20px" class="" action="" method="post" enctype="multipart/form-data">
             <input type="file" name="excel" required value="">
             <div class="modal-footer">

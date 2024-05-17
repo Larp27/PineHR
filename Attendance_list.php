@@ -115,8 +115,8 @@ include_once('./main.php');
         $att_date = explode('/', $row[1])[2] . '-' . explode('/', $row[1])[1] . '-' . explode('/', $row[1])[0];
         $att_s_in = $row[2];
         $att_s_out = $row[3];
-        $total_hours = $row[4];
-        mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_id', '$att_date', '$att_s_in', '$att_s_out', '$total_hours')");
+        $total_hr = $row[4];
+        mysqli_query($conn, "INSERT INTO attendance VALUES('', '$em_id', '$att_date', '$att_s_in', '$att_s_out', '$total_hr')");
       }
 
       echo
