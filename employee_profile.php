@@ -108,30 +108,30 @@ if (isset($_SESSION['s_em_email'])) {
               <div class="dropdown" style="cursor: pointer;">
                 <a class="dropdown-toggle bg-transparent border-0 index-nav-label fw-bold text-white text-uppercase user-account" style="text-decoration: none;" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <?php
-                    if (isset($_SESSION['em_profile_pic'])) {
-                      $imageSource = '';
-                      if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-                        $imageSource = '../PINEHR/' . substr($_SESSION['em_profile_pic'], 3);
-                      } else {
-                        $imageSource = '../pinesolutions.com/' . substr($_SESSION['em_profile_pic'], 3);
-                      }
-                      echo "<img src='" . $imageSource . " 'style='width:60px; height:60px; border-radius: 50%;' alt='Profile Picture'>";
+                  if (isset($_SESSION['em_profile_pic'])) {
+                    $imageSource = '';
+                    if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                      $imageSource = '../PINEHR/' . substr($_SESSION['em_profile_pic'], 3);
                     } else {
-                      echo "<img src='../uploads/default_profile_pic.png' style='style='width:60px; height:60px; border-radius: 50%;' alt='default profile pic'>";
+                      $imageSource = '../pinesolutions.com/' . substr($_SESSION['em_profile_pic'], 3);
                     }
+                    echo "<img src='" . $imageSource . " 'style='width:60px; height:60px; border-radius: 50%;' alt='Profile Picture'>";
+                  } else {
+                    echo "<img src='../uploads/default_profile_pic.png' style='style='width:60px; height:60px; border-radius: 50%;' alt='default profile pic'>";
+                  }
                   ?>
-                  <?php 
-                    $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
-                    $result = mysqli_query($conn, $query);
+                  <?php
+                  $query = "SELECT * FROM employee WHERE em_id = $_SESSION[s_em_id]";
+                  $result = mysqli_query($conn, $query);
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      echo '<span class="fw-bold" style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
-                    }
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<span class="fw-bold" style="font-size: 16px;">' . $row['first_name'] . ' ' . $row['last_name'] . '</span>';
+                  }
                   ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item fw-bold <?php echo (basename($_SERVER['PHP_SELF']) == 'manage_account.php') ? 'active' : ''; ?>" href="user_manage_account.php">Manage Account</a></li>
-                    <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
+                  <li><a class="dropdown-item fw-bold" href="logout.php" data-bs-toggle="modal" data-bs-target="#exampleModal">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -256,16 +256,16 @@ if (isset($_SESSION['s_em_email'])) {
                           <div class="col-12 d-flex">
                             <div class="col-md-3 mt-4 ms-5">
                               <?php
-                                $logoPath = '';
-                                $profilePicPath = '';
+                              $logoPath = '';
+                              $profilePicPath = '';
 
-                                if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
-                                  $logoPath = '../PINEHR/bgimages/ormoc_seal.jpg';
-                                  $profilePicPath = '../PINEHR/' . substr($employee_data['em_profile_pic'], 3);
-                                } else {
-                                  $logoPath = '../pinesolutions.com/bgimages/ormoc_seal.jpg';
-                                  $profilePicPath = '../pinesolutions.com/' . substr($employee_data['em_profile_pic'], 3);
-                                }
+                              if (strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+                                $logoPath = '../PINEHR/bgimages/ormoc_seal.jpg';
+                                $profilePicPath = '../PINEHR/' . substr($employee_data['em_profile_pic'], 3);
+                              } else {
+                                $logoPath = '../pinesolutions.com/bgimages/ormoc_seal.jpg';
+                                $profilePicPath = '../pinesolutions.com/' . substr($employee_data['em_profile_pic'], 3);
+                              }
                               ?>
                               <img src="<?php echo $logoPath; ?>" alt="Logo" style="max-width: 150px; max-height: 150px; margin-bottom:20px; margin-left: 80px;">
 
@@ -313,14 +313,18 @@ if (isset($_SESSION['s_em_email'])) {
                         </div>
                       </div>
                     </div>
-
                     <div class="">
                       <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
-                        <div class="panel-heading border-0 d-flex p-0">
-                          <div class="me-3 ms-3 mt-3">
-                          <i class="fa-solid fa-person-through-window fa-2xl" style="color: #2468a0;"></i>
+                        <div class="panel-heading border-0 d-flex p-0 align-items-center p-2">
+                          <div class="me-3 ms-3">
+                            <i class="fa-solid fa-person-through-window fa-2xl" style="color: #2468a0;"></i>
                           </div>
-                          <p class="text-uppercase fw-bold fs-5 mt-3">Available Leaves and Remaining Credits</p>
+                          <p class="text-uppercase fw-bold fs-5 mb-0">Available Leaves and Remaining Credits</p>
+
+                          <!-- Print Button -->
+                          <div class="ms-auto">
+                            <button onclick="printCredits()" class="btn btn-primary">Print Credits</button>
+                          </div>
                         </div>
 
                         <?php
@@ -348,9 +352,51 @@ if (isset($_SESSION['s_em_email'])) {
                           }
                         }
                         ?>
-
                       </div>
                     </div>
+
+
+                    <!-- Hidden Printable Content -->
+                    <div id="printableArea" style="width: 80%; margin: 0 auto;"> <!-- Adjusted width and centered -->
+                      <div style="text-align: center;">
+                        <a href="index.php"><img src="bgimages/ormoc_seal.jpg" alt="logo" style="width: 100px;height: 100px;"></a>
+                        <h2>Available Leaves & Remaining Credit</h2>
+                        </h1><?php echo $first_name . ' ' . $last_name; ?><br></h1><br>
+                      </div>
+                      <table style="width: 100%;"> <!-- Adjusted width to 100% -->
+                        <thead>
+                          <tr>
+                            <th><b>Leave Type</b></th>
+                            <th><b>Remaining Credits</b></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          // Re-run the query to fetch leave types again for the printable area
+                          $leave_types_query->data_seek(0); // Reset the pointer to the beginning
+                          while ($leave_type = $leave_types_query->fetch_assoc()) {
+                            echo '<tr>';
+                            echo '<td class="text-capitalize">' . $leave_type['lt_name'] . '</td>';
+                            echo '<td>' . $leave_type['lt_credit'] . '</td>';
+                            echo '</tr>';
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+
+                    <script>
+                      function printCredits() {
+                        var printContents = document.getElementById('printableArea').innerHTML;
+                        var originalContents = document.body.innerHTML;
+
+                        document.body.innerHTML = printContents;
+                        window.print();
+                        document.body.innerHTML = originalContents;
+                      }
+                    </script>
                   </div>
               <?php
                 } else {
