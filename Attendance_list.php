@@ -128,20 +128,20 @@ include_once('./main.php');
     }
   ?>
 
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Add Attendance</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Attendance (CSV File)<img src="bgimages/CSV.png" style="width: 45px; height: 55px"></span><br><br>
+          <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Attendance (CSV File)&nbsp;<img src="bgimages/CSV.png" style="width: 40px; height: 40px"></span><br><br>
           <form style="margin-left: 20px" class="" action="" method="post" enctype="multipart/form-data">
             <input type="file" name="excel" required value="">
             <div class="modal-footer">
               <button type="submit" class="btn btn-primary" name="import">Save</button>
-              <a href="Attendance_list.php?"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></a>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </form>
         </div>
