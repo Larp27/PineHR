@@ -59,7 +59,7 @@
                     <button type="button" class="py-0 px-1 me-1 btn btn-success btn-sm update-user-btn" data-bs-toggle="modal" data-bs-target="#updateUserModal" data-address_id="<?php echo $row['address_id']; ?>" data-barangay="<?php echo $row['barangay']; ?>" data-city="<?php echo $row['city']; ?>"><i class="fas fa-edit"></i> Edit</button>
 
 
-                      <a href="BloodType/deleteAddress.php?bt_id=<?php echo $row['address_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Blood Type Data?')"><i class="fas fa-trash"></i> Delete </a>
+                      <a href="Address/deleteAddress.php?address_id=<?php echo $row['address_id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this Address Data?')"><i class="fas fa-trash"></i> Delete </a>
                     </div>
                   </td>
                   </tr>
