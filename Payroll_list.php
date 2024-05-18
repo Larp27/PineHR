@@ -16,7 +16,7 @@ include_once('./main.php');
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12 p-5 shadow-lg ">
-        <div style="height:100vh;">
+        <div style="height:150vh;">
           <div class="d-flex justify-content-between align-items-center">
             <p class="fw-bold fs-5 text-uppercase">Payroll List</p>
             <div class="top-right-buttons">
@@ -83,7 +83,7 @@ if (isset($_POST["import"])) {
     // Extracting file information
     $fileName = $_FILES["excel"]["name"];
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    
+
     // Creating a new file name based on current date and time
     $newFileName = date("Y.m.d") . " - " . date("h.i.sa") . "." . $fileExtension;
 
@@ -102,7 +102,7 @@ if (isset($_POST["import"])) {
 
         // Opening the Excel file for reading
         $reader = new SpreadsheetReader($targetDirectory);
-        
+
         // Looping through each row in the Excel file
         foreach ($reader as $key => $row) {
             // Extracting data from each row
@@ -113,11 +113,20 @@ if (isset($_POST["import"])) {
             $payroll_twd = $row[4];
             $payroll_total = $row[5];
             $payroll_end_date = date("Y-m-d", strtotime(str_replace('/', '-', $row[6])));
-            
-            // Inserting data into the database table 'payroll'
-            mysqli_query($conn, "INSERT INTO payroll VALUES('', '$em_id', '$payroll_start_date', '$payroll_end_date', '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total', '$payroll_end_date')");
+
+            // Prepared statement to insert data into the database table 'payroll'
+            $stmt = $conn->prepare("INSERT INTO payroll (em_id, payroll_start_date, payroll_income, payroll_deduction, payroll_twd, payroll_total, payroll_end_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssiiiii", $em_id, $payroll_start_date, $payroll_income, $payroll_deduction, $payroll_twd, $payroll_total, $payroll_end_date);
+
+            if (!$stmt->execute()) {
+                echo "Error inserting row: " . $stmt->error;
+            }
         }
-        
+
+        // Close the statement and the connection
+        $stmt->close();
+        $conn->close();
+
         // Displaying success message after import
         echo "<script>
                 alert('Successfully Imported');
@@ -132,25 +141,28 @@ if (isset($_POST["import"])) {
 }
 ?>
 
-
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Payroll</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <span><img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Payroll (CSV File)<img src="bgimages/CSV.png" style="width: 45px; height: 55px"></span>
-          <form style="margin-left: 20px" class="" action="" method="post" enctype="multipart/form-data">
-            <input type="file" name="excel" required value="">
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-primary" name="import">Save</button>
-              <a href="Attendance_list.php?"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></a>
+<div class="modal" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Payroll</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-          </form>
+            <div class="modal-body">
+                <span>
+                    <img src="bgimages/fingerprint.jpg" style="width: 100px; height: 110px"></img>&nbsp;&nbsp;&nbsp;Import Payroll (CSV File)&nbsp;
+                    <img src="bgimages/CSV.png" style="width: 40px; height: 40px">
+                </span><br><br>
+                <form style="margin-left: 20px" class="" action="" method="post" enctype="multipart/form-data">
+                    <input type="file" name="excel" required value="">
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="import">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
 </body>
