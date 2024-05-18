@@ -61,7 +61,7 @@
     <div class="col-md-12 shadow-lg">
       <div class="m-2 pt-2 h-100" style="height:200vh;">
         <div class="d-flex justify-content-between align-items-center">
-          <p class="fw-bold fs-5 text-uppercase">Employment List</p>
+          <p class="fw-bold fs-5 text-uppercase">Employee List</p>
           <?php
           if ($_SESSION['s_user_id'] == 1) {
             echo '<a href="em_add.php"><button type="button" class="btn btn-success style="float: right; background-color: #2468a0; border-color:#2468a0;"><i class="fa fa-plus" style="padding-right: 5px;" aria-hidden="true"></i> Add New Employee</button></a>';
