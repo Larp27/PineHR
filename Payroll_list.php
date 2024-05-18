@@ -21,6 +21,9 @@ include_once('./main.php');
             <p class="fw-bold fs-5 text-uppercase">Payroll List</p>
             <div class="top-right-buttons">
               <div class="d-flex">
+                <form action="export.php" method="post" class="ms-2">
+                  <button type="submit" class="btn btn-primary mx-2" name="payroll_export">Export CSV</button>
+                </form>
                 <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">Add CSV File</button>
                 <a href="Payroll_add.php" class="btn btn-success" style="background-color: #2468a0;">Add New Payroll +</a>
               </div>
@@ -78,7 +81,7 @@ include_once('./main.php');
     </div>
   </div>
 
-  <?php
+<?php
 if (isset($_POST["import"])) {
     // Extracting file information
     $fileName = $_FILES["excel"]["name"];
@@ -114,18 +117,13 @@ if (isset($_POST["import"])) {
             $payroll_total = $row[5];
             $payroll_end_date = date("Y-m-d", strtotime(str_replace('/', '-', $row[6])));
 
-            // Prepared statement to insert data into the database table 'payroll'
-            $stmt = $conn->prepare("INSERT INTO payroll (em_id, payroll_start_date, payroll_income, payroll_deduction, payroll_twd, payroll_total, payroll_end_date) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssiiiii", $em_id, $payroll_start_date, $payroll_income, $payroll_deduction, $payroll_twd, $payroll_total, $payroll_end_date);
+            $query = "INSERT INTO payroll (em_id, payroll_start_date, payroll_income, payroll_deduction, payroll_twd, payroll_total, payroll_end_date) 
+            VALUES ('$em_id', '$payroll_start_date', '$payroll_income', '$payroll_deduction', '$payroll_twd', '$payroll_total', '$payroll_end_date')";
 
-            if (!$stmt->execute()) {
-                echo "Error inserting row: " . $stmt->error;
+            if (!mysqli_query($conn, $query)) {
+              echo "Error inserting row: " . mysqli_error($conn);
             }
         }
-
-        // Close the statement and the connection
-        $stmt->close();
-        $conn->close();
 
         // Displaying success message after import
         echo "<script>

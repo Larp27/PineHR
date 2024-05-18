@@ -31,6 +31,9 @@ include_once('./main.php');
             <p class="fw-bold fs-5 text-uppercase">Attendance List</p>
             <div class="top-right-buttons">
               <div class="d-flex">
+                <form action="export.php" method="post" style="display: inline;">
+                  <button type="submit" name="attendance_export" class="btn btn-primary mx-1">Export CSV</button>
+                </form>
                 <button type="button" class="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">Upload CSV File</button>
                 <a href="attendance_add.php" class="btn btn-success" style="background-color: #2468a0;">Add New Attendance +</a>
               </div>

@@ -13,7 +13,7 @@ include_once('./main.php');
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 p-5 shadow-lg ">
-      <div style="height:100vh;">
+      <div style="height:150vh;">
         <div class="d-flex justify-content-between align-items-center">
           <p class="fw-bold fs-5 text-uppercase">Leave Type List</p>
           <?php if ($_SESSION['s_user_id'] == 1) {

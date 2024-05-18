@@ -313,17 +313,21 @@ if (isset($_SESSION['s_em_email'])) {
                         </div>
                       </div>
                     </div>
-
                     <div class="">
                       <div class="panel panel-default mt-4 mx-auto shadow-lg border-0" style="width: 95%;">
-                        <div class="panel-heading border-0 d-flex p-0">
-                          <div class="me-3 ms-3 mt-3">
-                          <i class="fa-solid fa-person-through-window fa-2xl" style="color: #2468a0;"></i>
+                        <div class="panel-heading border-0 d-flex p-0 align-items-center p-2">
+                          <div class="me-3 ms-3">
+                              <i class="fa-solid fa-person-through-window fa-2xl" style="color: #2468a0;"></i>
                           </div>
-                          <p class="text-uppercase fw-bold fs-5 mt-3">Available Leaves and Remaining Credits</p>
-                        </div>
+                          <p class="text-uppercase fw-bold fs-5 mb-0">Available Leaves and Remaining Credits</p>
 
-                        <?php
+                          <!-- Print Button -->
+                          <div class="ms-auto">
+                            <button onclick="printCredits()" class="btn btn-primary">Print Credits</button>
+                          </div>
+                      </div>
+
+                      <?php
                         $leave_types_query = $conn->query("SELECT lt.lt_id, lt.lt_name, IFNULL(elc.available_credits, lt.lt_credit) AS lt_credit FROM leave_type lt LEFT JOIN employee_leave_credits elc ON lt.lt_id = elc.lt_id AND elc.em_id = $em_id WHERE elc.em_id = $em_id");
                         $total_leave_types = $leave_types_query->num_rows;
                         $leave_types_per_column = ceil($total_leave_types / 2);
@@ -347,10 +351,36 @@ if (isset($_SESSION['s_em_email'])) {
                             echo '</div>'; // Close the col-md-6
                           }
                         }
-                        ?>
-
+                      ?>
                       </div>
                     </div>
+
+                    <!-- Hidden Printable Content -->
+                    <div id="printableArea" style="display:none;">
+                      <div style="text-align: center;">
+                        <h2><?php echo $first_name . ' ' . $last_name; ?> Available Leaves & Remaining Credit</h2>
+                      </div>
+                      <ul>
+                        <?php
+                        // Re-run the query to fetch leave types again for the printable area
+                        $leave_types_query->data_seek(0); // Reset the pointer to the beginning
+                        while ($leave_type = $leave_types_query->fetch_assoc()) {
+                          echo '<li class="text-capitalize mt-2">' . $leave_type['lt_name'] . ' (' . $leave_type['lt_credit'] . ' Remaining Credits)</li>';
+                        }
+                        ?>
+                      </ul>
+                    </div>
+
+                      <script>
+                        function printCredits() {
+                          var printContents = document.getElementById('printableArea').innerHTML;
+                          var originalContents = document.body.innerHTML;
+
+                          document.body.innerHTML = printContents;
+                          window.print();
+                          document.body.innerHTML = originalContents;
+                        }
+                      </script>
                   </div>
               <?php
                 } else {
