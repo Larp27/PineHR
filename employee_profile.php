@@ -356,20 +356,34 @@ if (isset($_SESSION['s_em_email'])) {
                     </div>
 
                     <!-- Hidden Printable Content -->
-                    <div id="printableArea" style="display:none;">
+                    <div id="printableArea" style="width: 80%; margin: 0 auto; display: none;"> <!-- Adjusted width and centered -->
                       <div style="text-align: center;">
-                        <h2><?php echo $first_name . ' ' . $last_name; ?> Available Leaves & Remaining Credit</h2>
+                        <a href="index.php"><img src="bgimages/ormoc_seal.jpg" alt="logo" style="width: 100px;height: 100px;"></a>
+                        <h2>Available Leaves & Remaining Credit</h2>
+                        </h1><?php echo $first_name . ' ' . $last_name; ?><br></h1><br>
                       </div>
-                      <ul>
-                        <?php
-                        // Re-run the query to fetch leave types again for the printable area
-                        $leave_types_query->data_seek(0); // Reset the pointer to the beginning
-                        while ($leave_type = $leave_types_query->fetch_assoc()) {
-                          echo '<li class="text-capitalize mt-2">' . $leave_type['lt_name'] . ' (' . $leave_type['lt_credit'] . ' Remaining Credits)</li>';
-                        }
-                        ?>
-                      </ul>
+                      <table style="width: 100%;"> <!-- Adjusted width to 100% -->
+                        <thead>
+                          <tr>
+                            <th><b>Leave Type</b></th>
+                            <th><b>Remaining Credits</b></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          // Re-run the query to fetch leave types again for the printable area
+                          $leave_types_query->data_seek(0); // Reset the pointer to the beginning
+                          while ($leave_type = $leave_types_query->fetch_assoc()) {
+                            echo '<tr>';
+                            echo '<td class="text-capitalize">' . $leave_type['lt_name'] . '</td>';
+                            echo '<td>' . $leave_type['lt_credit'] . '</td>';
+                            echo '</tr>';
+                          }
+                          ?>
+                        </tbody>
+                      </table>
                     </div>
+
 
                       <script>
                         function printCredits() {
