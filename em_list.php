@@ -156,7 +156,6 @@
                               FROM `employee` e 
                               INNER JOIN `department` d ON e.dep_id = d.dep_id 
                               INNER JOIN `designation` de ON de.des_id = e.des_id 
-                              INNER JOIN `blood_group` bg ON bg.bt_id = e.bt_id 
                               INNER JOIN `user_type` ut ON ut.user_id = e.user_id 
                               INNER JOIN `employment_status` es ON es.es_id = e.es_id
                               $where
