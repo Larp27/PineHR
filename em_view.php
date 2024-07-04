@@ -17,16 +17,16 @@
     if (mysqli_num_rows($result) > 0) {
       $row = mysqli_fetch_assoc($result);
 
-      while ($row) {
-        // Assuming child data is in employee_children table
-        $child_name = $row['child_name']; // Adjust based on your column name
-        $child_dob = $row['child_date_of_birth']; // Adjust based on your column name
+      // while ($row) {
+      //   // Assuming child data is in employee_children table
+      //   $child_name = $row['child_name']; // Adjust based on your column name
+      //   $child_dob = $row['child_date_of_birth']; // Adjust based on your column name
 
-        $children_data[] = [
-          'child_name' => $child_name,
-          'child_dob' => $child_dob
-        ];
-      }
+      //   $children_data[] = [
+      //     'child_name' => $child_name,
+      //     'child_dob' => $child_dob
+      //   ];
+      // }
 
       function check_empty($value, $columnName) {
         if (empty($value)) {
@@ -251,9 +251,26 @@
 </div>
 
 <main class="container mt-4 p-1">
-  <div class="col-12 text-uppercase nav-top" id="mainPersonalDataSheetForm">
-    <h6 class="title-head fw-bold">View Employee Personal Data Form</span></h6>
+  <div class="row">
+    <div class="col-10 text-uppercase nav-top" id="mainPersonalDataSheetForm">
+      <h6 class="title-head fw-bold">View Employee Personal Data Form</span></h6>
+    </div>
+    <div class="col-1 justify-content-end text-end">
+      <button onclick='printEmployeeData(<?php echo $em_id; ?>)' class='btn btn-info btn-sm text-end'><i class='fas fa-print'> </i> Print</button>
+    </div>
   </div>
+
+  <script>
+    function printEmployeeData(em_id) {
+      // Redirect to the print page with the employee ID as a parameter
+      var newTab = window.open('print_employee.php?em_id=' + em_id, '', 'height=400,width=800');
+      
+      // Detect if print dialog is canceled
+      newTab.onbeforeunload = function() {
+        newTab.close(); // Close the new tab
+      };
+    }
+  </script>
 
   <div class="mb-2 pt-3">
     <p id="message" class="text-danger"></p>
