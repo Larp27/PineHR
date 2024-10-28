@@ -156,7 +156,6 @@
                               FROM `employee` e 
                               INNER JOIN `department` d ON e.dep_id = d.dep_id 
                               INNER JOIN `designation` de ON de.des_id = e.des_id 
-                              INNER JOIN `blood_group` bg ON bg.bt_id = e.bt_id 
                               INNER JOIN `user_type` ut ON ut.user_id = e.user_id 
                               INNER JOIN `employment_status` es ON es.es_id = e.es_id
                               $where
@@ -193,18 +192,21 @@
                                 </td>";
                       echo "<td class='text-center p-3'><span class='badge $status_color'>" . $row['employee_status'] . "</span></td>";
                       echo "<td class='text-center p-3'>
-                                  <div class='col-auto d-flex justify-content-center m-2'>
-                                    <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
-                                      <i class='fas fa-eye'> </i> View
-                                    </a>
-                                    <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
-                                      <i class='fas fa-edit'> </i> Edit
-                                    </a>
-                                    <a href='Employee/deleteEM.php?em_id=" . $row['em_id'] . "' class='btn btn-danger btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;' onclick='return confirm(\"Are you sure you want to remove this Employee?\")'>
-                                      <i class='fas fa-trash'> </i> Remove
-                                    </a>
-                                  </div>
-                                </td>";
+                              <div class='col-auto d-flex justify-content-center m-2'>
+                                <a href='em_view.php?em_id=" . $row['em_id'] . "' class='btn btn-primary btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
+                                  <i class='fas fa-eye'> </i> View
+                                </a>
+                                <a href='em_edit.php?em_id=" . $row['em_id'] . "' class='btn btn-success btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
+                                  <i class='fas fa-edit'> </i> Edit
+                                </a>
+                                <a href='Employee/deleteEM.php?em_id=" . $row['em_id'] . "' class='btn btn-danger btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;' onclick='return confirm(\"Are you sure you want to remove this Employee?\")'>
+                                  <i class='fas fa-trash'> </i> Remove
+                                </a>
+                                <button onclick='printEmployeeData(" . $row['em_id'] . ")' class='btn btn-info btn-sm m-2 p-1' style='padding-left: 10px !important; padding-right: 10px !important;'>
+                                  <i class='fas fa-print'> </i> Print
+                                </button>
+                              </div>
+                          </td>";
                       echo "</tr>";
                     }
                   }
@@ -218,6 +220,16 @@
   </div>
 </div>
 <script>
+  function printEmployeeData(em_id) {
+    // Redirect to the print page with the employee ID as a parameter
+    var newTab = window.open('print_employee.php?em_id=' + em_id, '', 'height=400,width=800');
+    
+    // Detect if print dialog is canceled
+    newTab.onbeforeunload = function() {
+      newTab.close(); // Close the new tab
+    };
+  }
+
   // Function to reset all filter selections
   function resetFilters() {
     document.getElementById('department_select').value = '';

@@ -137,7 +137,7 @@
                   </div>
                   
                   <!-- Organization Submenu -->
-                  <ul class="org-show <?php echo $is_organization_active ? 'visible' : '' ?>">
+                  <ul class="org-show <?php echo $is_organization_active ? 'visible d-block' : '' ?>">
                     <a href="Department_list.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'department_list' || $page == 'department_add') ? 'class="nav_active"' : '' ?>>
                         <i class="fa-solid fa-building-user fa-lg"></i>&nbsp;&nbsp;&nbsp;Department
@@ -160,7 +160,7 @@
                   </div>
 
                   <!-- Profiling Submenu -->
-                  <ul class="pro-show <?php echo $is_profiling_active ? 'visible' : '' ?>">
+                  <ul class="pro-show <?php echo $is_profiling_active ? 'visible d-block' : '' ?>">
                     <a href="Education.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'education' || $page == 'education_add') ? 'class="nav_active"' : '' ?>>
                         <i class="fa-solid fa-graduation-cap  fa-lg"></i>&nbsp;&nbsp;&nbsp;Educational Attainment
@@ -203,7 +203,7 @@
                   </div>
 
                   <!-- Employees Submenu -->
-                  <ul class="emp-show <?php echo $is_employee_active ? 'visible' : '' ?>">
+                  <ul class="emp-show <?php echo $is_employee_active ? 'visible d-block' : '' ?>">
                     <a href="em_list.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'employee_list' || $page == 'employee_add') ? 'class="nav_active"' : '' ?>>
                         <i class="fa-solid fa-graduation-cap fa-lg"></i>&nbsp;&nbsp;&nbsp;Employee List
@@ -227,7 +227,7 @@
                   </div>
 
                   <!-- Leave Submenu -->
-                  <ul class="lev-show <?php echo $is_leave_active ? 'visible' : '' ?>">
+                  <ul class="lev-show <?php echo $is_leave_active ? 'visible d-block' : '' ?>">
                     <a href="Leave_type_list.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'leave_type_list' || $page == 'leave_type_add') ? 'class="nav_active"' : '' ?>>
                         <i class="fa-solid fa-list-check fa-lg"></i>&nbsp;&nbsp;&nbsp;Leave Type List
@@ -269,7 +269,7 @@
                   </div>
 
                   <!-- Reports Submenu -->
-                  <ul class="rep-show <?php echo $is_reports_active ? 'visible' : '' ?>">
+                  <ul class="rep-show <?php echo $is_reports_active ? 'visible d-block' : '' ?>">
                     <a href="Reports_att.php" class="px-1 dropdownIcon">
                       <li style="margin-top: 5px;" <?php echo ($page == 'reports_attendance') ? 'class="nav_active"' : '' ?>>
                         <i class="fa-solid fa-file fa-lg"></i>&nbsp;&nbsp;&nbsp;Attendance Reports
